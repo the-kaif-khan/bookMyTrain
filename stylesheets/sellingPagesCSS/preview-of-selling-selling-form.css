@@ -1,0 +1,143 @@
+/* form of selling codes */
+body{
+  font-family: arial, sans-serif;
+}
+
+.formHeading{
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  /* border-top: 1px solid rgb(196, 196, 196); */
+  background-color: rgb(255, 255, 255);
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+}
+.wanna{
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin-bottom: 15px;
+  background-color: rgb(10, 35, 68);
+  padding: 5px;
+  padding-left: 12px;
+  line-height: 38px;
+}
+.formMiddleHeading{
+  color: rgb(48, 48, 48);
+  margin-bottom: 20px;
+  background-color: rgb(247, 247, 247);
+  padding: 5px;
+  border-top: 1px solid rgb(218, 218, 218);
+  border-left: 1px solid rgb(218, 218, 218);
+  border-right: 1px solid rgb(218, 218, 218);
+  line-height: 30px;
+}
+.formMiddleHeading span{
+  color: rgb(10, 100, 14);
+  font-weight: bold;
+
+}
+.formFinalHeading{
+  font-size: 18px;
+  color: black;
+  background-color: rgb(247, 247, 247);
+  padding: 5px;
+  border-top: 1px solid rgb(218, 218, 218);
+  border-left: 1px solid rgb(218, 218, 218);
+  border-right: 1px solid rgb(218, 218, 218);
+  line-height: 28px;
+}
+
+
+.sellingForm{
+  border: 1px solid rgb(190, 190, 190);
+  height: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.sellingFormHeading{
+  background-color: rgb(247, 247, 247);
+  font-size: 34px;
+  font-weight: bold;
+  color: rgb(10, 35, 68);
+  padding: 14px;
+  margin-bottom: 18px;
+}
+.naming,
+.mobileNumber,
+.emailContainer,
+.chooseCityContainer,
+.addressContainer{
+  padding: 12px;
+  font-size: 16px;
+}
+.name,
+.number,
+.email,
+.chooseCity,
+.address{
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  border: 1px solid rgb(218, 218, 218);
+  font-size: 15px;
+}
+.khatauniContainer{
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgb(218, 218, 218);
+}
+.khatauni{
+  width: 100%;
+  height: 50px;
+  margin-top: 15px;
+  /* border: 1px solid rgb(218, 218, 218); */
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.resetButton{
+  background-color: rgba(170, 0, 0, 0.877);
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-left: 11px;
+  margin-top: 30px;
+  color: white;
+  border-radius: 20px;
+  border: none;
+}
+.resetButton:hover{
+  opacity: 0.8;
+}
+.resetButton:active{
+  opacity: 0.6;
+}
+.submitButton{
+  background-color: green;
+  color: white;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 98%;
+  height: 55px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  margin-left: 11px;
+  margin-right: 16px;
+  margin-top: 16px;
+  text-align: center;
+  border: none;
+}
+.submitButton:hover{
+  opacity: 0.8;
+}
+.submitButton:active{
+  opacity: 0.6;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query House login page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/loginPage.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerTitle">
+      Welcome Landbook Query Housers to <span>landbook.com</span>
+    </div>
+  </div>
+  <div class="pageHeading">Sign up / Login / Logout page</div>
+
+  <div class="logout">
+    <a href="/landbook-query-house/query-house-skyman-panel/<%= franchise.slug %>" class="skymanPanel">
+      Skyman Panel
+    </a>
+    <div class="skymanNotification">
+      <%= queryhouseSkymanForms.length %>
+    </div>
+    <a href="/landbook-query-house/query-house-panel/<%= franchise.slug %>" class="notificationLink">
+      Notification
+    </a>
+    <div class="notificationTooltip">
+      <%= queryhouseUserBayanaForms.length %>
+    </div>
+    <a href="/landbook-query-house/logout-query-house-staff/<%= franchise.slug %>" class="logoutLink">Logout</a>
+  </div>
+
+
+  <div class="aboutContainer">
+    <div class="about1">
+      This is the page by <span class="logo">Landbook</span> where Landbook Query Housers of <span class="logo">Landbook</span> can either Sign up/ login/ logout
+    </div>
+    <div class="skipLink">
+      <div class="link">
+        <a href="/landbook-query-house/query-house-panel/<%= franchise.slug %>">Skip for now</a> 
+      </div>
+    </div>
+    <div class="about2">
+      Landbook Query Housers can <span class="skip">skip</span> login/ sign up also for now but in some regions of the <span class="logo">landbook.com</span> you'll need to login then you'll be able to use nearly all convenience of landbook. So, in order to lack inconvenience when try to do important drilling in Landbook hurry up and login now...
+    </div>
+  </div>
+
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="container">
+
+    <div class="loginBox">
+      <div class="title">
+        Login
+      </div>
+      <form action="/landbook-query-house/query-house-staff-logging-in/<%= franchise.slug %>" method="post">
+        <input type="text" placeholder="Enter username" class="username" name="username" required>
+        <input type="password" placeholder="Enter your password" class="password" name="password" required>
+        <a href="" class="forgotPass">
+          forgot password?
+        </a>
+        <input type="submit" value="Login" class="login">
+      </form>
+    </div>
+
+    <div class="signUpBox">
+      <div class="title">
+        Sign up
+      </div>
+      <form action="/landbook-query-house/creating-query-house-staff/<%= franchise.slug %>" method="post">
+        <input type="text" placeholder="Enter your name" class="name" name="fullname" required>
+        <input type="userName" placeholder="Enter your username" class="username" name="username" required>
+        <input type="number" placeholder="Your correct contact number" class="number" name="contactNumber" required>
+        <input type="email" placeholder="abc@gmail.com" class="email" name="email" required>
+        <input type="text" placeholder="Enter your address" class="email" name="address" required>
+        <input type="password" placeholder="Create password" class="password" name="password" required>
+
+        <input type="submit" value="Sign Up" class="signUp">
+      </form>
+    </div>
+    
+  </div>
+
+</body>
+</html>

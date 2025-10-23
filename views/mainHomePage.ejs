@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>main home page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-body-page.css">
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-containers-page.css">
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-header-page.css">
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-footer-page.css">
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-different-states-background.css">
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-carousel-product.css">
+  
+</head>
+<body>
+
+  <!-- header container -->
+    <nav class="main-navbar">
+      <div class="leftHeader">
+        <a href="/home/login"><img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt=""></a> 
+      </div>
+      <button class="hamburger" onclick="toggleSidebar()">
+        &#9776
+      </button>
+      <div class="hamburgerNotification">
+        3
+      </div>
+      <div class="headerContent">
+        <div class="middleHeader">
+          <form action="/home/search/basti/bastisadar" method="GET">
+            <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+            <button class="searchButton" type="submit">
+              <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+              <div class="tooltip">
+                Search
+              </div>
+            </button>
+          </form>
+          <button class="voiceButton" id="micBtn">
+            <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+            <div class="tooltip">
+              Search with your voice
+            </div>
+          </button>
+          <div id="languageToggle">
+            <div class="language-dropdown">
+              <button onclick="toggleLanguageDropdown()" class="languageBtn">🌐 Language</button>
+              <div id="dropdownContent" class="dropdown-content">
+                <a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
+                <a onclick="changeLanguage('bn')">🇮🇳 Bengali</a>
+                <a onclick="changeLanguage('ta')">🇮🇳 Tamil</a>
+                <a onclick="changeLanguage('te')">🇮🇳 Telugu</a>
+                <a onclick="changeLanguage('en')">🇺🇸 English</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rightHeader">
+
+         <!-- <div class="profileIcon">
+            <a href="/us/user/notification">
+              <button class="profileButton">
+                <img src="/imagesAndVideos/Logos/notification2.jpg" alt="">
+                <div class="tooltip">
+                  Notifications
+                </div>
+                <div class="notification">
+                  <% if (currentUser) { %>
+                    <% if(currentUser.notifications.length > 9) { %>
+                      9+
+                    <% } else { %>
+                      <%= currentUser.notifications.length %>
+                    <% } %>
+                  <% } else { %>
+                    0
+                  <% } %>
+                </div>
+              </button> 
+            </a>
+          </div> -->
+          <div class="profileIcon">
+            <a href="/us/user/profile">
+              <button class="profileButton">
+                <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+                <div class="tooltip">
+                  Your Profile
+                </div>
+              </button> 
+            </a>
+            <div class="profileNotification">
+              3
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar">
+      <div class="sidebarTops">
+        <button class="close-btn" onclick="toggleSidebar()">
+          &times;
+        </button>
+        <!-- <div class="profileIcon">
+          <a href="/us/user/notification">
+            <button class="profileButton">
+              <img src="/imagesAndVideos/Logos/notification2.jpg" alt="">
+              <div class="sideTooltip">
+                Notifications
+              </div>
+              <div class="notification">
+                <% if (currentUser) { %>
+                  <% if(currentUser.notifications.length > 9) { %>
+                    9+
+                  <% } else { %>
+                    <%= currentUser.notifications.length %>
+                  <% } %>
+                <% } else { %>
+                  0
+                <% } %>
+              </div>
+            </button> 
+          </a>
+        </div> -->
+        <div class="profileIcon">
+          <a href="/us/user/profile">
+            <button class="profileButton">
+              <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+              <div class="sideTooltip">
+                Your Profile
+              </div>
+            </button> 
+          </a>
+          <div class="profileNotification">
+            3
+          </div>
+        </div>
+      </div>
+      <div class="sideMiddleHeader">
+        <form action="/home/search/basti/bastisadar" method="GET">
+          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+          <button class="searchButton" type="submit">
+            <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+            <div class="sideTooltip">
+              Search
+            </div>
+          </button>
+        </form>
+        <button class="voiceButton" id="micBtn">
+          <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+          <div class="sideTooltip">
+            Search with your voice
+          </div>
+        </button>
+        <div id="languageToggle">
+          <div class="language-dropdown">
+            <button onclick="toggleLanguageDropdown()" class="languageBtn">🌐 Language</button>
+            <div id="dropdownContent" class="dropdown-content">
+              <a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
+              <a onclick="changeLanguage('bn')">🇮🇳 Bengali</a>
+              <a onclick="changeLanguage('ta')">🇮🇳 Tamil</a>
+              <a onclick="changeLanguage('te')">🇮🇳 Telugu</a>
+              <a onclick="changeLanguage('en')">🇺🇸 English</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  <!-- header container ends-->
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div id="google_translate_element" style="position: fixed; top: 0; left: 0; z-index: 9999;"></div>
+
+  <!-- body containers -->
+  <div class="container">
+
+    <div class="containerUpperPortion">
+
+      <div class="carousel-wrapper">
+        <% if(bigProducts.length > 0) { %>
+          <button class="arrow left" onclick="moveLeft()"> &#8592; </button>
+        <% } %>
+        <div class="carousel" id="carousel">
+          <% if(bigProducts.length > 0) { %>
+            <% bigProducts.forEach((bigProduct) => { %>
+              <div class="carousel-item">
+  
+                <div class = "productsContainer">
+                  <a href="/buy/viewproduct/<%= bigProduct._id %>/<%= bigProduct.city %>/<%= bigProduct.tehsil %>" class="productLink">
+                    <div id = "<%= bigProduct._id %>">
+                      <div class="productsImage">
+                        <img src= "data:image/jpeg;base64, <%= bigProduct.productImages[0].toString('base64') %>" alt="product image">
+                      </div>
+                      <div class="productsPriceAndLB">
+                        <div class= "productsPrice">
+                          Price: <%= bigProduct.landbookPrice %> Lakhs.
+                        </div>
+                        <div class= "productsLB">
+                          L * B: <%= bigProduct.LB %>
+                        </div>
+                      </div>
+                      <div class="productsSpec">
+                        <%= bigProduct.spec %>
+                      </div>
+                      <div class="productsStats">
+                        <div class="productsVisit">
+                          Times Visited: <%= bigProduct.visits.length %> &#183
+                        </div>
+                        <div class="productsRating">
+                          <img src= "data:image/jpeg;base64, <%= bigProduct.ratingImage.toString('base64') %>">
+                        </div>
+                        <div class="productsClaim">
+                          Claimed: <%= bigProduct.claimedPeople.length %> &#183
+                        </div>
+                      </div>
+                      <div>
+                        <a href="/buy/addtoclaim/<%= bigProduct._id %>/<%= bigProduct.city %>/<%= bigProduct.tehsil %>">
+                          <button class= "claimToCartButton js-claim-to-cart"> 
+                            Add to Claim Cart
+                          </button>
+                        </a> 
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <div class="noProducts">
+            </div>
+          <% } %>
+
+        </div>
+        <% if(bigProducts.length > 0) { %>
+          <button class="arrow right" onclick="moveRight()">&#8594;</button>
+        <% } %>
+      </div>
+
+    </div>
+
+    <div class="aboutPage">
+      You are on landbook.com. If you want to buy or sell your zameen(s) then landbook make it easy where you can buy and sell the zameen in easiest ways in the world with your phone.
+    </div>
+
+    <div class="top3Columns">
+
+      <div class="tops dropdown-container" onclick="toggleDropdown()">
+        <div class="placeAndPrice">
+          <div class="textsTopFour">
+            Basti
+          </div>
+          <div class="startingPrices"> 
+            Starting Price. 28 Lakhs
+          </div>
+        </div>
+        <div class="dropdown hidden">
+          <a onclick="saveLastClick('Basti Sadar')" href="/home/basti/bastisadar" class="links specialLink">Basti Sadar</a>
+          <a onclick="saveLastClick('Harraiya')" href="/home/basti/harraiya" class="links specialLink">Harraiya</a>
+          <a onclick="saveLastClick('Rudhauli')" href="/home/basti/rudhauli" class="links specialLink">Rudhauli</a>
+          <a onclick="saveLastClick('Bhanpur')" href="/home/basti/bhanpur" class="links specialLink">Bhanpur</a>
+        </div>
+      </div>
+
+      <div class="tops dropdown-container" onclick="toggleDropdown()">
+        <div class="placeAndPrice">
+          <div class="textsTopFour">
+            Lucknow
+          </div>
+          <div class="startingPrices"> 
+            Starting Price. 42 Lakhs
+          </div>
+        </div>
+        <div class="dropdown hidden">
+          <a onclick="saveLastClick('Gomti nagar')" href="/home/lucknow/gomtinagar" class="links specialLink">Gomti nagar</a>
+          <a onclick="saveLastClick('Hazratganj')" href="/home/lucknow/hazratganj" class="links specialLink">Hazratganj</a>
+          <a onclick="saveLastClick('Aliganj')" href="/home/lucknow/aliganj" class="links specialLink">Aliganj</a>
+        </div>
+      </div>
+
+      <div class="tops dropdown-container" onclick="toggleDropdown()">
+        <div class="placeAndPrice">
+          <div class="textsTopFour">
+            Kanpur coming soon @ Landbook
+          </div>
+          <div class="startingPrices"> 
+            Starting Price. 35 Lakhs
+          </div>
+        </div>
+        <div class="dropdown hidden">
+          <a onclick="saveLastClick('Kalyanpur')" href="/home/kanpur/kalyanpur" class="links specialLink">Kalyanpur</a>
+          <a onclick="saveLastClick('Kidwainagar')" href="/home/kanpur/kidwainagar" class="links specialLink">Kidwainagar</a>
+          <a onclick="saveLastClick('govindnagar')" href="/home/kanpur/govindnagar" class="links specialLink">govindnagar</a>
+        </div>
+      </div>
+
+      <!-- </a> -->
+
+      <!-- <div class="tops">
+        <div class="placeAndPrice">
+          <div class="textsTopFour">
+            Gautama Buddha Nagar
+          </div>
+          <div class="startingPrices">
+            Starting Price. 24 Lakhs
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- kind of advertising -->
+
+    <div class="kindOfAdvertising">
+      <div class="advertisement">
+        advertising
+      </div>
+      <div class="pickContainer">
+        <div class="pickWhereYouLeftTitle">
+          Pick Where you left: 
+        </div>
+        <a href="#" class="links pickLeftLink" id="last-visited-link">
+          <div id="pick-up-container">
+            <div id="last-visited-text"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+
+    <!-- search bar for searching states -->
+    <!-- <div class="searchContainerInPage">
+      <div class="searchStatesByName">
+        <input type="text" placeholder="Search Districts" class="searchStatesBar">
+      </div>
+      <div class="searchStates-Button">
+        <button class="searchStatesButton">
+          <img src="../Logos/Search Icon.svg" alt="">
+        </button>
+      </div>
+    </div> -->
+
+
+    <!-- rest of states is in this container through js-->
+    <div class="allStates"></div> 
+
+    
+    <!-- container div end -->
+  </div>
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="aboutThisPageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+  
+  <div id="google_translate_element" style="display: none;"></div>
+  <script>
+    // After some time, hide the dropdown
+    window.addEventListener("load", function () {
+      setTimeout(() => {
+        const el = document.getElementById("google_translate_element");
+        if (el) el.style.display = "none";
+      }, 5000); // wait 5 seconds to let Google inject the dropdown
+    });
+  
+    function toggleLanguage() {
+      const langSelect = document.querySelector('.goog-te-combo');
+      const langLabel = document.getElementById('langLabel');
+  
+      if (!langSelect) {
+        alert('Still loading language tools... try again shortly.');
+        return;
+      }
+  
+      const currentLang = langSelect.value || 'en';
+      const newLang = currentLang === 'en' ? 'hi' : 'en';
+  
+      langSelect.value = newLang;
+      langSelect.dispatchEvent(new Event('change'));
+      langLabel.textContent = newLang === 'en' ? 'EN' : 'हिंदी';
+    }
+  </script>
+
+  <script>
+
+    // for corousel working on arrows on PCs
+    let carousel = document.getElementById('carousel');
+    const scrollAmount = 300;
+
+    // function updateCarousel() {
+    //   carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // }
+
+    // for working carousel by pressing the left right button
+    function moveLeft() {
+      if(carousel.scrollLeft > 0) {
+        carousel.scrollBy({left: -scrollAmount, behavior: "smooth"})
+      }
+    }
+    function moveRight() {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth
+      if(carousel.scrollLeft < maxScroll) {
+        carousel.scrollBy({left: scrollAmount, behavior: 'smooth'});
+      }
+    }
+
+    // for carousel working on pressing arrow on keyboard....
+    // document.addEventListener('keydown', (e) => {
+    //   if(e.key === 'ArrowRight') {
+    //     if(currentIndex < carousel.children.length - 1) {
+    //       currentIndex++;
+    //       updateCarousel();
+    //     }
+    //   } else if (e.key === 'ArrowLeft') {
+    //     if(currentIndex > 0) {
+    //       currentIndex--;
+    //       updateCarousel();
+    //     }
+    //   }
+    // });
+
+    // carousel working on swiping eg. by touch
+    let startX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
+
+      if(diff > 50 && currentIndex < carousel.children.length -1) {
+        currentIndex++;
+        updateCarousel();
+      } else if (diff < -50 && currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    
+    // for cities dropdown starts here
+    document.querySelectorAll('.dropdown-container').forEach(container => {
+      container.addEventListener('click', (e) => {
+        const dropdown = container.querySelector('.dropdown');
+        dropdown.classList.toggle('hidden');
+        e.stopPropagation();
+      });
+    });
+    document.addEventListener('click', (event) => {
+      document.querySelectorAll('.dropdown').forEach(drop => {
+        if(!drop.classList.contains('hidden')) {
+          drop.classList.add('hidden')
+        }
+      });
+    });
+    // for cities dropdown ends here
+
+    // when any link is clicked, store its href
+    document.addEventListener('DOMContentLoaded', () => {
+      const allLinks = document.querySelectorAll('.links');
+
+      allLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          localStorage.setItem('lastVisitedLink', link.href);
+          localStorage.setItem('lastVisitedText', link.textContent.trim());
+        });
+      });
+    });
+
+    // for searching through voice starts
+    (() => {
+      // feature detection
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if(!SpeechRecognition) return;
+
+      const micBtn = document.getElementById('micBtn');
+      const inputBox = document.querySelector('input[name="q"]');
+      const recog = new SpeechRecognition();
+
+      recog.lang = 'en-US';
+      recog.interimResults = false;
+      recog.maxAlternatives = 1;
+
+      micBtn.addEventListener('click', () => {
+        recog.start();
+        // micBtn.textContent = 'listening';
+      });
+      recog.addEventListener('result', e => {
+        const transcipt = e.results[0][0].transcipt.trim();
+        inputBox.value = transcipts;
+        // micBtn.textContent = 'Voice';
+
+        inputBox.form.requestSubmit();
+      });
+
+      recog.addEventListener('end', () => {
+        // micBtn.textContent = 'Voice';
+      });
+    })();
+
+    // for pick where you left...
+    // to make pick where you left working...
+    const link = document.getElementById('last-visited-link');
+    const label = document.getElementById('last-visited-text');
+    const lastHref = localStorage.getItem('lastVisitedLink');
+    const lastText = localStorage.getItem('lastVisitedText');
+
+    if(lastHref && lastText) {
+      link.href = lastHref;
+      label.textContent = lastText
+    }
+    function saveLastClick() {
+      localStorage.setItem('lastVisitedLinkText', linkText);
+    }
+
+  </script>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Script to Load Google Translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,bn,ta,te,ml,gu,kn,pa,mr,ur,or,as,ne,sd,ks,doi,sa,bo,mai,sat',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    
+      // 👇 Flag to track readiness
+      let googleTranslateReady = false;
+    
+      // 👇 Wait until Translate dropdown is injected
+      function checkTranslateReady() {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+          googleTranslateReady = true;
+        } else {
+          setTimeout(checkTranslateReady, 200); // keep checking
+        }
+      }
+    
+      // 👇 Run this after the Google script loads
+      window.addEventListener("load", () => {
+        checkTranslateReady();
+      });
+    
+      function changeLanguage(langCode) {
+        if (!googleTranslateReady) {
+          alert("Google Translate not ready. Please wait...");
+          return;
+        }
+        const select = document.querySelector(".goog-te-combo");
+        if (select) {
+          select.value = langCode;
+          select.dispatchEvent(new Event("change"));
+        }
+      }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    // function toggleLanguageDropdown() {
+    //   const dropdown = document.getElementById("dropdownContent");
+    //   dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    // }
+    // function changeLanguage(langCode) {
+    //   const select = document.querySelector(".goog-te-combo");
+    //   if (!select) return setTimeout(() => changeLanguage(langCode), 500); // retry
+    //   select.value = langCode;
+    //   select.dispatchEvent(new Event("change"));
+    // }
+
+    // function toggleLanguageDropdown() {
+    //   document.getElementById('dropdownContent').classList.toggle('show');
+    // }
+    // window.onclick = function (e) {
+    //   if(!e.target.closest('#languageToggle')) {
+    //     const dropdown = document.getElementById('dropdownContent');
+    //     if(dropdown && dropdown.classList.contains('show')) {
+    //       dropdown.classList.remove('show');
+    //     }
+    //   }
+    // }
+
+        // for language translation starts
+    function toggleLanguageDropdown() {
+      const dropdown = document.getElementById("dropdownContent");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function changeLanguage(lang) {
+      const select = document.querySelector(".goog-te-combo");
+      if (!select) return alert("Google Translate not yet ready");
+
+      select.value = lang;
+      select.dispatchEvent(new Event("change"));
+
+      toggleLanguageDropdown();
+    }
+    </script>
+  
+</body>
+
+</html>

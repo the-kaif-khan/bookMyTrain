@@ -1,0 +1,459 @@
+.flash{
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}
+/* .noProducts{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  color: rgb(100, 100, 100); */
+  /* background-color: rgb(0, 81, 255); */
+  /* font-family: arial;
+  font-size: 14px;
+  line-height: 23px;
+} */
+.highlight{
+  color: rgb(0, 81, 255);
+}
+.products img{
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+  margin-bottom: 14px;
+}
+.sell{
+  background-color: #ffed8446;
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  margin-left: 12px;
+}
+.claimCartContainer{
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  column-gap: 25px;
+  row-gap: 40px;
+  margin-top: 30px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.claimCartContainer.open{
+  max-height: 100%;
+}
+.container{
+  background-color: #ffed8446;
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  margin-left: 12px;
+}
+.claimCartPost-section{
+  display: flex;
+}
+@media(max-width: 1211px) {
+  .claimCartPost-section{
+    grid-template-columns: 1fr;
+  }
+}
+.productsContainer{
+  margin-right: 10px;
+}
+.products{
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 30px;
+  display: flex;
+  border: 1px solid rgb(224, 224, 224);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  
+}
+.leftContainer{
+  background-color: rgb(255, 255, 255);
+  flex: 1;
+  margin-bottom: 6px;
+  margin-left: 10px;
+}
+.leftContainerHeading{
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: green;
+  margin-top: 16px;
+}
+.leftContainerHeading b{
+  font-size: 20px;
+  margin-right: 2px;
+  /* margin-left: 6px; */
+  color: black;
+}
+.productImage{
+  display: flex;
+}
+.productImage{
+  align-items: center;
+  justify-content: center;
+}
+.productPriceAndLB{
+  color: rgb(65, 65, 65);
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-right: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  justify-content: center;
+}
+/* @media(max-width: 1218px) {
+  .productPriceAndLB{
+    margin-right: 120px;
+  }
+}
+@media(max-width: 1160px) {
+  .productPriceAndLB{
+    margin-right: 100px;
+  }
+}
+@media(max-width: 1138px) {
+  .productPriceAndLB{
+    margin-right: 60px;
+  }
+}
+@media(max-width: 1000px) {
+  .productPriceAndLB{
+    margin-right: 140px;
+  }
+} */
+.productPrice{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-right: 24px;
+}
+.productLB{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: rgb(37, 58, 82);
+  font-size: 16px;
+}
+.productSpec{
+  color: rgb(65, 65, 65);
+  font-size: 16px;
+  margin-bottom: 7px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+}
+.buyNow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buyNowButton{
+  width: 100%;
+  height: 40px;
+  background-color: rgb(31, 135, 255);
+  color: white;
+  border: none;
+  max-width: 400px;
+  border-radius: 200px;
+  margin-bottom: 10px;
+  margin-top: 6px;
+  font-size: 15px;
+}
+.buyNowButton:hover{
+  opacity: 0.9;
+}
+.buyNowButton:active{
+  opacity: 0.7;
+}
+.buyNowLink{
+  text-decoration: none;
+  /* from buyNow Button */
+  width: 100%;
+  max-width: 400px;
+}
+.rightContainer{
+  flex: 1;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-top: none;
+}
+
+@media(max-width: 1000px) {
+  .rightContainer{
+    max-width: 100%;
+    align-items: center;
+    border-top: 1px solid rgb(240, 240, 240);
+  }
+}
+
+@media(max-width: 1000px) {
+  .products{
+    flex-direction: column;
+  }
+}
+
+.rightContainerHeading{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 23px;
+  margin-top: 10px;
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+}
+.newClaimed{
+  color: rgb(100, 100, 100);
+  display: flex;
+  justify-content: center;
+}
+.newClaimed b{
+  font-size: 18px;
+  color: rgb(13, 110, 0);
+}
+.newViews{
+  color: rgb(100, 100, 100);
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+.newViews b{
+  font-size: 18px;
+  color: rgb(13, 110, 0);
+}
+.buyingCartTimersAlert{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: rgba(223, 223, 223, 0.877);
+  color: rgb(22, 22, 22);
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.4s ease-in-out;
+  display: inline-block;
+}
+.hidden{
+  display: none;
+}
+.redAlert{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: rgba(223, 223, 223, 0.877);
+  color: rgb(22, 22, 22);
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.4s ease-in-out;
+}
+.blink-red-white{
+  animation: blinkRedWhiteSmooth 1.5s infinite;
+}
+@keyframes blinkRedWhiteSmooth {
+  0% {
+    background-color: rgb(214, 0, 0);
+    color: white;
+    opacity: 1;
+  }
+  50% {
+    background-color: white;
+    color: rgb(214, 0, 0);
+    opacity: 0.6;
+  }
+  100% {
+    background-color: rgb(214, 0, 0);
+    color: white;
+    opacity: 1;
+  }
+}
+.bayanaBox{
+  font-weight: bold;
+  color: rgb(31, 31, 31);
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin-bottom: 10px;
+  background-color: rgb(255, 251, 0);
+  border-radius: 20px;
+  padding: 12px;
+}
+.removeProduct{
+  color: rgb(0, 120, 141);
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: bold;
+  /* padding: 8px; */
+  margin-bottom: 10px;
+  max-width: 143px;
+  margin-top: 20px;
+}
+.removeProduct:hover{
+  opacity: 0.9;
+  text-decoration: none;
+  color: rgba(194, 0, 0, 0.877);
+  cursor: pointer;
+}
+.removeProduct:active{
+  opacity: 0.7;
+}
+
+/* buying summary */
+/* buying summary */
+.buyingSummary{
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 10px;
+  border: 1px solid rgb(224, 224, 224);
+  font-family: system-ui;
+  /* height: 100%; */
+}
+.buyingSummaryHeading{
+  font-weight: bolder;
+  font-size: 32px;
+  margin-top: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.numberOfZameens{
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 55px;
+  color: rgb(24, 24, 24);
+  font-weight: bold;
+}
+.numberOfZameens span{
+  font-weight: bold;
+  color: green;
+}
+.buyingSummaryContentsContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+.buyingSummaryContents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-left: 4px;
+  margin-bottom: 30px;
+  font-size: 17px;
+  color: rgb(46, 46, 46);
+}
+.landbookTitle{
+  color: white;
+  padding: 10px;
+  background-color: rgb(0, 81, 255);
+  margin-bottom: 20px;
+}
+.brokerTitle{
+  color: white;
+  background-color: blueviolet;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.titles{
+  margin-bottom: 5px;
+  font-size: 15px;
+  text-align: center;
+  line-height: 23px;
+}
+.convenienceLinks{
+  /* color: rgb(0, 81, 255); */
+  color: black;
+  text-decoration: underline;
+  display: inline-block;
+}
+.convenienceLinks:hover{
+  text-decoration: none;
+  color: rgb(0, 81, 255);
+}
+.links:hover{
+  text-decoration: none;
+  color: rgb(0, 81, 255);
+}
+.logo,
+.landbookPrice{
+  color: rgb(0, 81, 255);
+}
+.numbers{
+  margin-bottom: 20px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.landbookConvenience{
+  color: green;
+  margin-bottom: 20px;
+}
+.landbookPrice{
+  color: green;
+}
+.brokerConvenience{
+  color: blueviolet;
+}
+.sourceLinks{
+  font-size: 15px;
+  color: black;
+  text-decoration: underline;
+  display: inline-block;
+}
+.sourceLinks:hover{
+  text-decoration: none;
+  color: blueviolet;
+}
+.lastTitles{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.landbookPriceTitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+  margin-bottom: 30px;
+}
+.landbookPrice{
+  display: flex;
+  justify-content: center;
+  color: rgb(0, 81, 255);
+}
+

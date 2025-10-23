@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>message page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/message-page.css">
+
+</head>
+<body>
+  
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Message from landbook
+    </div>
+  </div>
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/us/user/profile" class="links">
+      <div class="navLinks">
+        Go to profile
+      </div>
+    </a>
+  </div>
+
+
+  <div class="">
+    <div class="aboutContainer">
+      <div class="aboutContainerTexts">
+        This is the message from <span class="logo">Landbook</span>... eg. When Landbook wants to send user to some information or what product they claimed and some details about it.. and also some errors eg. if user give wrong contact numbers in selling forms or buying forms... then <span class="logo">Landbook</span> will send message to them and, they will appear here.
+      </div>
+    </div>
+
+    <!-- for buying messages -->
+    <div class="toggle-button" onclick="toggleView('buyingMessageFromLandbook')">
+      Buying form messages 
+      <% if(user.buyingMessageFromLandbook.length > 0) { %>
+        <span class="blue-dot"></span>
+      <% } %>
+    </div>
+    <div id="buyingMessageFromLandbook" class="post-section">
+      <% if(user.buyingMessageFromLandbook.length > 0) { %>
+        <% user.buyingMessageFromLandbook.reverse().forEach((buyingMessage) => { %>
+          <div class="message post-card">
+
+            <div class="user">
+              <div class="contactNumberOfUser">
+                Date when you filled that buying form: <%= buyingMessage.buyingFormDate.toLocaleString(); %>
+              </div>
+            </div>
+
+            <%= buyingMessage.message %>
+            
+          </div>
+          <span class="date"><%= buyingMessage.date.toLocaleString(); %></span>
+        <% }) %>
+      <% } else { %>
+        <div class="post-card">
+          No buying messages yet.
+        </div>
+      <% } %>
+    </div>
+
+    <!-- for selling messages -->
+    <div class="toggle-button" onclick="toggleView('sellingMessageFromLandbook')">
+      Selling form messages
+      <% if(user.sellingMessageFromLandbook.length > 0) { %>
+        <span class="blue-dot"></span>
+      <% } %>
+    </div>
+    <div id="sellingMessageFromLandbook" class="post-section">
+      <% if(user.sellingMessageFromLandbook.length > 0) { %>
+        <% user.sellingMessageFromLandbook.reverse().forEach((sellingMessage) => { %>
+          <div class="message post-card">
+
+            <div class="user">
+              <div class="contactNumberOfUser">
+                Date when you filled that selling form: <%= sellingMessage.sellingFormDate.toLocaleString(); %>
+              </div>
+            </div>
+
+            <%= sellingMessage.message %>
+
+          </div>
+          <span class="date"><%= sellingMessage.date.toLocaleString(); %></span>
+        <% }) %>
+      <% } else { %>
+        <div class="post-card">
+          No selling messages yet.
+        </div>
+      <% } %>
+    </div>
+
+    <!-- for claimed product messages -->
+    <div class="toggle-button" onclick="toggleView('claimedMessageFromLandbook')">
+      Claimed product messages
+      <% if(user.claimedMessageFromLandbook.length > 0) { %>
+        <span class="blue-dot" id="claimedDot"></span>
+      <% } %>
+    </div>
+    <div id="claimedMessageFromLandbook" class="post-section">
+      <% if (user.claimedMessageFromLandbook.length > 0) { %>
+        <% user.claimedMessageFromLandbook.reverse().forEach(claimedMsg => { %>
+          <div class="post-card">
+            <div class="message post-card">
+              <% if (claimedMsg.productDetails && claimedMsg.productDetails.length > 0) { %>
+                <% claimedMsg.productDetails.forEach(product => { %>
+                  <div class="user">
+                    <div class="nameOfUser">
+                      Number of land: <%= product.zameenNumber %>
+                    </div>
+                    <div class="usernameOfUser">
+                      Price: <%= product.landbookPrice %>
+                    </div>
+                    <div class="usernameOfUser">
+                      L*B: <%= product.LB %>
+                    </div>
+                    <div class="emailOfUser">
+                      City: <%= product.city %>
+                    </div>
+                    <div class="contactNumberOfUser">
+                      Tehsil: <%= product.tehsil %>
+                    </div>
+                    <a href="/buy/claimcart/products/filter/<%= product.city %>/<%= product.tehsil %>" class="link">Click here to get to the full product details in your claim cart</a>
+                  </div>
+                <% }) %>
+              <% } else { %>
+                <div>No product info found.</div>
+              <% } %>
+              <strong>Message:</strong> <%= claimedMsg.message %>
+            </div>
+            <div class="date">
+              <strong>Date:</strong> <%= claimedMsg.date.toLocaleString() %>
+            </div>
+
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="post-card">
+          No claimed product messages yet.
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+
+
+  <script>
+    
+    let openSection = null;
+    function toggleView(id) {
+      const section = document.getElementById(id);
+
+      if(openSection && openSection !== section) {
+        openSection.style.maxHeight = 0;
+        openSection.classList.remove('open');
+      }
+
+      if(section.classList.contains('open')) {
+        section.style.maxHeight = 0;
+        section.classList.remove('open');
+        openSection = null;
+      } else {
+        section.classList.add('open');
+        section.style.maxHeight = section.scrollHeight + 'px';
+        openSection = section;
+      }
+    const dot = document.getElementById('claimedDot');
+    if(dot) {
+      dot.style.display = 'none'
+    }
+    }
+    
+  </script>
+
+
+</body>
+</html>

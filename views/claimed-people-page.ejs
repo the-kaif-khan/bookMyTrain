@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>claimed peoples page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/claimedPeople.css">
+</head>
+<body>
+  
+  <!-- header -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="the-page-of-selling.html">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Claimed peoples (
+      <span class="cartNumber js-cartNumber">
+        <%= claimedPeoples.length %>
+      </span>
+      Items) 
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/adminPanel" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/us/buyingForms" class="links">
+      <div class="navLinks">
+        Buying forms
+      </div>
+    </a>
+
+  </div>
+
+  <div class="claimedPeopleHeading">
+    Claimed people of previous Zameen -
+  </div>
+  <form action="/us/send-claimcart-message" method="post">
+    <input type="text" placeholder="Send message to entire claimed peoples at once" name="message" class="inputs">
+    <input type="text" name="productId" value="<%= theProduct._id %>" hidden>
+    <input type="submit" class="submitButton" value="Send message">
+  </form>
+  <div class="container">
+    <% if(claimedPeoples.length > 0) { %>
+      <% claimedPeoples.forEach((claimedPeople) => { %>
+        <div class="user">
+          <div class="nameOfUser">
+            Name: <%= claimedPeople.name %>
+          </div>
+          <div class="usernameOfUser">
+            Username: <%= claimedPeople.username %>
+          </div>
+          <div class="emailOfUser">
+            Email: <%= claimedPeople.email %>
+          </div>
+          <div class="contactNumberOfUser">
+            Contact number: <%= claimedPeople.contactNumber %>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noUsers">No claimed users</div>
+    <% } %>
+  </div>
+
+</body>
+</html>

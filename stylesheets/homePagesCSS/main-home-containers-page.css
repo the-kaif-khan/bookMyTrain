@@ -1,0 +1,284 @@
+.flash{
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* .containerUpperPortion{
+  border-top: 1px solid rgb(39, 102, 165);
+  border-left: 1px solid rgb(39, 102, 165);
+  border-right: 1px solid rgb(39, 102, 165);
+  background-color: rgb(221, 221, 221);
+  height: 300px;
+  width: 100%;
+} */
+
+/* for dropdown css starts here */
+.dropdown-container{
+  position: relative;
+  /* width: 200px; */
+  /* background: #f0f0f0; */
+  cursor: pointer;
+  border: 1px solid #ccc;
+  user-select: none;
+}
+.dropdown{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.dropdown div{
+  padding: 10px;
+  cursor: pointer;
+}
+.dropdown div:hover{
+  background-color: #efefef;
+}
+.hidden{
+  display: none;
+}
+/* for dropdown css ends here */
+.hidden{
+  display: none;
+}
+.aboutPage{
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-family: arial;
+  font-size: 14px;
+  background-color: rgb(238, 238, 238);
+  padding-left: 4px;
+  padding-top: 10px;
+  padding-right: 4px;
+  padding-bottom: 10px;
+  border-left: 1px solid rgb(39, 102, 165);
+  border-right: 1px solid rgb(39, 102, 165);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#last-visited-link{
+  color: white;
+}
+#last-visited-text{
+  color: rgb(46, 144, 255);
+  text-align: center;
+  margin-top: 4px;
+}
+.links{
+  /* color: white; */
+  text-decoration: none;
+  display: block;
+  color: white;
+}
+.specialLink{
+  padding: 8px;
+  color: black;
+}
+.specialLink:hover{
+  background-color: rgb(243, 243, 243);
+}
+.top3Columns{
+  /* background-color: lightblue; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  height: 100%;
+  margin-top: 20px;
+}
+.tops{
+  background-image: url(../../imagesAndVideos/images/yeah.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 340px;
+}
+.placeAndPrice{
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 4px;
+  margin-right: 4px;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 18px;
+}
+.tops:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+.startingPrices{
+  font-size: 13px;
+  color: rgb(255, 255, 255);
+  margin-top: 3px;
+}
+/* kind of advertising */
+.kindOfAdvertising{
+  height: 300px;
+  /* background-color: rgb(114, 114, 114); */
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  /* column-gap: 10px; */
+}
+.pickUpContainer{
+  display: grid;
+  grid-template-rows: 30px 284px;
+}
+.pickWhereYouLeftTitle{
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  color: white;
+  font-style: italic;
+  font-weight: 600;
+  background-color: black;
+}
+@media(max-width: 600px) {
+  .kindOfAdvertising{
+    grid-template-columns: 1fr;
+    height: 500px;
+  }
+  .pickWhereYouLeft{
+    width: 350px;
+  }
+}
+.pickLeftLink{
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  color: white;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: -2px;
+
+
+  background-image: url(/imagesAndVideos/images/yeah.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 300px;
+}
+.pickLeftLink:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+#pickUpContainer{
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.pickWhereYouLeft{
+  /* background: linear-gradient(rgb(167, 199, 255),
+  rgb(255, 246, 194),
+  rgb(255, 255, 255)); */
+  margin-bottom: 70px;
+  padding: 10px;
+  border-radius: 4px;
+}
+.pickWhereYouLeftText{
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  justify-content: flex-end;
+  height: 80%;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.advertisement{
+  background-color: rgb(44, 139, 139);
+}
+
+/* search bar for searching states */
+.searchContainerInPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+.searchContainerInPage img{
+  width: 100%;
+}
+.searchStatesByName{
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+.searchStatesBar{
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+}
+.searchStates-Button{
+  width: 59px;
+  margin-top: 6.6px;
+}
+.searchStatesButton{
+  width: 100%;
+  background-color: rgb(142, 219, 153);
+  border: 1px solid lightgrey;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+
+/* rest of states */
+
+.allStates{
+  background-color: lightblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 40px;
+  height: 100%;
+  margin-top: 20px;
+}
+@media(max-width: 690px) {
+  .allStates{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media(max-width: 585px) {
+  .allStates{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.restOfStates{
+  background-image: url(../../../images/bLVquIQ-messi-hd-wallpapers.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.restOfStates:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+

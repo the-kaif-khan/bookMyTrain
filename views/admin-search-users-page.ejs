@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find users page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Admin users Page
+    </div>
+  </div>
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landad/find-landbookers" class="links">
+      <div class="navLinks">
+        Landbookers
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel" class="links">
+      <div class="navLinks">
+        Home
+      </div>
+    </a>
+
+    <form action="/landad/search/users" method="GET">
+      <input type="text" name="q" placeholder="Search landbook user..." class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form>
+  </div>
+
+
+  <div class="blogContents">
+    <% if(users.length > 0) { %>
+      <% users.reverse().forEach((user) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <img src="" alt="">
+            </div>
+            <div class="aboutProfileUsername">
+              <%= user.username %>
+            </div>
+          </div>
+          <div class="blog">
+            Name: <%= user.name %>
+          </div>
+          <div class="likeCount">
+            Email: <%= user.email %>
+          </div>
+          <div class="contactNumber">
+            Contact number: <%= user.contactNumber %>
+          </div>
+          <div class="footersOfBlogs">
+            <!-- <div class="likePost">
+              <a href="" class="likePost">
+                6
+              </a>
+            </div> -->
+            <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landad/admin/delete-user/<%= user._id %>" class="editBlog">Delete user</a>
+            </div>
+            <div>
+              <a href="/landad/admin/ban-user/<%= user._id %>" onclick="return confirmBan()">
+                <button class="deleteBlog">
+                  <% if(user.banned === true) { %>
+                    User is banned
+                  <% } else { %>
+                    Ban User
+                  <% } %>
+                </button>
+              </a>
+            </div>
+            <div class="unban">
+              <a href="/landad/admin/unban-user/<%= user._id %>">
+                <button class="deleteBlog unban">
+                  Unban user
+                </button>
+              </a>
+            </div>
+            <div>
+              <!-- <a href="/landad/admin/addProductToBuyingCart/<%= user._id %>">
+                <button class="addToBuyingCart">
+                  Add product to buying cart
+                </button>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No users yet.</div>
+    <% } %>
+
+  </div>
+
+
+  <script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this user? This action cannot be undone!')
+  }
+  </script>
+
+
+
+</body>
+</html>

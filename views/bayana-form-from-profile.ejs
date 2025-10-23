@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayana form page from profile</title>
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/bayan-page.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartHeader.css">
+</head>
+<body>
+
+    <!-- header -->
+    <div class="cartHeading">
+      <div class="cartHeadingLogo">
+        <a href="/home/landbook">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+        </a> 
+      </div>
+      <div class="cartHeadingText">
+        Give bayana page
+      </div>
+    </div>
+  
+    <!-- navigations -->
+    <div class="navigationsBox">
+      <a href="/home/landbook" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
+  
+      <!-- <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>" class="links">
+        <div class="navLinks">
+          Back to Claim page
+        </div>
+      </a> -->
+  
+    </div>
+
+    <% if(error.length > 0) { %>
+      <div class="flash flash-error">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success.length > 0) { %>
+      <div class="flash flash-success">
+        <%= success %>
+      </div>
+    <% } %>
+
+    <div class="formHeading">
+      <div class="wanna">
+        Before giving bayana to a zameen, Please, read <a href="" class="preview">instructions</a> to know what is the process of giving bayana to a particular land ?
+      </div>
+      <div class="formMiddleHeading">
+        To give bayana to a particular land, a user have to first of all fill the below bayana form to confirm that you want to give bayana to the selected land in give timer time (72 hours(3 days)). This form is filling is <span class="red">very important</span> because this gives a message to the <span class="highlights">Landbook query house of land's tehsil</span> that a user wants to give bayana to that land and have papers ready so that users don't have to waste times. Users are recommended to get to the <span class="highlights">Landbook query house</span> with their lawyer importantly so that users don't have to believe on us with their eyes closed e.g they can check bayana with themselves with their lawyer(s). ALSO, users are recommended to get the landbook query house of Tehsil in which the selected land he/she wants to buy then before the timer for giving bayana runs out (for claimed users, the timer to give bayana is 5 hours; and for buying users, the timer to give bayana is 72 hours(3 days)). So, if you're a buying user then you have pretty time but if you are claimed user, better hurry and <span class="highlights"> First </span> fill the below form then only users will be recognized as giving bayana users and after that user's can call the product's tehsil Landbook Query House to get the address or to ask them any other queries related to giving a bayana. 
+      </div>
+      <div class="formFinalHeading">
+        So, Kindly fill this form <span class="highlight">First</span> in order to give bayana to the selected land zameen with no false information!
+      </div>
+    </div>
+
+  <!-- form of selling -->
+  <div class="sellingForm">
+    <div class="sellingFormHeading">
+      <% if(!theProduct) { %>
+        <div class="red">
+          <b>Note:</b> Sorry, you had only 72 hours (3 days) to give bayana to this land and the time for giving bayana to this land has slipped away. Now this land is removed from buying cart. To buy this land again, you have to start the process of buying all over again....Landbook.
+        </div>
+      <% } else { %>
+        <div class="contactUs">
+          Contact Us @: <span class="highlight"> 
+            <% if(queryhouseContactNumber) { %>
+              <%= queryhouseContactNumber %>
+            <% } %>  
+          </span> to give bayana to this land fully offline.
+        </div>
+        <div class="forms">
+          <form action="/us/filling-bayana-form-for-buyingCarter/<%= theProduct._id %>" method="post">
+    
+            <!-- <div class="naming">
+              <div>Name:* </div> <input type="text" placeholder="Your Name" name="name" required class="name">
+            </div> -->
+            <div class="mobileNumber">
+              Earlier Your <span class="highlights">correct</span> current using Contact Number: <input type="number" name="currentContact" placeholder="Your Mobile Number" class="number">
+            </div>
+            <div class="mobileNumber">
+              Tehsil's Landbook query house you have to go in order to give bayana:* <input type="text" name="tehsil" readonly value="<%= theProduct.tehsil %>" required class="address">
+            </div>
+            <div class="mobileNumber">
+              <%= theProduct.tehsil %> tehsil is in which City:* <input type="text" name="city" value="<%= theProduct.city %>" readonly required class="address">
+              <input type="text" name="buyingCartTimerId" value="<%= theProduct.buyingCartTimerId[0] %>" hidden>
+            </div>
+            <input type="reset" class="resetButton">
+            <input type="submit" class="submitButton">
+    
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin search userMoney page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Admin users Page
+    </div>
+  </div>
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landad/find-landbookers" class="links">
+      <div class="navLinks">
+        Landbookers
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel" class="links">
+      <div class="navLinks">
+        Home
+      </div>
+    </a>
+
+    <form action="/landad/search/user-money" method="GET">
+      <input type="text" name="q" placeholder="Search user bayana forms via user name..."  class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form>
+  </div>
+
+
+  <div class="blogContents">
+    <% if(userBayanaForms.length > 0) { %>
+      <% userBayanaForms.reverse().forEach((userBayanaForm) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <img src="" alt="">
+            </div>
+            <div class="aboutProfileUsername">
+              Email: 
+            </div>
+          </div>
+          <!-- user container -->
+          <div class="userContainer">
+            <% if(userBayanaForm.user.length > 0) { %>
+              <% userBayanaForm.user.forEach(user => { %>
+                <div class="divsForDue">
+                  <b>User name:</b> <%= user.name %> <br>
+                  <b>User contact number:</b> <%= user.contactNumber %> <br>
+                  <b>User email:</b> <%= user.email %> <br>
+                  <b>User username:</b> <%= user.username %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                User not found.
+              </div>
+            <% } %>
+          </div>
+          <!-- product container -->
+          <div class="productContainer">
+            <% if(userBayanaForm.productId.length > 0) { %>
+              <% userBayanaForm.productId.forEach(product => { %>
+                <div class="divsForDue">
+                  <b>Product Landbook price:</b> <%= product.landbookPrice %> <br>
+                  <b>Product seller id:</b> <%= product.seller[0] %> <br>
+                  <b>Product's seller contact:</b> <%= product.sellerContact %> <br>
+                  <b>Product city:</b> <%= product.city %> <br>
+                  <b>Product tehsil:</b> <%= product.tehsil %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                User not found.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="queryhouseContainer">
+            <% if(userBayanaForm.queryhouse.length > 0) { %>
+              <% userBayanaForm.queryhouse.forEach(queryhouse => { %>
+                <div class="divsForDue">
+                  <b>Queryhouse ownername:</b> <%= queryhouse.ownername %> <br>
+                  <b>Queryhouse owner contact number:</b> <%= queryhouse.ownerContact %> <br>
+                  <b>Queryhouse contact number:</b> <%= queryhouse.queryhouseContact %> <br>
+                  <b>Queryhouse owner email:</b> <%= queryhouse.email %> <br>
+                  <b>Queryhouse slug:</b> <%= queryhouse.slug %> <br>
+                  <div class="due">
+                    <b>Queryhouse money:</b> <%= queryhouse.money %> <br>
+                    <b>Queryhouse money given:</b> <%= queryhouse.moneyGiven %> <br>
+                    <b>Queryhouse rent:</b> <%= queryhouse.rent %> <br>
+                    <b>Queryhouse remaining money:</b> <%= queryhouse.remainingMoney %> <br>
+                  </div>
+                  <div class="address">
+                    <a href="/landbook-query-house/download-owner-image/<%= queryhouse._id %>" class="downloadLink">
+                      Download owner image
+                    </a><br>
+                    <a href="/landbook-query-house/download-contract-image/<%= queryhouse._id %>" class="downloadLink">
+                      Download contract image
+                    </a><br>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                Queryhouse not found.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="address blog">
+            Bayana image of user: <br>
+            <% if(userBayanaForm.bayana) { %>
+              <a href="/landad/download-bayana-image-of-user/<%= userBayanaForm._id %>" class="downloadLink">
+                Download Bayana image
+              </a>
+              <a href="/landad/edit-bayana-image-of-user/<%= userBayanaForm._id %>" class="link" onclick="return confirmDeleteBayana()">
+                Delete bayana image.
+              </a>
+            <% } else { %>
+              <div class="red">
+                Bayana image not yet submitted.
+              </div>
+            <% } %>
+          </div>
+          <!-- <div class="address">
+            Query house contact number: <%= userBayanaForm.queryhouseContact %> <br>
+            Query house address: <%= userBayanaForm.queryhouseAddress %>
+          </div> -->
+          <div class="footersOfBlogs">
+            <!-- <div class="likePost">
+              <a href="" class="likePost">
+                6
+              </a>
+            </div> -->
+            <!-- <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landad/admin/delete-queryhouse/<%= userBayanaForm._id %>" class="editBlog">Delete Query House</a>
+            </div> -->
+            <div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No userMoney yet.</div>
+    <% } %>
+
+  </div>
+ 
+
+  <script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this user? This action cannot be undone!')
+  }
+  function confirmDeleteBayana() {
+    return confirm(`Are you sure you want to delete this user's bayana image? This action cannot be undone!`)
+  }
+  </script>
+
+
+
+</body>
+</html>

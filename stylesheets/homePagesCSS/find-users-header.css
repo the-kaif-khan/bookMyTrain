@@ -1,0 +1,252 @@
+body{
+  font-family: arial;
+  padding-top: 143px;
+}
+.flash{
+  padding: 20px;
+  margin: 55px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.header{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  height: 150px;
+  color: white;
+
+  background-color: rgb(46, 144, 255);
+  /* background: linear-gradient(rgb(233, 203, 203),
+   rgb(174, 223, 255),
+   rgb(255, 255, 255)); */
+
+  border-bottom: 1px solid lightgrey;
+}
+.header img{
+  width: 100%;
+}
+.headerLogo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+/* navigations */
+.navigationsBox{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 120px 80px 1fr;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 100px;
+  border-bottom: 1px solid lightgrey;
+}
+.navLinks{
+  background-color: rgb(255, 255, 255);
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  border: 3px solid transparent;
+  height: 87%;
+}
+.navLinks:hover{
+  border: 3px solid rgb(22, 39, 83);
+}
+.links{
+  color: black;
+  text-decoration: none;
+}
+.links:hover{
+  color: rgb(17, 29, 63);
+}
+/* for search box in navigation starts here */
+form{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.searchInput{
+  width: 100%;
+  height: 52px;
+  border: none;
+  border: 0.2px solid lightgrey;
+  flex: 1;
+  height: 49px;
+  min-width: 0;
+  font-size: 14px;
+  padding-left: 10px;
+}
+.searchBar::placeholder{
+  font-family: sans-serif;
+  font-family: arial;
+  font-size: 15px;
+}
+.searchButton{
+  width: 60px;
+  height: 53px;
+  border: 0.02px solid rgb(238, 238, 238);
+  background-color: #ffffff;
+  position: relative;
+}
+.searchButton .tooltip{
+  position: absolute;
+  background-color: rgb(117, 117, 117);
+  color: rgb(255, 255, 255);
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  bottom: -23px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.searchButton:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.searchButton:hover{
+  background-color: rgb(248, 248, 248);
+}
+.searchButton img{
+  width: 34px;
+}
+/* for search box in navigation ends here */
+
+/* for users container starts here */
+.blogContents{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: rgb(246, 246, 246);
+  padding: 10px;
+  border-top: 1px solid rgb(240, 240, 240);
+}
+.blogs{
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid lightgrey;
+  padding: 10px;
+  width: 240px;
+  text-align: center;
+}
+.contentsAboutProfile{
+  display: grid;
+  grid-template-columns: 28px 1fr 1fr;
+}
+.aboutProfileImage img{
+  width: 24px;
+  height: 24px;
+  border-radius: 60px;
+}
+.aboutProfileUsername{
+  color: rgb(0, 81, 255);
+  font-size: 13px;
+}
+.blog{
+  margin-bottom: 20px;
+}
+.likeCount{
+  font-size: 13px;
+  color: rgb(75, 75, 75);
+  margin-bottom: 3px;
+}
+.contactNumber{
+  font-size: 13px;
+  color: rgb(75, 75, 75);
+  margin-bottom: 20px;
+}
+.footersOfBlogs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 5px;
+  row-gap: 8px;
+  width: 239px;
+}
+.likePost{
+  font-size: 14px;
+  color: rgb(0, 132, 255);
+  text-decoration: none;
+  display: inline-block;
+}
+.likePost:hover{
+  text-decoration: underline;
+}
+.editBlog{
+  display: inline-block;
+  color: rgb(104, 104, 104);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 0;
+  text-align: center;
+}
+.editBlog:hover{
+  text-decoration: underline;
+}
+.deleteBlog{
+  color: white;
+  font-size: 12px;
+  background-color: rgb(207, 0, 0);
+  padding-top: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-bottom: 6px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+.deleteBlog:hover{
+  opacity: 0.9;
+}
+.deleteBlog:active{
+  opacity: 0.7;
+}
+.unban{
+  width: 100%;
+}
+.addToBuyingCart{
+  font-family: system-ui;
+  background-color: rgb(0, 81, 255);
+  color: white;
+  font-size: 12.5px;
+  padding-top: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-bottom: 6px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+.addToBuyingCart:hover{
+  opacity: 0.9;
+}
+.noPosts{
+  color: grey;
+  font-size: 15px;
+}
+/* for users container ends here */

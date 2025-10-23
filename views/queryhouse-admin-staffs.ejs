@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>queryhouse admin staffs</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel2"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Queryhouse admin find staffs Page
+    </div>
+  </div>
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landbook-query-house/franchise/owner/login/<%= franchise.slug %>" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/landbook-query-house/query-house-owner-panel/<%= franchise.slug %>" class="links">
+      <div class="navLinks">
+        Panel
+      </div>
+    </a>
+
+    <!-- <form action="/landad/search/users" method="GET">
+      <input type="text" name="q" placeholder="Search landbook user(s)..." class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form> -->
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+
+  <div class="blogContents">
+    <% if(queryhouseStaffs.length > 0) { %>
+      <% queryhouseStaffs.reverse().forEach((user) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <img src="" alt="">
+            </div>
+            <div class="aboutProfileUsername">
+              <%= user.username %>
+            </div>
+          </div>
+          <div class="blog">
+            Name: <%= user.fullname %>
+          </div>
+          <div class="likeCount">
+            Email: <%= user.email %>
+          </div>
+          <div class="contactNumber">
+            Contact number: <%= user.contactNumber %>
+          </div>
+          <div class="contactNumber">
+            Banned: <%= user.banned %>
+          </div>
+          <div class="footersOfBlogs">
+            <!-- <div class="likePost">
+              <a href="" class="likePost">
+                6
+              </a>
+            </div> -->
+            <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landbook-query-house/owner/delete-queryhouse-staff/<%= user._id %>" class="editBlog">Delete user</a>
+            </div>
+            <div>
+              <a href="/landbook-query-house/owner/ban-queryhouse-staff/<%= user._id %>/<%= franchise.slug %>" onclick="return confirmBan()">
+                <button class="deleteBlog">
+                  <% if(user.banned === true) { %>
+                    User is banned
+                  <% } else { %>
+                    Ban Queryhouse staff
+                  <% } %>
+                </button>
+              </a>
+            </div>
+            <div class="unban">
+              <a href="/landbook-query-house/owner/unban-queryhouse-staff/<%= user._id %>">
+                <button class="deleteBlog unban">
+                  Unban Queryhouse staff
+                </button>
+              </a>
+            </div>
+            <div>
+              <!-- <a href="/landad/admin/addProductToBuyingCart/<%= user._id %>">
+                <button class="addToBuyingCart">
+                  Add product to buying cart
+                </button>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No users yet.</div>
+    <% } %>
+
+  </div>
+
+
+  <script>
+    function confirmDelete() {
+      return confirm('Are you sure you want to delete this user? This action cannot be undone!')
+    }
+    function confirmBan() {
+      return confirm('Are you sure you want to ban this user? He/she will not be able to log in...This action cannot be undone!')
+    }
+  </script>
+
+
+
+</body>
+</html>

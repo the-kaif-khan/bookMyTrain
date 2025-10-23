@@ -1,0 +1,81 @@
+/* media queries */
+@media(max-width: 700px) {
+  .mainImageOfProduct{
+    order: 1;
+  }
+  .sideImagesOfProduct{
+    order: 2;
+  }
+  .individualProductDetails{
+    order: 3;
+  }
+  .advertisingInMainBodyContainer{
+    order: 4;
+  }
+}
+@media(max-width: 645px) {
+  .sideImagesOfProduct{
+    flex-basis: 540px;
+    flex-direction: row;
+  }
+}
+@media(max-width: 1256px) {
+  .advertisingInMainBodyContainer{
+    flex-basis: 450px;
+    height: 300px;
+  } 
+}
+@media(max-width: 645px) {
+  .sideImagesOfProduct{
+    margin-top: 12px;
+  }
+}
+@media(max-width: 1040px) {
+  .individualProductDetails{
+    margin-top: 24px;
+  }
+}
+@media(max-width: 1040px) {
+  .advertisingInMainBodyContainer{
+    margin-top: 24px;
+  }
+}
+@media(max-width: 1256px) {
+  .mainBodyContainer{
+    align-content: center;
+    justify-content: center;
+  }
+}
+@media(max-width: 538px) {
+  .mainImageOfProduct{
+    min-width: 360px;
+  }
+}
+@media(max-width: 500px) {
+  .mainImageOfProduct img{
+    height: 270px;
+  }
+  .mainImageOfProduct{
+    min-width: 340px;
+  }
+}
+@media(max-width: 475px) {
+  .mainImageOfProduct img{
+    height: 250px;
+  }
+  .mainImageOfProduct{
+    min-width: 300px;
+  }
+}
+@media(max-width: 434px) {
+  .mainImageOfProduct{
+    flex-basis: 318px;
+  }
+}
+/* new code */
+@media(max-width: 680px) {
+  .mainBodyContainer{
+    padding-left: 0px;
+    padding-right: 4px;
+  }
+}

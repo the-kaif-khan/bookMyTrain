@@ -1,0 +1,212 @@
+.blue-dot{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(46, 144, 255);
+  border-radius: 50%;
+  margin-left: 6px;
+}
+/* for toggling starts*/
+.post-section{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.post-section.open{
+  max-height: 850px;
+}
+.toggle-button{
+  background-color: #eee;
+  /* background-color: rgb(46, 144, 255); */
+  /* color: white; */
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 95%;
+  /* transition: color 0.3s; */
+}
+.toggle-button:hover{
+  background-color: #ddd;
+  /* opacity: 0.9; */
+}
+.productMinuteDetails{
+  background-color: lightcoral;
+  /* background-color: rgb(238, 238, 238); */
+  text-align: center;
+}
+.user{
+  font-family: arial;
+  background-color: rgb(248, 248, 248);
+  border-top: 1px solid rgb(238, 238, 238);
+  border-left: 1px solid rgb(238, 238, 238);
+  border-right: 1px solid rgb(238, 238, 238);
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  flex-wrap: nowrap;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.nameOfUser{
+  font-size: 15px;
+  color: black;
+  margin-bottom: 4px;
+}
+.usernameOfUser{
+  font-size: 13px;
+  color: rgb(92, 92, 92);
+  margin-bottom: 15px;
+}
+.emailOfUser,
+.contactNumberOfUser{
+  color: rgb(0, 81, 255);
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+.contactNumberOfUser{
+  margin-bottom: 10px;
+}
+/* third container for claimedUsers details end*/
+.post-card{
+  padding: 20px;
+  margin: 10px 0px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  display: inline-block;
+}
+/* for toggling end */
+
+body{
+  padding: 0;
+  margin: 0;
+  font-family: arial;
+}
+/* .header{
+
+} */
+.title{
+  color: white;
+  background-color: rgb(0, 81, 255);
+  width: 100%;
+  height: 100px;
+  font-size: 35px;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+.aboutPage{
+  background-color: rgb(0, 81, 255);
+  color: white;
+  width: 100%;
+  height: 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: rgb(250, 250, 250);
+  padding-bottom: 20px;
+  margin-top: 30px;
+}
+.aboutContainer{
+  padding: 10px;
+  margin-bottom: 50px;
+  border-top: 1px solid rgb(235, 235, 235);
+  border-right: 1px solid rgb(235, 235, 235);
+  border-left: 1px solid rgb(235, 235, 235);
+  font-size: 23px;
+  background-color: rgb(244, 244, 244);
+  color: rgb(15, 15, 15);
+  line-height: 35px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.logo{
+  display: inline-block;
+  /* color: rgb(194, 157, 34); */
+  color: rgb(0, 81, 255);
+}
+.message{
+  padding: 10px;
+  border-top: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  display: block;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 80%;
+  background-color: rgb(46, 144, 255);
+  color: white;
+  width: 95%;
+}
+.date{
+  font-size: 12px;
+  color: rgb(17, 17, 17);
+  background-color: rgb(238, 238, 238);
+  padding: 6px;
+  margin-left: 6px;
+  margin-bottom: 2px;
+}
+/* navigations */
+.navigationsBox{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 80px 120px;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 60px;
+}
+.navLinks{
+  background-color: rgb(255, 255, 255);
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  border: 3px solid transparent;
+  height: 89%;
+}
+.navLinks:hover{
+  border: 3px solid rgb(22, 39, 83);
+}
+.links{
+  color: black;
+  text-decoration: none;
+}
+.links:hover{
+  color: rgb(17, 29, 63);
+}
+.link{
+  color: black;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.link:hover{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  transition: all 0.3s;
+}

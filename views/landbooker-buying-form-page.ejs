@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landbooker buying form page</title>
+
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-buying-form-page-special-body.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-footer.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-header.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-products.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-sidebar.css">
+
+</head>
+<body>
+  <!-- header -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="/us/landbook">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Buying forms 
+      <span class="cartNumber js-cartNumber">
+        (<%= buyingForms.length %>)
+      </span>
+      <% if(buyingForms.length <= 1) { %>
+        Item
+      <% } else { %>
+        Items
+      <% } %>
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/us/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/us/createProductsPanel" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>
+    </a>
+
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+    <!-- product lists in this container through javascript -->
+    <div class="container">
+      <% if(buyingForms.length > 0) { %>
+        <% buyingForms.forEach((buyingForm) => { %>
+          <div class = "productsContainer">
+            <a href="/us/viewBuyingForm/<%= buyingForm._id %>" class="productLink">
+              <div id = "<%= buyingForm._id %>">
+                <!-- <div class="productsImage">
+                  <img src= "" alt="Timing to add product here">
+                </div> -->
+
+                <!-- timer placeholder -->
+                
+                <div class="timer-container">
+                  <div class="timer" data-createdat="<%= buyingForm.createdAt %>" data-formid="<%= buyingForm._id %>">
+                    Loading...
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress"></div>
+                  </div>
+                </div>
+
+                <div class="productsPriceAndLB">
+                  <div class= "productsPrice">
+                    Buyer: <%= buyingForm.name %>
+                  </div>
+                  <div class= "productsLB">
+                    Contact number: <%= buyingForm.contactNumber %>
+                  </div>
+                </div>
+                <div class="productsSpec">
+                  Address of buyer: <%= buyingForm.address %>
+                </div>
+                <div class="productsStats">
+                  <div class="productsVisit">
+                    Buyer id: <%= buyingForm.user %> &#183
+                  </div>
+                  <div class="productsRating">
+                    <img src= "">
+                  </div>
+                  <div class="productsClaim">
+                    Buying Product id: <%= buyingForm.product %> &#183
+                  </div>
+                </div>
+            </a>
+                <form action="/us/deletebuyingform/<%= buyingForm._id %>" method="post" onsubmit="return confirmDeleteForm(this)">
+                  <input type="text" name="landbookMessage" placeholder="Enter a message to the user before deleting the buying form" required class="inputs">
+                  <button type="submit" class="claimToCartButton">
+                    Delete product
+                  </button>
+                </form>
+                
+              </div>
+            
+          </div>
+        <% }) %>
+      <% } else{ %>
+        <div class="noProducts">No buying forms</div>
+      <% } %>
+    </div>
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="aboutThisPageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+    
+
+  <!-- <script src="/javascripts/profileTimers.js"></script> -->
+  <script src="/javascripts/claimTimer.js"></script>
+  <!-- <script>
+
+    const timers = document.querySelectorAll('.timer');
+    timers.forEach(timer => {
+      const createdAt = new Date(timer.dataset.createdat);
+      const endTime = new Date(createdAt.getTime() + 60 * 60 * 1000);
+      const formId = timer.dataset.formid;
+      const progressBar = timer.nextElementSibling.querySelector('.progress');
+
+      function updateTimer() {
+        const now = new Date();
+        const diff = endTime - now;
+        const total = 60 * 60 * 1000;
+
+        if(diff <= 0) {
+          timer.textContent = 'Time Over';
+          timer.classList.add('over');
+          progressBar.style.width = '0%';
+
+          // move automatically
+          fetch(`/home/admin/move-buying-form/${formId}`, {
+            method: 'POST'
+          }).then(res => {
+            if(res.ok) {
+              console.log('Product moved to buying cart automatically!');
+              location.reload();
+            }
+          });
+        } else {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          timer.textContent = `${hours}hr ${minutes}min ${seconds}sec`;
+
+          // update progress bar
+          const percentage = (diff / total) * 100;
+          progressBar.style.width = `${percentage}`;
+        }
+      }
+
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    })
+
+  </script> -->
+
+
+</body>
+</html>
+
+
+<a href=""></a>

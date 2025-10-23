@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create queryhouse page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/skyman-create-products-panel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Create Landbook Query House
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/landad/admin-panel2" class="links">
+      <div class="navLinks">
+        Panel
+      </div>       
+    </a>
+
+    <!-- <a href="/us/skyman-panel" class="links">
+      <div class="navLinks">
+        Skyman form page
+      </div>
+    </a>
+
+    <a href="/home/compress/landbooker/skyman" class="links">
+      <div class="navLinks">
+        Khatauni images compressing page
+      </div>
+    </a> -->
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create new Landbook query house branch
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create Branch
+      </div>
+      <form action="/landbook-query-house/created-query-house" method="post" enctype="multipart/form-data">
+
+        <label for="ownerPic" class="labels">Owner image:</label>
+        <input type="file" name="ownerPic" id="mainRoadImages" class="inputs"  accept="image/*" required>
+
+        <label for="contractPic" class="labels">Contract image:</label>
+        <input type="file" name="contractPic" id="mainRoadImages" class="inputs"  accept="image/*" required>
+
+        <p>Are you renting a queryhouse by Landbook?</p>
+        <label class="labels">
+          <input type="radio" name="rent" value="true" class="radios"> Yes
+        </label>
+        <label class="labels">
+          <input type="radio" name="rent" value="false" class="radios"> No
+        </label>
+
+        <input type="text" name="ownername" class="inputs" placeholder="Enter owner name of landbook query house" required>
+
+        <input type="email" name="email" class="inputs" placeholder="Enter email of owner of landbook query house" required>
+
+        <input type="password" name="franchisepassword" class="inputs" placeholder="Enter franchise password" required>
+
+        <input type="number" name="ownerContact" class="inputs" placeholder="Enter Contact of owner" required>
+
+        <input type="number" name="queryhouseContact" class="inputs" placeholder="Enter Contact of query house" required>
+
+        <input type="text" name="ownerAddress" class="inputs" placeholder="Enter address of owner" required>
+
+        <input type="text" name="queryhouseAddress" class="inputs" placeholder="Enter address of query house" required>
+
+        <input type="text" name="city" class="inputs" placeholder="Enter city of query house" required>
+
+        <input type="text" name="tehsil" class="inputs" placeholder="Enter tehsil of query house" required>
+
+        <input type="number" name="ownerContactForOtp" value="9140362143" hidden required>
+
+        <input type="submit" value="Create product" class="inputs submit-button">
+      </form>
+    </div>
+
+    <!-- <div class="">
+      <a href="/us/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+    </div> -->
+
+  </div>
+
+</body>
+</html>

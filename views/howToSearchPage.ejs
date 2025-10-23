@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>how to search page</title>
+
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/how-to-search-main-page.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/how-top-search-footer-page.css">
+  
+</head>
+<body>
+  
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Landbook Search Page
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/<%= city %>/<%= tehsil %>" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/home/help/<%= city %>/<%= tehsil %>" class="links">
+      <div class="navLinks">
+        Help
+      </div>
+    </a>
+  </div>
+  
+
+  <div class="searchContainer">
+    
+    <div class="mapsBox">
+      <div class="mapsText">
+        Search through <%= city %> maps
+      </div>
+      <div class="mapsLink">
+        <a href="/home/landbook-map-page">
+          <button>
+            Here
+          </button>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="searchRandomlyBox">
+      <div class="searchRandomlyText">
+        Search Randomly eg. Near NH 27 etc in <%= tehsil %> tehsil of <%= city %> district
+      </div>
+      <div class="searchRandomlyLink">
+        <a href="/home/sellpage/products/filter/<%= city %>/<%= tehsil %>">
+          <button>
+            Here
+          </button>
+        </a>
+      </div>
+    </div>
+
+
+    <!-- <div class="searchParticularlyBox">
+      <div class="searchParticularlyText">
+        Search Particularly eg. Awaas Vikas etc
+      </div>
+      <div class="searchParticularlyLink">
+        <a href="">
+          <button>
+            Here
+          </button>
+        </a>
+      </div>
+    </div> -->
+  </div>
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="pageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+</body>
+</html>

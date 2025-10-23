@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin new map products panel</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminPanel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Admin panel (New map products)
+    </div>
+  </div>
+
+  <!-- sidebar container -->
+  <div class="sidebarContainer">
+    <a href="/us/buyingforms" class="sidebarLinks">
+      <div class="advertisingSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        Buying forms
+      </div>
+    </a>
+    <a href="/us/Sellingforms" class="sidebarLinks">
+      <div class="cartIconSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+        SellingForms
+      </div>
+    </a>  
+    <a href="/us/mapCoordinates" class="sidebarLinks">
+      <div class="helpIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+          Get map coordination
+      </div>
+    </a>
+    <a href="/us/createProductsPanel" class="sidebarLinks">
+      <div class="supportUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+          Home
+      </div>
+    </a>
+    <a href="/home/aboutus" class="sidebarLinks">
+      <div class="aboutUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        About Us
+      </div>
+    </a>
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create zameen with coordination (new)
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create product
+      </div>
+      <form action="/us/add-new-marker" method="post">
+
+        <input type="text" name="clusterName" class="inputs" placeholder="Enter cluster name of marker" value="<%= product.tehsil %>" required>
+
+        <input type="number" name="lat" class="inputs" placeholder="Enter latitude of marker" step="any" value="<%= product.lat %>" required>
+
+        <input type="text" name="lng" class="inputs" placeholder="Enter longitude of marker" step="any" value="<%= product.lng %>" required>
+
+        <input type="text" name="popupText" class="inputs" placeholder="Enter popup title of marker" required>
+
+        <input type="text" name="productId" value="<%= product._id %>" class="inputs" placeholder="Enter productId of marker" readonly required>
+
+        <input type="submit" value="Create new zameen marker on map" class="inputs submit-button" onclick="return confirm()">
+      </form>
+    </div>
+
+    <div class="linkDiv">
+      <a href="/us/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+    </div>
+      <div class="linkDiv">
+        <a href="/us/new-map" class="readProducts">
+          View new map
+        </a>
+      </div>
+
+  </div>
+
+  <script>
+  function confirm() {
+    return confirm('Is the latitude of the product is correct, if not, you can cancel this and change it to real coordinates!')
+  }
+  </script>
+
+</body>
+</html>

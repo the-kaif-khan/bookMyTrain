@@ -1,0 +1,179 @@
+/* .sidebarContainer{
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  right: 0;
+  width: 100px;
+  top: 90px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  border-left: 1px solid lightgrey;
+}
+.sidebarContents{
+  font-family: Cambria;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.sidebarContents img{
+  width: 65px;
+  margin-bottom: 8px;
+}
+.sidebarContents:hover{
+  background-color: rgb(238, 238, 238);
+  color: black;
+}
+.links{
+  text-decoration: none;
+} */
+/* .buyingCartLink:hover{
+  text-decoration: underline;
+} */
+
+/* new sidebar */
+.links{
+  text-decoration: none;
+}
+
+.sidebarContainer{
+  background-color: rgb(255, 255, 255);
+  /* border-top: 1px solid lightgrey; */
+  position: fixed;
+  right: 0;
+  width: 140px;
+  top: 90px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-left: 1px solid lightgrey;
+  font-family: arial;
+  font-size: 14.5px;
+}
+.sidebarContents{
+  font-family: Cambria;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 125px;
+  background-color: rgb(255, 255, 255);
+  /* color: white; */
+  color: rgb(0, 81, 255);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.sidebarContents img{
+  width: 65px;
+  margin-bottom: 8px;
+}
+.sidebarContents:hover{
+  color: rgb(0, 81, 255);
+  background-color: rgb(238, 238, 238);
+}
+/* all media queries for responsiveness starts */
+@media(max-width: 1024px) {
+  .sidebarContents{
+    height: 150px;
+  }
+}
+@media(max-height: 932px) {
+  .sidebarContents{
+    height: 134px;
+  }
+}
+@media(max-height: 896px) {
+  .sidebarContents{
+    height: 125px;
+  }
+  .footer{
+    margin-top: 40px;
+  }
+}
+@media(max-height: 740px) {
+  .sidebarContents{
+    height: 96px;
+    font-size: 13px;
+  }
+  .sidebarContents img{
+    width: 40px;
+  }
+}
+@media(max-height: 667px) {
+  .sidebarContents{
+    height: 80px;
+    font-size: 13px;
+  }
+  .sidebarContents img{
+    width: 40px;
+  }
+
+/* all media queries for responsiveness ends */
+}
+.sidebarLinks{
+  text-decoration: none;
+}
+.textsTopFour{
+  padding: 10px;
+  color: white;
+  background-color: rgb(0, 81, 255);
+  border: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.togglingTitle{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: rgb(0, 81, 255);
+  background-color: rgb(245, 245, 245);
+  border-top: 1px solid rgb(236, 236, 236);
+  padding: 10px;
+}
+.startingPrices{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+/* for dropdown css starts here */
+.dropdown-container{
+  position: relative;
+  /* width: 200px; */
+  background: #f0f0f0;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  user-select: none;
+}
+.dropdown{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.dropdown div{
+  padding: 10px;
+  cursor: pointer;
+}
+.dropdown div:hover{
+  background-color: #efefef;
+}
+.hidden{
+  display: none;
+}
+/* for dropdown css ends here */

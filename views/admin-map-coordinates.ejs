@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>map coordinates find page</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+  <style>
+    #map{
+      width: 100%;
+      height: 700px;
+    }
+  </style>
+
+</head>
+<body>
+  
+  <div id="map"></div>
+  <button onclick="fullScreenView()">View in full screen</button>
+  <div class="coordinate"></div>
+
+</body>
+</html>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  // map initialize
+  var map = L.map('map').setView([38.8610,71.2761], 7);
+  map.zoomControl.setPosition('topright');
+
+  // adding osm layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // adding marker in the center of the map
+  L.marker([38.8610, 71.2761]).addTo(map).bindPopup('this is a popup');
+
+  // adding map scale
+  L.control.scale().addTo(map);
+
+  // adding full screen view for map
+  var mapId = document.getElementById('map');
+  function fullScreenView() {
+    mapId.requestFullscreen();
+  }
+
+  // map coordinate div
+  map.on('mousemove', function (e) {
+    $('.coordinate').html(`Latitude: ${e.latlng.lat}, Longitude: ${e.latlng.lng}`)
+  })
+
+</script>

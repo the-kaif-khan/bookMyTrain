@@ -1,0 +1,288 @@
+.a1,
+.b1,
+.c1,
+.d1,
+.e1,
+.f1,
+.g1,
+.h1,
+.j1,
+.k1,
+.l1,
+.m1,
+.p1,
+.r1,
+.s1,
+.u1,
+.v1{
+  background-image: url(../../../images/Porsches.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+
+.a1:hover,
+.b1:hover,
+.c1:hover,
+.d1:hover,
+.e1:hover,
+.f1:hover,
+.g1:hover,
+.h1:hover,
+.j1:hover,
+.k1:hover,
+.l1:hover,
+.m1:hover,
+.p1:hover,
+.r1:hover,
+.s1:hover,
+.u1:hover,
+.v1:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+
+/* state1 */
+.state1{
+  background-image: url(../../../yeah/agra2.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state1:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state2 */
+.state2{
+  background-image: url(../../../images/messi.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state2:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state3 */
+.state3{
+  background-image: url(../../../yeah/ambedkar-nagar.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state3:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state4 */
+.state4{
+  background-image: url(../../../yeah/ayodhya.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state4:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state5 */
+.state5{
+  background-image: url(../../../yeah/amethi.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state5:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state6 */
+.state6{
+  background-image: url(../../../yeah/amroha.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state6:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state7 */
+.state7{
+  background-image: url(../../../yeah/auraiya.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state7:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state8 */
+.state8{
+  background-image: url(../../../yeah/azamgarh.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state8:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state9 */
+.state9{
+  background-image: url(../../../yeah/badaun.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state9:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state10 */
+.state10{
+  background-image: url(../../../yeah/baghpat.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state10:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state11 */
+.state11{
+  background-image: url(../../../yeah/bahraich.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state11:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state12 */
+.state12{
+  background-image: url(../../../yeah/ballia.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state12:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state13 */
+.state13{
+  background-image: url(../../../yeah/balrampur.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state13:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state14 */
+.state14{
+  background-image: url(../../../yeah/banda.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state14:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state15 */
+.state15{
+  background-image: url(../../../yeah/agra1.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state15:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state16 */
+.state16{
+  background-image: url(../../../yeah/Bareilly.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state16:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state17 */
+.state17{
+  background-image: url(../../../yeah/basti.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state17:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state18 */
+.state18{
+  background-image: url(../../../yeah/bhadohi.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state18:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state20 */
+.state20{
+  background-image: url(../../../yeah/bulandshahr.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state20:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+/* state21 */
+.state21{
+  background-image: url(../../../yeah/chandauli.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent;
+  height: 250px;
+}
+.state21:hover{
+  border: 2px solid rgb(0, 148, 197);
+}
+
+
+

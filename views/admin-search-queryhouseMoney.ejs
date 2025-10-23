@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin queryhouse dues page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Admin search queryhouse money
+    </div>
+  </div>
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landad/find-landbookers" class="links">
+      <div class="navLinks">
+        Landbookers
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel2" class="links">
+      <div class="navLinks">
+        Home
+      </div>
+    </a>
+
+    <form action="/landad/search/queryhouse-money" method="GET">
+      <input type="text" name="q" placeholder="Search query houses money with queryhouse tehsil or owner name..."  class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form>
+  </div>
+
+  <!-- buying summary -->
+  <div class="buyingSummary js-buying-summary">
+  <% let money = 0 %>
+  <% let landbookMoney = 0 %>
+  <% let queryMoney = 0 %>
+  <% if(queryhouseMoneys.length > 0) { %>
+    <% queryhouseMoneys.forEach((queryhouseMoney) => { %>
+      <%
+        money += queryhouseMoney.money;
+        landbookMoney += queryhouseMoney.landbookMoney;
+        queryMoney += queryhouseMoney.queryhouseMoney;
+      %>
+    <% }) %>
+  <% } %>
+
+    <div class="buyingSummaryHeading">
+      Buying Summary
+    </div>
+    <div class="numberOfZameens">
+      Products (<span class="js-cartItemNumber"><%= queryhouseMoneys.length %></span>)
+    </div>
+    <div class="buyingSummaryContentsContainer">
+      <div class="buyingSummaryContents">
+        <div class="landbookTitle">
+          Landbook Price
+        </div>
+        <div class="titles">
+          Money (landbook price of all products * 2.3%) :
+        </div>
+        <div class="numbers">
+          <b> <%= money %> Lakhs</b>
+        </div>
+        <div class="titles">
+          (Rent) Landbook Money (landbook price of all products * 0.782%) <br>
+          (!Rent) Landbook Money (landbook price of all products * 0.69%)
+        </div>
+        <div class="numbers">
+          <b> <%= landbookMoney.toFixed() %> Lakhs</b>
+        </div>
+        <div class="titles">
+          (Rent) Queryhouse Money (landbook price of all products * 1.518%) <br>
+          (!Rent) Queryhouse Money (landbook price of all products * 1.61%)
+        </div>
+        <div class="numbers">
+          <b> <%= queryMoney.toFixed() %> Lakhs</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="blogContents">
+    <% if(queryhouseMoneys.length > 0) { %>
+      <% queryhouseMoneys.reverse().forEach((queryhouseMoney) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <img src="" alt="">
+            </div>
+            <div class="aboutProfileUsername">
+              <% if(queryhouseMoney.queryhouse[0]) { %>
+                LQH Owner Email: <%= queryhouseMoney.queryhouse[0].email %>
+              <% } %>
+            </div>
+          </div>
+          <!-- user container -->
+          <div class="userContainer">
+            <% if(queryhouseMoney.user.length > 0) { %>
+              <% queryhouseMoney.user.forEach(user => { %>
+                <div class="divsForDue">
+                  <b>User name:</b> <%= user.name %> <br>
+                  <b>User contact number:</b> <%= user.contactNumber %> <br>
+                  <b>User email:</b> <%= user.email %> <br>
+                  <b>User username:</b> <%= user.username %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                User not found.
+              </div>
+            <% } %>
+          </div>
+          <!-- product container -->
+          <div class="productContainer">
+            <% if(queryhouseMoney.productId.length > 0) { %>
+              <% queryhouseMoney.productId.forEach(product => { %>
+                <div class="divsForDue">
+                  <b>Product Landbook price:</b> <%= product.landbookPrice %> Lakhs <br>
+                  <b>Product seller id:</b> <%= product.seller[0] %> <br>
+                  <b>Product's seller contact:</b> <%= product.sellerContact %> <br>
+                  <b>Product city:</b> <%= product.city %> <br>
+                  <b>Product tehsil:</b> <%= product.tehsil %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                Dues not found.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="queryhouseContainer">
+            <% if(queryhouseMoney.queryhouse.length > 0) { %>
+              <% queryhouseMoney.queryhouse.forEach(queryhouse => { %>
+                <div class="divsForDue">
+                  <b>Queryhouse ownername:</b> <%= queryhouse.ownername %> <br>
+                  <b>Queryhouse owner contact number:</b> <%= queryhouse.ownerContact %> <br>
+                  <b>Queryhouse contact number:</b> <%= queryhouse.queryhouseContact %> <br>
+                  <b>Queryhouse owner email:</b> <%= queryhouse.email %> <br>
+                  <b>Queryhouse address:</b> <%= queryhouse.queryhouseAddress %> <br>
+                  <b>Queryhouse owner address:</b> <%= queryhouse.ownerAddress %> <br>
+                  <b>Queryhouse slug:</b> <%= queryhouse.slug %> <br>
+                  <div class="address">
+                    <a href="/landbook-query-house/download-owner-image/<%= queryhouse._id %>" class="downloadLink">
+                      Download owner image
+                    </a><br>
+                    <a href="/landbook-query-house/download-contract-image/<%= queryhouse._id %>" class="downloadLink">
+                      Download contract image
+                    </a><br>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                Queryhouse not found.
+              </div>
+            <% } %>
+            <div class="due">
+              <b>Money:</b> <%= queryhouseMoney.money.toFixed() %> <br>
+              <b>Landbook money:</b> <%= queryhouseMoney.landbookMoney.toFixed() %> <br>
+              <b>Queryhouse renting:</b> <%= queryhouseMoney.renting %> <br>
+              <b>Queryhouse money:</b> <%= queryhouseMoney.queryhouseMoney.toFixed() %> <br>
+            </div>
+          </div>
+
+          <div class="queryhouseContainer">
+            <% if(queryhouseMoney.queryhouseStaff.length > 0) { %>
+              <% queryhouseMoney.queryhouseStaff.forEach(queryhouseStaff => { %>
+                <div class="divsForDue">
+                  <b>Queryhouse Staff name:</b> <%= queryhouseStaff.fullname %> <br>
+                  <b>Queryhouse Staff username:</b> <%= queryhouseStaff.username %> <br>
+                  <b>Queryhouse Staff contact number:</b> <%= queryhouseStaff.contactNumber %> <br>
+                  <b>Queryhouse Staff email:</b> <%= queryhouseStaff.email %> <br>
+                  <b>Queryhouse Staff address:</b> <%= queryhouseStaff.address %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                Queryhouse Staff not found.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="address blog">
+            Bayana image of user: <br>
+            <% if(queryhouseMoney.bayana) { %>
+              <a href="/landad/download-bayana-image-of-queryhouse/<%= queryhouseMoney._id %>" class="downloadLink">
+                Download Bayana image
+              </a>
+              <!-- <a href="/landad/edit-bayana-image-of-user/<%= queryhouseMoney._id %>" class="links" onclick="return confirmDeleteBayana()">
+                Delete bayana image.
+              </a> -->
+            <% } else { %>
+              <div class="red">
+                Bayana image not yet submitted.
+              </div>
+            <% } %>
+          </div>
+          <div class="footersOfBlogs">
+            <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landad/admin/delete-queryhouseMoney/<%= queryhouseMoney._id %>" class="editBlog">Delete this queryhouse money product</a>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No queryhouse yet.</div>
+    <% } %>
+
+  </div>
+ 
+
+  <script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this queryhouse money product? This action cannot be undone!')
+  }
+  function confirmDeleteBayana() {
+    return confirm(`Are you sure you want to delete this user's bayana image? This action cannot be undone!`)
+  }
+  </script>
+
+
+
+</body>
+</html>

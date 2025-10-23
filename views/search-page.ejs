@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search page</title>
+
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-special-body.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-footer.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-header.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-products.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-sidebar.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-practice-sidebar.css">
+
+</head>
+<body>
+    <!-- header container -->
+      <nav class="main-navbar">
+        <div class="leftHeader">
+          <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          </a> 
+        </div>
+        <button class="hamburger1" onclick="toggleSidebar()">
+          &#9776
+        </button>
+        <div class="headerContent">
+          <div class="middleHeader">
+            <form action="/home/search/<%= city %>/<%= tehsil %>" method="GET">
+              <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+              <button class="searchButton" type="submit">
+                <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+                <div class="tooltip">
+                  Search
+                </div>
+              </button>
+            </form>
+            <button class="voiceButton" id="micBtn">
+              <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+              <div class="tooltip">
+                Search with your voice
+              </div>
+            </button>
+          </div>
+          <div class="rightHeader">
+            <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+              <div class="cartIcon">
+                <button class="cartButton"> 
+                  <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+                  <div class="tooltip">
+                    Claim Cart
+                  </div>
+                  <div class="cart-quantity js-cart-quantity">
+                    <% if(currentUser) { %>
+                    <%= currentUser.claimCart.length %>
+                    <% } else { %>
+                      0
+                    <% } %>
+                  </div>
+                </button>
+              </div>
+            </a>
+            <div class="profileIcon">
+              <a href="/us/user/profile">
+                <button class="profileButton">
+                  <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+                  <div class="tooltip">
+                    Your Profile
+                  </div>
+                </button> 
+              </a>
+            </div>
+            <button class="hamburger" onclick="toggleSidebar()">
+              &#9776
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div id="sidebar" class="sidebar">
+        <div class="sidebarTops">
+          <button class="close-btn" onclick="toggleSidebar()">
+            &times;
+          </button>
+          <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+            <div class="cartIcon">
+              <button class="cartButton"> 
+                <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+                <div class="cartIconTooltip">
+                  Claim Cart
+                </div>
+                <div class="cart-quantity js-cart-quantity">
+                  <% if(currentUser) { %>
+                  <%= currentUser.claimCart.length %>
+                  <% } else { %>
+                    0
+                  <% } %>
+                </div>
+              </button>   
+            </div>
+          </a>
+          <div class="profileIcon">
+            <a href="/us/user/profile">
+              <button class="profileButton">
+                <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+                <div class="sideTooltip">
+                  Your Profile
+                </div>
+              </button> 
+            </a>
+          </div>
+        </div>
+        <div class="sideMiddleHeader">
+          <form action="/home/search/basti/bastisadar" method="GET">
+            <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+            <button class="searchButton" type="submit">
+              <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+              <div class="sideTooltip">
+                Search
+              </div>
+            </button>
+          </form>
+          <button class="voiceButton" id="micBtn">
+            <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+            <div class="sideTooltip">
+              Search with your voice
+            </div>
+          </button>
+        </div>
+
+        <a href="/home/sellpage/products/filter/<%= city %>/<%= tehsil %>" class="links">
+          <div class="advertisingSidebar sidebarContents">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+              Filter products page
+          </div>
+        </a>  
+        <a href="/buy/buyingCart/products/filter/<%= city %>/<%= tehsil %>" class="links">
+          <div class="cartIconSidebar sidebarContents">
+            <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+            Buying Cart
+          </div>
+        </a>  
+        <a href="/home/help/<%= city %>/<%= tehsil %>" class="links">
+          <div class="helpIcon sidebarContents">
+            <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+            Need Help
+          </div>
+        </a>  
+        <a href="" class="links">
+          <div class="supportUsIcon sidebarContents">
+            <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+            Support Us
+          </div>
+        </a> 
+        <a href="/home/aboutus" class="links">
+          <div class="aboutUsIcon sidebarContents">
+            <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+            About Us
+          </div>
+        </a>
+        
+      </div>
+
+    <!-- product lists in this container through javascript -->
+      <% if(products.length <= 0) { %>
+        <p class="noProducts">no products found</p>
+      <% } else { %>
+        <div class="container">
+          <% products.forEach((product) => { %>
+            <div class = "productsContainer">
+              <a href="/buy/viewproduct/<%= product._id %>/<%= city %>/<%= tehsil %>" class="productLink">
+                <div id = "<%= product._id %>">
+                  <div class="productsImage">
+                    <img src= "data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="product image">
+                  </div>
+                  <div class="productsPriceAndLB">
+                    <div class= "productsPrice">
+                      Price: <span class="originalPrice">
+                        <%= product.brokerPrice %>
+                      </span> <span class="price">
+                        <%= product.landbookPrice %>
+                      </span> Lakhs.
+                    </div>
+                    <div class= "productsLB">
+                      L * B: <%= product.LB %>
+                    </div>
+                  </div>
+                  <div class="productsSpec">
+                    <ul>
+                      <% product.spec.forEach((list) => { %>
+                        <li><%= list %></li>
+                      <% }); %>
+                    </ul>
+                  </div>
+                  <div class="productsStats">
+                    <div class="productsVisit">
+                      Times Visited: <%= product.visits.length %> &#183
+                    </div>
+                    <div class="productsRating">
+                      <img src= "data:image/jpeg;base64, <%= product.ratingImage.toString('base64') %>">
+                    </div>
+                    <div class="productsClaim">
+                      Claimed: <%= product.claimedPeople.length %> &#183
+                    </div>
+                  </div>
+                  <div>
+                    <a href="/buy/addtoclaim/<%= product._id %>/<%= city %>/<%= tehsil %>">
+                      <button class= "claimToCartButton js-claim-to-cart"> 
+                        Add to Claim Cart
+                      </button>
+                    </a> 
+                  </div>
+                </div>
+              </a>
+            </div>
+            
+          <% }) %>
+        </div>
+      <% } %>
+      
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="aboutThisPageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+  <!-- <script type="module" src="./js/sell-page.js"></script> -->
+
+</body>
+</html>
+
+
+<a href=""></a>

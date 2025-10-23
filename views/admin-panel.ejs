@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create products panel</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminPanel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Admin panel
+    </div>
+  </div>
+
+    <!-- navigations -->
+    <div class="navigationsBox">
+      <a href="/landad/login" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
+      <a href="/us/admin-calculator" class="links">
+        <div class="navLinks">
+          Calculator
+        </div>
+      </a>
+      <a href="/home/login" class="links">
+        <div class="navLinks">
+          Landbook home
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox2">
+      <a href="/us/landbook" class="links">
+        <div class="navLinks">
+          Landbooker home
+        </div>
+      </a>
+      <a href="/us/new-map" class="links ban-user">
+        <div class="navLinks">
+          New map
+        </div>
+      </a>
+      <a href="/us/newMapProductCreation" class="links">
+        <div class="navLinks">
+          Create new map elements
+        </div>
+        <div class="createMapElementNotification">
+          <%= mapProductCreationLength %>
+        </div>
+      </a>
+    </div>
+
+  <!-- sidebar container -->
+  <div class="sidebarContainer">
+    <a href="/us/buyingforms" class="sidebarLinks">
+      <div class="buyingForms sidebarContents">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        Buying forms
+      </div>
+      <div class="buyingFormsNotification">
+        <%= buyingForms.length %>
+      </div>
+    </a>
+    <a href="/us/Sellingforms" class="sidebarLinks">
+      <div class="sellingForms sidebarContents">
+        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+        SellingForms
+      </div>
+      <div class="sellingFormsNotification">
+        <%= sellingForms.length %>
+      </div>
+    </a>  
+    <a href="/us/newMapProductcreation" class="sidebarLinks">
+      <div class="helpIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+        Create new map elements
+      </div>
+    </a>
+
+    <a href="/us/mapCoordinates" class="sidebarLinks">
+      <div class="supportUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+        Get map coordinates
+      </div>
+    </a>
+
+    <a href="/landad/find-users" class="sidebarLinks">
+      <div class="aboutUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        Users
+      </div>
+    </a>
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create new product
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create product
+      </div>
+      <form action="/landad/admin/c&p.cp" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="title" class="inputs" placeholder="Enter title of zameen" required>
+
+        <input type="number" name="zameenNumber" class="inputs" placeholder="Enter number of zameen" required>
+
+        <input type="text" name="city" class="inputs" placeholder="Enter city of zameen" required>
+
+        <input type="text" name="tehsil" class="inputs" placeholder="Enter tehsil of zameen" required><hr>
+
+        <label>Product images(7): </label>
+        <input type="file" multiple accept="image/*" name="productImages" class="file inputs" required><hr>
+
+        <label>360 degree image(7): </label>
+        <input type="file" accept="image/*" name="product360Image" class="file inputs" required><hr>
+
+        <label>Badnaam image(1): </label>
+        <input type="file" accept="image/*" name="badnaamImage" class="file inputs" required><hr>
+
+        <!-- <label>Upload 360 degree image(1): </label>
+        <input type="file" accept="image/*" name="product360Image" class="file inputs" required><hr> -->
+
+        <label>Rating image: </label>
+        <input type="file" multiple accept="image/*" name="ratingImage" class="file inputs" placeholder="Enter the rating of this zameen" required><hr>
+
+        <input type="number" name="ratingCount" class="inputs" placeholder="Enter rating count of product" step="any" required>
+
+        <label>Khatauni images(7): </label>
+        <input type="file" multiple accept="image/*" name="khatauniImages" class="file inputs" required><hr>
+
+        <!-- prices starts-->
+        <input type="number" name="originalPrice" class="inputs" placeholder="Enter original price" step="any" required>
+
+        <input type="number" name="realPrice" class="inputs" placeholder="Enter real price" step="any" required>
+
+        <input type="number" name="landbookPrice" class="inputs" placeholder="Enter landbook price" step="any" required>
+
+        <input type="number" name="brokerPrice" class="inputs" placeholder="Enter broker price" step="any" required>
+        <!-- prices ends -->
+
+        <input type="text" name="LB" class="inputs" placeholder="Enter LB" required>
+
+        <label for="spec">Specifications (one per line): </label>
+        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen" style="width: 100%;margin-bottom: 12px;"></textarea>
+
+        <label for="why">Why to buy (one per line): </label>
+        <textarea name="why" rows="5" cols="30" placeholder="Enter why details of this zameen" style="width: 100%;margin-bottom: 12px;"></textarea>
+
+        <input type="text" name="creater" class="inputs" placeholder="Enter seller id" required>
+
+        <input type="text" name="sellingFormId" class="inputs" placeholder="Enter selling form id" required>
+
+        <input type="text" name="keys" class="inputs" placeholder="Enter keys of product" required>
+
+        <input type="text" name="recommendation" class="inputs" placeholder="Enter location keys of product" required>
+
+        <input type="submit" value="Create product" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="/us/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+      <a href="/landad/login" class="readProducts">
+        Go to home
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

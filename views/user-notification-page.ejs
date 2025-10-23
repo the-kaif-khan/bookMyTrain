@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User notification page</title>
+
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/user-notification-main-page.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/how-top-search-footer-page.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      User Notifications Page
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/home" class="links">
+      <div class="navLinks">
+        Help
+      </div>
+    </a>
+  </div>
+
+  <div class="aboutContainer">
+    User Notifications
+  </div>
+  <div class="container">
+      <% if(theUser.notifications.length > 0) { %>
+        <% theUser.notifications.forEach((notification) => { %>
+          <div class="notification">
+            <a href="#" class="link">
+              <div class="notificationIcon">
+                <img src="/imagesAndVideos/Logos/notification2.jpg" alt="">
+              </div>
+              <div class="textContainers">
+                <div class="topic">
+                  <%= notification.relatedTo %>
+                </div>
+                <div class="<% if(notification.success !== true) { %>
+                  error
+                <% } else { %>
+                  success
+                <% } %>">
+                  <% if(notification.success !== true) { %>
+                    Error
+                  <% } else { %>
+                    Success
+                  <% } %>
+                </div>
+                <div class="notificationText">
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                  <%= notification.notificationText %> 
+                </div>
+                <div class="time">
+                  <%= notification.date.toLocaleString() %>
+                </div>
+                <button class="deleteButton">
+                  Delete
+                </button>
+              </div>
+            </a>
+          </div>
+          
+        <% }) %>
+      <% } else { %>
+        <div class="noNotifications">
+          You have no notifications as of now.
+        </div>
+      <% } %>
+  </div>
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="pageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+</body>
+</html>

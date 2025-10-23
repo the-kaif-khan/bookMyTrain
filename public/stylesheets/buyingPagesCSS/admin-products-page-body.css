@@ -1,0 +1,6 @@
+body{
+  background-color: hsl(0, 100%, 97%);
+  font-family: system-ui;
+  padding-top: 220px;
+  /* padding-right: 100px; */
+}

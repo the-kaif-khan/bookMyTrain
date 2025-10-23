@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>individual-product-page-when-click-page</title>
+
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-body.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-footer.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-selling-form-page-header.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-mediaQuery.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-selling-form-page-sidebar.css">
+
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-recommended-products.css">
+
+</head>
+<body>
+  
+  <!-- header container -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="the-page-of-selling.html">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Checkout (
+      <span class="cartNumber js-cartNumber">
+        0
+      </span>
+      Items) 
+    </div>
+  </div>
+  
+  <!-- sidebar container -->
+      <div class="sidebarContainer">
+        <div class="advertisingSidebar sidebarContents">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          Landbook
+        </div>
+        <div class="cartIconSidebar sidebarContents">
+          <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+          Buying Cart
+        </div>
+        <div class="helpIcon sidebarContents">
+          <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+          Need Help
+        </div>
+        <div class="supportUsIcon sidebarContents">
+          <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+          Support Us
+        </div>
+        <div class="aboutUsIcon sidebarContents">
+          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+          About Us
+        </div>
+      </div>
+
+      <!-- main body of individual product -->
+      <div class="mainBodyContainer">
+        <% if(sellingForm) { %>
+          <div class="product">
+  
+            <!-- individual product details container -->
+            <div class="individualProductDetails">
+              <div class="mainHeading">
+                Selling user id:  <%= sellingForm.user %>
+              </div> 
+              <div class="mainPrice">
+                Contact Number: <span><%= sellingForm.contactNumber %></span>
+              </div>
+              <div class="mainLengthAndBreadth">
+                <div class="productLengthAndBreadthText">
+                  City: <%= sellingForm.city %>
+                </div>
+                <div class="productLengthAndBreadthDabba">
+                  Selling form id: <%= sellingForm._id %>
+                </div>
+              </div>
+  
+              <div class="whyDetails">
+                <div class="whyDetailsHead">
+                  Address...
+                </div>
+                <%= sellingForm.address %>
+              </div>
+  
+              <div class="mainSpec">
+                <div class="mainSpecHead">
+                  Product id:
+                </div>
+                <div class="mainSpecRatingStars">
+                  <!-- <img src="/imagesAndVideos/Logos/ratings/rating-45.png" alt=""> -->
+                </div>
+                <% if(sellingForm.product.length > 0) { %>
+                  <%= sellingForm.product %>
+                <% } else{ %>
+                  product not created
+                <% } %>
+              </div>
+              <div class="claimToCart">
+                <form action="/us/deletesellingform/<%= sellingForm._id %>" method="post" onsubmit="return confirmDeleteForm(this)">
+                  <input type="text" name="landbookMessage" placeholder="Enter a message to the user before deleting the selling form" required class="inputs">
+                  <button type="submit" class="claimToCartButton">
+                    Delete product
+                  </button>
+                </form>
+              </div>
+              <!-- <div class="buyWithin48hours">
+                <a href="" class="addToBuyingCartLink">
+                  <button class="buyWithin48hoursButton">
+                    Buy Within 48 Hours
+                  </button>
+                </a>
+              </div> -->
+              <div class="advertisingDabba">
+                Advertising
+              </div>
+            </div>
+  
+              <!-- fourth advertising section in main body -->
+            <div class="advertisingInMainBodyContainer">
+              advertising
+            </div>
+          </div>
+
+        <% } %>
+
+        <!-- main body container div -->
+      </div>
+      
+      <!-- <div class="recommendedProductsHeading">
+        Recommended Zameens...
+      </div> -->
+      <!-- recommendation products container -->
+      <div class="recommendedProductsContainer">
+      </div>
+
+      <!-- footer container -->
+      <footer>
+
+        <div class="aboutThisPage">
+          <div class="aboutThisPageLanguage">
+            <div class="languageImage">
+              <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+            </div>
+            <div class="languageText">
+              English
+            </div>  
+          </div>
+    
+          <div class="aboutCountry">
+            <div class="aboutCountryImage">
+              <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+            </div>
+            <div class="aboutCountryText">
+              India
+            </div>
+          </div>
+        </div>
+    
+        <div class="aboutCompany">
+          <div class="companyConditions aboutCompanyTexts">
+            Conditions of Use
+          </div>
+          <div class="companyPrivacyPolicy aboutCompanyTexts">
+            Privacy Notice
+          </div>
+          <div class="aboutAdvertising aboutCompanyTexts">
+            Interest-Based Ads
+          </div>
+        </div>
+    
+        <div class="companyCopywrite">
+          .c. 1996-2024, Landbook.com, Inc. and its affiliates
+        </div>
+    
+      </footer>
+
+      <!-- product recommendations in the bottom of the page -->
+      <!-- <script type="module" src="../../all-new-pages-js/individual-product-js/iPProducts.js"></script> -->
+
+      <script>
+        function swapImage(imgElement) {
+          const mainImage = document.getElementById('mainImage');
+          mainImage.classList.add('fade-out');
+          setTimeout(() => {
+            mainImage.src = imgElement.src;
+            mainImage.classList.remove('fade-out');
+          }, 150)
+        }
+      </script>
+
+</body>
+</html>

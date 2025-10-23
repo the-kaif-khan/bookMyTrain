@@ -1,0 +1,82 @@
+/* map only css */
+#map {
+  height: 100vh;
+  width: 100%;
+}
+.leaflet-popup-content a {
+  color: #007bff;
+  text-decoration: underline;
+}
+/* map only css */
+.formTitle{
+  font-size: 23px;
+  color: rgb(0, 81, 255);
+  margin-bottom: 10px;
+  font-family: system-ui;
+}
+form{
+  font-family: system-ui;
+}
+.inputs{
+  display: block;
+  width: 98%;
+  height: 36px;
+  margin-bottom: 14px;
+  padding-left: 10px;
+}
+.submit-button{
+  margin-top: 24px;
+  border: none;
+  color: white;
+  background-color: rgb(46, 144, 255);
+  border-radius: 4px;
+  margin-top: 20px;
+}
+.submit-button:hover{
+  opacity: 0.9;
+}
+.submit-button:active{
+  opacity: 0.7;
+}
+.bottomLinks{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  padding: 10px;
+}
+.bottomLinks:hover{
+  text-decoration: underline;
+}
+.forAddingLabels{
+  margin-bottom: 100px;
+  margin-top: 40px;
+  padding: 10px;
+  background-color: #0070e710;
+  border: 1px solid rgb(228, 228, 228);
+}
+/* custom label responsiveness */
+.map-label{
+  position: relative;
+  left: -50%;
+  top: -50%;
+  pointer-events: none;
+}
+.label-text{
+  writing-mode: horizontal-tb;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #222;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+/* .label-text:focus{
+  background-color: rgb(240, 240, 240);
+} 
+.label-text.visible{
+  opacity: 1;
+  line-height: 1;
+  writing-mode: horizontal-tb;
+} */

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>update-markers page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminPanel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Admin panel (Update New map marker of products)
+    </div>
+  </div>
+
+  <!-- sidebar container -->
+  <div class="sidebarContainer">
+    <a href="/us/buyingforms" class="sidebarLinks">
+      <div class="advertisingSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        Buying forms
+      </div>
+    </a>
+    <a href="/us/Sellingforms" class="sidebarLinks">
+      <div class="cartIconSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+        SellingForms
+      </div>
+    </a>  
+    <a href="/home/mapCoordinates" class="sidebarLinks">
+      <div class="helpIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+          Get map coordination
+      </div>
+    </a>
+    <a href="" class="sidebarLinks">
+      <div class="supportUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+        Support Us
+      </div>
+    </a>
+    <a href="" class="sidebarLinks">
+      <div class="aboutUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        About Us
+      </div>
+    </a>
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Update land marker of products
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create product
+      </div>
+      <form action="/home/updating-marker" method="post">
+
+        <input type="text" name="clusterName" class="inputs" placeholder="Enter cluster name of marker" value="<%= marker.clusterName %>" required>
+
+        <input type="number" name="lat" class="inputs" placeholder="Enter latitude of marker" step="any" value="<%= marker.lat %>" required>
+
+        <input type="text" name="lng" class="inputs" placeholder="Enter longitude of marker" step="any" value="<%= marker.lng %>" required>
+
+        <input type="text" name="popupText" class="inputs" placeholder="Enter popup title of marker" value="<%= marker.popupText %>" required>
+
+        <input type="text" name="productId" class="inputs" placeholder="Enter productId of marker" value="<%= marker.productId %>" required>
+
+        <input type="text" name="markerId" value="<%= marker._id %>" hidden required>
+
+        <input type="submit" value="Update zameen marker on map" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="linkDiv">
+      <a href="/home/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+    </div>
+      <div class="linkDiv">
+        <a href="/home/new-map" class="readProducts">
+          View new map
+        </a>
+      </div>
+
+  </div>
+
+</body>
+</html>

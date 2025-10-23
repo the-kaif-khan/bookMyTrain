@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>landbooklogin page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/loginPage.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerTitle">
+      Welcome Landbookers to <span>landbook.com</span>
+    </div>
+  </div>
+  <div class="pageHeading">Sign up / Login / Logout page</div>
+
+  <div class="logout">
+    <a href="/us/skyman-panel" class="skymanPanel">
+      Skyman Panel
+    </a>
+    <div class="skymanNotification">
+      <%= skymanForms.length %>
+    </div>
+    <a href="/us/createProductsPanel" class="notificationLink">
+      Notification
+    </a>
+    <div class="notificationTooltip">
+      <%= contacterSellingForms.length + buyingForms.length + mapProductCreationLength + skymanProducts.length + buyingCartTimers.length + landbookerUserBayanaForms.length %>
+    </div>
+    <a href="/us/logoutLandbooker" class="logoutLink">Logout</a>
+  </div>
+
+
+  <div class="aboutContainer">
+    <div class="about1">
+      This is the page by <span class="logo">Landbook</span> where Landbookers of <span class="logo">Landbook</span> can either Sign up/ login/ logout
+    </div>
+    <div class="skipLink">
+      <div class="link">
+        <a href="/us/createProductsPanel">Skip for now</a> 
+      </div>
+    </div>
+    <div class="about2">
+      Landbookers can <span class="skip">skip</span> login/ sign up also for now but in some regions of the <span class="logo">landbook.com</span> you'll need to login then you'll be able to use nearly all convenience of landbook. So, in order to lack inconvenience when try to do important drilling in Landbook hurry up and login now... 
+    </div>
+  </div>
+
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="container">
+
+    <div class="loginBox">
+      <div class="title">
+        Login
+      </div>
+      <form action="/us/landbookerlogin" method="post">
+        <input type="text" placeholder="Enter username" class="username" name="username" required>
+        <input type="password" placeholder="Enter your password" class="password" name="password" required>
+        <a href="" class="forgotPass">
+          forgot password?
+        </a>
+        <input type="submit" value="Login" class="login">
+      </form>
+    </div>
+
+    <div class="signUpBox">
+      <div class="title">
+        Sign up
+      </div>
+      <form action="/us/createlandbookers" method="post">
+        <input type="text" placeholder="Enter your name" class="name" name="fullname" required>
+        <input type="userName" placeholder="Enter your username" class="username" name="username" required>
+        <input type="number" placeholder="Your correct contact number" class="number" name="contactNumber" required>
+        <input type="email" placeholder="abc@gmail.com" class="email" name="email" required>
+        <input type="text" placeholder="Enter your address" class="email" name="address" required>
+        <input type="password" placeholder="Create password" class="password" name="password" required>
+        <input type="number" class="password" name="ownerContactForOtp" value="9140362143" hidden>
+        <input type="submit" value="Sign Up" class="signUp">
+      </form>
+    </div>
+    
+  </div>
+
+</body>
+</html>

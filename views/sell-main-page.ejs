@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell main page</title>
+
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-special-body.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-footer.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-header.css">
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-products.css">
+      <!-- <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-sidebar.css"> -->
+      <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-practice-sidebar.css">
+
+</head>
+<body>
+  <!-- header container -->
+    <nav class="main-navbar">
+      <div class="leftHeader">
+        <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt=""></a> 
+      </div>
+      <button class="hamburger1" onclick="toggleSidebar()">
+        &#9776
+      </button>
+      <div class="headerContent">
+        <div class="middleHeader">
+          <form action="/home/search/<%= theCity %>/<%= theTehsil %>" method="GET">
+            <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+            <button class="searchButton" type="submit">
+              <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+              <div class="tooltip">
+                Search
+              </div>
+            </button>
+          </form>
+          <button class="voiceButton" id="micBtn">
+            <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+            <div class="tooltip">
+              Search with your voice
+            </div>
+          </button>
+        </div>
+        <div class="rightHeader">
+          <a href="/buy/claimcart/products/filter/<%= theCity %>/<%= theTehsil %>">
+            <div class="cartIcon">
+              <button class="cartButton"> 
+                <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+                <div class="tooltip">
+                  Claim Cart
+                </div>
+                <div class="cart-quantity js-cart-quantity">
+                  <% if(currentUser) { %>
+                  <%= currentUser.claimCart.length %>
+                  <% } else { %>
+                    0
+                  <% } %>
+                </div>
+              </button>
+            </div>
+          </a>
+          <div class="profileIcon">
+            <a href="/us/user/profile">
+              <button class="profileButton">
+                <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+                <div class="tooltip">
+                  Your Profile
+                </div>
+              </button> 
+            </a>
+          </div>
+          <button class="hamburger" onclick="toggleSidebar()">
+            &#9776
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar">
+      <div class="sidebarTops">
+        <button class="close-btn" onclick="toggleSidebar()">
+          &times;
+        </button>
+        <a href="/buy/claimcart/products/filter/<%= theCity %>/<%= theTehsil %>">
+          <div class="cartIcon">
+            <button class="cartButton"> 
+              <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+              <div class="">
+                Claim Cart
+              </div>
+              <div class="cart-quantity js-cart-quantity">
+                <% if(currentUser) { %>
+                <%= currentUser.claimCart.length %>
+                <% } else { %>
+                  0
+                <% } %>
+              </div>
+            </button>   
+          </div>
+        </a>
+        <div class="profileIcon">
+          <a href="/us/user/profile">
+            <button class="profileButton">
+              <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+              <div class="sideTooltip">
+                Your Profile
+              </div>
+            </button> 
+          </a>
+        </div>
+      </div>
+      <div class="sideMiddleHeader">
+        <form action="/home/search/basti/bastisadar" method="GET">
+          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+          <button class="searchButton" type="submit">
+            <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+            <div class="sideTooltip">
+              Search
+            </div>
+          </button>
+        </form>
+        <button class="voiceButton" id="micBtn">
+          <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+          <div class="sideTooltip">
+            Search with your voice
+          </div>
+        </button>
+      </div>
+
+      <!-- sidebar container -->
+      <div class="filterTitle">
+        Landbook products filter
+      </div>
+      <form id="autoFilterForm" action="/home/sellpage/products/filter/<%= theCity %>/<%= theTehsil %>" method="GET" class="vertical-filter">
+        <label>Rating</label>
+        <select name="rating" onchange="submitFilters()">
+          <option value="">All</option>
+          <option value="4.5" <%= selectedFilters.rating == 4.5 ? 'selected' : '' %>>More than 4.5</option>
+          <option value="4" <%= selectedFilters.rating == 4 ? 'selected' : '' %>>More than 4</option>
+          <option value="3" <%= selectedFilters.rating == 3 ? 'selected' : '' %>>More than 3</option>
+          <option value="2" <%= selectedFilters.rating == 2 ? 'selected' : '' %>>More than 2</option>
+        </select>
+      
+        <label>Max Price</label>
+        <select name="maxPrice" onchange="submitFilters()">
+          <option value="">All</option>
+          <option value="30" <%= selectedFilters.maxPrice == 30 ? 'selected' : '' %>>30 Lakhs</option>
+          <option value="40" <%= selectedFilters.maxPrice == 40 ? 'selected' : '' %>>40 Lakhs</option>
+          <option value="60" <%= selectedFilters.maxPrice == 60 ? 'selected' : '' %>>60 Lakhs</option>
+          <option value="80" <%= selectedFilters.maxPrice == 80 ? 'selected' : '' %>>80 Lakhs</option>
+          <option value="95" <%= selectedFilters.maxPrice == 95 ? 'selected' : '' %>>95 Lakhs</option>
+        </select>
+      
+        <label>City</label>
+        <select name="city" id="cityDropdown" onchange="updateTehsils();submitFilters()">
+          <option value="">Select City</option>
+          <% cityTehsilList.forEach(item => { %>
+            <option value="<%= item.city %>" <%= selectedFilters.city === item.city ? 'selected' : '' %>><%= item.city %></option>
+          <% }) %>
+        </select>
+        
+        <label>Tehsil</label>
+        <select name="tehsil" id="tehsilDropdown" onchange="submitFilters()">
+          <option value="">Select tehsil</option>
+        </select>
+        
+        <script>
+          const cityTehsilMap = {
+            <% cityTehsilList.forEach(item => { %>
+              "<%= item.city %>": <%- JSON.stringify(item.tehsils) %>,
+            <% }) %>
+          };
+        
+          function updateTehsils() {
+            const city = document.getElementById('cityDropdown').value;
+            const tehsilSelect = document.getElementById('tehsilDropdown');
+            tehsilSelect.innerHTML = '<option value="">Select Tehsil</option>';
+        
+            if (cityTehsilMap[city]) {
+              cityTehsilMap[city].forEach(teh => {
+                const opt = document.createElement('option');
+                opt.value = teh;
+                opt.textContent = teh;
+                tehsilSelect.appendChild(opt);
+              });
+            }
+          }
+        
+          // Load selected tehsil on page load
+          window.onload = function () {
+            updateTehsils();
+            const selectedTehsil = "<%= selectedFilters.tehsil || '' %>";
+            if (selectedTehsil) {
+              document.getElementById('tehsilDropdown').value = selectedTehsil;
+            }
+          };
+        </script>
+
+      </form>
+      <a href="/home/sellpage/products/filter/<%= theCity %>/<%= theTehsil %>" class="clear-filters">
+        Clear All Filters
+      </a>
+    </div> 
+
+    <% if(error.length > 0) { %>
+      <div class="flash flash-error">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success.length > 0) { %>
+      <div class="flash flash-success">
+        <%= success %>
+      </div>
+    <% } %>
+
+    <!-- product lists in this container through javascript -->
+    <div class="container">
+      <% if(products.length > 0) { %>
+        <% products.forEach((product) => { %>
+          <div class = "productsContainer">
+            <a href="/buy/viewproduct/<%= product._id %>/<%= product.city %>/<%= product.tehsil %>" class="productLink">
+              <div id = "<%= product._id %>">
+                <div class="productsImage">
+                  <img src= "data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="product image">
+                </div>
+                <div class="productsPriceAndLB">
+                  <div class= "productsPrice">
+                    Price: <span class="originalPrice">
+                      <%= product.brokerPrice.toFixed(2) %>
+                    </span> <span class="price">
+                      <%= product.landbookPrice.toFixed(2) %>
+                    </span> Lakhs.
+                  </div>
+                  <div class= "productsLB">
+                    L * B: <%= product.LB %>
+                  </div>
+                </div>
+                <div class="productsSpec">
+                  <ul>
+                    <% product.spec.forEach((list) => { %>
+                      <li><%= list %></li>
+                    <% }); %>
+                  </ul>
+                </div>
+                <div class="productsStats">
+                  <div class="productsVisit">
+                    Times Visited: <%= product.visits.length %> &#183
+                  </div>
+                  <div class="productsRating">
+                    <img src= "data:image/jpeg;base64, <%= product.ratingImage.toString('base64') %>">
+                  </div>
+                  <div class="productsClaim">
+                    Claimed: <%= product.claimedPeople.length %> &#183
+                  </div>
+                </div>
+                <div>
+                  <a href="/buy/addtoclaim/<%= product._id %>/<%= theCity %>/<%= theTehsil %>">
+                    <button class= "claimToCartButton js-claim-to-cart"> 
+                      Add to Claim Cart
+                    </button>
+                  </a> 
+                </div>
+              </div>
+            </a>
+          </div>
+          
+        <% }) %>
+      <% } else{ %>
+        <div class="noProducts">
+          No products available at this filter. You can try anything else or search through search box of <span class="highlight">Landbook</span>
+        </div>
+      <% } %>
+    </div>
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="aboutThisPageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+    
+  <!-- <script type="module" src="./js/sell-page.js"></script> -->
+  <script>
+    // for dropdown
+    function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown');
+    dropdown.classList.toggle('hidden');
+    }
+    document.addEventListener('click', (event) => {
+    const container = document.querySelector('dropdown-container');
+    const dropdown = document.getElementById('dropdown');
+    if(!container.contains(event.target)) {
+    dropdown.classList.add('hidden');
+    }
+    });
+
+    function toggleSecondDropdown() {
+    const dropdown = document.getElementById('secondDropdown');
+    dropdown.classList.toggle('hidden');
+    }
+    document.addEventListener('click', (event) => {
+    const container = document.querySelector('dropdown-container');
+    const dropdown = document.getElementById('dropdown');
+    if(!container.contains(event.target)) {
+    dropdown.classList.add('hidden');
+    }
+    });
+
+    function submitFilters() {
+      document.getElementById('autoFilterForm').submit();
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+  </script>
+
+</body>
+</html>
+
+
+<a href=""></a>

@@ -1,0 +1,538 @@
+/* the all header Contents */
+#micBtn{
+  border: none;
+  background: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  font-size: 14px;
+  border: 0.02px solid rgb(236, 236, 236);
+}
+#micBtn:hover{
+  background-color: rgb(248, 248, 248);
+}
+#micBtn:active{
+  transform: scale(.9);
+  background-color: rgb(238, 238, 238);
+}
+/* language dropdown css starts here */
+.language-dropdown{
+  position: relative;
+  display: inline-block;
+}
+.language-dropdown button{
+  background-color: rgb(255, 255, 255);
+  border: 0.02px solid rgb(236, 236, 236);
+  color: rgb(0, 0, 0);
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.language-dropdown button:hover{
+  background-color: rgb(248, 248, 248);
+}
+.dropdown-content{
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  min-width: 160px;
+  z-index: 1000;
+}
+.dropdown-content a{
+  display: block;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.dropdown-content a:hover{
+  background-color: #f1f1f1;
+}
+/* language dropdown css starts here */
+/* hamburger */
+.main-navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  /* background-color: rgb(46, 144, 255); */
+  min-width: none;
+  background-color: azure;
+  color: black;
+  z-index: 1000;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+}
+.headerContent{
+  /* display: flex;
+  gap: 15px;
+  align-items: center; */
+
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.hamburger{
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  margin-right: 20px;
+  transition: all 0.3s;
+  position: relative;
+}
+.hamburgerNotification{
+  position: absolute;
+  color: white;
+  background-color: red;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 15px;
+  top: 20px;
+  right: 14px;
+}
+@media(min-width: 768px) {
+  .hamburgerNotification{
+    display: none;
+  }
+}
+.hamburger:hover{
+  color: rgb(0, 81, 255);
+  transition: all 0.3s;
+}
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 260px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 10000;
+}
+.sidebar.active{
+  right: 0;
+}
+.sidebarTops{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.close-btn{
+  font-size: 24px;
+  border: none;
+  background-color: none;
+  float: left;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.close-btn:hover{
+  color: red;
+  transition: all 0.3s;
+}
+@media(max-width: 768px) {
+  .headerContent{
+    display: none;
+  }
+  .hamburger{
+    display: block;
+  }
+}
+/* hamburger */
+.languageBtn{
+  height: 56px;
+}
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  /* background-color: rgb(46, 144, 255); */
+  background-color: azure;
+  color: black;
+  z-index: 1000;
+}
+/* left header */
+.leftHeader{
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+}
+.leftHeader img{
+  width: 90px;
+}
+.leftHeader:hover{
+  border: 2px solid rgb(241, 248, 253);
+}
+/* middle header */
+.middleHeader{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+  margin-left: 50px;
+}
+.sideMiddleHeader{
+  display: grid;
+  grid-template-rows: 60px 60px 60px;
+  align-items: center;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+@media(max-width: 640px) {
+  .middleHeader{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+.locationText{
+  font-family: system-ui;
+  border: 2px solid transparent;
+  height: 86px;
+  width: 107px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5px;
+  font-size: 13px;
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+  text-align: center;
+}
+.locationText:hover{
+  border: 2px solid rgb(39, 102, 165);
+  transition: border 0.4s;
+}
+.locationText img{
+  width: 20px;
+}
+form{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.searchInput{
+  width: 100%;
+  height: 52px;
+  border: none;
+  border: 0.2px solid lightgrey;
+  flex: 1;
+  height: 52px;
+  /* min-width: 0; */
+  font-size: 14px;
+}
+.searchBar::placeholder{
+  font-family: sans-serif;
+  font-family: system-ui;
+  font-size: 15px;
+}
+.middleHeader{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+/* .middleHeader .searchBar{
+  flex: 1;
+  height: 52px;
+  border: 1px solid lightgrey;
+  min-width: 0;
+  font-size: 16px;
+}
+.searchBar::placeholder{
+  font-family: sans-serif;
+  font-family: arial;
+  font-size: 15px;
+} */
+.searchButton{
+  width: 60px;
+  height: 57px;
+  border: 0.02px solid rgb(238, 238, 238);
+  background-color: #ffffff;
+  position: relative;
+}
+.searchButton .tooltip{
+  position: absolute;
+  background-color: rgb(117, 117, 117);
+  color: rgb(255, 255, 255);
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  bottom: -39px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.searchButton:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.searchButton:hover{
+  background-color: rgb(248, 248, 248);
+}
+.searchButton img{
+  width: 34px;
+}
+.voiceButton{
+  width: 106px;
+  height: 57px;
+  border: 0.02px solid rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
+  position: relative;
+}
+.voiceButton .tooltip{
+  position: absolute;
+  color: white;
+  background-color: rgb(117, 117, 117);
+  bottom: -39px;
+  left: -40px;
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  opacity: 0;
+  pointer-events: none;
+}
+.voiceButton .sideTooltip{
+  position: absolute;
+  color: white;
+  background-color: rgb(117, 117, 117);
+  bottom: 0px;
+  left: 70px;
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 12.5px;
+}
+.voiceButton:hover .tooltip,
+.voiceButton:hover .sideTooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.voiceButton:hover{
+  background-color: rgb(112, 40, 40);
+}
+.voiceButton img{
+  width: 34px;
+}
+.pageLanguage{
+  border: 2px solid transparent;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 68px;
+  padding-right: 6px;
+  /* margin-left: 4px; */
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  /* border: 1px solid lightgrey; */
+  border: 0.02px solid rgb(236, 236, 236);
+  background-color: white;
+}
+.pageLanguage:hover{
+  /* border: 2px solid rgb(39, 102, 165); */
+  background-color: rgb(248, 248, 248);
+  transition: border 0.3s;
+}
+.pageLanguage img{
+  width: 25px;
+  height: 16px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.pageLanguage .tooltip{
+  position: absolute;
+  color: white;
+  background-color: rgb(117, 117, 117);
+  top: 91px;
+  left: 462px;
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 13.4px;
+}
+.pageLanguage:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+/* right header containers*/
+
+.rightHeader{
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 15px;
+  margin-left: 10px;
+}
+.rightHeader img{
+  width: 45px;
+}
+.locationIcon{
+  position: relative;
+}
+.locationButton{
+  background-color: transparent;
+  border: none;
+}
+.locationIcon .tooltip{
+  font-size: 12px;
+  position: absolute;
+  color: white;
+  background-color: rgb(121, 121, 121);
+  white-space: nowrap;
+  bottom: -40px;
+  right: -20px;
+  left: -20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  opacity: 0;
+  pointer-events: none;
+}
+.locationIcon:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.cartIcon{
+  position: relative;
+  margin-right: 14px;
+}
+.cartButton{
+  background-color: transparent;
+  border: none;
+}
+.cartIcon .cart-quantity{
+  position: absolute;
+  color: rgba(255, 255, 255);
+  background-color: rgba(241, 0, 0, 0.945);
+  top: -6px;
+  right: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 40px;
+
+}
+.profileIcon{
+  position: relative;
+  margin-left: 10px;
+}
+.profileNotification{
+  position: absolute;
+  color: white;
+  background-color: red;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 15px;
+  top: -8px;
+  right: -7px;
+}
+.sidebarTops img{
+  width: 45px;
+}
+.profileButton{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.notification{
+  font-family: system-ui;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  right: 6px;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+  padding: 2px;
+}
+.cartIcon .tooltip,
+.profileIcon .tooltip{
+  font-size: 12px;
+  position: absolute;
+  color: white;
+  background-color: rgb(121, 121, 121);
+  white-space: nowrap;
+  bottom: -38px;
+  right: -20px;
+  left: -20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  opacity: 0;
+  pointer-events: none;
+}
+.profileIcon .sideTooltip,
+.searchButton .sideTooltip{
+  font-size: 12px;
+  position: absolute;
+  color: white;
+  background-color: rgb(121, 121, 121);
+  white-space: nowrap;
+  bottom: -18px;
+  right: -20px;
+  left: -20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  opacity: 0;
+  pointer-events: none;
+}
+.profileIcon:hover .sideTooltip,
+.searchButton:hover .sideTooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.cartIcon:hover .tooltip,
+.profileIcon:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.locationButton,
+.cartButton,
+.profileButton{
+  padding-left: 0;
+  padding-right: 0;
+}
+

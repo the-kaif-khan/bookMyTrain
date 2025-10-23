@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin create map products panel</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminPanel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Admin panel (map products)
+    </div>
+  </div>
+
+  <!-- sidebar container -->
+  <div class="sidebarContainer">
+    <a href="/us/buyingforms" class="sidebarLinks">
+      <div class="advertisingSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        Buying forms
+      </div>
+    </a>
+    <a href="/us/Sellingforms" class="sidebarLinks">
+      <div class="cartIconSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+        SellingForms
+      </div>
+    </a>  
+    <div class="helpIcon sidebarContents">
+      <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+      Need Help
+    </div>
+    <div class="supportUsIcon sidebarContents">
+      <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+      Support Us
+    </div>
+    <div class="aboutUsIcon sidebarContents">
+      <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+      About Us
+    </div>
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create zameen with coordination
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create product
+      </div>
+      <form action="/home/createmapProducts" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="title" class="inputs" placeholder="Enter title of marker" required><hr>
+
+        <label>Product images(7): </label>
+        <input type="file" multiple accept="image/*" name="productImages" class="file inputs" required><hr>
+
+        <!-- <label>Rating image: </label>
+        <input type="file" accept="image/*" name="ratingImage" class="file inputs" placeholder="Enter the rating of this zameen" required><hr> -->
+
+        <input type="number" name="latitude" step="any" class="inputs" placeholder="Enter latitude of the marker" required>
+
+        <input type="number" name="longitude" step="any" class="inputs" placeholder="Enter longitude of the marker" required>
+
+        <input type="text" name="productId" class="inputs" placeholder="Enter the productId of the product in marker" required>
+
+        <input type="submit" value="Create zameen on map" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="" class="readProducts">
+        Read all products.
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

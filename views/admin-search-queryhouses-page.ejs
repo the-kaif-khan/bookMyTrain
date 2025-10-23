@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin search query houses page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Admin users Page
+    </div>
+  </div>
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landad/find-landbookers" class="links">
+      <div class="navLinks">
+        Landbookers
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel" class="links">
+      <div class="navLinks">
+        Home
+      </div>
+    </a>
+
+    <form action="/landad/search/query-houses" method="GET">
+      <input type="text" name="q" placeholder="Search landbook user..." class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form>
+  </div>
+
+
+  <div class="blogContents">
+    <% if(queryhouses.length > 0) { %>
+      <% queryhouses.reverse().forEach((queryhouse) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <img src="" alt="">
+            </div>
+            <div class="aboutProfileUsername">
+              Email: <%= queryhouse.email %>
+            </div>
+          </div>
+          <div class="blog">
+            Owner: <%= queryhouse.ownername %>
+          </div>
+          <div class="likeCount">
+            City: <%= queryhouse.queryhouseCity %>.
+          </div>
+          <div class="likeCount">
+            Tehsil: <%= queryhouse.queryhouseTehsil %>
+          </div>
+          <div class="contactNumber">
+            Owner contact number: <%= queryhouse.ownerContact %>
+            Owner address: <%= queryhouse.ownerAddress %>
+          </div>
+          <div class="slug">
+            slug: <%= queryhouse.slug %>
+          </div>
+          <div class="address">
+            Query house contact number: <%= queryhouse.queryhouseContact %> <br>
+            Query house address: <%= queryhouse.queryhouseAddress %>
+          </div>
+          <div class="address">
+            <a href="" class="downloadLink">
+              Download owner image
+            </a><br>
+            <a href="" class="downloadLink">
+              Download contract image
+            </a><br>
+            <a href="/landbook-query-house/edited-queryhouse/<%= queryhouse._id %>" class="link">
+              Edit queryhouse rent
+            </a><br>
+          </div>
+          <div class="footersOfBlogs">
+            <!-- <div class="likePost">
+              <a href="" class="likePost">
+                6
+              </a>
+            </div> -->
+            <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landad/admin/delete-queryhouse/<%= queryhouse._id %>" class="editBlog">Delete queryhouse</a>
+            </div>
+            <div>
+            <!-- <a href="/landad/admin/ban-user/<%= queryhouse._id %>" onclick="return confirmBan()">
+              <button class="deleteBlog">
+                <% if(queryhouse.banned === true) { %>
+                  queryhouse is banned
+                <% } else { %>
+                  Ban queryhouse
+                <% } %>
+              </button>
+            </a> -->
+            </div>
+            <!-- <div class="unban">
+              <a href="/landad/admin/unban-user/<%= queryhouse._id %>">
+                <button class="deleteBlog unban">
+                  Unban queryhouse
+                </button>
+              </a>
+            </div> -->
+            <div>
+              <!-- <a href="/landad/admin/addProductToBuyingCart/<%= queryhouse._id %>">
+                <button class="addToBuyingCart">
+                  Add product to buying cart
+                </button>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No queryhouse yet.</div>
+    <% } %>
+
+  </div>
+ 
+
+  <script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this user? This action cannot be undone!')
+  }
+  </script>
+
+
+
+</body>
+</html>

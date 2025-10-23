@@ -1,0 +1,358 @@
+body{
+  font-family: system-ui;
+}
+.flash{
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}
+/* form filling starts */
+.note{
+  color: red;
+  font-size: 14.5px;
+}
+.bayanaFormTitle{
+  font-size: 14px;
+  color: rgb(0, 81, 255);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.inputs{
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  padding: 6px;
+}
+.submit-button{
+  color: white;
+  background-color: green;
+  border: none;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+form{
+  margin-bottom: 30px;
+  border-top: 3px solid rgb(131, 131, 131);
+  border-radius: 20px;
+  padding: 16px;
+}
+/* form filling ends */
+.highlights{
+  color: rgb(0, 81, 255);
+}
+.noProducts{
+  color: rgb(102, 102, 102);
+  padding-left: 10px;
+  font-size: 14px;
+  height: 440px;
+}
+/* for timer starts */
+.timerTitle{
+  color: rgb(0, 81, 255);
+  background-color: rgb(248, 248, 248);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: system-ui;
+  border-top: 3px solid rgb(15, 27, 68);
+  border-radius: 10px;
+  padding: 6px;
+  font-weight: 500;
+}
+.timer-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timer,
+.buyingCartTimer{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4CAF50;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 5px;
+  min-width: 140px;
+  text-align: center;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s;
+}
+.timer.over{
+  color: #f44336;
+  background-color: #ffe5e5;
+  border: 1px solid #f44336;
+}
+.progress-bar{
+  width: 150px;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress,
+.buyingCartProgress{
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  width: 100%;
+  transition: width 1s linear;
+}
+/* for timer ends */
+.userDetails{
+  font-size: 14px;
+  color: rgb(0, 81, 255);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 3px solid rgb(17, 36, 65);
+  padding: 10px;
+}
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 25px;
+  row-gap: 40px;
+  margin-top: 30px;
+}
+.productLink{
+  text-decoration: none;
+  color: black;
+}
+.productsImage img{
+  width: 100%;
+  margin-bottom: 12px;
+}
+.productsContainer{
+  display: inline-block;
+  background-color: white;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 12px;
+}
+.productsStats{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 4px;
+}
+.productsPriceAndLB{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.productPrice{
+  margin-right: 20px;
+}
+.green{
+  color: green;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  font-size: 15px;
+}
+.productsLB{
+  color: rgb(161, 137, 0);
+  font-size: 16px;
+}
+.productsSpec{
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: rgb(18, 83, 18);
+}
+.productPrice{
+  margin-top: 26px;
+  font-size: 15px;
+  color: #d60000;
+}
+.sellerContact{
+  font-size: 15px;
+}
+.productAddress{
+  font-size: 14px;
+  color: rgb(29, 29, 29);
+}
+.khatauniSpec{
+  font-size: 14px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+.red{
+  font-weight: 700;
+  color: red;
+}
+.deletionLink{
+  color: white;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 6px;
+  background-color: rgb(255, 0, 0);
+  text-decoration: none;
+}
+.deleteLink:hover{
+  opacity: 0.9;
+}
+.deleteLink:active{
+  opacity: 0.7;
+}
+.giveBayana{
+  font-size: 13px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 81, 255);
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 10px;
+}
+.giveBayana:hover{
+  opacity: 0.9;
+}
+.giveBayana:active{
+  opacity: 0.7;
+}
+.btn-danger{
+  border: none;
+  display: block;
+  background-color: #ff0019;
+  color: white;
+  margin-top: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 6px;
+}
+.btn-danger:hover{
+  opacity: 0.9;
+}
+.btn-danger:active{
+  opacity: 0.7;
+}
+.productsStats{
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: rgb(46, 46, 46);
+  display: flex;
+  flex-wrap: wrap;
+}
+.compressing-download-link{
+  color: rgb(0, 81, 255);
+  margin-top: 16px;
+  text-decoration: none;
+}
+.compressing-download-link:hover{
+  text-decoration: underline;
+}
+.download-link{
+  color: rgb(0, 81, 255);
+  margin-top: 16px;
+  text-decoration: none;
+  font-size: 14px;
+}
+.download-link:hover{
+  text-decoration: underline;
+}
+.create{
+  color: rgb(0, 71, 165);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.create:hover{
+  text-decoration: underline;
+}
+.edit{
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 4px;
+  color: red;
+}
+.edit:hover{
+  text-decoration: none;
+}
+form{
+  margin-top: 6px;
+}
+.inputs{
+  width: 95%;
+  height: 30px;
+  border: 1px solid lightgrey;
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  padding-left: 10px;
+}
+.submitButton{
+  color: white;
+  background-color: rgb(46, 144, 255);
+  border: none;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 14px;
+  padding-right: 14px;
+  margin-top: 6px;
+  border-radius: 4px;
+}
+/* .productsRating{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.productsRating img{
+  width: 100px;
+} */
+.claimToCartButton{
+  width: 100%;
+  height: 30px;
+  border-radius: 25px;
+  background-color: rgba(255, 217, 0, 0.945);
+  color: black;
+  margin-top: 20px;
+  border: none;
+}
+.claimToCartButton:hover{
+  opacity: 0.9;
+}
+.claimToCartButton:active{
+  opacity: 0.7;
+}
+.deleteLink{
+  text-decoration: none;
+}
+.download-bayana-link{
+  font-size: 14px;
+  display: block;
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.download-bayana-link:hover{
+  text-decoration: underline;
+}
+.link:hover{
+  opacity: 0.9;
+}
+@media (max-width: 801px) {
+  .container{
+    grid-template-columns: 1fr;
+  }
+}
+

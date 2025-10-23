@@ -1,0 +1,377 @@
+.flash{
+  padding: 20px;
+  margin: 55px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  z-index: 101;
+  position: absolute;
+  top: 2;
+  left: 30;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+  z-index: 101;
+  position: absolute;
+  top: 2;
+  left: 30;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+  z-index: 101;
+  position: absolute;
+  top: 2;
+  left: 30;
+}
+body{
+  padding: 0;
+  margin: 0;
+  font-family: arial;
+  padding-top: 150px;
+}
+
+
+/* sidebar container starts */
+.sidebarContainer{
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  right: 0;
+  width: 100px;
+  top: 160px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  border-left: 1px solid lightgrey;
+  z-index: 100;
+}
+.sidebarContents{
+  font-family: Cambria;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 140px;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.sidebarContents img{
+  width: 65px;
+  margin-bottom: 8px;
+}
+.sidebarContents:hover{
+  background-color: rgb(238, 238, 238);
+  color: black;
+}
+.buyingForms{
+  position: relative;
+}
+.buyingFormsNotification{
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  /* background-color: red; */
+  background-color: red;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.sellingForms{
+  position: relative;
+}
+.sellingFormsNotification{
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  /* background-color: red; */
+  background-color: red;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 20px;
+  position: absolute;
+  top: 169px;
+  right: 19px;
+}
+.sidebarLinks{
+  text-decoration: none;
+}
+/* .buyingCartLink:hover{
+  text-decoration: underline;
+} */
+/* sidebar container ends */
+
+
+.header{
+  margin-bottom: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.title{
+  color: white;
+  background-color: rgb(46, 144, 255);
+  width: 100%;
+  height: 100px;
+  font-size: 35px;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+.aboutPage{
+  background-color: rgb(46, 144, 255);
+  color: white;
+  width: 100%;
+  height: 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.container{
+  background-color: rgb(238, 238, 238);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  margin-right: 100px;
+  margin-top: 100px;
+}
+.pageTitle{
+  margin-bottom: 20px;
+  /* margin-top: 10px; */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(46, 144, 255);
+  background-color: rgb(248, 248, 248);
+  border-top: 1px solid rgb(214, 214, 214);
+  border-left: 1px solid rgb(214, 214, 214);
+  border-right: 1px solid rgb(214, 214, 214);
+}
+/* navigation starts here */
+.ban-user{
+  color: #721c24;
+}
+.navigationsBox{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 80px 100px 140px 160px 100px 210px;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 0px;
+  position: fixed;
+  top: 160px;
+  border-bottom: 1px solid lightgrey;
+  flex-wrap: nowrap;
+  z-index: 100;
+}
+.navigationsBox2{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 160px 100px 210px;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 0px;
+  position: relative;
+  top: 63px;
+  border-bottom: 1px solid lightgrey;
+  flex-wrap: nowrap;
+}
+.navigationsBox3{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 210px 134px 210px;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 0px;
+  position: relative;
+  top: 63px;
+  border-bottom: 1px solid lightgrey;
+  flex-wrap: nowrap;
+}
+.createMapElementNotification{
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  background-color: red;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 20px;
+  position: absolute;
+  top: -3px;
+  left: 193px;
+}
+.navigationsBox4{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 160px 100px 210px;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 0px;
+  position: relative;
+  top: 63px;
+  border-bottom: 1px solid lightgrey;
+  flex-wrap: nowrap;
+}
+.navLinks{
+  background-color: rgb(255, 255, 255);
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  border: 3px solid transparent;
+  height: 89%;
+}
+.navLinks:hover{
+  border: 3px solid rgb(22, 39, 83);
+}
+.links{
+  color: black;
+  text-decoration: none;
+}
+.links:hover{
+  color: rgb(17, 29, 63);
+}
+/* navigation ends here */
+/* .productDetails{
+  background-color: rgb(248, 248, 248);
+  border-top: 1px solid rgb(214, 214, 214);
+  border-left: 1px solid rgb(214, 214, 214);
+  border-right: 1px solid rgb(214, 214, 214);
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+.productDetailTitle{
+  margin-bottom: 30px;
+}
+.inputText{
+  font-size: 14px;
+  font-family: arial;
+  margin-bottom: 10px;
+}
+.file{
+  display: inline-block;
+  margin-bottom: 0;
+}
+.inputs{
+  display: block;
+  width: 100%;
+  height: 46px;
+  margin-bottom: 14px;
+} */
+/* login add start */
+.loginContainer{
+  background-color: rgb(247, 247, 247);
+  min-height: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 10px;
+}
+.loginBox{
+  background-color: rgb(238, 238, 238);
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(218, 218, 218);
+}
+.loginTitle{
+  color: black;
+  font-size: 30px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+.username,
+.password{
+  width: 80%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+@media(max-width: 750px) {
+  .container{
+    flex-direction: column;
+  }
+  .loginBox{
+    margin-bottom: 20px;
+  }
+}
+.login{
+  max-width: 100px;
+  display: block;
+  width: 80%;
+  height: 40px;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 224, 0);
+  border: none;
+}
+.login:hover{
+  opacity: 0.9;
+  transition: all 0.15s;
+}
+.login:active{
+  opacity: 0.7;
+}
+form{
+  margin-top: 30px;
+  margin-left: 10px;
+}
+/* login add end */
+.submit-button{
+  margin-top: 60px;
+  border: none;
+  color: white;
+  background-color: rgb(46, 144, 255);
+  border-radius: 4px;
+}
+.submit-button:hover{
+  opacity: 0.9;
+}
+.submit-button:active{
+  opacity: 0.7;
+}
+.readProducts{
+  font-family: arial;
+  font-size: 14px;
+  text-decoration: none;
+  color: rgb(46, 144, 255);
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  width: 120px;
+  /* background-color: rgb(248, 248, 248); */
+  background-color: transparent;
+  border: 1px solid rgba(0, 81, 255, 0.075);
+  /* border-left: 1px solid rgb(214, 214, 214);
+  border-right: 1px solid rgb(214, 214, 214); */
+  display: inline-block;
+}
+.readProducts:hover{
+  text-decoration: underline;
+}
+.linkDiv{
+  display: inline-block;
+  margin-top: 5px;
+}

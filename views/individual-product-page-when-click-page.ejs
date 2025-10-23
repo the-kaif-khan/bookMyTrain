@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>individual-product-page-when-click-page</title>
+
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-body.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-footer.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-header.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-mediaQuery.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-sidebar.css">
+
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-recommended-products.css">
+</head>
+<body>
+  
+    <!-- header container -->
+  <!-- hamburger starts -->
+  <nav class="main-navbar">
+    <div class="leftHeader">
+      <a href="/home/<%= city %>/<%= tehsil %>"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <button class="hamburger" onclick="toggleSidebar()">
+      &#9776
+    </button>
+    <div class="headerContent">
+      <div class="middleHeader">
+        <form action="/home/search/<%= city %>/<%= tehsil %>" method="GET">
+          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+          <button class="searchButton" type="submit">
+            <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+            <div class="tooltip">
+              Search
+            </div>
+          </button>
+          <button class="voiceButton">
+            <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+              <div class="tooltip">
+                Search with your voice
+              </div>
+          </button>
+        </form>
+      </div>
+      <div class="rightHeader">
+        <div class="locationIcon">
+          <button class="locationButton">
+            <img src="/imagesAndVideos/Logos/Marker icon.svg" alt="">
+          </button>
+          <div class="tooltip">
+            Your Location
+          </div>
+        </div>
+        <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+          <div class="cartIcon">
+            <button class="cartButton"> 
+              <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+              <div class="tooltip">
+                Lands in Cart
+              </div>
+              <div class="cart-quantity js-cart-quantity">
+                <% if(currentUser) { %>
+                  <%= currentUser.claimCart.length %>
+                <% } else {
+                  0
+                } %>
+              </div>
+            </button>   
+          </div>
+        </a>
+        <div class="profileIcon">
+          <a href="/us/user/profile" class="links">
+            <button class="profileButton">
+              <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+              <div class="tooltip">
+                Your Profile
+              </div>
+            </button> 
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebarTops">
+      <button class="close-btn" onclick="toggleSidebar()">
+        &times;
+      </button>
+      <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+        <div class="cartIcon">
+          <button class="cartButton"> 
+            <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+            <div class="">
+              Claim Cart
+            </div>
+            <div class="cart-quantity js-cart-quantity">
+              <% if(currentUser) { %>
+              <%= currentUser.claimCart.length %>
+              <% } else { %>
+                0
+              <% } %>
+            </div>
+          </button>   
+        </div>
+      </a>
+      <div class="profileIcon">
+        <a href="/us/user/profile">
+          <button class="profileButton">
+            <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+            <div class="sideTooltip">
+              Your Profile
+            </div>
+          </button> 
+        </a>
+      </div>
+    </div>
+    <div class="sideMiddleHeader">
+      <form action="/home/search/basti/bastisadar" method="GET">
+        <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+        <button class="searchButton" type="submit">
+          <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+          <div class="sideTooltip">
+            Search
+          </div>
+        </button>
+      </form>
+      <button class="voiceButton" id="micBtn">
+        <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+        <div class="sideTooltip">
+          Search with your voice
+        </div>
+      </button>
+    </div>
+  </div> 
+
+  <!-- hamburger ends -->
+    <!-- <div class="header">
+      <div class="leftHeader">
+        <a href="/home/<%= city %>/<%= tehsil %>"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+      </div>
+      <div class="middleHeader">
+        <form action="/home/search/<%= city %>/<%= tehsil %>" method="GET">
+          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+          <button class="searchButton" type="submit">
+            <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+            <div class="tooltip">
+              Search
+            </div>
+          </button>
+          <button class="voiceButton">
+            <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+              <div class="tooltip">
+                Search with your voice
+              </div>
+          </button>
+        </form>
+      </div>
+      <div class="rightHeader">
+        <div class="locationIcon">
+          <button class="locationButton">
+            <img src="/imagesAndVideos/Logos/Marker icon.svg" alt="">
+          </button>
+          <div class="tooltip">
+            Your Location
+          </div>
+        </div>
+        <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+          <div class="cartIcon">
+            <button class="cartButton"> 
+              <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+              <div class="tooltip">
+                Lands in Cart
+              </div>
+              <div class="cart-quantity js-cart-quantity">
+                <% if(currentUser) { %>
+                  <%= currentUser.claimCart.length %>
+                <% } else {
+                  0
+                } %>
+              </div>
+            </button>   
+          </div>
+        </a>
+        <div class="profileIcon">
+          <a href="/us/user/profile" class="links">
+            <button class="profileButton">
+              <img src="/imagesAndVideos/Logos/User profile icon.svg" alt="">
+              <div class="tooltip">
+                Your Profile
+              </div>
+            </button> 
+          </a>
+        </div>
+      </div>
+    </div> -->
+  
+  <!-- sidebar container -->
+      <div class="sidebarContainer">
+        <a href="/home/<%= city %>/<%= tehsil %>" class="links">
+          <div class="advertisingSidebar sidebarContents">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+              <%= tehsil %> main page
+          </div>
+        </a>
+        <a href="/buy/buyingcart/products/filter/<%= city %>/<%= tehsil %>" class="links">
+          <div class="cartIconSidebar sidebarContents">
+            <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+            Buying Cart
+          </div>
+        </a>
+        <a href="/home/help/<%= city %>/<%= tehsil %>" class="links">
+          <div class="helpIcon sidebarContents">
+            <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+            Need Help
+          </div>
+        </a>
+        <a href="" class="links">
+          <div class="supportUsIcon sidebarContents">
+            <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+            Support Us
+          </div>
+        </a>
+        <a href="/home/aboutus" class="links">
+          <div class="aboutUsIcon sidebarContents">
+            <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+            About Us
+          </div>
+        </a>
+      </div>
+
+      <% if(success.length > 0) { %>
+        <div class="flash flash-success">
+          <%= success %>
+        </div>
+      <% } %>
+      <% if(error.length > 0) { %>
+        <div class="flash flash-error">
+          <%= error %>
+        </div>
+      <% } %>
+
+      <!-- main body of individual product -->
+      <div class="mainBodyContainer">
+        <% if(product) { %>
+          <div class="product">
+            <!-- side images container of individual product -->
+            <div class="sideImagesOfProduct">
+              <% product.productImages.forEach((img, index) => { %>
+                <div class="firstImage images">
+                  <img src="/home/product/image/<%= product._id %>/<%= index %>" onclick="swapImage(this)" alt=""/>
+                </div>
+              <% }) %>
+              <% if(product.threeSixtyImage) { %>
+                <img src="/home/view/360thumb/<%= product._id %>" onclick="show360Viewer()" alt=""/>
+              <% } %>
+              <!-- <div class="firstImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div>
+              <div class="secondImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div>          
+              <div class="ThirdImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div>
+              <div class="fourthImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div>
+              <div class="fifthImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div>
+              <div class="sixthImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div>
+              <div class="seventhImage images">
+                <img src="/imagesAndVideos/images/2.jpg" alt="">
+              </div> -->
+            </div>
+  
+            <!-- main image container of individual product -->
+            <div class="mainImageOfProduct">
+              <img src="/home/product/image/<%= product._id %>/0" alt="" id="mainImage"/>
+            </div>
+  
+            <!-- individual product details container -->
+            <div class="individualProductDetails">
+              <div class="mainHeading">
+                <%= product.title %>
+              </div> 
+              <% if(product.product360Image) { %>
+                <a href="/home/view/360image/<%= product._id %>" class="view-360-link">
+                  View Land in 360 degree view
+                </a>
+              <% } %>
+              <div class="productStats">
+                <div class="productStarCount">
+                  <%= product.ratingCount %>
+                </div>
+                <div class="productStars">
+                  <img src="/imagesAndVideos/Logos/ratings/rating-45.png" alt="">
+                </div>
+              </div> 
+              <div class="claimedAndVisits">
+                <div class="productClaims">
+                  Claimed: <%= product.claimedPeople.length %>
+                </div>
+                <div class="productVisits">
+                  Visits: <%= product.visits.length %>
+                </div>
+              </div>
+              <div class="mainPrice">
+                Price: <span><%= product.landbookPrice %> Lakhs</span>
+              </div>
+              <div class="mainLengthAndBreadth">
+                <div class="productLengthAndBreadthText">
+                  LB = <%= product.LB %>
+                </div>
+                <div class="productLengthAndBreadthDabba" onclick="window.location.href='/home/download-badnaam-image/<%= product._id %>'">
+                  Download Badnaam image of zameen
+                </div>
+                <div class="productLengthAndBreadthDabba" id="lbImages">
+                  Download all Khatauni images zip
+                </div>
+              </div>
+  
+              <div class="whyDetails">
+                <div class="whyDetailsHead">
+                  Why should you buy...
+                </div>
+                <ul>
+                  <% product.why.forEach((list) => { %>
+                    <li><%= list %></li>
+                  <% }); %>
+                </ul>
+              </div>
+  
+              <div class="mainSpec">
+                <div class="mainSpecHead">
+                  Product Specification:
+                </div>
+                <div class="mainSpecRatingStars">
+                  <img src="/imagesAndVideos/Logos/ratings/rating-45.png" alt="">
+                </div>
+                <ol type="a">
+                  <% product.spec.forEach((list) => { %>
+                    <li><%= list %></li>
+                  <% }); %>
+                </ol>
+              </div>
+              <div class="claimToCart">
+                <a href="/buy/addtoclaim/<%= product._id %>/<%= city %>/<%= tehsil %>" class="claimToCartLink">
+                  <button class="claimToCartButton js-claim-to-cart">
+                    Claim To Land Cart
+                  </button>
+                </a>
+              </div>
+              <div class="buyWithin48hours">
+                <a href="/buy/buyingform/<%= product._id %>/<%= city %>/<%= tehsil %>" class="addToBuyingCartLink">
+                  <button class="buyWithin48hoursButton">
+                    Buy Within 48 Hours
+                  </button>
+                </a>
+              </div>
+              <div class="advertisingDabba">
+                Advertising
+              </div>
+            </div>
+  
+              <!-- fourth advertising section in main body -->
+            <div class="advertisingInMainBodyContainer">
+              advertising
+            </div>
+          </div>
+
+        <% } %>
+
+        <!-- main body container div -->
+      </div>
+      
+      <div class="recommendedProductsHeading">
+        Recommended products...
+      </div>
+      <!-- recommendation products container starts here-->
+      <div class="recommendedProductsContainer">
+        <% if(recommendations.length > 0) { %>
+          <% recommendations.forEach((recommendation) => { %>
+            <div class = "productsContainer">
+              <a href="/buy/viewproduct/<%= recommendation._id %>/<%= city %>/<%= tehsil %>" class="productLink">
+                <div id = "<%= recommendation._id %>">
+                  <div class="productsImage">
+                    <img src= "data:image/jpeg;base64, <%= recommendation.productImages[0].toString('base64') %>" alt="product image">
+                  </div>
+                  <div class="productsPriceAndLB">
+                    <div class= "productsPrice">
+                      Price: <%= recommendation.landbookPrice %> Lakhs.
+                    </div>
+                    <div class= "productsLB">
+                      L * B: <%= recommendation.LB %>
+                    </div>
+                  </div>
+                  <div class="productsSpec">
+                    <%= recommendation.spec %>
+                  </div>
+                  <div class="productsStats">
+                    <div class="productsVisit">
+                      Times Visited: <%= recommendation.visits.length %> &#183
+                    </div>
+                    <div class="productsRating">
+                      <img src= "data:image/jpeg;base64, <%= product.ratingImage.toString('base64') %>">
+                    </div>
+                    <div class="productsClaim">
+                      Claimed: <%= recommendation.claimedPeople.length %> &#183
+                    </div>
+                  </div>
+                  <div>
+                    <a href="/buy/addtoclaim/basti/<%= product._id %>" class="claimToCartLink">
+                      <button class= "claimToCartButton js-claim-to-cart"> 
+                        Add to Claim Cart
+                      </button>
+                    </a> 
+                  </div>
+                </div>
+              </a>
+            </div>
+          <% }) %>
+        <% } else{ %>
+          <div class="noProducts">No recommended products.</div>
+        <% } %>
+      </div>
+      <!-- recommendation products container ends here-->
+
+
+      <!-- footer container -->
+      <footer>
+
+        <div class="aboutThisPage">
+          <div class="aboutThisPageLanguage">
+            <div class="languageImage">
+              <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+            </div>
+            <div class="languageText">
+              English
+            </div>  
+          </div>
+    
+          <div class="aboutCountry">
+            <div class="aboutCountryImage">
+              <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+            </div>
+            <div class="aboutCountryText">
+              India
+            </div>
+          </div>
+        </div>
+    
+        <div class="aboutCompany">
+          <div class="companyConditions aboutCompanyTexts">
+            Conditions of Use
+          </div>
+          <div class="companyPrivacyPolicy aboutCompanyTexts">
+            Privacy Notice
+          </div>
+          <div class="aboutAdvertising aboutCompanyTexts">
+            Interest-Based Ads
+          </div>
+        </div>
+    
+        <div class="companyCopywrite">
+          .c. 1996-2024, Landbook.com, Inc. and its affiliates
+        </div>
+    
+      </footer>
+
+      <!-- product recommendations in the bottom of the page -->
+      <!-- <script type="module" src="../../all-new-pages-js/individual-product-js/iPProducts.js"></script> -->
+
+      <script>
+        function swapImage(imgElement) {
+          const mainImage = document.getElementById('mainImage');
+          mainImage.classList.add('fade-out');
+          setTimeout(() => {
+            mainImage.src = imgElement.src;
+            mainImage.classList.remove('fade-out');
+          }, 150)
+        }
+
+
+        document.getElementById('lbImages').addEventListener('click', () => {
+          window.location.href = '/home/download-khatauni-images/<%= product._id %>';
+        })
+        // document.getElementById('badnaamImage').addEventListener('click', () => {
+        //   window.location.href = '/home/download-badnaam-image/<%= product._id %>';
+        // })
+
+        function toggleSidebar() {
+          document.getElementById('sidebar').classList.toggle('active');
+        }
+      </script>
+
+</body>
+</html>

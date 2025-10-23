@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landbooker edit khatauni spec details</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminPanel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Landbooker panel
+    </div>
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Edit selling form
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Edit khatauni spec details
+      </div>
+      <form action="/us/edited-khatauni-details/<%= sellingForm._id %>" method="post">
+
+        <input type="text" name="khatauniSpecDetails" class="inputs" placeholder="Enter edited version of khatauni specification details" value="<%= sellingForm.khatauniSpecDetails %>" required>
+
+        <input type="submit" value="Edit spec details" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="/us/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

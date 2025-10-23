@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin landbooker dues page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Admin landbooker money Page
+    </div>
+  </div>
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landad/find-landbookers" class="links">
+      <div class="navLinks">
+        Landbookers
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel2" class="links">
+      <div class="navLinks">
+        Home
+      </div>
+    </a>
+
+    <form action="/landad/search/landbooker-money" method="GET">
+      <input type="text" name="q" placeholder="Search landbooker money with landbooker fullname..."  class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form>
+  </div>
+
+  <!-- buying summary -->
+  <% let money = 0 %>
+  <% landbookerMoneys.forEach((landbookerMoney) => { %>
+    <% money += landbookerMoney.money; %>
+  <% }) %>
+  <div class="buyingSummary js-buying-summary">
+
+    <div class="buyingSummaryHeading">
+      Buying Summary
+    </div>
+    <div class="numberOfZameens">
+      Products (<span class="js-cartItemNumber"><%= landbookerMoneys.length %></span>)
+    </div>
+    <div class="buyingSummaryContentsContainer">
+      <div class="buyingSummaryContents">
+        <div class="landbookTitle">
+          Landbook Price
+        </div>
+        <div class="titles">
+          Money (landbook price of all products * 2.3%) :
+        </div>
+        <div class="numbers">
+          <b> <%= money %> Lakhs.</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="blogContents">
+    <% if(landbookerMoneys.length > 0) { %>
+      <% landbookerMoneys.reverse().forEach((landbookerMoney) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <img src="" alt="">
+            </div>
+            <div class="aboutProfileUsername">
+              <% if(landbookerMoney.landbooker[0]) { %>
+                Landbooker email: <%= landbookerMoney.landbooker[0].email %>
+              <% } %>
+            </div>
+          </div>
+          <!-- user container -->
+          <div class="userContainer">
+            <% if(landbookerMoney.user.length > 0) { %>
+              <% landbookerMoney.user.forEach(user => { %>
+                <div class="divsForDue">
+                  <b>User name:</b> <%= user.name %> <br>
+                  <b>User contact number:</b> <%= user.contactNumber %> <br>
+                  <b>User email:</b> <%= user.email %> <br>
+                  <b>User username:</b> <%= user.username %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                User not found.
+              </div>
+            <% } %>
+          </div>
+          <!-- product container -->
+          <div class="productContainer">
+            <% if(landbookerMoney.productId.length > 0) { %>
+              <% landbookerMoney.productId.forEach(product => { %>
+                <div class="divsForDue">
+                  <b>Product Landbook price:</b> <%= product.landbookPrice.toFixed(2) %> Lakhs. <br>
+                  <b>Product seller id:</b> <%= product.seller[0] %> <br>
+                  <b>Product's seller contact:</b> <%= product.sellerContact %> <br>
+                  <b>Product city:</b> <%= product.city %> <br>
+                  <b>Product tehsil:</b> <%= product.tehsil %> <br>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                User not found.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="queryhouseContainer">
+            <% if(landbookerMoney.landbooker.length > 0) { %>
+              <% landbookerMoney.landbooker.forEach(landbooker => { %>
+                <div class="divsForDue">
+                  <b>landbooker name:</b> <%= landbooker.fullname %> <br>
+                  <b>landbooker username:</b> <%= landbooker.username %> <br>
+                  <b>landbooker contact number:</b> <%= landbooker.contactNumber %> <br>
+                  <b>landbooker email:</b> <%= landbooker.email %> <br>
+                  <b>landbooker address:</b> <%= landbooker.address %> <br>
+                  <div class="due">
+                    <b>landbook money:</b> <%= landbookerMoney.money %> <br>
+                  </div>
+                  <!-- <div class="address">
+                    <a href="/landbook-query-house/download-owner-image/<%= landbookerMoney._id %>" class="downloadLink">
+                      Download owner image
+                    </a><br>
+                    <a href="/landbook-query-house/download-contract-image/<%= landbookerMoney._id %>" class="downloadLink">
+                      Download contract image
+                    </a><br>
+                  </div> -->
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="divsForDue">
+                Landbooker not found.
+              </div>
+            <% } %>
+          </div>
+
+          <div class="address blog">
+            Bayana image of user: <br>
+            <% if(landbookerMoney.bayana) { %>
+              <a href="/landad/download-bayana-image-of-landbooker/<%= landbookerMoney._id %>" class="downloadLink">
+                Download Bayana image
+              </a>
+              <!-- <a href="/landad/edit-bayana-image-of-landbooker/<%= landbookerMoney._id %>" class="links" onclick="return confirmDeleteBayana()">
+                Delete bayana image.
+              </a> -->
+            <% } else { %>
+              <div class="red">
+                Bayana image not yet submitted.
+              </div>
+            <% } %>
+          </div>
+          <div class="footersOfBlogs">
+            <!-- <div class="likePost">
+              <a href="" class="likePost">
+                6
+              </a>
+            </div> -->
+            <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landad/admin/delete-landbookerMoney/<%= landbookerMoney._id %>" class="editBlog">Delete this landbooker money product</a>
+            </div>
+            <div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No queryhouse yet.</div>
+    <% } %>
+
+  </div>
+ 
+
+  <script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this landbooker money product? This action cannot be undone!')
+  }
+  function confirmDeleteBayana() {
+    return confirm(`Are you sure you want to delete this user's bayana image? This action cannot be undone!`)
+  }
+  </script>
+
+
+
+</body>
+</html>

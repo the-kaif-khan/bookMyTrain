@@ -1,0 +1,41 @@
+Working 360 degree
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>360° Viewer</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: black;
+    }
+    #viewer {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  <!-- ✅ Correct versions -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.105.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js"></script>
+</head>
+<body>
+  <div id="viewer"></div>
+
+  <script>
+    const imageSrc = "data:image/jpeg;base64,<%= imageBase64 %>";
+
+    const panorama = new PANOLENS.ImagePanorama(imageSrc);
+    const viewer = new PANOLENS.Viewer({
+      container: document.querySelector('#viewer'),
+      autoRotate: true,
+      autoRotateSpeed: 0.5,
+      controlBar: true,
+      cameraFov: 75
+    });
+
+    viewer.add(panorama);
+  </script>
+</body>
+</html>

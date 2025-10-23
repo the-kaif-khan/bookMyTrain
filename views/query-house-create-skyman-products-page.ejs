@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landbook Query House skyman create products panel</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/skyman-create-products-panel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Skyman create products panel
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/landbook-query-house/franchise/owner/<%= franchise.slug %>" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/landbook-query-house/query-house-skyman-panel/<%= franchise.slug %>" class="links">
+      <div class="navLinks">
+        Skyman form page
+      </div>
+    </a>
+
+    <a href="/home/compress/landbooker/skyman" class="links">
+      <div class="navLinks">
+        Khatauni images compressing page
+      </div>
+    </a>
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create new skyman product
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create skyman product
+      </div>
+      <form action="/landbook-query-house/skyman/created-product/<%= franchise.slug %>" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="tehsil" class="inputs" placeholder="Enter tehsil of zameen" value="<%= skymanProduct.city %>" readonly required> <hr>
+
+        <label for="productFolderName">Product Folder Name (e.g., product-1):</label>
+        <input type="text" name="productFolderName" id="folderName" class="inputs" required>
+        <label for="skymanName">Skyman Name (optional):</label>
+        <input type="text" name="skymanName" class="inputs" id="skymanName">
+    
+        <label for="realImage">Real Product Image:</label>
+        <input type="file" name="realImage" id="realImage" accept="image/*" class="inputs" required>
+    
+        <label for="mainRoadImages">Upto Main Road Images:</label>
+        <input type="file" name="mainRoadImages" id="mainRoadImages" class="inputs" multiple accept="image/*" required>
+    
+        <label for="image360">360° Image (HD):</label>
+        <input type="file" name="image360" id="image360" class="inputs" accept="image/*" required>
+    
+        <label for="khatauniFile">Compressed Khatauni File (.zip or .pdf):</label>
+        <input type="file" name="khatauniFile" id="khatauniFile" class="inputs" accept=".zip,.pdf" required>
+    
+        <label for="videoFile">Product YouTube Video File (max 100MB):</label>
+        <input type="file" name="videoFile" id="videoFile" class="inputs" accept="video/*" required>
+
+
+        <input type="text" name="badnaamSpec" class="inputs" placeholder="Enter badnaam specification of product" step="any" required>
+
+        <input type="number" name="contactNumber" class="inputs" value="<%= skymanProduct.contactNumber %>" step="any" readonly required>
+
+        <input type="number" name="lat" class="inputs" placeholder="Enter latitude of product" step="any" required>
+
+        <input type="number" name="lng" class="inputs" placeholder="Enter longitude of product" step="any" required>
+
+        <input type="number" name="sellerPrice" class="inputs" placeholder="Enter seller price" step="any" value="<%= skymanProduct.sellerPrice %>" readonly required>
+
+        <input type="text" name="LB" class="inputs" placeholder="Enter LB" required>
+
+        <label for="spec">Specifications (one per line): </label>
+        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen, line by line" style="width: 100%;margin-bottom: 12px;"></textarea>
+
+        <input type="text" name="khatauniSpecDetails" class="inputs" value="<%= skymanProduct.khatauniSpecDetails %>" readonly required>
+
+        <input type="text" name="sellerId" class="inputs" placeholder="Enter seller id" value="<%= skymanProduct.user %>" readonly required>
+
+        <input type="text" name="sellingFormId" class="inputs" placeholder="Enter selling form id" value="<%= skymanProduct._id %>" readonly required>
+
+        <input type="submit" value="Create product" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="/us/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landbooker buying cart timers page</title>
+
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-body.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-footer.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-header.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-products.css">
+      <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-sidebar.css">
+
+</head>
+<body>
+      <!-- header container -->
+  <!-- header -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="/home/landbook">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Buying cart timers (
+      <span class="cartNumber js-cartNumber">
+        <%= buyingCartTimers.length %>
+      </span>
+      Items) 
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/us/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+    <a href="/us/createProductsPanel" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>
+    </a>
+    <!-- <div class="navlinksOfCart">
+      <a href="/us/createProductsPanel" class="buying">
+        <div class="textBuyingCart">Create new product</div> <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="" class="buyingNowCartLink">
+      </a>
+      <div class="buyingNowCartNotification">
+        0
+      </div>
+    </div> -->
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+    <!-- product lists in this container through javascript -->
+    <div class="container">
+      <% if(buyingCartTimers.length > 0) { %>
+        <% buyingCartTimers.forEach((bCartTimers) => { %>
+          <div class = "productsContainer">
+            <a href="" class="productLink">
+              <div id = "<%= bCartTimers._id %>">
+                <!-- <div class="productsImage">
+                  <img src= "" alt="Timing to add product here">
+                </div> -->
+
+                <!-- timer placeholder -->
+                
+                <div class="timer-container">
+                  <div class="buyingCartTimer" data-createdat="<%= bCartTimers.createdAt %>" data-buyingcarttimerid="<%= bCartTimers._id %>">
+                    Loading...
+                  </div>
+                  <div class="progress-bar">
+                    <div class="buyingCartProgress"></div>
+                  </div>
+                </div>
+
+                <div class="userDetails">
+                  <div class="details">
+                    Buyer Name: <b><%= bCartTimers.user[0].name %></b>
+                  </div>
+                  <div class="details">
+                    Buyer username: <b><%= bCartTimers.user[0].username %></b>
+                  </div>
+                  <div class="details">
+                    Buyer email: <b><%= bCartTimers.user[0].email %></b>
+                  </div>
+                  <div class="details">
+                    Buyer Contact Number: <b><%= bCartTimers.user[0].contactNumber %></b>
+                  </div>
+                </div>
+                
+                <% if (bCartTimers.productDetails && bCartTimers.productDetails.length > 0) { %>
+                  <% bCartTimers.productDetails.forEach(product => { %>
+                  <div class="fullInsideProduct">
+                    <div class="productsPriceAndLB">
+                      <div class= "productsPrice">
+                        This is buying cart timers
+                      </div>
+                      <div class= "productsLB">
+                        <b>Note: </b> This timers page only contains minute product details, if you wanna view full productDetails then you can view buying cart products in your profile page with detailed price and nearly everything about the product... Landbook
+                      </div>
+                    </div>
+                    <div class="productsSpec">
+                      Price: <%= product.landbookPrice %> Lakhs &#183
+                    </div>
+                    <div class="productsStats">
+                      <div class="productsVisit">
+                        LB: <%= product.LB %> &#183
+                      </div>
+                      <div class="productsRating">
+                        <img src= "">
+                      </div>
+                      <div class="productsClaim">
+                          Visits: <%= product.visits.length %> &#183
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+                <% } else { %>
+                  <div>No product info found.</div>
+                <% } %>
+            </a>
+                <!-- <a href="/us/user/remove-buying-cart-timer/<%= bCartTimers._id %>" class="links">
+                  <button type="submit" class="claimToCartButton" onclick="return confirmDeleteForm()">
+                    Remove product
+                  </button>
+                </a> -->
+              </div>
+            
+          </div>
+        <% }) %>
+      <% } else{ %>
+        <div class="noProducts">no timers for your buying cart available, which means you don't have any product in your buying cart. You can check in your profile's buying cart products...and try again later. <span class="highlights">Landbook</span></div>
+      <% } %>
+    </div>
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="aboutThisPageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+    
+
+  <script src="/javascripts/queryhouse-user-bayana-timers.js"></script>
+   <!-- <script>
+    function confirmDeleteForm() {
+      return confirm('Are you sure you want to remove this product from your buying cart? This action will result to remove all the fast-pace-buying process by Landbook for you and if you wanna buy this land again, then you have to go through same buying process from start eg. first add this product to claim cart(if this product is not already in your cart) then the process of claim cart timers and everything! This action cannot be undone! ');
+    }
+
+    const timers = document.querySelectorAll('.timer');
+    timers.forEach(timer => {
+      const createdAt = new Date(timer.dataset.createdat);
+      const endTime = new Date(createdAt.getTime() + 20 * 60 * 1000);
+      const buyingCartTimerId = timer.dataset.formid;
+      const progressBar = timer.nextElementSibling.querySelector('.progress');
+
+      function updateTimer() {
+        const now = new Date();
+        const diff = endTime - now;
+        const total = 20 * 60 * 1000;
+
+        if(diff <= 0) {
+          timer.textContent = 'Time Over';
+          timer.classList.add('over');
+          progressBar.style.width = '0%';
+
+          // move automatically
+          fetch(`/home/admin/modify-buying-products/${buyingCartTimerId}`, {
+            method: 'POST'
+          }).then(res => {
+            if(res.ok) {
+              console.log('Product moved to buying cart automatically!');
+              location.reload();
+            }
+          });
+        } else {
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          timer.textContent = `${hours}hr ${minutes}min ${seconds}sec`;
+
+          // update progress bar
+          const percentage = (diff / total) * 100;
+          progressBar.style.width = `${percentage}`;
+        }
+      }
+
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    })
+
+   </script> -->
+
+
+</body>
+</html>

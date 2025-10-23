@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forgot owner pass page</title>
+  
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/forgotPassPage.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerTitle">
+      Welcome to <span>landbook.com</span>
+    </div>
+  </div>
+  <div class="pageHeading">
+    Owner's forgot password page
+  </div>
+
+
+  <div class="aboutContainer">
+    <div class="about1">
+      This is the page by <span class="logo">Landbook</span> where customers can recover their landbook account by entering some details about them.
+    </div>
+    <div class="skipLink">
+      <div class="link">
+        <a href="/home/login">Back to login page</a> 
+      </div>
+    </div>
+    <div class="about2">
+      Customers can click <span class="skip">Back to login page</span> if they remembered their initial <span class="logo">Landbook</span> account password. Otherwise, Users have to enter their username, contact number given, email account to recover their account and make a new password with same initial information eg. same username, contact number, email account if they want or they can change any given information too.
+    </div>
+  </div>
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="loginBox">
+    <div class="title">
+      Enter correct details in order to Forgot password
+    </div>
+    <form action="/landad/forgettingPass" method="post" onsubmit="return validatePassword()">
+      <input type="text" placeholder="Enter your name" class="name" name="name" required>
+      <input type="text" placeholder="Enter your username" class="username" name="username" required>
+      <input type="number" placeholder="Your correct contact number" class="number" name="contactNumber" required>
+      <input type="email" placeholder="abc@gmail.com" class="email" name="email" required>
+      <input type="submit" value="Submit" class="login">
+    </form>
+  </div>
+
+  <div class="footer">
+    <div class="footers">
+      <a href="/home/aboutus" class="footerLinks">
+        Contact us
+      </a>
+    </div>
+    <div class="footers">
+      <a href="/home/aboutus" class="footerLinks">
+        About us
+      </a>
+    </div>
+  </div>
+
+
+  <script>
+    function validatePassword() {
+      const input = document.getElementById('password');
+      const errorMsg = document.getElementById('errorMsg');
+      if(input.value.length > 5) {
+        errorMsg.textContent = 'Password must be at least 5 characters long.';
+        return false;
+      }
+      return true;
+    }
+  </script>
+
+</body>
+</html>

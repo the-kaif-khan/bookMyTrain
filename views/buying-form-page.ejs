@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buying form page also make your account page</title>
+
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-form-footer.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-form-form-page.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-form-header.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-form-product.css">
+  
+
+</head>
+<body>
+  
+    <!-- header -->
+    <div class="header">
+      <div class="headerLogo">
+        <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt=""></a>
+      </div>
+      <div class="headerText">
+        Landbook. Form Before Buying
+      </div>
+    </div>
+
+    <!-- navigations -->
+    <div class="navigationsBox">
+      <a href="/home/<%= city %>/<%= tehsil %>" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
+      <a href="/buy/viewproduct/<%= product._id %>/<%= city %>/<%= tehsil %>" class="links">
+        <div class="navLinks">
+          Previous Page
+        </div>
+      </a>
+      <a href="" class="links">
+        <div class="navLinks">
+          Help
+        </div>
+      </a>
+    </div>
+
+    <% if(success.length > 0) { %>
+      <div class="flash flash-success">
+        <%= success %>
+      </div>
+    <% } %>
+    <% if(error.length > 0) { %>
+      <div class="flash flash-error">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <div class="yourBuyingZameen">
+
+      <div class="container"> 
+        <% if(product) { %>
+          <div class = "productsContainer">
+            <div id = "<%= product._id %>">
+              <div class="productsImage">
+                <img src= "data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="">
+              </div>
+              <div class="productsPriceAndLB">
+                <div class= "productsPrice">
+                  Price: <%= product.landbookPrice %> Lakhs
+                </div>
+                <div class= "productsLB">
+                  L * B: <%= product.LB %>
+                </div>
+              </div>
+              <div class="productsSpec">
+                <%= product.spec %>
+              </div>
+              <div class="productsStats">
+                <div class="productsVisit">
+                  Times Visited: <%= product.visits.length %> &#183
+                </div>
+                <div class="productsRating">
+                  <img src= "/imagesAndVideos/Logos/ratings/rating-45.png">
+                </div>
+                <div class="productsClaim">
+                  Claim: <%= product.claimedPeople.length %> &#183
+                </div>
+              </div>
+              <!-- <div>
+                <button class= "claimToCartButton js-claim-to-cart"> 
+                Claim To Land Cart</button>
+              </div> -->
+            </div>
+          </div>
+        <% } %>
+
+      </div> 
+
+    </div>
+
+    <!-- form code -->
+    <div class="formHeading">
+      <div class="wanna">
+        Wanna buy this zameen? , here is some <a href="" class="preview">Instructions</a> to what Buying Within 48 Hours really means...
+      </div>
+      <div class="formMiddleHeading">
+        What does Buying Now cart means? It means you can buy zameen within 48 hours in a fast pace <span class="highlighted">but</span> 3 Hours from 48 hours will be for those people who claimed this zameen before you saw this zameen. So, <span class="logoName">Landbook</span> will give 3 hours to them by notifying through calls, messages, alerting them in the claimcart to give them a second chance to buy the zameen they once saw and loved this like you do, to buy this zameen. In this three hours if they click buy now within 48 hours too... then this zameen will be claimed to them cause they wanted to buy it first. <span class="highlighted">But</span>, If they click buy within 48 hours and do everything but not be able to buy this zameen in next 48 hours by some reasons, it will again come in your hands in terms of buying and from there buying will be at <span class="goodHighlights">very fast pace in 45 hours for you...</span>
+      </div>
+      <div class="formMiddleHeading2">
+        In this short period 3 hours of time, nothing will be done in buying completely by your side. At now, no other claims will be accepted in your way from now - and before 3 hours - Claimed people should give bayana to this zameen immidiately within 3 hours. Otherwise, this zameen will be bought by you in 45 hours hours fully at very fast pace... Also if someone give bayana to this zameen, this zameen will be bought to them and you will be notified that to this zameen someone gave bayana or not? by <span class="logoName">Landbook</span>.
+      </div>
+      <div class="formFinalHeading">
+        So, Kindly fill this below form in order to buy this zameen with no false information cause informing you will be done through given number and email by you! 
+      </div>
+    </div>
+    <!-- form of selling -->
+    <div class="sellingForm">
+      <div class="sellingFormHeading">
+        Buy Within 48 Hours Form
+      </div>
+      <div id="buyingFormWarning" style="display: none;">
+        <p class="warning">Buying form can only be submitted between 7:00 AM to 2:00 PM, please try again later or contact <span><a href="" class="logo">Landbook</a></span> for query.</p>
+      </div>
+
+      <% if(product) { %>
+        <form action="/buy/addtobuyingcart" method="post" id="buyingForm">
+
+          <div class="naming">
+            <div>Name:* </div> <input type="text" placeholder="Your good name" name="name" required class="name">
+          </div>
+          <div class="mobileNumber">
+              Mobile Number:* <input type="number" placeholder="Your mobile number" name="contactNumber" required class="number">
+          </div>
+          <!-- <div class="emailContainer">
+            Your Email:* <input type="email" placeholder="abc@gmail.com" name="email" required class="email">
+          </div> -->
+          <!-- <div class="khatauniContainer">
+            Insert Your Khatauni:* <input type="file" name="Khatauni" required class="khatauni">
+          </div> -->
+          <div class="mobileNumber">
+            Earlier Selected City: <input type="text" placeholder="Your Mobile Number" disabled value="<%= city %>" class="number">
+          </div>
+          <div class="mobileNumber">
+            Choose zameen's tehsil:* 
+            <select name="tehsil" id="ChooseCity" class="chooseCity" required>
+              <option value="">Select tehsil of your zameen</option>
+              <% if(gotCityTehsils) { %>
+                <% gotCityTehsils.tehsils.forEach((gotCityTehsil) => { %>
+                  <option value="<%= gotCityTehsil %>"><%= gotCityTehsil %></option>
+                <% }) %>
+              <% } %>
+            </select>
+          </div>
+          <div class="addressContainer">
+            Your Address:* <input type="textarea" placeholder="Enter your valid address" name="address" required class="address" class="address">
+          </div>
+          <input type="text" value="<%= product._id %>" name="buyingProductId" hidden>
+          <input type="reset" class="resetButton">
+          <input type="submit" class="submitButton">
+
+
+        </form>
+      <% } else { %>
+        <div class="noProducts">
+          A bayana form already filled by any user for this product, try again later.
+        </div>
+      <% } %>
+    </div>
+
+    <!-- footer container -->
+    <footer>
+
+      <div class="aboutThisPage">
+        <div class="pageLanguage">
+          <div class="languageImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          </div>
+          <div class="languageText">
+            English
+          </div>  
+        </div>
+  
+        <div class="aboutCountry">
+          <div class="aboutCountryImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          </div>
+          <div class="aboutCountryText">
+            India
+          </div>
+        </div>
+      </div>
+  
+      <div class="aboutCompany">
+        <div class="companyConditions aboutCompanyTexts">
+          Conditions of Use
+        </div>
+        <div class="companyPrivacyPolicy aboutCompanyTexts">
+          Privacy Notice
+        </div>
+        <div class="aboutAdvertising aboutCompanyTexts">
+          Interest-Based Ads
+        </div>
+      </div>
+  
+      <div class="companyCopywrite">
+        .c. 1996-2024, Landbook.com, Inc. and its affiliates
+      </div>
+  
+    </footer>
+
+    <script>
+      const now = new Date();
+      const hour = now.getHours();
+
+      if(hour < 7 || hour >= 14) {
+        document.addEventListener('DOMContentLoaded', () => {
+          const form = document.getElementById('buyingForm');
+          const warning = document.getElementById('buyingFormWarning');
+
+          form.style.display = 'none';
+          warning.style.display = 'block';
+        })
+      }
+    </script>
+    <!-- <script type="module" src="./js/buying-form-page.js"></script> -->
+
+</body>
+</html>

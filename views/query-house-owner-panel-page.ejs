@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query house owner panel page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/queryhouse-owner-panel-css.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Landbook Query House Owner panel (<%= franchise.queryhouseTehsil %>)
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <nav class="main-navbar">
+    <button class="hamburger" onclick="toggleSidebar()">
+      &#9776
+    </button>
+    <div class="hamburgerNotification">
+      <%= queryhouseUserBayanaForms.length %>
+    </div>
+  </nav>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebarTops">
+      <button class="close-btn" onclick="toggleSidebar()">
+        &times;
+      </button>
+    </div>
+    <div class="navigationsBox">
+      <a href="/landbook-query-house/franchise/owner/login/<%= franchise.slug %>" class="links">
+        <div class="navLinks">
+          Home
+        </div>
+      </a>
+      <a href="/landbook-query-house/user-bayana-forms/<%= franchise.slug %>" class="links">
+        <div class="sellingForms navLinks">
+          User bayana forms
+        </div>
+        <div class="sellingFormsNotification">
+          <%= queryhouseUserBayanaForms.length %>
+        </div>
+      </a>
+      <% if(queryhouseStaff) { %>
+        <a href="/landbook-query-house/admin/queryhouse-dues/<%= franchise.slug %>" class="links">
+          <div class="navLinks">
+            Money
+          </div>
+        </a>
+      <% } %>
+    </div>
+    <div class="navigationsBox2">
+      <a href="/us/admin-calculator" class="links">
+        <div class="sellingForms navLinks">
+          Landbook price calculator
+        </div>
+      </a>
+      <% if(queryhouseStaff) { %>
+        <a href="/landbook-query-house/owner/queryhouse-staffs/<%= franchise.slug %>" class="links">
+          <div class="navLinks">
+            Staffs
+          </div>
+        </a>
+      <% } %>
+    </div>
+    <div class="navigationsBox3">
+      <a href="/us/mapCoordinates" class="links">
+        <div class="navLinks">
+          Get map coordinates
+        </div>
+      </a>
+      <a href="/home/aboutus" class="links">
+        <div class="sellingForms navLinks">
+          About us
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- sidebar container -->
+
+  
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Landbook Query House Owner login
+    </div>
+    <div class="loginContainer">
+      <div class="loginBox">
+        <div class="loginTitle">
+          Login now
+        </div>
+
+        <form action="/landbook-query-house/query-house-owner-logging-in/<%= franchise.slug %>" method="post">
+          <input type="text" placeholder="Enter owner username" class="username" name="username" required>
+          <input type="password" placeholder="Enter your password" class="password" name="password" required>
+          <a href="" class="forgotPass">
+            forgot password?
+          </a>
+          <input type="submit" value="Login" class="login">
+          <a href="/landbook-query-house/logout-query-house-owner/<%= franchise.slug %>" class="logoutLink">Logout</a>
+        </form>
+
+      </div>
+    </div>
+
+    <% if(queryhouseStaff) { %>
+      <div class="">
+        <a href="/landbook-query-house/all-queryhouse-products/<%= franchise.slug %>" class="readProducts">
+          Read all products of Landbook Query House
+        </a>
+        <!-- <a href="/us/login" class="readProducts">
+          Go to home
+        </a> -->
+      </div>
+    <% } %>
+
+  </div>
+
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

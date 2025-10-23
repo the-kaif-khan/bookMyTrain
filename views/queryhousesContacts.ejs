@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>queryhouses contacts page</title>
+
+    <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-body.css">
+    <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-footer.css">
+    <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-header.css">
+    <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/landbooker-selling-form-page-products.css">
+
+
+</head>
+<body>
+  <!-- header -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="the-page-of-selling.html">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Franchises (
+      <span class="cartNumber js-cartNumber">
+        <%= franchises.length %>
+      </span>
+      ) 
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/us/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/us/skyman-panel" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>
+    </a>
+
+  </div>
+
+  <div class="container">
+    <% if(franchises.length > 0) { %>
+      <% franchises.forEach((franchise) => { %>
+        <div class = "productsContainer">
+          <div id = "<%= franchise._id %>">
+            <div class="productsPriceAndLB">
+              <div class= "productsPrice">
+                Queryhouse owner name: <%= franchise.ownername %>
+              </div>
+              <div class= "productsLB">
+                City: <%= franchise.queryhouseCity %>
+              </div>
+              <div class= "productsLB">
+                Tehsil: <%= franchise.queryhouseTehsil %>
+              </div>
+            </div>
+            <div class="productPrice">
+              Queryhouse address: <%= franchise.queryhouseAddress %>
+            </div>
+            <div class="khatauniSpec">
+              <b>Queryhouse Contact</b>: <%= franchise.queryhouseContact %>
+            </div>                
+          </div>
+
+        </div>
+      <% }) %>
+    <% } else { %>
+      no franchises available.
+    <% } %>
+  </div>
+
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="aboutThisPageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+</body>
+</html>

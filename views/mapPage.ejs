@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mapping</title>
+
+  <!-- <link rel="stylesheet" href="../public/stylesheets/buyingPagesCSS/mapPage.css"> -->
+
+  <!-- leaflet css -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+  <style>
+    #map{
+      width: 100%;
+      height: 100vh;
+    }
+    .leaflet-popup-content-wrapper{
+      padding-top: 20px;
+      padding-right: 20px;
+    }
+    .leaflet-popup-close-button{
+      background-color: red;
+      color: red;
+    }
+  </style>
+
+</head>
+<body>
+  
+  <div id="map"></div>
+
+</body>
+</html>
+
+<!-- leaflet js -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="../New folder/circle.js"></script>
+<script src="../New folder/point.js"></script>
+<script src="../New folder/circle2.js"></script>
+
+<script>
+  // map initialisation
+  var map = L.map('map').setView([26.8140,82.7630], 14);
+
+  // osm layer
+  var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  });
+  osm.addTo(map);
+
+  // marker
+  var firstMarker = L.marker([26.7894,82.7232]);
+
+  firstMarker.bindPopup(`<img src="/imagesAndVideos/images/1710243327322.jpg"/>
+                          <b>Marker</b>
+                          <a href="../whole-projects/individual-page.html">Here</a>`).addTo(map);
+
+           
+  var secondMarker = L.marker([26.7894,82.7232]);
+  secondMarker.bindPopup(`<img src="/imagesAndVideos/images/1710243327322.jpg"/>
+                          <b>Marker</b>
+                          <a href="../whole-projects/individual-page.html">Here</a>`).addTo(map);
+
+  // water color layer
+    var waterColor = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}', {
+    minZoom: 1,
+    maxZoom: 16,
+    attribution: 'Map tiles by <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    ext: 'jpg'
+  })
+
+waterColor.addTo(map);
+
+// google streets...
+  var googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+googleStreets.addTo(map);
+
+// google satellite..
+  var googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+googleSat.addTo(map);
+
+// google terrain..
+  var googleTerrain = L.tileLayer('http://{s}.google.com/vt?lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+googleTerrain.addTo(map);
+
+// google hybrid
+  var googleHybrid= L.tileLayer('http://{s}.google.com/vt?lyrs=h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+
+googleHybrid.addTo(map);
+
+  var thunderForestOutdoors = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey={apikey}', {
+	attribution: '<a href="http://www.thunderforest.com/">Thunderforest</a>, <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	apikey: '<your apikey>',
+	maxZoom: 22
+});
+
+thunderForestOutdoors.addTo(map);
+
+
+// another esri map...
+  var mapLink = '<a href="http://www.esri.com/">Esri</a>';
+  var wholink = 'i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+
+  var esriMap = L.tileLayer(
+      'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; '+mapLink+', '+wholink,
+      maxZoom: 18,
+      })
+
+      var OpenStreetMapFrance = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+	maxZoom: 20,
+	attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+
+  var baselayers = {
+    "osm": osm,
+    "Thunder Forest Outdoors": thunderForestOutdoors,
+    "Water color": waterColor,
+    "Google Streets": googleStreets,
+    "Google Terrain": googleTerrain,
+    "Google Hybrid": googleHybrid,
+    "Google Satellite": googleSat,
+    "Esri maps": esriMap,
+    "Open Street map of france": OpenStreetMapFrance
+  };
+
+  var overlays = {
+    "First Marker": firstMarker,
+    "Second Marker": secondMarker
+    // "Layered Google Map": layeredGoogleMap
+  }
+  L.control.layers(baselayers,overlays, {collapsed: false}).addTo(map);
+
+  L.Control.geocoder().addTo(map);
+
+
+
+  // geojson layers...
+L.geoJSON(circle2JSON, {
+  onEachFeature: function(feature, layer) {
+    layer.bindPopup(feature.properties.About)
+  }
+}).addTo(map);
+L.geoJSON(pointGeoJson, {
+  onEachFeature: function(feature, layer) {
+    layer.bindPopup(feature.properties.Owner)
+  }
+}).addTo(map);
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+

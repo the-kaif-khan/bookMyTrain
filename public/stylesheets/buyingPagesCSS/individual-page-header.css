@@ -1,0 +1,324 @@
+/* hamburger starts */
+/* hamburger */
+.main-navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  /* background-color: rgb(46, 144, 255); */
+  min-width: none;
+  background-color: azure;
+  color: black;
+  z-index: 1000;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+}
+.headerContent{
+  /* display: flex;
+  gap: 15px;
+  align-items: center; */
+
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.hamburger{
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  margin-right: 20px;
+  transition: all 0.3s;
+}
+/* @media(max-width: 380px) {
+  .hamburger{
+    margin-right: 50px;
+  }
+} */
+.hamburger:hover{
+  color: rgb(0, 81, 255);
+  transition: all 0.3s;
+}
+.close-btn{
+  font-size: 24px;
+  border: none;
+  background-color: none;
+  float: left;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.close-btn:hover{
+  color: red;
+  transition: all 0.3s;
+}
+@media(max-width: 768px) {
+  .headerContent{
+    display: none;
+  }
+  .hamburger{
+    display: block;
+  }
+}
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 260px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 10000;
+}
+.sidebar.active{
+  right: 0;
+}
+.sidebarTops{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+/* hamburger */
+/* hamburger ends */
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  background-color: white;
+}
+/* left header */
+.leftHeader{
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.leftHeader img{
+  width: 90px;
+}
+/* middle header */
+form{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.searchInput{
+  width: 100%;
+  height: 52px;
+  border: none;
+  border: 0.2px solid lightgrey;
+  flex: 1;
+  height: 52px;
+  min-width: 0;
+  font-size: 14px;
+}
+.searchBar::placeholder{
+  font-family: sans-serif;
+  font-family: arial;
+  font-size: 15px;
+}
+.middleHeader{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+/* .middleHeader .searchBar{
+  flex: 1;
+  height: 52px;
+  border: 1px solid lightgrey;
+  min-width: 0;
+  font-size: 16px;
+}
+.searchBar::placeholder{
+  font-family: sans-serif;
+  font-family: arial;
+  font-size: 15px;
+} */
+.searchButton{
+  width: 60px;
+  height: 57px;
+  border: 0.02px solid rgb(238, 238, 238);
+  background-color: #ffffff;
+  position: relative;
+}
+.searchButton .tooltip{
+  position: absolute;
+  background-color: rgb(117, 117, 117);
+  color: rgb(255, 255, 255);
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  bottom: -39px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.searchButton:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.searchButton:hover{
+  background-color: rgb(248, 248, 248);
+}
+.searchButton img{
+  width: 34px;
+}
+.voiceButton{
+  width: 60px;
+  height: 57px;
+  border: 0.02px solid rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
+  position: relative;
+}
+.voiceButton .tooltip{
+  position: absolute;
+  color: white;
+  background-color: rgb(117, 117, 117);
+  bottom: -39px;
+  left: -40px;
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  opacity: 0;
+  pointer-events: none;
+}
+.voiceButton:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.voiceButton:hover{
+  background-color: rgb(248, 248, 248);
+}
+.voiceButton img{
+  width: 34px;
+}
+/* right header */
+.rightHeader{
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 15px;
+  margin-left: 10px;
+}
+.rightHeader img{
+  width: 45px;
+}
+.locationIcon{
+  position: relative;
+}
+.locationButton{
+  background-color: white;
+  border: none;
+}
+.locationIcon .tooltip{
+  font-size: 12px;
+  position: absolute;
+  color: white;
+  background-color: rgb(121, 121, 121);
+  white-space: nowrap;
+  bottom: -40px;
+  right: -20px;
+  left: -20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  opacity: 0;
+  pointer-events: none;
+}
+.voiceButton .sideTooltip{
+  position: absolute;
+  bottom: 10px;
+  left: 70px;
+  font-size: 13px;
+  text-align: center;
+  align-items: center;
+  justify-content: baseline;
+  white-space: nowrap;
+}
+.locationIcon:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.cartIcon{
+  position: relative;
+}
+.cartButton{
+  background-color: white;
+  border: none;
+}
+.cartButton img{
+  width: 50px;
+}
+.cartIcon .cart-quantity{
+  position: absolute;
+  color: rgba(255, 255, 255);
+  background-color: rgba(241, 0, 0, 0.945);
+  top: -3px;
+  right: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 40px;
+
+}
+.profileIcon{
+  position: relative;
+}
+.profileButton{
+  background-color: white;
+  border: none;
+}
+
+.cartIcon .tooltip,
+.profileIcon .tooltip{
+  font-size: 12px;
+  position: absolute;
+  color: white;
+  background-color: rgb(121, 121, 121);
+  white-space: nowrap;
+  bottom: -20px;
+  right: -20px;
+  left: -20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cartIcon:hover .tooltip,
+.profileIcon:hover .tooltip{
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+.locationButton,
+.cartButton,
+.profileButton{
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>owner page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/ownerLogin.css">
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/preview-of-selling-footer-page.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerTitle">
+      Welcome <span class="highlight">Owner</span> to <span>landbook.com</span>
+    </div>
+  </div>
+  <div class="pageHeading">Sign up / Login / Logout page</div>
+
+  <div class="logout">
+    <a href="/landad/admin-panel2" class="notificationLink">Notification</a>
+    <div class="notificationTooltip">
+      <%= sellingForms.length + buyingForms.length + mapProductCreationLength + skymanProducts.length + userBayanaForms.length + buyingCartTimers.length %>
+    </div>
+    <a href="/landad/logoutOwner" class="logoutLink">Logout</a>
+  </div>
+
+
+  <div class="aboutContainer">
+    <div class="about1">
+      This is the page by <span class="logo">Landbook</span> where Owner of <span class="logo">Landbook</span> can either Sign up/ login/ logout
+    </div>
+    <div class="skipLink">
+      <div class="link">
+        <a href="/landad/admin-panel2">Skip for now</a> 
+      </div>
+    </div>
+    <div class="about2">
+      Owner can <span class="skip">skip</span> login/ sign up also for now but in some regions of the <span class="logo">landbook.com</span> you'll need to login then you'll be able to use nearly all convenience of landbook. So, in order to lack inconvenience when try to do importact drilling in Landbook hurry up and login now... 
+    </div>
+  </div>
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="container">
+
+    <div class="loginBox">
+      <div class="title">
+        Login
+      </div>
+      <form action="/landad/login-owner" method="post">
+        <input type="text" placeholder="Enter username" class="username" name="username" required>
+        <input type="password" placeholder="Enter your password" class="password" name="password" required>
+        <a href="/landad/forgotPass" class="forgotPass">
+          forgot password?
+        </a>
+        <input type="submit" value="Login" class="login">
+      </form>
+    </div>
+
+    <div class="signUpBox">
+      <div class="title">
+        <span class="highlight">Owner</span> Sign up 
+      </div>
+      <form action="/landad/creating-owner" method="post">
+        <input type="text" placeholder="Enter your name" class="name" name="fullname" required>
+        <input type="userName" placeholder="Enter your username" class="username" name="username" required>
+        <input type="number" placeholder="Your correct contact number" class="number" name="contactNumber" required>
+        <input type="email" placeholder="abc@gmail.com" class="email" name="email" required>
+        <input type="password" minlength="5" placeholder="Create password" class="password" id="password" name="password" required>
+        <input type="password" minlength="5" placeholder="Re-enter Password" class="password" id="confirmPassword" name="confirmPassword" required>
+
+        <input type="submit" value="Sign Up" class="signUp">
+      </form>
+    </div>
+    
+  </div>
+
+    <!-- footer container -->
+    <footer>
+
+      <div class="aboutThisPage">
+        <div class="pageLanguage">
+          <div class="languageImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          </div>
+          <div class="languageText">
+            English
+          </div>  
+        </div>
+  
+        <div class="aboutCountry">
+          <div class="aboutCountryImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          </div>
+          <div class="aboutCountryText">
+            India
+          </div>
+        </div>
+      </div>
+  
+      <div class="aboutCompany">
+        <div class="companyConditions aboutCompanyTexts">
+          Conditions of Use
+        </div>
+        <div class="companyPrivacyPolicy aboutCompanyTexts">
+          Privacy Notice
+        </div>
+        <div class="aboutAdvertising aboutCompanyTexts">
+          Interest-Based Ads
+        </div>
+      </div>
+  
+      <div class="companyCopywrite">
+        .c. 1996-2024, Landbook.com, Inc. and its affiliates
+      </div>
+  
+    </footer>
+
+</body>
+</html>

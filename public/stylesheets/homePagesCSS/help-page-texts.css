@@ -1,0 +1,124 @@
+body{
+  font-family: system-ui;
+}
+.logoInText{
+  color: #cedc00;
+  font-weight: bold;
+}
+.contents{
+  font-size: 14.5px;
+  /* background-color: rgb(248, 248, 248); */
+
+  background-color: rgb(248,248,248);
+
+
+  color: black;
+  padding: 30px 10px 10px 30px;
+  line-height: 28px;
+  word-spacing: 6px;
+  margin-bottom: 30px;
+}
+.firstContent{
+  font-size: 17px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 30px;
+}
+.secondContent{
+  font-size: 17px;
+  color: rgb(0, 0, 0);
+  margin-top: 30px;
+}
+@media(max-width: 500px) {
+  .contents{
+    font-size: 13.5px;
+  }
+  .firstContent,
+  .secondContent{
+    font-size: 15.5px;
+  }
+}
+.photos{
+  height: 250px;
+  background-color: rgb(238, 238, 238);
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 3px solid grey;
+  border-right: 3px solid grey;
+  border-radius: 10px;
+}
+.photos img{
+  width: 220px;
+  height: 220px;
+}
+.contactUs{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: rgb(238, 238, 238);
+  color: rgb(1, 101, 92);
+  border-radius: 10px;
+  border-bottom: 3px solid grey;
+}
+.link{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  background-color: rgb(248, 248, 248);
+  border-radius: 10px;
+  border-left: 3px solid grey;
+  border-right: 3px solid grey;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 40px;
+}
+.link:hover{
+  text-decoration: underline;
+}
+.contentLinks{
+  color: rgb(29, 28, 92);
+  transition: all 0.4s;
+}
+.contentLinks:hover{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+}
+.logoInContents{
+  color: rgb(1, 101, 92);
+  font-weight: bold;
+}
+.highlightInContents{
+  color: hwb(39 0% 6%);
+}
+.highlights{
+  color: rgb(1, 101, 92);
+  font-style: italic;
+}
+.highlights2{
+  font-weight: bolder;
+  color: rgb(255, 155, 5);
+}
+.titles{
+  /* background-color: rgba(0, 81, 255, 0.322); */
+  background: linear-gradient(rgb(238, 238, 238),
+  rgb(238, 238, 238),
+  rgba(46, 143, 255, 0.103));
+  /* background-color: rgb(238, 238, 238); */
+  font-size: 30px;
+  color: rgb(17, 17, 17);
+
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  border-top: 1px solid rgb(171, 252, 255);
+  border-left: 1px solid rgb(171, 252, 255);
+  border-right: 1px solid rgb(171, 252, 255);
+}

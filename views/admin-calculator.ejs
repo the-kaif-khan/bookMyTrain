@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Calculator</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/landbook-calculator.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Admin calculator page
+    </div>
+  </div>
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/adminPanel" class="links">
+      <div class="navLinks">
+        Panel
+      </div>       
+    </a>
+    <a href="/home/owner" class="links">
+      <div class="navLinks">
+        Main home
+      </div>
+    </a>
+  </div>
+
+  <div class="container">
+    <h2>Product Pricing Calculator</h2>
+    <input type="number" id="originalPrice" step="0.01" placeholder="Enter original price" />
+    <div id="results"></div>
+  </div>
+  
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>

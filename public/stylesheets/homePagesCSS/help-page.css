@@ -1,0 +1,145 @@
+body{
+  font-family: system-ui;
+  padding-top: 242px;
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  height: 150px;
+  color: white;
+
+  background-color: rgb(46, 144, 255);
+  /* background: linear-gradient(rgb(233, 203, 203),
+   rgb(174, 223, 255),
+   rgb(255, 255, 255)); */
+
+  border-bottom: 1px solid lightgrey;
+}
+.headerLogo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header img{
+  width: 100%;
+}
+.headerText{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+@media(max-width: 500px) {
+  .headerText{
+    font-size: 26px;
+  }
+}
+
+/* navigations */
+.navigationsBox{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  height: 52px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 60px;
+  position: fixed;
+  top: 151px;
+}
+.navLinks{
+  background-color: rgb(255, 255, 255);
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: 3px solid transparent;
+  height: 84%;
+}
+.navLinks:hover{
+  border: 3px solid rgb(22, 39, 83);
+}
+.links{
+  color: black;
+  text-decoration: none;
+}
+.links:hover{
+  color: rgb(17, 29, 63);
+}
+
+
+/* for toggling starts*/
+.post-section{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.post-section.open{
+  max-height: 3000px;
+  transition: all 2s ease;
+}
+.containers{
+  margin-bottom: 40px;
+}
+.toggle-button{
+  background-color: #eee;
+  /* background-color: rgb(46, 144, 255); */
+  /* color: white; */
+  padding: 10px;
+  margin-top: 10px;
+  /* margin-bottom: 25px; */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  /* transition: color 0.3s; */
+}
+@media(max-width: 500px) {
+  .toggle-button{
+    font-size: 15px;
+  }
+}
+.toggle-button:hover{
+  background-color: #ddd;
+  /* opacity: 0.9; */
+}
+.post-card{
+  padding: 8px;
+  margin: 5px 0;
+  /* background-color: #f9f9f9; */
+  background-color: rgba(46, 143, 255, 0.342);
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  font-family: system-ui;
+}
+/* for toggling end */
+
+.logo{
+  display: inline-block;
+  color: rgb(0, 81, 255);
+  font-style: italic;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+.highlights{
+  display: inline-block;
+  color: rgb(25, 165, 25);
+  font-style: italic;
+  margin-left: 6px;
+  margin-right: 6px;
+}

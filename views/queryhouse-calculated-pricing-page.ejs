@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query house calculated pricing page</title>
+
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartBody.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartHeader.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-cart-footer.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartProducts.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartSidebar.css">
+
+</head>
+<body>
+  <!-- header -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="/home/landbook">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Landbooker calculated pricing page
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/landbook-query-house/user-bayana-forms/<%= franchise.slug %>" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>       
+    </a>
+
+  </div>
+
+  <!-- main body heading -->
+  <p class="para">Review your order 
+    <span class="buyingSummaryText">
+      Buying summary is in last of the page.
+    </span>
+  </p>
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="container">
+
+    <!-- cart products in this div -->
+    <div class="cartProductsContainer">
+      <% if(product) { %>
+        <div id="<%= product._id %>">
+          <div class="products">
+            <div class="leftContainer">
+              <div class="leftContainerHeading">
+                <b>If bought now:</b> Expected date when zameen 
+                will be bought: 24-02-2023
+              </div>
+              <div class="productImage">
+                <img src="data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="">
+              </div>
+              <div class="productPriceAndLB">
+                <div class= "productPrice">
+                  Price: <%= product.landbookPrice %> Lakhs
+                </div>
+                <div class= "productLB">
+                  L*B: <%= product.LB %>
+                </div>
+              </div>
+              <div class="productSpec">
+                <%= product.spec %>
+              </div>
+              <div class="sellerDetails">
+                <div class="sellerTitle">
+                  Seller of this land details
+                </div>
+                Name: <%= product.seller[0].name %> <br>
+                Contact Number: <%= product.seller[0].contactNumber %> <br>
+                Email: <%= product.seller[0].email %>
+              </div>
+            </div>
+            <div class="rightContainer">
+              <div class="rightContainerHeading">
+                Product stats:
+              </div>
+              <div class="newClaimed">
+                People claimed: <b> + <%= product.claimedPeople.length %></b>
+              </div>
+              <div class="newViews">
+                People viewed: <b> + <%= product.visits.length %></b>
+              </div>
+              <div class="blink-red-white redMessage">
+                Landbookers are suggested to take only listed Total Price(male/female) only. Admin, User, Landbookers can see you.
+              </div>
+            </div> 
+          </div> 
+        </div>
+      <%} else { %>
+      <div class="noProducts">
+        There is no products claimed by you in <span class="highlight"> tehsil. You can try different tehsil in filter and if not found, then either you haven't claim a product or you can just check your profile's claim cart option... there you will get every tehsil's claimed products by you.
+      </div>
+      <% } %>
+
+    </div>
+    <!-- cart products in this upper div -->
+
+    <!-- buying summary -->
+
+    <% if(product && product.sellerPrice) { %>
+      <% 
+      let sellerPrice = 0;
+      sellerPrice += product.sellerPrice
+      const likhwayiFemale = sellerPrice * 0.07;
+      const likhwayiMale = sellerPrice * 0.08;
+      const brokerCost = sellerPrice * 0.038;
+      const landbookCost = sellerPrice * 0.023;
+      const customerSaved = brokerCost - landbookCost;
+      const finalMale = sellerPrice + likhwayiMale + landbookCost;
+      const finalFemale = sellerPrice + likhwayiFemale + landbookCost;
+      %>
+  
+  
+      <!-- buying summary -->
+      <div class="buyingSummary js-buying-summary">
+  
+        <div class="buyingSummaryHeading">
+          Buying Summary
+        </div>
+        <div class="numberOfZameens">
+          Zameens (Price)
+        </div>
+        <div class="buyingSummaryContentsContainer">
+          <div class="buyingSummaryContents">
+            <div class="landbookTitle">
+              Landbook Price
+            </div>
+            <div class="titles">
+              Seller Price:
+            </div>
+            <div class="numbers">
+              <b><%= sellerPrice.toFixed(2) %> Lakhs.</b>
+            </div>
+            <div class="titles">
+              Likhwayi [female(6%) / male(7%) + 1% regn.charges]
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiFemale.toFixed(2) %> Lakhs</b>(female)
+            </div>
+            <div class="titles">
+              Likhwayi (Male)
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiMale.toFixed(2) %> Lakhs</b>
+            </div>
+            <div class="titles">
+              <span class="logo">Landbook</span> <a href="" class="convenienceLinks">
+                convenience
+              </a> fee(0.8%)
+            </div>
+            <div class="landbookConvenience">
+              <b><%= landbookCost.toFixed(2) %> Lakhs</b>
+            </div>
+          </div>
+  
+  
+          <div class="buyingSummaryContents">
+            <div class="brokerTitle">
+              Broker Price
+            </div>
+            <div class="titles">
+              Price:
+            </div>
+            <div class="numbers">
+              <b><%= sellerPrice.toFixed(2) %> Lakhs.</b>
+            </div>
+            <div class="titles">
+              Likhwayi [female(6%) / male(7%) + 1% regn.charges]
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiFemale.toFixed(2) %> Lakhs</b>(female)
+            </div>
+            <div class="titles">
+              Likhwayi (Male)
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiMale.toFixed(2) %> Lakhs</b>
+            </div>
+            <div class="titles">
+              Broker convenience fee(1.5 + 2.3)%
+            </div>
+            <div class="brokerConvenience">
+              <b><%= brokerCost.toFixed(2) %> Lakhs</b> <a href="" class="sourceLinks">source</a>
+            </div>
+          </div>
+  
+          <div class="lastTitles">
+            You saved: (broker)-(landbook) convenience fee: 
+          </div>
+          <div class="numbers">
+            <b><%= customerSaved.toFixed(2) %> lakhs.</b>
+          </div>
+          <div class="landbookPriceTitle">
+            Total Price (Female):
+          </div>
+          <div class="landbookPrice">
+            <b><%= finalFemale.toFixed(2) %> lakhs.</b>
+          </div>
+          <div class="landbookPriceTitle">
+            Total Price (Male):
+          </div>
+          <div class="landbookPrice">
+            <b><%= finalMale.toFixed(2) %> lakhs.</b>
+          </div>
+  
+        </div>
+      </div>
+    <% } else { %>
+      no product found
+    <% } %>
+
+  </div>
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="pageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+
+  <!-- <script type="module" src="./js/claim-cart.js"></script> -->
+  <script>
+    function submitFilters() {
+      document.getElementById('autoFilterForm').submit();
+    }
+  </script>
+
+</body>
+</html>

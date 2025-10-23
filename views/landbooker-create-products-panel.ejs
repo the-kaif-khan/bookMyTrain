@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landbooker Create products panel</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/landbooker-create-products.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Landbooker panel
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <nav class="main-navbar">
+    <button class="hamburger" onclick="toggleSidebar()">
+      &#9776
+    </button>
+    <div class="hamburgerNotification">
+      <%= skymanProducts.length + buyingCartTimers.length + landbookerUserBayanaForms.length + buyingForms.length + contacterSellingForms.length + mapProductCreationLength %>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebarTops">
+      <button class="close-btn" onclick="toggleSidebar()">
+        &times;
+      </button>
+    </div>
+    <div class="navigationsBox">
+      <a href="/us/landbook" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
+
+      <a href="/us/skyman-products-page" class="links">
+        <div class="navLinks skymanProducts">
+          Skyman products page
+        </div>
+        <div class="skymanProductsNotification">
+          <%= skymanProducts.length %>
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox4">
+      <a href="/us/buyingforms" class="links">
+        <div class="navLinks buyingForms">
+          Buying forms
+        </div>       
+      </a>
+      <div class="buyingFormsNotification">
+        <%= buyingForms.length %>
+      </div>
+      <a href="/us/Sellingforms" class="links">
+        <div class="navLinks sellingForms">
+          Selling forms
+        </div>
+      </a>
+      <div class="sellingFormsNotification">
+        <%= contacterSellingForms.length %>
+      </div>
+    </div>
+    <div class="navigationsBox5">
+      <a href="/us/adminProducts" class="links">
+        <div class="navLinks createMapElements">
+          Create new map elements
+        </div>       
+      </a>
+      <div class="createMapElementsNotification">
+        <%= mapProductCreationLength %>
+      </div>
+      <a href="/us/mapCoordinates" class="links">
+        <div class="navLinks sellingForms">
+          Get map coordinates
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox2">
+      <a href="/us/landbookers-buying-cart-timers" class="links">
+        <div class="navLinks buyingCartTimer">
+          Buying cart timers
+        </div>       
+      </a>
+      <div class="buyingCartTimerNotification">
+        <%= buyingCartTimers.length %>
+      </div>
+      <a href="/us/landbooker-user-bayana-forms" class="links">
+        <div class="navLinks userBayanaForms">
+          Users bayana forms
+        </div>
+      </a>
+      <div class="userBayanaFormsNotification">
+        <%= landbookerUserBayanaForms.length %>
+      </div>
+    </div>
+    <div class="navigationsBox3">
+      <a href="/us/admin-calculator" class="links">
+        <div class="navLinks">
+          Landbook price calculator
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Landbooker login
+    </div>
+    <div class="loginContainer">
+      <div class="loginBox">
+        <div class="loginTitle">
+          Login now
+        </div>
+        <form action="/us/landbookerlogin" method="post">
+          <input type="text" placeholder="Enter username" class="username" name="username" required>
+          <input type="password" placeholder="Enter your password" class="password" name="password" required>
+          <a href="" class="forgotPass">
+            forgot password?
+          </a>
+          <input type="submit" value="Login" class="login">
+          <a href="/us/logoutLandbooker" class="logoutLink">Logout</a>
+        </form>
+      </div>
+    </div>
+
+    <div class="">
+      <a href="/us/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+      <a href="/home/aboutus" class="readProducts">
+        About us
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

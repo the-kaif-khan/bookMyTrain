@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin ban user</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminPanel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Admin panel (Banning user)
+    </div>
+  </div>
+
+  <!-- sidebar container -->
+  <div class="sidebarContainer">
+    <a href="/us/buyingforms" class="sidebarLinks">
+      <div class="advertisingSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        Buying forms
+      </div>
+    </a>
+    <a href="/us/Sellingforms" class="sidebarLinks">
+      <div class="cartIconSidebar sidebarContents">
+        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+        SellingForms
+      </div>
+    </a>  
+    <a href="/home/mapProductcreation" class="sidebarLinks">
+      <div class="helpIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
+        Create map elements
+      </div>
+    </a>
+
+    <a href="/home/mapCoordinates" class="sidebarLinks">
+      <div class="supportUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+        Get map coordinates
+      </div>
+    </a>
+
+    <a href="/home/aboutus" class="sidebarLinks">
+      <div class="aboutUsIcon sidebarContents">
+        <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+        About Us
+      </div>
+    </a>
+
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Ban user
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Banning user: <%= user.name %>
+      </div>
+      <form action="/landad/banningUser" method="post">
+
+        <!-- <label for="identifier">Username / Email / Contact:</label> -->
+        <input type="text" name="username" class="inputs" value="<%= user.username %>" required>
+
+        <input type="text" name="email" class="inputs" value="<%= user.email %>" required>
+
+        <input type="text" name="contactNumber" class="inputs" value="<%= user.contactNumber %>" required>
+
+        <input type="text" name="id" class="inputs" value="<%= user._id %>" required>
+
+        <!-- <label for="reason">Ban Reason (optional):</label> -->
+        <input type="text" name="reason" class="inputs" placeholder="Enter ban reason of user" required>
+
+        <input type="submit" value="Ban permanently this user" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="/home/adminProducts" class="readProducts">
+        Read all products.
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

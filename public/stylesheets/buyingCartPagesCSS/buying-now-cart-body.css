@@ -1,0 +1,23 @@
+body{
+  padding-top: 140px;
+  font-family: system-ui;
+  background-color: #ffed8446;
+}
+.para{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 12px;
+  margin-bottom: 30px;
+  margin-top: 120px;
+}
+.buyingSummaryText{
+  color: green;
+  font-size: 18px;
+  margin-left: 6px;
+}
+@media (min-width: 1000px) {
+  .buyingSummaryText{
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+}

@@ -1,0 +1,28 @@
+body{
+  font-family: system-ui;
+  padding-top: 120px;
+  padding-bottom: 0px;
+  background-color: rgb(255, 251, 234);
+}
+@media(max-width: 520px) {
+  .container{
+    width: 100%;
+  }
+}
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget{
+  display: none !important;
+}
+body{
+  top: 0px !important;
+}
+.pickWhereLeftTitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60.5%;
+}
+/* .containerUpperPortion{
+  background: url(../../../public/imagesAndVideos/images/);
+} */
+

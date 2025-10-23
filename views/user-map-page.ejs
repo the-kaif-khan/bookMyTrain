@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Landbook-map-page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+  <!-- MarkerCluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/adminNewMap.css">
+</head>
+<body>
+  
+<h1>Explore products on new map</h1>
+<div id="map"></div>
+
+<script>
+  // map initialisation
+  const map = L.map('map').setView([28.6, 77.2], 6);
+
+  // osm layer
+  const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // satellite layer
+  const satellite = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
+
+  L.control.layers({ "OSM": osm, "Satellite": satellite }).addTo(map);
+
+  // to add a scale in the map...
+  L.control.scale({position: 'bottomleft', metric: true, imperial: true}).addTo(map);
+  // for kinda clustering...
+  const clusterGroups = {};
+  fetch('/home/get-markers')
+    .then(res => res.json())
+    .then(markers => {
+      markers.forEach(({ lat, lng, popupText, productId, clusterName, city, tehsil, price, spec, LB }) => {
+        if (!clusterGroups[clusterName]) {
+          clusterGroups[clusterName] = L.markerClusterGroup();
+          map.addLayer(clusterGroups[clusterName]);
+        }
+
+        const popupHTML = `<strong>${popupText}</strong><br>Price: ${price} Lakhs<br> Length and Breadth: ${LB}<br> Specs: <ul>${spec.map(item => `<li>${item}</li>`).join('')}</ul><a href="/buy/viewproduct/${productId}/${city}/${tehsil}" target="_blank">Click here to view product</a>`;
+        const marker = L.marker([lat, lng]).bindPopup(popupHTML);
+
+        clusterGroups[clusterName].addLayer(marker);
+      });
+      //   Object.values(clusterGroups).forEach(clusterGroup => {
+
+      //   map.on('zoomend', () => {
+      //     document.querySelectorAll('.label-text').forEach(label => {
+      //       label.classList.remove('visible');
+      //     });
+      //     document.querySelectorAll('.leaflet-marker-icon').forEach(icon => {
+      //       if(!icon.classList.contains('leaflet-cluster-icon')) {
+      //         const label = icon.querySelector('.label-text');
+      //         if(label) label.classList.add('visible');
+      //       }
+      //     });
+      //   })
+      // });
+    })
+    .catch(err => {
+      console.error('Error loading markers:', err);
+    });
+
+    // for adding different labels
+    // const labels = [];
+    fetch('/home/get-labels')
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(({lat, lng, labelText}) => {
+          const label = L.marker([lat, lng], {
+            icon: L.divIcon({
+              className: 'map-label',
+              html: `<span class="label-text">${labelText}</span>`,
+              iconSize: [0, 0],
+              iconAnchor: [0, 0],
+              className: ''
+            }),
+            interactive: false
+          }).addTo(map);
+        });
+      });
+      map.on('zoomend', () => {
+        const zoom = map.getZoom();
+        const showZoom = zoom >= 14;
+
+        document.querySelectorAll('.label-text').forEach(label => {
+          label.style.opacity = showZoom ? '1' : '0';
+        });
+      });
+
+    // when pressing enter for label edit... then label gets edited...
+    document.addEventListener('keydown', (e) => {
+      if(e.target.classList.contains('label-text') && e.key === 'Enter') {
+        e.preventDefault();
+
+        const newText = e.target.innerText.trim();
+        const labelId = e.target.getAttribute('data-id');
+
+        // send updates to server
+        fetch(`/home/update-label/${labelId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({text: newText})
+        })
+          .then(res => res.text())
+          .then(msg => {
+            console.log('update Successfully:', msg);
+            e.target.blur();
+          });
+      }
+    });
+    // for zoom based scaling(google-style)
+    map.on('zoomend', () => {
+      const zoom = map.getZoom();
+      const scale = Math.pow(0.9, 18 - zoom);
+
+      document.querySelectorAll('.map-label').forEach(label => {
+        label.style.transform = `scale(${scale})`;
+      });
+    });
+
+</script>
+
+</body>
+</html>

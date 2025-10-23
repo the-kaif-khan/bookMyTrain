@@ -1,0 +1,21 @@
+body{
+  /* margin-top: 120px; */
+  background-color: hsl(0, 100%, 97%);
+  font-family: arial;
+  padding-top: 226px;
+  /* padding-right: 100px; */
+}
+.flash{
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}

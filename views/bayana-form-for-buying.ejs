@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayana form page</title>
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/bayan-page.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartHeader.css">
+</head>
+<body>
+
+    <!-- header -->
+    <div class="cartHeading">
+      <div class="cartHeadingLogo">
+        <a href="/home/landbook">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+        </a> 
+      </div>
+      <div class="cartHeadingText">
+        Give bayana page
+      </div>
+    </div>
+  
+    <!-- navigations -->
+    <div class="navigationsBox">
+      <a href="/home/<%= city %>/<%= tehsil %>" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
+  
+      <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>" class="links">
+        <div class="navLinks">
+          Back to Claim page
+        </div>
+      </a>
+  
+    </div>
+
+    <% if(error.length > 0) { %>
+      <div class="flash flash-error">
+        <%= error %>
+      </div>
+    <% } %>
+    <% if(success.length > 0) { %>
+      <div class="flash flash-success">
+        <%= success %>
+      </div>
+    <% } %>
+
+    <div class="formHeading">
+      <div class="wanna">
+        Before giving bayana to a zameen, Please, read <a href="/sell/preview/<%= city %>/<%= tehsil %>" class="preview">instructions</a> to know what is the process of giving bayana to a particular land ?
+      </div>
+      <div class="formMiddleHeading">
+        To sell a zameen, you'll have to provide us some information by filling this form and giving us your Khatauni document image, then we'll verify your documents, then we'll provide you our Camera Man's phone number in Selling Cart, also on number you will provide us through this form. Then, our Cameraman will contact you for your zameen pictures and its address where he will inspect all the information around your zameen manually and in no more than 2 days, your zameen will be part of zameens with fastest zameen selling platform eg. <span>Landbook</span>.
+      </div>
+      <div class="formFinalHeading">
+        So, Kindly fill this form in order to sell your zameen with no false information!
+      </div>
+    </div>
+
+  <!-- form of selling -->
+  <div class="sellingForm">
+    <div class="sellingFormHeading">
+      <% if(product.buyingPeople.length > 0) { %>
+        <div class="red">
+          <b>Note:</b> Sorry, you had only 5 hours to give bayana to this land and the time for giving bayana to this land has slipped away. but there is still a chance. If the buyer not be able to give bayana to this land in 72 hours (3 days) then the product will be modified and any user can give bayana to this land right away. But till then, any user beside the buying user cannot give bayana to this land....Landbook.
+        </div>
+      <% } else { %>
+        <div class="contactUs">
+          Contact Us @: <span class="highlight"> 
+            <% if(queryhouseContactNumber) { %>
+              <%= queryhouseContactNumber %>
+            <% } %>  
+          </span> to give bayana to this land fully offline.
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

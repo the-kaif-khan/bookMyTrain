@@ -1,0 +1,337 @@
+body{
+  margin-top: 120px;
+  margin-right: 110px;
+  background-color: hsl(0, 100%, 97%);
+  font-family: arial;
+  background-position: center;
+  background-size: cover;
+}
+.flash{
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* main body of individual product*/
+.mainBodyContainer{
+  background-color: rgb(255, 255, 255);
+}
+.product{
+  display: flex;
+  flex-wrap: wrap;
+}
+/* first container */
+.sideImagesOfProduct{
+  display: flex;
+  flex-basis: 60px;
+  flex-direction: column;
+  align-items: center;
+}
+.images{
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+}
+.images:hover{
+  border: 2px solid rgb(10, 33, 41);
+}
+.sideImagesOfProduct img{
+  width: 80%;
+}
+/* second contaier */
+.mainImageOfProduct{
+  background-color: rgb(255, 255, 255);
+  flex-basis: 450px;
+  min-width: 400px;
+  padding-left: 10px;
+  padding-right: 4px;
+}
+.mainImageOfProduct img{
+  width: 100%;
+  /* height: 300px; */
+  max-height: 747px;
+  margin-top: 10px;
+}
+.inputs{
+  width: 95%;
+  height: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+/* third container for claimedUsers details start*/
+.claimedPeopleHeading{
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.link{
+  color: rgb(0, 81, 255);
+  display: inline-block;
+  font-size: 14px;
+  font-family: system-ui;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+.link:hover{
+  text-decoration: underline;
+}
+.user{
+  font-family: arial;
+  background-color: rgb(248, 248, 248);
+  border-top: 1px solid rgb(238, 238, 238);
+  border-left: 1px solid rgb(238, 238, 238);
+  border-right: 1px solid rgb(238, 238, 238);
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+.nameOfUser{
+  font-size: 18px;
+}
+.usernameOfUser{
+  font-size: 13px;
+  color: rgb(92, 92, 92);
+  margin-bottom: 15px;
+}
+.emailOfUser,
+.contactNumberOfUser{
+  color: rgb(0, 81, 255);
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+/* third container for claimedUsers details end*/
+
+/* third container */
+.individualProductDetails{
+  background-color: white;
+  flex-basis: 400px;
+  margin-left: 12px;
+  margin-right: 10px;
+  padding-left: 6px;
+  padding-right: 10px;
+}
+.mainHeading{
+  font-size: 20px;
+  padding-top: 14px;
+  /* margin-bottom: 8px; */
+}
+.view-360-link{
+  display: inline-block;
+  padding: 4px;
+  font-size: 14px;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+@media(max-width: 500px) {
+  .view-360-link{
+    font-size: 12px;
+  }
+}
+.view-360-link:hover{
+  background: #0056b3;
+}
+.productStats{
+  display: grid;
+  grid-template-columns: 20px 60px;
+  font-size: 13px;
+  color: rgb(58, 58, 58);
+}
+.productStars img{
+  width: 100%;
+}
+.claimedAndVisits{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2px;
+  font-size: 13px;
+  color: rgb(25, 133, 127);
+  border-bottom: 0.4px solid rgb(201, 201, 201);
+  margin-top: 4px;
+}
+.mainPrice{
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.mainPrice span{
+  font-size: 20px;
+  color: rgba(168, 0, 0, 0.863);
+}
+@media(max-width: 929px) {
+  .mainPrice span{
+    font-size: 18px;
+  }
+}
+.productLengthAndBreadthText{
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(65, 65, 65);
+  margin-bottom: 20px;
+}
+@media(max-width: 500px) {
+  .productLengthAndBreadthText{
+    font-size: 14px;
+  }
+}
+#lbImages:hover{
+  text-decoration: underline;
+}
+.productLengthAndBreadthDabba{
+  border-top: 1px solid rgb(216, 216, 216);
+  border-left: 1px solid rgb(216, 216, 216);
+  border-right: 1px solid rgb(216, 216, 216);
+  color: rgb(0, 81, 255);
+  background-color: rgb(248, 248, 248);
+  margin-bottom: 12px;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+@media(max-width: 500px) {
+  .productLengthAndBreadthDabba{
+    font-size: 13px;
+  }
+}
+.productLengthAndBreadthDabba:hover{
+  text-decoration: underline;
+}
+.whyDetails{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px; 
+  color: rgb(34, 34, 34);
+  border-bottom: 0.4px solid rgb(201, 201, 201);
+}
+.whyDetails ul{
+  font-size: 15px;
+  font-weight: lighter;
+  padding-left: 17px;
+}
+@media(max-width: 500px) {
+  .whyDetails ul{
+    font-size: 13px;
+  }
+}
+.whyDetails li{
+  margin-bottom: 8px;
+}
+
+.mainSpec{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+  color: rgb(34, 34, 34);
+  border-bottom: 0.4px solid rgb(201, 201, 201);
+}
+.mainSpec{
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  column-gap: 3px;
+}
+.mainSpec img{
+  width: 100%;
+  height: 12px;
+}
+.mainSpecRatingStars{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.mainSpec ol{
+  font-size: 14px;
+  font-weight: lighter;
+  padding-left: 17px;
+}
+@media(max-width: 500px) {
+  .mainSpec ol{
+    font-size: 13px;
+  }
+}
+.mainSpec li{
+  margin-bottom: 8px;
+}
+/* buttons from here */
+.claimToCartLink{
+  color: black;
+  text-decoration: none;
+  margin-top: 40px;
+}
+.claimToCartButton {
+  width: 100%;
+  margin-right: 8px;
+  margin-top: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(216, 184, 40);
+  font-size: 13px;
+  padding: 12px;
+}
+@media(max-width: 400px) {
+  .claimToCartButton{
+    font-size: 12px;
+  }
+}
+.addToBuyingCartLink{
+  color: white;
+  text-decoration: none;
+}
+.buyWithin48hoursButton{
+  margin-top: 20px;
+  margin-right: 8px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background-color: rgb(46, 144, 255);
+  font-size: 13px;
+  padding: 12px;
+}
+@media(max-width: 400px) {
+  .claimToCartButton,
+  .buyWithin48hoursButton{
+    font-size: 12px;
+  }
+}
+.advertisingDabba{
+  width: 100%;
+  height: 150px;
+  margin-top: 25px;
+  background-color: lightblue;
+  border: 1px solid grey;
+}
+/* third container end */
+
+/* fourth container */
+.advertisingInMainBodyContainer{
+  margin-top: 10px;
+  flex-basis: 176px;
+  background-color: lightcoral;
+}
+
+
+
+

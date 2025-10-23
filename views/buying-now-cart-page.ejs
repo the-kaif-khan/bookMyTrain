@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>buying now cart page</title>
+
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-cart-body.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-cart-footer.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-cart-header.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-cart-products.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartSidebar.css">
+
+</head>
+<body>
+  
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Buying Now Cart (<%= showingBuyingProducts.length %>) 
+      <% if(showingBuyingProducts.length > 1) { %>
+        Items
+      <% } else if(showingBuyingProducts.length <= 1) { %>
+        Item
+      <% } %>
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/<%= theCity %>/<%= theTehsil %>" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/home/help/<%= theCity %>/<%= theTehsil %>" class="links">
+      <div class="navLinks">
+        Help
+      </div>
+    </a>
+
+    <a href="/buy/claimcart/products/filter/<%= theCity %>/<%= theTehsil %>" class="links claimCartLink">
+      <div class="navLinks claimCart">
+        Return to Claim Cart<img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+      </div>
+      <div class="claimCartNotification">
+        <% if(currentUser) { %>
+          <%= currentUser.claimCart.length %>
+        <% } else{ %>
+          0
+        <% } %>
+      </div>
+    </a>
+  </div>
+
+
+  <p class="para">Review your buying order 
+    <span class="buyingSummaryText">
+      Buying summary is in last of the page.
+    </span>
+  </p>
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <!-- products Container -->
+  <div class="wholeContainer">
+    <div class="productsContainer">
+
+      <% if(showingBuyingProducts.length > 0) { %>
+        <% showingBuyingProducts.forEach((product) => { %>
+          <div id="<%= product._id %>">
+            <div class="products">
+              <div class="leftContainer">
+                <div class="productImage">
+                  <a href="/buy/viewproduct/<%= product._id %>/<%= theCity %>/<%= theTehsil %>">
+                    <img src="data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="">
+                  </a>
+                </div>
+                <div class="productPriceAndLB">
+                  <div class= "productPrice">
+                    Price: <%= product.landbookPrice %> Lakhs
+                  </div>
+                  <div class= "productLB">
+                    L*B: <%= product.LB %>
+                  </div>
+                </div>
+                <div class="productSpec">
+                  <ol type="a">
+                    <% product.spec.forEach((list) => { %>
+                      <li><%= list %></li>
+                    <% }); %>
+                  </ol>
+                </div>
+                <a href="/us/user-buying-cart-timers" class="links">
+                  <div class="remainingClaimingEndTime">
+                    <div class="remainingClaimingEndTime2">
+                      Click here to give bayana to this land
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="rightContainer">
+                <div class="rightContainerHeading">
+                  Your buying product stats by now:
+                </div>
+                <div class="newClaimed">
+                  People claimed: <b> +<%= product.claimedPeople.length %></b>
+                </div>
+                <div class="newViews">
+                  People viewed: <b> +<%= product.visits.length %></b>
+                </div>
+                <!-- <a href="/us/user-buying-cart-timers" class="links">
+                  <div class="buyingCartTimersAlert <%= product.buyingCartTimerId.length > 0 ? 'blink-red-white' : 'hidden' %>">
+                    Buying cart timers
+                  </div>
+                </a> -->
+                <a href="/us/user-buying-cart-timers" class="links">
+                  <div class="redMessage <%= product.buyingCartTimerId.length > 0 ? 'blink-red-white' : 'hidden' %>">
+                    Buying cart timers
+                  </div>
+                </a>
+                <div class="redMessageText">
+                No claimed user able to give bayana to this land and now No one can give bayana till 72 hours when this product was added to your buying cart. Now you (Buying user) have 72 hours (3 days) reserved (only single buying cart user can give bayana to this particular land) to give bayana to this land otherwise this land will be removed automatically from your Buying Cart after 72 hours then you will not be able to give bayana or buy this land unless in order to buy this land again, user have to go through whole buying process all over again e.g from giving the claimed user's 6 hours to rest of the processes.
+                </div>
+                <div class="bayanaBox">
+                  Click Blinking Buying cart timers to view how much time left for you out of 72 hours to give bayana to this product now... 
+                </div>
+                <a href="/buy/remove/buyingcart/<%= product._id %>" class="removeProduct">
+                  <div class= "removeProduct js-remove-product">
+                    Remove Product
+                  </div>
+                </a>
+              </div> 
+            </div> 
+          </div>
+      <% }) %>
+      <% } else { %>
+        <div class="noProducts">
+          There is no products claimed by you in <span class="highlight"><%= theTehsil %></span> tehsil. You can try different tehsil in filter and if not found, then either you haven't claim a product or you can just check your profile's claim cart option... there you will get every tehsil's claimed products by you.
+        </div>
+      <% } %>
+    </div>
+
+    <!-- buying summary -->
+    <% 
+    let sellerPrice = 0;
+    <!-- let landbookPrice = 0; -->
+    showingBuyingProducts.forEach((buyingProduct) => {
+      sellerPrice += buyingProduct.sellerPrice;
+    });
+    const likhwayiFemale = sellerPrice * 0.07;
+    const likhwayiMale = sellerPrice * 0.08;
+    const brokerCost = sellerPrice * 0.038;
+    const landbookCost = sellerPrice * 0.023;
+    const customerSaved = brokerCost - landbookCost;
+    const finalMale = sellerPrice + likhwayiMale + landbookCost;
+    const finalFemale = sellerPrice + likhwayiFemale + landbookCost;
+    %>
+
+    <!-- buying summary -->
+    <% if(showingBuyingProducts.length > 0) { %>
+      <div class="buyingSummary js-buying-summary">
+
+        <form id="autoFilterForm" action="/buy/buyingcart/products/filter/<%= theCity %>/<%= theTehsil %>" method="GET" class="vertical-filter">
+        
+          <div class="filterTitle">
+            Sort by: 
+          </div>
+          <label>City</label>
+          <select name="city" id="cityDropdown" onchange="updateTehsils();submitFilters()">
+            <option value="">Select City</option>
+            <% cityTehsilList.forEach(item => { %>
+              <option value="<%= item.city %>" <%= selectedFilters.city === item.city ? 'selected' : '' %>><%= item.city %></option>
+            <% }) %>
+          </select>
+          
+          <label>Tehsil</label>
+          <select name="tehsil" id="tehsilDropdown" onchange="submitFilters()">
+            <option value="">Select Tehsil</option>
+          </select>
+          
+          <script>
+            const cityTehsilMap = {
+              <% cityTehsilList.forEach(item => { %>
+                "<%= item.city %>": <%- JSON.stringify(item.tehsils) %>,
+              <% }) %>
+            };
+          
+            function updateTehsils() {
+              const city = document.getElementById('cityDropdown').value;
+              const tehsilSelect = document.getElementById('tehsilDropdown');
+              tehsilSelect.innerHTML = '<option value="">Select Tehsil</option>';
+          
+              if (cityTehsilMap[city]) {
+                cityTehsilMap[city].forEach(teh => {
+                  const opt = document.createElement('option');
+                  opt.value = teh;
+                  opt.textContent = teh;
+                  tehsilSelect.appendChild(opt);
+                });
+              }
+            }
+          
+            // Load selected tehsil on page load
+            window.onload = function () {
+              updateTehsils();
+              const selectedTehsil = "<%= selectedFilters.tehsil || '' %>";
+              if (selectedTehsil) {
+                document.getElementById('tehsilDropdown').value = selectedTehsil;
+              }
+            };
+          </script>
+        </form>
+        <a href="/buy/buyingcart/products/filter/<%= theCity %>/<%= theTehsil %>" class="clear-filters">
+          Clear All Filters
+        </a>
+
+        <div class="buyingSummaryHeading">
+          Buying Summary
+        </div>
+        <div class="numberOfZameens">
+          Zameens (<span class="js-cartItemNumber"><%= showingBuyingProducts.length %></span>)
+        </div>
+        <div class="buyingSummaryContentsContainer">
+          <div class="buyingSummaryContents">
+            <div class="landbookTitle">
+              Landbook Price
+            </div>
+            <div class="titles">
+              Seller Price:
+            </div>
+            <div class="numbers">
+              <b><%= sellerPrice.toFixed(2) %> Lakhs.</b>
+            </div>
+            <div class="titles">
+              Likhwayi [female(6%) / male(7%) + 1% regn.charges]
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiFemale.toFixed(2) %> Lakhs</b> (female)
+            </div>
+            <div class="titles">
+              Likhwayi (Male)
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiMale.toFixed(2) %> Lakhs</b>
+            </div>
+            <div class="titles">
+              <span class="logo">Landbook</span> <a href="" class="convenienceLinks">
+                convenience
+              </a> fee(0.8%)
+            </div>
+            <div class="landbookConvenience">
+              <b><%= landbookCost.toFixed(2) %> Lakhs</b>
+            </div>
+          </div>
+
+
+          <div class="buyingSummaryContents">
+            <div class="brokerTitle">
+              Broker Price
+            </div>
+            <div class="titles">
+              Price:
+            </div>
+            <div class="numbers">
+              <b><%= sellerPrice.toFixed(2) %> Lakhs.</b>
+            </div>
+            <div class="titles">
+              Likhwayi [female(6%) / male(7%) + 1% regn.charges]
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiFemale.toFixed(2) %> Lakhs</b> (female)
+            </div>
+            <div class="titles">
+              Likhwayi (Male)
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiMale.toFixed(2) %> Lakhs</b>
+            </div>
+            <div class="titles">
+              Broker convenience fee(1.5 + 2.3)%
+            </div>
+            <div class="brokerConvenience">
+              <b><%= brokerCost.toFixed(2) %> Lakhs</b> <a href="" class="sourceLinks">source</a>
+            </div>
+          </div>
+
+          <div class="lastTitles">
+            You saved: (broker)-(landbook) convenience fee: 
+          </div>
+          <div class="numbers">
+            <b><%= customerSaved.toFixed(2) %> lakhs.</b>
+          </div>
+          <div class="landbookPriceTitle">
+            Total Price (Female):
+          </div>
+          <div class="landbookPrice">
+            <b><%= finalFemale.toFixed(2) %> lakhs.</b>
+          </div>
+          <div class="landbookPriceTitle">
+            Total Price (Male):
+          </div>
+          <div class="landbookPrice">
+            <b><%= finalMale.toFixed(2) %> lakhs.</b>
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+
+    
+  </div>
+  <!-- products Container end -->
+
+    <!-- footer container -->
+    <footer>
+
+      <div class="aboutThisPage">
+        <div class="pageLanguage">
+          <div class="languageImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          </div>
+          <div class="languageText">
+            English
+          </div>  
+        </div>
+  
+        <div class="aboutCountry">
+          <div class="aboutCountryImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          </div>
+          <div class="aboutCountryText">
+            India
+          </div>
+        </div>
+      </div>
+  
+      <div class="aboutCompany">
+        <div class="companyConditions aboutCompanyTexts">
+          Conditions of Use
+        </div>
+        <div class="companyPrivacyPolicy aboutCompanyTexts">
+          Privacy Notice
+        </div>
+        <div class="aboutAdvertising aboutCompanyTexts">
+          Interest-Based Ads
+        </div>
+      </div>
+  
+      <div class="companyCopywrite">
+        .c. 1996-2024, Landbook.com, Inc. and its affiliates
+      </div>
+  
+    </footer>
+
+<!-- <script type="module" src="./js/buying-now-cart-page.js"></script> -->
+<script>
+  function submitFilters() {
+    document.getElementById('autoFilterForm').submit();
+  }
+</script>
+
+
+</body>
+</html>

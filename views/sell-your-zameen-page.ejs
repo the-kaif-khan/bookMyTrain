@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sell your zameen page</title>
+
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/sell-your-zameen-page.css">
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/sell-your-zameen-footer-page.css">
+
+</head>
+<body>
+
+  <!-- header -->
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Landbook. Sell Your Zameen Page
+    </div>
+  </div>
+
+    <!-- navigations -->
+    <div class="navigationsBox">
+      <a href="/home/<%= city %>/<%= tehsil %>" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
+  
+      <div class="navLinks">
+        <a href="" class="links">Help</a>
+      </div>
+    </div>
+
+  <div class="mainHeading"> 
+    If you want to sell your Zameen, You have to provide a document(nakal) of your Zameen you want to sell and then in a minute we'll verify your papers that was real then we'll give you Contact number of Us and we'll send a Camera man to your Zameen and he'll pick some pictures to modify them and we'll do decorate it such that the customers of ours like and we'll update your zameen in our Page...
+  </div>
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+    
+  <fieldset> 
+    <div class="titles">
+      How we will make your Zameen look like on our Website also you can fill the selling form directly from below or
+      <br>Preview:    
+    </div> 
+
+    <a href="/sell/preview/<%= city %>/<%= tehsil %>" class="previewLink">
+      Preview
+    </a>
+
+    <a href="/sell/fillform/<%= city %>/<%= tehsil %>" class="previewLink previewLink2">
+      Fill Selling Form
+    </a>
+
+    </section>
+      <div class="titles"> 
+        <i>Why is it necessary to give documents and filling the forms?</i>
+      </div>
+
+      <ol>
+        <li> It is necessary to 
+          give the documents to let us know the that you really want to sell your Zameen and you are not just exploring
+          cause we have to send the camera man to you and those who didn't wanted to sell the Zameen will waste much time.
+        </li>
+        <li>
+          It is necessary to fill the forms cause it will give us your number, there is a claim button on every Zameen on this website, and when you claim any  of the Zameen , we'll send a message and also call you to inform that the Zameen which you love someday, there is someone's eyes on it. This was necessary because sometimes, there are property in their mind, and on that time, they couldn't buy that property want to buy it in a little more time, but they just lost it, if they didn't mention enough to buy..    
+        </li>
+      </ol>
+
+  </fieldset>
+  
+
+  <div class="footerText">
+    <a href="" class="footerLink">About Us</a>
+  </div>
+
+    <!-- footer container -->
+    <footer>
+
+      <div class="aboutThisPage">
+        <div class="pageLanguage">
+          <div class="languageImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          </div>
+          <div class="languageText">
+            English
+          </div>  
+        </div>
+  
+        <div class="aboutCountry">
+          <div class="aboutCountryImage">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          </div>
+          <div class="aboutCountryText">
+            India
+          </div>
+        </div>
+      </div>
+  
+      <div class="aboutCompany">
+        <div class="companyConditions aboutCompanyTexts">
+          Conditions of Use
+        </div>
+        <div class="companyPrivacyPolicy aboutCompanyTexts">
+          Privacy Notice
+        </div>
+        <div class="aboutAdvertising aboutCompanyTexts">
+          Interest-Based Ads
+        </div>
+      </div>
+  
+      <div class="companyCopywrite">
+        .c. 1996-2024, Landbook.com, Inc. and its affiliates
+      </div>
+  
+    </footer>
+
+
+</body>
+</html>

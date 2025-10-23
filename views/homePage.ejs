@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page of Landbook</title>
+
+    <link rel="stylesheet" href="/stylesheets/homePagesCSS/homePage.css">
+    
+</head>
+<body>
+
+
+  <header>
+    <div class="header">
+      <div class="leftContainer">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </div>
+      <div class="middleContainer">
+        Welcome to Landbook
+      </div>
+    </div>
+  </header>
+
+<div class="heading">
+
+  <div class="navigations">
+    <a href="/home/landbook" class="links">
+      <div>
+        Home 
+      </div>
+    </a>
+    <div class="line">
+      |
+    </div>
+    <a href="/home/aboutus" class="links">
+      <div>
+        About Us 
+      </div>
+    </a>
+    <div class="line">
+      |
+    </div>
+    <a href="/home/help/<%= city %>/<%= tehsil %>" class="links">
+      <div>
+        Help
+      </div>
+    </a>
+
+    <div class="cart">
+      <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
+      </a>
+      <div class="cartNotifications">
+        <% if (currentUser) { %>
+          <%= currentUser.claimCart.length %>
+        <% } else { %>
+          0
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="aboutLandbook">
+    You are on <span class="names">Landbook.com</span>. You can buy variety of
+    lands in your city as well as in other cities wthin <span class="highlighted">48 hours</span> 
+    through <span class="names">Landbook</span>. Also can sell your lands in 15
+    days in <span class="italics">speedy</span> way.
+  </div> 
+
+  <fieldset class="main-area">
+    <main>
+      <section>
+        <h3>Buy a zameen in <%= tehsil %> Tahsil in <%= city %> district</h3>
+        <a href="/home/buy/<%= city %>/<%= tehsil %>">
+          <button>Here</button>
+        </a>
+      </section>
+
+      <section>
+        <h3>Sell a zameen in <%= tehsil %> Tahsil in <%= city %> district</h3>
+        <a href="/home/sell/<%= city %>/<%= tehsil %>">
+          <button>Here</button>
+        </a>
+      </section>
+    </main>
+  </fieldset>
+          
+
+
+</div>
+
+  <footer>
+    <b>Notice:</b><i>What does <b>Landbook</b> means?</i> It simply means Freedom, where you can buy or sell 
+    a Zameen at any time with our Contact , without losing your important time and work..
+  </footer>
+
+</body>
+</html>

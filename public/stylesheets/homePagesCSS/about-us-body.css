@@ -1,0 +1,104 @@
+.aboutUsContainer{
+  background-color: rgb(248, 248, 248);
+  /* color: white; */
+
+  /* background: linear-gradient(to right, #003e2e,#20423a, #2b6355); */
+
+  margin: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  word-spacing: 4px;
+  line-height: 24px;
+  font-weight: lighter;
+}
+.aboutUsTitle{
+  font-weight: bolder;
+  font-size: 25px;
+  padding: 14px;
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  border-bottom: 3px solid grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(0, 81, 255);
+}
+.contentTitles{
+  padding: 10px;
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 16.5px;
+  color: rgb(1, 101, 92);
+  border-bottom: 3px solid rgb(1, 101, 92);
+}
+.logo{
+  color: rgb(0, 81, 255);
+}
+.highlights{
+  color: rgb(1, 101, 92);
+  font-style: italic;
+}
+.highlights2{
+  font-weight: bolder;
+  color: rgb(255, 155, 5);
+}
+.content{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.photos{
+  height: 250px;
+  background-color: rgb(238, 238, 238);
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 3px solid grey;
+  border-right: 3px solid grey;
+  border-radius: 10px;
+}
+.photos img{
+  width: 220px;
+  height: 220px;
+}
+.link{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  background-color: rgb(248, 248, 248);
+  border-radius: 10px;
+  border-left: 3px solid grey;
+  border-right: 3px solid grey;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 40px;
+}
+.link:hover{
+  text-decoration: underline;
+}
+.contentLinks{
+  color: rgb(29, 28, 92);
+  transition: all 0.4s;
+}
+.contentLinks:hover{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+}
+.contactUs{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: rgb(238, 238, 238);
+  color: rgb(1, 101, 92);
+  border-radius: 10px;
+  border-bottom: 3px solid grey;
+}

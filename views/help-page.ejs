@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>help page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/help-page.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/how-top-search-footer-page.css">
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/help-page-texts.css">
+</head>
+<body>
+  
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Landbook Help Page
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/<%= city %>/<%= tehsil %>" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+    <input type="text" id="searchBox"  placeholder="Search help..." oninput="searchHelp()"/>
+    <!-- <div class="navLinks">
+      <a href="" class="links">Help</a>
+    </div> -->
+  </div>
+
+  <!-- main containers -->
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('most')">
+      What is <span class="logo">Landbook</span> ?
+    </div>
+    <div id="most" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          What is <span class="logoInText">Landbook</span>, what it means, what do we do
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            <span class="logoInContents">Landbook</span> is just not a website that just improvise...something with a product and services....<span class="logoInContents">Landbook</span> means, it is a kind of book of zameen in which there are different pages of lands with precise details like book which offers you great opportunity to know the details about a land in just a couple of minutes and if you wanna buy that land then You can buy it also using Landbook in an easy and fastest way.<span class="break"></span>
+          </div>
+            In <span class="logo">Landbook</span> you can find different lands with their khatauni images...also so that you can research about the zameen details too. <span class="highlights">What it means</span> ? So what is the pitch here...look you can find as many zameens through brokers, like this broker that broker and when broker says that yeah they got a zameen with them you can buy...then they get you some little informations about the land like what's the asking price and what is the length breadth and where is that land...which is good and we do that too in the sellpage in which lots of lands are there in and they give basic details about the land...like price (but these price cannot be more negotiated unlike brokers but we assure our users that users at <span class="logo">Landbook</span> cannot get lands at higher prices than broker's negotiated deals which they give you cause this price is already a negotiated price which you can see after you claim the land or buying a land where we give you all the details about what was the real price and what has the price become like this when we include the likhwayi + registration + our cost...) and you will be amazed how much less we get as <span class="logo">Landbook</span> convenience cost in giving our users all of the <span class="logo">Landbook</span> convenience, length breadth and many specifications of land by which you kinda can know where the land is and what is near the land....so <span class="highlights">What's the difference at this time</span> eg. buying through brokers and <span class="logo">Landbook</span> ? <span class="highlights">Much difference</span>. behind this the difference is time. How ? Look lets get to the broker point...when they get you the little details at that point... if it is in early morning...you have to get to the broker then you have a little talk where the land is and then if you have time, you have to follow the broker with to get to the land and and see how it looks and that will take nearly max to 1 day whole but lets say half day then if you like the land to some percent then you have to pay a lawyer to check about the land on another day if the land is under loan or not and also to verify the land ...so nearly about 2 days for one land....and in <span class="logo">Landbook</span> you can get to know about more about this land and can be in less than 1 hours and with no money to spending anywhere...can you imagine this how <span class="logo">Landbook</span> works ...and look about the details...you first go to sellpage where many lands are there and..also you can find lands through kinda google maps..too and when click on full on any land infividually then in land details page you can easily find and click on download the khatauni images of this zameen and you can check this detail of zameen is real or not and also crazy part of this is the spec part of the zameen is fully real and you can easily trust us with spec things and also we can assure you ..by <span class="logo">Landbook</span> that iif any spec about khatauni is not real or fake then you can sue us...
+          <div class="secondContent">
+            And look about the details...you first go to sellpage where many lands are there and..also you can find lands through kinda google maps..too and when click on full on any land infividually then in land details page you can easily find and click on download the khatauni images of this zameen and you can check this detail of zameen is real or not and also crazy part of this is the spec part of the zameen is fully real and you can easily trust us with spec things and also we can assure you ..by <span class="logo">Landbook</span> that iif any spec about khatauni is not real or fake then you can sue us...
+          </div>
+          <div class="photos">
+            <img src="/imagesAndVideos/Logos/LOGO/Wow2.webp" alt="">
+            <a href="#" class="link">Download</a>
+          </div>
+          <div class="contactUs">
+            Contact Us @: +91 6103342153
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('least')">
+      How can <span class="logo">Landbook</span> be useful ?
+    </div>
+    <div id="least" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          The usefulness of <span class="logoInText">Landbook</span>
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            We, the <span class="logo">Landbook</span> are more like a broker which helps you in buying and selling of zameen but an expert broker with giving you lots of features in terms of speed and features...
+          </div>
+          There is lots of features at <span class="logo">Landbook</span> but there is <span class="highlights">6 special features</span> of <span class="logo">Landbook</span>. <br>
+          <b>First</b>. <span class="highlights2">Speedy</span> = If you really wanna buy a land fast after you check the full details of the product, you can just click the add to buying cart at that individual land then fill the buying form. This will take care of the rest. How it will take care, you can check it out at <span class="logo">Landbook</span> help page. <br> 
+          <b>Second</b>. <span class="highlights2">Claim carting</span> = This is really special feature and matters great in buying a land. What it does is, if a land is there in <span class="logo">Landbook</span> that you fall in love with and wanna buy it.. but you didn't got the enough money to buy but you think you can arrange the money for it, and there comes the claim cart feature...in which you just have to click add to claim cart then your account or you will be kind of attached to that product and whenever any of our customer would want to buy that land in near time or some times then you get a reserved 5 hours time in which if you able to give bayana in given time then that land will halfly becomes yours and bayana users can actually buy the land and here is a more pitch in it which is after claiming the land if you just forgot about the land that if the land is being bought by then also we will notify you that someone is trying to buy the land or we can say if someone filled the buying form then also you will be notified that you have next 5 hours second chance to buy the land you once loved then if you able to give bayana then you can buy the land and can get a more time to buy the land after the bayana but the time for claimed people to give bayana is limited eg. You only get 5 hours time to given bayana but don't worry you get the time which will only be in between 8 am in the morning 6 pm at night eg. buying people can able to fill the buying form between 8 am in the morning to 1pm in the afternoon which initiate the claimed people time only in between 8 am to 6 pm which initiates timing of 5 hours. <br>
+          <b>Third</b>. There is this <span class="highlights2"><b>Search lands through map</b></span> which is first time in the whole world to be able to give you option to search lands through google maps in your phone or PC through <span class="logo">Landbook and Google maps collaboration</span>...which offers you different cluster(s) of markers of lands based of lands in different-different areas and when click or zoom in it, the cluster changes to different markers and these markers are basically lands. To view the lands you just have to click on marker then a popup will open and there will be minute details of the product at that location and there will be a link which when clicked by user they will be directed to the land full details...page.. <span class="highlights">isn't it awesome ?</span> <br>
+          <b> fourth </b><span class="highlights2">Khatauni specification details</span> ...you can see the khatauni details of a land in lands full details page and vishwas kar sakte hain with eyes closed because if any anyt of the information gets wrong you have full authority to complaint us on the giving false information...on the land details...and believe it or not this information is only openly given to users with assurance of not a false information because this is leading thing for user to get the information about the zameen in short time and can directly jump at the add to buying cart...and it improvise the speedy process of <span class="logo">Landbook</span>. <br>
+          <b>Fifth </b>. <span class="highlights2">Searching lands of your tehsil easily</span> and this is also unique in its own way...look first if you wanna buy a land in your tehsil then you have to search for that tehsil in search page but landbook gives you not only two but <span class="highlights">three easy ways in searching lands according to a tehsil or city</span> eg. At main home page there should be an option of your city if <span class="logo">landbook</span> is in that city like, if you want a land in basti city then there should be basti in among the all cities in the main home page then you click on that city then a dropdown will be open and there you can select the tehsil in which you wanna buy a land then after that all pages will be in the tehsil you selected...didn't got what i said ... Look, after selecting tehsil at main home page, then if you get to the all <span class="highlights">Landbook products page</span> then all products will be only of that tehsil you selected and also, if you claim a land then when you get to your claim cart page, only lands of that tehsil you selected earlier only will be there even if you claimed lands of other tehsil or city too but at that moment only claimed land of that tehsil land will be there at first. But offcourse, there is filter(sort by) option is available by <span class="logo">landbook</span> in all <span class="highlights">Landbook products page</span> and there is also search options but this feature will allow you confidence that if you select the tehsil at first at <span class="logo">Landbook</span> main home page then to everywhere there will be products in a. Landbook products page b. Landbook claim cart page c. Landbook buying cart page. so that you will be confirmed that everywhere you see a land will be of that tehsil so that you don't have to see about where the land is... but only if you don't touch the city and tehsil filter in anywhere in the <span class="logo">Landbook</span>. <br>
+          <b>Sixth</b>. <span class="highlights2">Asta(8) rule of <span class="logo">Landbook</span></span> .. so the asta rule of <span class="logo">Landbook</span> is more like a kind of assurance by which we assure you that if you see the lands through <span class="logo">Landbook</span> and see the 8 things <span class="highlights">(asta)</span> of land that we gave you in land details page then you will be able to know nearly 98% percent of the lands in which 2% is the information about the owner of the land...which is not given... <span class="highlights">so what does asta includes ?</span> ...the first five images of the individual land + 1 360° view image of that land + <span><a href="" class="contentLinks">Badnaam image</a></span> + Khatauni images of that land... and they will take care of the rest....
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('b')">
+      What does <span class="highlights">Claim cart</span> means ?
+    </div>
+    <div id="b" class="post-section">
+      <div class = "post-card help-content">
+        <div class="contents">
+          <div class="titles">
+            What does <span class="logoInText">Claim cart</span> means ?
+          </div>
+          <div class="firstContent">
+            Look, there was a problem in previous buying of lands system in which when anyone wants to buy a land and got a land which they loved but the price gets out of their budget and the money they had to arrange was more but in terms of sense, it was good price though so, at that moment they either have to wait and get the money collected from anywhere...but if they not be able to give money in near days, any other customer comes in and many times the other buyer just buy the land and the previous customer who loved to buy the land first, gets to know about it only when he call broker for to buy the land, they do not gets informed that the land they once loved and wanted to buy in, is in buying process by someone or the buyer gave the bayana immediately. They just get to know that the land is bought only when they call the broker. So, we made a solution for those users which is called <span class="highlights">Claim cart</span>.
+          </div>
+
+            So, just like previous, lets take it in <span class="logo">Landbook</span>... a user came in <span class="logo">Landbook</span> and search lands according to his/her choice. And then they get a land they love and wants to buy but the price is not in their budget fit this time too, so they just have to click on <span class="highlights2">Add to Claim cart</span> of that land, that's it. How will it be helpful ? When they get to the individual product and click on product's add to claim cart then their id is kinda get fix with the product and when any person fill the buying form which is a  process of buying, the claimed user's of that product gets messaged, call and informed that the land they once loved with some details of the product is in buying process, if you wanna buy that land now then you have to give a bayana to that land in 5 hours straight and if any of the claimed user not be able to give bayana through <span class="highlights">Landbook offline bayana process</span> then they can easily buy the land later but only if they able to give the bayana to that land in that fixed 5 hours. So, the <span class="highlights">Claimed users</span> will be given a second chance to buy the land and whoever able to give bayana to that land first in claimed users, only he/she be able to buy it. Can you imagine how awesome and handy it is. So, bayana process if fully offline process in which the claimed person who wanna give bayana, they have to click on <span class="highlights">Click to give bayana to this land</span> in their claim cart of product which they wanna buy then there will be click to contact the landbook to give bayana offline but this contact is really special and deal saver and is only be available if the timer for 5 hours do not ended. So, when you contact us, do you know who you are calling to give bayana offline ? <span class="highlights">Landbook query house</span> of that city and that tehsil in which the land is and also there is one thing that it can be handy only if you wanna guve bayana to land which is the you tehsil you were present on that day not other tehsil cause then you have to travel to that tehsil <span class="highlights">Landbook query house</span>. So, it's more like, if you're in Basti city's basti sadar tehsil and your claim cart product is in Lucknow city of it's tehsil, then, first you will be informed that your claimed product with minute details of it is in buying process by someone and if you not be able to give bayana in next 5 hours, then you'll not be able to give bayana to it for 72 hours and if the buyer able to give bayana to that land in his time which is 72 hours then you cannot be able to buy the land. So, at that point, if you are present at lucknow and in that tehsil, then you just have to first get the contact from <span class="highlights">Contact us to give bayana</span> from claim cart's <span class="highlights">Click to give bayana to this land</span>. Then, you will will be marked based on priority which is which claimed person of the land called first and gave Landbook his/her userId and based on that, if user1 called us first then he will get first prioritised and if user2 called us second then he will get second prioritised. So, user1 and user2 have to come to <span class="highlights">Landbook query house</span> in given 5 hours and don't worry this given 5 hours will be only between 8'o clock in the morning to 18'o clock in the evening. So on the priority, user2 came in <span class="highlights">Landbook query house</span> and user2 came second and sorry, but you'll have to wait for rest of the 5 hours to complete then claimed user can give bayana and user1's bayana will be prioritized first and user2's bayana can only be accepted if user1's bayana is wrong or user1 didn't came timely.
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('c')">
+      What does <span class="highlights">buying cart</span> means ?
+    </div>
+    <div id="c" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          What does <span class="logoInText">Buying cart</span> means ?
+        </div>
+        <div class="contents">
+        <div class="firstContent">
+          If you wanna buy a land fast and you got a land with your budget fit land then adding that particular land is your <span class="highlights2">Buying cart</span> is the perfect choice you should make.
+        </div>
+          <span class="highlights">Add to buying cart</span> offers you buying a land as quickly as possible but there is a <span class="highlights">not so big and not so small clause</span>in it which is 5 hours <span class="highlights">Claimed people</span> time which is when you select the land and in that product, you click the add to buying cart you have to give 5 hours to the <span class="highlights">Claimed people</span>. Its important because we can say that the claimed people saw it first but was unable to buy cause of their budget and they started collecting money for to buy the land in the light of that they will buy the land but if we do not give a  chance to claimed people, it will be not good and that is the purpose of <span class="highlights">Claim carting too</span>. It gives you a chance to buy the land you wanted to buy but wasn't able to buy it. But there a big clause in claim carting too which is, the claim customers have time of 5 hours only from when you or our buying user fill any of product's buying form...which is enough for ones who can buy the land and too short period for those who can't buy the land now too so the 5 hours is a balnced time for doer buyers and non doer buyers. So, then after the 5 hours time for claimed people end, <span class="highlights">the product will be added to buyer's buying cart but for temporary</span>. Because maybe the buyer is not a <span class="highlights">Doer buyer</span> and maybe he will not be able to buy the land so, after 5 hours of claimed people the product will be added to buyer user's buying cart temporary and a new timer for buyer buying cart bayana timer will be started for buyer only. But this timer is for giving the bayana for buyer user only, no priority and everything. In this given time the Buyer in which the buying product is that product will only be able to give bayana and the timer is 72 hours (3 days) which is enough for one to give bayana and buy the product later anytime. Giving bayana is same as always which user have to go to his profile or buying cart and if 5 hours timer ends then the product will automatically add to user's buying cart and the link to get to <span class="highlights">Contact to give bayana</span> will be visible. And when you contact us... you will be given instructions and methods to give bayana and everything by <span class="highlights2">Landbook query house</span> till buying the land and a <span class="highlights">Reminder</span>, the process of All bayana giving to Buying the land will be fully offline under <span class="highlights2">Landbook guidance</span> and if you want, then under your Lawyer too.
+        </div>
+
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('d')">
+      In how much time the <span class="highlights">buying product</span> will be added to my buying cart after filling buying form...
+    </div>
+    <div id="d" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          In how much time will the <span class="logoInText">Buying product</span> will be added to my <span class="logoInText">Buying cart</span> after filling buying form
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            <span class="highlights">It's 5 hours.</span>
+          </div>
+          The 5 hours is a balanced time for both buyers to buy and claim peoples to buy or not. Now look, for buyers it is enough time for to check the land by theirselves and although they can buy the land on the trust of landboook that we give. But the real reason for this 5 hours is for claimed people and you can see how 5 hours is much more helpful for claimed people in other help container(s). Then after the 5 hours time for claimed people end, <span class="highlights">the product will be added to buyer's buying cart but for temporary</span>. Because maybe the buyer is not a <span class="highlights">Doer buyer</span> and maybe he/she will not be able to buy the land so, after 5 hours of claimed people the product will be added to buyer user's buying cart temporary and a new timer for buyer buying cart bayana timer will be started for that buyer only. But this timer is for giving the bayana is only for buyer user only, no priority and everything. In this given time the Buyer in which the buying product is that product will only be able to give bayana and the timer is 72 hours (3 days) which is enough for one to give bayana and buy the product later anytime. Giving bayana is same as always in which user have to go to his profile or buying cart and if 5 hours claimed timer ended then the product will be automatically added to user's buying cart and the link to get to <span class="highlights">Contact to give bayana</span> will be visible. And when you contact us... you will be given instructions and methods to give bayana and everything by <span class="highlights2">Landbook query house</span> till buying the land and a <span class="highlights">Reminder</span>, the process of All bayana giving to Buying the land will be fully offline under <span class="highlights2">Landbook guidance</span> and if you want, then under your Lawyer too.
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('o')">
+      Why <span class="highlights"> <span class="logo">Landbook</span> Buying form filling</span> is necessary ?
+    </div>
+    <div id="o" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          Why <span class="logoInText"> <span class="logo">Landbook</span> Buying form filling</span> is necessary ?
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            There are <span class="highlights">major 3 reasons</span> on why buying filling necessary and why is it necessary for to fill the landbook buying form repeatedly one after another whenever any person wanna buy a particular land.
+          </div>
+          a. <span class="highlights2">Do you really wanna buy this land</span> = So, after doing some research recently  sometimes people can often just click the buy the product button even sometimes they don't wanna buy that product especially in amazon, flipcart and many other platform so the question raised can it happen in Landbook too? Yes, not surely but yes it can be possible because there is major reason that the buying things like payment or other things at Landbook is only done <span class="highlights">via offline</span> only because the payment for buying a land is always large and in terms of giving bayan payments, due to security reasons we also decided to make users to be able to give bayana <span class="highlights">via offline</span> only because then they will also get the confirmation that they are going to buy the land and they can also personally get the land details offline...so they can just give it a try but giving it a try can give all our claimed users a tension and they'll have to give it a chance if they wanna buy that land in just doing for fun. <br> b. <span class="highlights2">Give claim cart people time</span> = We think this is the kind of main reason in filling buying form repeatedly one by another for one by another land because when buying people fill the buying form then on that basis we can alert all our claimed users....and buying form can give you and us a time for initiating fast pace buying which only gives 72 hours for buying people to give bayana or to buy that land, but first in 72 hours after claimed time of 5 hours, the buying customers will have to necessarily have to give bayana for that land. It is necessary to give because then, our buying customers can have some more time to buy the land. <br> c. <span class="highlights2">Give time for buying person to understand full details broadly about the land, What claimed time means ? What claimed people is ? What does buying cart really means ?</span> = 5 hours is nearly kind of everything for someone if he/she is determined to buy a land or nothing, if we really look into it. So, 5 hours can give time to both us and buying user because lets say that if he/she do not know about what fast pace buying means at Landbook? It can be a problem right? So, buying form can give you and us a time for initiating fast pace buying which only give 72 hours for buying people to give bayana or to buy that land. One more thing we can say how 5 hours can be usefull for buying users? Lets <span class="highlights2">also</span> say that he missed to watch the youtube video that we provide at landbook.com of that land and he missed something from it then he get a 5 hours full time + if any claimed unable to  give the bayana then, in 72 hours you will get to know and not miss a single thing about that land through <span class="logo">Landbook</span>.
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('e')">
+      What does <span class="highlights">Add to claim cart</span> means ?
+    </div>
+    <div id="e" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          What does <span class="logoInText">Add to Claim cart</span> means ?
+        </div>
+        <div class="contents">
+        <div class="firstContent">
+          <span class="highlights">Claim cart</span> is is a special feature by <span class="logo">Landbook</span> that you cannot find anywhere else in the entire world and which is started first only by <span class="logo">Landbook</span>.           <span class="highlights">Claim cart</span> is really special feature <span class="logo">@Landbook</span> and can matters in buying a land most.
+        </div>
+          <span class="highlights">What it does ?</span> If a land is there in <span class="logo">Landbook</span> that a user of us fall in love with and wanna buy it.. but he/she didn't got enough money to buy but you think you can arrange the money for it. And then, there comes the <span class="highlights2">Claim cart feature</span>, in which you just have to click add to claim cart of the product then your account or you will be kind of attached to that product and whenever any of our customer would want to buy that land in near time or some times then you get a reserved 5 hours time as <span class="highlights">a second chance</span> in which if you able to give bayana in that given time then you can actually buy the land and here is a more pitch in it, which is, after claiming the land if you just forgot about the land that if the land is being bought by then also we will notify you when someone trying to buy the land or we can say if someone filled the buying form then also you will be notified that you have 5 hours second chance to buy the land you once loved and if you able to give bayana then you can buy the land and also can get a more time to buy the land after the bayana but the time for claimed people to give bayana is limited which is, You only got 5 hours time limited time to given bayana but don't worry, <span class="highlights2">Claimed people get the time only in between 8 in the morning to 6 at night</span> eg.. buying people can fill the buying form which initiate the claimed people time only in between 8 am to 1 pm to give bayana to claimed users which initiate timing of <span class="highlights2">5 hours only in between 8 AM to 6 PM.</span>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('f')">
+      How <span class="logo">Landbook</span> provide details about product ?
+    </div>
+    <div id="f" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          How <span class="logo">Landbook</span> provide <span class="logoInText">details about product</span>
+        </div>
+        <div class="contents">
+          you can see the any product's full details in lands full details page and users can trust us with eyes closed because if any any of the information in the khatauni specification detail gets wrong, you have full authority to complaint us on giving false information...on the land details...and believe it or not, this information is only openly given to users with assurance of not a false information because this is leading thing for user who wanna buy the land fast to get the information about the land in short time and can directly jump at the add to buying cart...which improvise the <span class="highlights">speedy process of buying land through Landbook.</span>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('g')">
+      How can i trust the <span class="logo">Landbook</span> bayana specification that it is correct ?
+    </div>
+    <div id="g" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          How can i trust the <span class="logoInText">Bayana specification details</span> that it is correct ?
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            <span class="highlights">First things first</span>, <span class="highlights2">you don't have to forcely trust on us blindly</span> if you wanna buy a land in slow process or fast process either.
+          </div>
+            If you don't trust on us, You can just first download the khatauni images and you can check all the khatauni details that if it is true or not related to khatauni specification by yourself. If not, then if you found when checking the khatauni papers and get to know that the specification is wrong or incorrect, You can first take your lumps back and you can complaint to us on the basis of giving incorrect information. But we can asssure you that the all khatauni specification details are correct and if any user wanna buy the the land in fast pace then you can blindly trust on us because <span class="highlights"><span class="logo">Landbook</span> priority goal is our customer's trust</span> and for that we can fully asssure you and below you can download the assurance by Landbook on Landbook khatauni specification details too.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('h')">
+      Can we trust <span class="logo">Landbook</span> ?
+    </div>
+    <div id="h" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          Can i trust on <span class="logoInText">Landbook</span> ?
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            <span class="highlights">First things first</span>, <span class="highlights2">you don't have to forcely trust on us blindly</span> if you wanna buy a land in slow process or fast process either.
+          </div>
+            There are many things <span class="logo">@ Landbook</span> on which users can trust. So, can they really have to trust on us ? The answer is no. Look, we'll explain you step by step. <br>
+            Let's take a look at a particular product that is at <span class="logo">Landbook</span> and you get a thought that, <span class="highlights2">how can i know the land is real or not</span>? So, answer is in exploring the details about the product first which is, user can click on the particular product and get to the <span class="highlights">Landbook full details page</span> where there is an option of <span class="highlights">Download khatauni images of land</span> and when user click on it, it will downlod the land's khatauni pages, which user can check by themselves with their lawyer too. So, in this way, To trust on us, you can check about the land is real or not by yourself and then you can pick whether to trust on <span class="logo">Landbook</span> or not. <br>
+            Now, Let's take a look at next which is <span class="highlights2">How can i know that the land i will buy through Landbook will really be bought not fake bought</span>? So, in here too, you don't have to trust on us blindly. First of all, in all landbook bayana giving, landbook buying land, <span class="highlights">the process of payment at Landbook is all offline only</span>. When our customers wanna give bayana to a particular land they can come to the land's tehsil's <span class="highlights">Landbook query house</span> with their lawyer too and give payment with full details about why payment is being made and with many other instructions too. They don't have to trust on us blindly. And when in buying process of a particular land, which is signing the papers to buy the land, You can come to that land's tehsil's <span class="highlights">Landbook query house</span> with your lawyer there and our buying users with their lawyer(s) can verify the buying papers, if it is real or not or if the land is actually will be bought by the buyer.
+          <div class="secondContent">
+            So, the final conclusion is that, the <span class="highlights2">payment</span> you were afraid that it will be real or not in buying the land or giving bayana to that particular land is fully offline and will only be done is that land's tehsil's <span class="highlights">Landbook query house</span> which they can also check with their lawyer(s) too. About the <span class="highlights2">Land details is real or not</span>? user's can download the khatauni images manually and check it by themselves and their lawyer too. And after all that, you can choose or pick whether to trust on our customer service or not? <span class="highlights">It's up to you.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('i')">
+      How we get the right product by <span class="logo">Landbook</span> ?
+    </div>
+    <div id="i" class="post-section">
+      <div class = "post-card help-content">
+        <div class="titles">
+          How we get the right product through <span class="logo">Landbook</span>
+        </div>
+        <div class="contents">
+          <div class="firstContent">
+            landbook gives many <span class="highlights">impressing features</span> to its users in buying and selling products. But let's take a look at <span class="highlights2">Buying a land features</span>.
+          </div>
+            In among the many features at <span class="highlights">buying a land through <span class="logo">Landbook</span></span>, lets get to the 6 major features in which first is <br>
+            <b>First</b>. <span class="highlights2">Speedy</span> = If you really wanna buy a land fast, then you came to the right platform. <span class="highlights">First</span>, let's say you wanna buy a land which should be in your tehsil only. So you have to first go to <span class="logo">Landbook</span> main home page then select the desired city and when clicking on the city, a dropdown container will open with different tehsils of that city. Click on desired tehsi, then everywhere you go from all products page to your claim cart page to your buying cart page, you will find products which only in that tehsil that you selected at the main home page. No confusions, that is this land in your tehsil or not or checking for that tehsil etc but only when you don't touch the filter's (sort by) in anywhere in <span class="logo">Landbook</span>. <br> 
+            <b>Second</b>. <span class="highlights2">Claim carting</span> = This is really special feature and matters great in buying a land. What it does is, if a land is there in <span class="logo">Landbook</span> that you fall in love with and wanna buy it.. but you didn't got the enough money to buy but you think you can arrange the money for it, and there comes the claim cart feature...in which you just have to click add to claim cart then your account or you will be kind of attached to that product and whenever any of our customer would want to buy that land in near time or some times then you get a reserved 5 hours time in which if you able to give bayana in given time then that land will halfly becomes yours and bayana users can actually buy the land and here is a more pitch in it which is after claiming the land if you just forgot about the land that if the land is being bought by then also we will notify you that someone is trying to buy the land or we can say if someone filled the buying form then also you will be notified that you have next 5 hours second chance to buy the land you once loved then if you able to give bayana then you can buy the land and can get a more time to buy the land after the bayana but the time for claimed people to give bayana is limited eg. You only get 5 hours time to given bayana but don't worry you get the time which will only be in between 8 am in the morning 6 pm at night eg. buying people can able to fill the buying form between 8 am in the morning to 1pm in the afternoon which initiate the claimed people time only in between 8 am to 6 pm which initiates timing of 5 hours. <br>
+            <b>Third</b>. There is this <span class="highlights2"><b>Search lands through map</b></span> which is first time in the whole world to be able to give you option to search lands through google maps in your phone or PC through <span class="logo">Landbook and Google maps collaboration</span>...which offers you different cluster(s) of markers of lands based of lands in different-different areas and when click or zoom in it, the cluster changes to different markers and these markers are basically lands. To view the lands you just have to click on marker then a popup will open and there will be minute details of the product at that location and there will be a link which when clicked by user they will be directed to the land full details...page.. <span class="highlights">isn't it awesome ?</span> <br>
+            <b> Fourth </b><span class="highlights2">Khatauni specification details</span> ...you can see the khatauni details of a land in lands full details page and vishwas kar sakte hain with eyes closed because if any anyt of the information gets wrong you have full authority to complaint us on the giving false information...on the land details...and believe it or not this information is only openly given to users with assurance of not a false information because this is leading thing for user to get the information about the zameen in short time and can directly jump at the add to buying cart...and it improvise the speedy process of <span class="logo">Landbook</span>. <br>
+            <b>Fifth </b>. <span class="highlights2">Searching lands of your tehsil easily</span> and this is also unique in its own way...look first if you wanna buy a land in your tehsil then you have to search for that tehsil in search page but landbook gives you not only two but <span class="highlights">three easy ways in searching lands according to a tehsil or city</span> eg. At main home page there should be an option of your city if <span class="logo">landbook</span> is in that city like, if you want a land in basti city then there should be basti in among the all cities in the main home page then you click on that city then a dropdown will be open and there you can select the tehsil in which you wanna buy a land then after that all pages will be in the tehsil you selected...didn't got what i said ... Look, after selecting tehsil at main home page, then if you get to the all <span class="highlights">Landbook products page</span> then all products will be only of that tehsil you selected and also, if you claim a land then when you get to your claim cart page, only lands of that tehsil you selected earlier only will be there even if you claimed lands of other tehsil or city too but at that moment only claimed land of that tehsil land will be there at first. But offcourse, there is filter(sort by) option is available by <span class="logo">landbook</span> in all <span class="highlights">Landbook products page</span> and there is also search options but this feature will allow you confidence that if you select the tehsil at first at <span class="logo">Landbook</span> main home page then to everywhere there will be products in a. Landbook products page b. Landbook claim cart page c. Landbook buying cart page. so that you will be confirmed that everywhere you see a land will be of that tehsil so that you don't have to see about where the land is... but only if you don't touch the city and tehsil filter in anywhere in the <span class="logo">Landbook</span>. <br>
+            <b>Sixth</b>. <span class="highlights2">Asta(8) rule of <span class="logo">Landbook</span></span> .. so the asta rule of <span class="logo">Landbook</span> is more like a kind of assurance by which we assure you that if you see the lands through <span class="logo">Landbook</span> and see the 8 things <span class="highlights">(asta)</span> of land that we gave you in land details page then you will be able to know nearly 98% percent of the lands in which 2% is the information about the owner of the land...which is not given... <span class="highlights">so what does asta includes ?</span> ...the first five images of the individual land + 1 360° view image of that land + <span><a href="" class="contentLinks">Badnaam image</a></span> + Khatauni images of that land... and they will take care of the rest....
+        </div>
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('j')">
+      How can be buy zameens through <span class="logo">Landbook</span> fast ?
+    </div>
+    <div id="j" class="post-section">
+      <div class = "post-card help-content">
+        this is toggled
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('k')">
+      In what ways <span class="logo">Landbook</span> solve problems ?
+    </div>
+    <div id="k" class="post-section">
+      <div class = "post-card help-content">
+        this is toggled
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('p')">
+      What is <span class="highlights">Landbook Message</span> in <span class="logo">Landbook</span> ?
+    </div>
+    <div id="p" class="post-section">
+      <div class = "post-card help-content">
+        this is toggled
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('l')">
+      How to contact <span class="logo">Landbook</span> <span class="highlight">Query house</span>
+    </div>
+    <div id="l" class="post-section">
+      <div class = "post-card help-content">
+        this is toggled
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers help-item">
+    <div class="toggle-button help-title" onclick="toggleView('m')">
+      What does <span class="logo">Landbook</span> stands ?
+    </div>
+    <div id="m" class="post-section">
+      <div class = "post-card help-content">
+        this is toggled
+      </div>
+    </div>
+  </div> 
+
+
+  <div class="containers">
+    <div class="toggle-button help-title" onclick="toggleView('n')">
+      What does <span class="logo">Landbook</span> do ?
+    </div>
+    <div id="n" class="post-section">
+      <div class = "post-card help-content">
+        this is toggled
+      </div>
+    </div>
+  </div> 
+
+
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="pageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+
+
+
+
+  <script>
+    let openSection = null;
+    function toggleView(id) {
+      const section = document.getElementById(id);
+
+      if(openSection && openSection !== section) {
+        openSection.classList.remove('open');
+      }
+
+      if(section.classList.contains('open')) {
+        section.classList.remove('open');
+        openSection = null;
+      } else {
+        section.classList.add('open');
+        openSection = section;
+      }
+    }
+
+    function searchHelp() {
+      const input = document.getElementById('searchBox').value.toLowerCase();
+      const helpItems = document.querySelectorAll('.help-item');
+
+      helpItems.forEach(item => {
+        const title = item.querySelector('.help-title').textContent.toLowerCase();
+        if(title.includes(input)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    window.onload = () => {
+      const helpItems = document.querySelectorAll('.container');
+      helpItems.forEach(item => item.style.display = 'none');
+    }
+  </script>
+
+</body>
+</html>

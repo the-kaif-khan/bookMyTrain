@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selling form page</title>
+
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/selling-form-footer-page.css">
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/selling-form-header-page.css">
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/selling-form-main-page.css">
+  <link rel="stylesheet" href="/stylesheets/sellingPagesCSS/compress-css.css">
+
+</head>
+<body>
+  
+      <!-- header -->
+      <div class="header">
+        <div class="headerLogo">
+          <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+        </div>
+        <div class="headerText">
+          Landbook. Preview Of Zameens
+        </div>
+      </div>
+    
+        <!-- navigations -->
+        <div class="navigationsBox">
+          <a href="/home/sell/<%= city %>/<%= tehsil %>" class="links">
+            <div class="navLinks">
+              Previous Page
+            </div>
+          </a>
+          <a href="" class="links">
+            <div class="navLinks">
+              Help
+            </div>
+          </a>
+        </div>
+
+        <% if(error.length > 0) { %>
+          <div class="flash flash-error">
+            <%= error %>
+          </div>
+        <% } %>
+        <% if(success.length > 0) { %>
+          <div class="flash flash-success">
+            <%= success %>
+          </div>
+        <% } %>
+        
+        <!-- form code -->
+        <div class="formHeading">
+          <div class="wanna">
+            Before selling your zameen, Wanna see <a href="/sell/preview/<%= city %>/<%= tehsil %>" class="preview">preview</a> to what zameens look like on our page?
+          </div>
+          <div class="formMiddleHeading">
+          To sell a zameen, you'll have to provide us some information by filling this form and giving us your Khatauni document image, then we'll verify your documents, then we'll provide you our Camera Man's phone number in Selling Cart, also on number you will provide us through this form. Then, our Cameraman will contact you for your zameen pictures and its address where he will inspect all the information around your zameen manually and in no more than 2 days, your zameen will be part of zameens with fastest zameen selling platform eg. <span>Landbook.com</span>. And what's more every payment of either when user is buying a land or selling a land, the selling user <span>get payment of selling their land offline only</span> also the buying land user can only give land price <span>offline only</span> under Landbook.com proper guidance at <span class="highlight">Landbook Query house</span> which is available in every tehsil in which the land is being sold or bought through <span>Landbook.com</span> when land is actually bought and selling user actually sell the land
+          </div>
+
+          <div class="note">
+            <b>Note</b>: Selling users of Landbook can only be able to fill the selling form when they enter compressed image which sizes not more that 5mb. So, The selling users should first click the Khatauni images by themselves through their mobile phones or other, and then come to selling form page compress those Khatauni images below via entering all the khatauni images of your land and then download the compressed and zip version of your all khatauni images and then, go to fill the <span class="highlights">Landbook selling form page</span> below and in place of <b>Enter Compressed Khatauni images of your land</b>, Enter this downloaded Compressed image of your khatauni image. Without compressing, your selling form cannot be submitted.
+          </div>
+
+          <h2>Compress and Download Your Images</h2>
+          <div class="form">
+            <form id="compressForm" enctype="multipart/form-data" method="POST" action="/home/compress-images">
+              <input type="file" name="images" accept="image/*" multiple required class="inputs">
+              <button type="submit" class="submit-button">Compress & Download ZIP</button>
+            </form>
+          </div>
+
+          <div class="formFinalHeading">
+            So, Kindly fill this form in order to sell your zameen with no false information!
+          </div>
+        </div>
+        
+        <!-- form of selling -->
+        <div class="sellingForm">
+          <div class="sellingFormHeading">
+            Selling Form
+          </div>
+  
+          <form action="/sell/creatingsellingform/<%= city %>/<%= tehsil %>" method="post" enctype="multipart/form-data">
+  
+            <!-- <div class="naming">
+              <div>Name:* </div> <input type="text" placeholder="Your Name" name="name" required class="name">
+            </div> -->
+            <div class="mobileNumber">
+               Mobile Number:* <input type="number" placeholder="Your Mobile Number" name="contactNumber" required class="number">
+            </div>
+            <div class="mobileNumber">
+              Price* :* <input type="number" placeholder="Enter price in lakhs eg. 34, 40" name="sellerPrice" step="any" required class="number">
+              <div class="note">
+                <b>Note: </b>Enter the Price* on which you want to sell this land. Once you becomes seller and your product get on the Landbook, you can edit the price later from your profile easily. But <b>Remember</b>, if a buyer add your product in his/her buying cart, then you cannot be able to change the price and you have to sell the land at that exact price. Also in entering the price, seller can only give values in lakhs only. For ex- if seller want to sell a land in 34.50 lakhs then type only 34.50. If the price is in Crores then also sellers have to write the value in lakhs only. For ex- if seller wants to sell a land in 1.34 crores then he/she should write it as = 134. which will be 134 lakhs which is 1.34 crores.
+              </div>
+           </div>
+            <!-- <div class="emailContainer">
+              Your Email:* <input type="email" placeholder="abc@gmail.com" name="email" required class="email">
+            </div> -->
+            <div class="khatauniContainer">
+              Enter compressed khatauni images of your zameen:* <input type="file" multiple accept=".zip" name="compressedKhatauniFile" required class="khatauni">
+            </div>
+            <div class="mobileNumber">
+              Earlier Selected City: <input type="text" placeholder="Your Mobile Number" disabled value="<%= city %>" class="number">
+            </div>
+            <div class="mobileNumber">
+              Choose zameen's tehsil:* 
+              <select name="city" id="ChooseCity" class="chooseCity" required>
+                <option value="">Select tehsil of your zameen</option>
+                <% if(gotCityTehsils) { %>
+                  <% gotCityTehsils.tehsils.forEach((gotCityTehsil) => { %>
+                    <option value="<%= gotCityTehsil %>"><%= gotCityTehsil %></option>
+                  <% }) %>
+                <% } %>
+              </select>
+            </div>
+            <div class="mobileNumber">
+              Your zameen address:* <input type="textarea" placeholder="Enter your zameen address" name="address" required class="address" class="address">
+              <input type="text" name="khatauniSpecDetails" hidden>
+            </div>
+            <input type="reset" class="resetButton">
+            <input type="submit" class="submitButton">
+  
+          </form>
+        </div>
+  
+      <!-- footer container -->
+      <footer>
+  
+        <div class="aboutThisPage">
+          <div class="pageLanguage">
+            <div class="languageImage">
+              <img src="/imagesAndVideos//imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+            </div>
+            <div class="languageText">
+              English
+            </div>  
+          </div>
+    
+          <div class="aboutCountry">
+            <div class="aboutCountryImage">
+              <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+            </div>
+            <div class="aboutCountryText">
+              India
+            </div>
+          </div>
+        </div>
+    
+        <div class="aboutCompany">
+          <div class="companyConditions aboutCompanyTexts">
+            Conditions of Use
+          </div>
+          <div class="companyPrivacyPolicy aboutCompanyTexts">
+            Privacy Notice
+          </div>
+          <div class="aboutAdvertising aboutCompanyTexts">
+            Interest-Based Ads
+          </div>
+        </div>
+    
+        <div class="companyCopywrite">
+          .c. 1996-2024, Landbook.com, Inc. and its affiliates
+        </div>
+    
+      </footer>
+
+</body>
+</html>
