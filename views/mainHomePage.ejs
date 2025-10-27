@@ -25,7 +25,11 @@
         &#9776
       </button>
       <div class="hamburgerNotification">
-        3
+        <% if (currentUser) { %>
+          <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length%>
+        <% } else { %>
+          0
+        <% } %>
       </div>
       <div class="headerContent">
         <div class="middleHeader">
@@ -90,7 +94,11 @@
               </button> 
             </a>
             <div class="profileNotification">
-              3
+              <% if (currentUser) { %>
+                <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length%>
+              <% } else { %>
+                0
+              <% } %>
             </div>
           </div>
         </div>
@@ -133,7 +141,11 @@
             </button> 
           </a>
           <div class="profileNotification">
-            3
+            <% if (currentUser) { %>
+              <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length%>
+            <% } else { %>
+              0
+            <% } %>
           </div>
         </div>
       </div>
