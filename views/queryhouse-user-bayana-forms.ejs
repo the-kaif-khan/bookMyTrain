@@ -121,6 +121,21 @@
                   </div>
                 </div>
 
+                <div class="sellerDetails">
+                  <div class="details">
+                    Seller Name: <b><%= bCartTimers.productSeller[0].name %></b>
+                  </div>
+                  <div class="details">
+                    Seller username: <b><%= bCartTimers.productSeller[0].username %></b>
+                  </div>
+                  <div class="details">
+                    Seller email: <b><%= bCartTimers.productSeller[0].email %></b>
+                  </div>
+                  <div class="details">
+                    Seller Contact Number: <b><%= bCartTimers.productSeller[0].contactNumber %></b>
+                  </div>
+                </div>
+
                 <% if(bCartTimers.buyingFormId.length > 0 && !bCartTimers.bayana) { %>
                   <div class="timerTitle">
                     Time left for claimed people to give Bayana to this land

@@ -12,6 +12,22 @@
   <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-sidebar.css">
 
   <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-recommended-products.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-advertising-products-css.css">
+
+          <!-- google translate hidden element (head) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,bn,ur,ta,te,pa,gu,ml,mr,it',
+      autoDisplay: false,
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 <body>
   
@@ -19,11 +35,18 @@
   <!-- hamburger starts -->
   <nav class="main-navbar">
     <div class="leftHeader">
-      <a href="/home/<%= city %>/<%= tehsil %>"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+      <a href="/home/<%= city %>/<%= tehsil %>"><img src="/imagesAndVideos/Logos/LOGO/banner2.png" alt=""></a>
     </div>
     <button class="hamburger" onclick="toggleSidebar()">
       &#9776
     </button>
+    <div class="hamburgerNotification">
+      <% if(currentUser) { %>
+        <%= currentUser.claimCart.length %>
+      <% } else {
+        0
+      } %>
+    </div>
     <div class="headerContent">
       <div class="middleHeader">
         <form action="/home/search/<%= city %>/<%= tehsil %>" method="GET">
@@ -34,7 +57,7 @@
               Search
             </div>
           </button>
-          <button class="voiceButton">
+          <button class="voiceButton" id="micBtnMain">
             <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
               <div class="tooltip">
                 Search with your voice
@@ -51,7 +74,7 @@
             Your Location
           </div>
         </div>
-        <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+        <a href="/buy/claimcart/products/<%= city %>/<%= tehsil %>">
           <div class="cartIcon">
             <button class="cartButton"> 
               <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
@@ -87,7 +110,7 @@
       <button class="close-btn" onclick="toggleSidebar()">
         &times;
       </button>
-      <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+      <a href="/buy/claimcart/products/<%= city %>/<%= tehsil %>">
         <div class="cartIcon">
           <button class="cartButton"> 
             <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
@@ -125,12 +148,79 @@
           </div>
         </button>
       </form>
-      <button class="voiceButton" id="micBtn">
+      <button class="voiceButton" id="micBtnSide">
         <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
         <div class="sideTooltip">
           Search with your voice
         </div>
       </button>
+    </div>
+    <div class="sideAdvertisingContainer">
+      <div class="scrolling-text">
+        🎬 Landbook — The Easiest Way to Buy and Sell Land From Home...
+          Welcome to Landbook — the easiest, fastest, and most transparent way to buy and sell land right from your home.
+
+          Let’s start with how simple it is to sell your land on Landbook.
+          ---
+
+          🏠 Selling Land on Landbook
+
+            All you have to do is:
+            1. Go to the main homepage. Image
+
+            2. Select your city and tehsil. Image
+
+            3. Head to the Selling Form page. Image
+
+            4. Fill in some basic details — your price, seller info, and upload khatauni images of your land.
+
+            5. Submit the form… and that’s it!
+
+            Once submitted, Landbook will verify your khatauni and, within next 10 hours, send a Landbook Cameraman to your location.
+            The cameraman will capture detailed images and important nearby landmarks to make your property listing stand out. Video of cameraman clicking pictures. After verification, your land goes live on Landbook — ready for buyers all across the country to see! A site with landbook logo with land image with some texts about it  on that website ---
+
+          🌍 Buying Land on Landbook
+            Buying is just as easy — and smarter than ever before.
+            You can search for land in five powerful ways:
+            1. 🗺️ Through Google Maps, where you can find properties directly on the map near you.
+
+            2. 🔍 Using the Search Bar, type names like “Awaas Vikas” — and instantly see all lands near that location.
+            3. 🔍 Using the Voice search, ask names like “Awaas Vikas” — and instantly see all lands near that location.
+
+            4. 🏡 By exploring the Sell Main Page, browsing cities and tehsils manually.
+
+            5. 🎯 And through Filters, where you can search by max price, rating, city, and tehsil. ---
+
+          💰 Buying Options
+            Now, when you find your perfect land, Landbook gives you two smart buying options:
+            1️⃣ Claim Cart
+              If you’ve found a land that’s perfect but you’re not ready yet, just Add it to your Claim Cart.
+              That means you’re interested — and if someone else tries to buy that same land, Landbook will notify you.
+              Also, You’ll get 6 to 7 hours to give your bayana (token money) and secure that land.
+              To do this, you’ll fill a simple Bayana Form on the Landbook website, then visit the land's tehsil’s Landbook Queryhouse to pay manually.
+              ⚠️ No online payments are made through Landbook — everything is handled safely and directly to avoid any fraud.
+              If you complete your bayana within your time, the land is yours!
+              Otherwise, it moves to the next interested buyer. Users can know more about what claim cart really is in help page of Landbook. ---
+            2️⃣ Buy Within 72 Hours
+              If you’re serious and ready to buy fast — this is your option.
+              Click on Buy Within 72 Hours, fill out the buying form, and Landbook will first give any claimed users their 6 to 7 hours to act.
+              If no one claims it, your 65-hour fast pace buying window begins!
+              Within this period, you just need to visit your Landbook Queryhouse, give your bayana manually, and the land is reserved in your name.
+              From there, Landbook takes care of everything — from lawyer arrangements to khatauni work to final registration.
+              The Landbook price already includes all costs from seller price to land registration, 2.3% landbook convenience cost — no hidden fees, no extra payments.
+              You pay directly to Landbook Queryhouse, and Landbook ensures your seller gets their payment and your land is officially transferred to your name.
+              Just like how a broker works — but safer, faster, and smarter.---
+          🌟 In Short
+          Landbook brings the entire land market online —
+          from listing to verification,
+          from buying to signing,
+          without the stress, confusion, or risk of fraud.
+
+          Sell your land from home.
+          Buy your dream property from anywhere.
+          All verified, all transparent — only on Landbook.
+          “Landbook — Buy and sell your land, fast and secure.” 🌍🏡
+      </div>
     </div>
   </div> 
 
@@ -203,7 +293,7 @@
               <%= tehsil %> main page
           </div>
         </a>
-        <a href="/buy/buyingcart/products/filter/<%= city %>/<%= tehsil %>" class="links">
+        <a href="/buy/buyingcart/products/<%= city %>/<%= tehsil %>" class="links">
           <div class="cartIconSidebar sidebarContents">
             <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
             Buying Cart
@@ -305,7 +395,7 @@
                   Claimed: <%= product.claimedPeople.length %>
                 </div>
                 <div class="productVisits">
-                  Visits: <%= product.visits.length %>
+                  Visits: <%= product.visits %>
                 </div>
               </div>
               <div class="mainPrice">
@@ -316,13 +406,21 @@
                   LB = <%= product.LB %>
                 </div>
                 <div class="productLengthAndBreadthDabba" onclick="window.location.href='/home/download-badnaam-image/<%= product._id %>'">
-                  Download Badnaam image of zameen
+                  Download Badnaam image of land
                 </div>
                 <div class="productLengthAndBreadthDabba" id="lbImages">
                   Download all Khatauni images zip
                 </div>
               </div>
   
+              <div class="khatauniSpecDetails">
+                This land is fully verified in terms of <span class="underline">khatauni</span>, <span class="underline">land's length and breadth (LB)</span>, <span class="underline">land's area</span> and is <span class="underline">not under any matbhed</span>. Download upper given Khatauni images of this land to see full verified documents of this land by Landbook ✅.
+              </div>
+
+              <% if(product.lat && product.lng) { %>
+                <button id="getDirectionsBtn" class="getDirectionsBtn">Get directions to the land</button>
+              <% } %>
+
               <div class="whyDetails">
                 <div class="whyDetailsHead">
                   Why should you buy...
@@ -361,14 +459,75 @@
                   </button>
                 </a>
               </div>
+              <div class="video-title">
+                Land video tour
+              </div>
+              <% if(product.youtubeLink) { %>
+                <div class="video-container">
+                  <iframe src="<%= product.youtubeLink.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/') %>" title="Land youtube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              <% } else { %>
+                <p>No video available for this land yet.</p>
+              <% } %>
+              
               <div class="advertisingDabba">
-                Advertising
+                advertising
               </div>
             </div>
   
-              <!-- fourth advertising section in main body -->
+            <!-- fourth advertising section in main body -->
             <div class="advertisingInMainBodyContainer">
-              advertising
+              <% if(topProduct) { %>
+                <div class="advertisingProductsContainer">
+                  <a href="/buy/viewproduct/<%= topProduct._id %>/<%= topProduct.city %>/<%= topProduct.tehsil %>" class="productLink">
+                    <div id = "<%= topProduct._id %>">
+                      <div class="productsImage">
+                        <img src= "data:image/jpeg;base64, <%= topProduct.productImages[0].toString('base64') %>" alt="product image">
+                      </div>
+                      <div class="productsPriceAndLB">
+                        <div class= "productsPrice">
+                          Price: <span class="originalPrice">
+                            <%= topProduct.brokerPrice.toFixed(2) %>
+                          </span> <span class="price">
+                            <%= topProduct.landbookPrice.toFixed(2) %>
+                          </span> Lakhs.
+                        </div>
+                        <div class= "adProductsLB">
+                          L * B: <%= topProduct.LB %>
+                        </div>
+                      </div>
+                      <!-- <div class="productsSpec">
+                        <ul>
+                          <% topProduct.spec.forEach((list) => { %>
+                            <li><%= list %></li>
+                          <% }); %>
+                        </ul>
+                      </div> -->
+                      <div class="productsStats">
+                        <div class="productsVisit">
+                          Times Visited: <%= topProduct.visits %> &#183
+                        </div>
+                        <div class="productsRating">
+                          <img src= "data:image/jpeg;base64, <%= topProduct.ratingImage.toString('base64') %>">
+                        </div>
+                        <div class="productsClaim">
+                          Claimed: <%= topProduct.claimedPeople.length %> &#183
+                        </div>
+                      </div>
+                      <!-- <div>
+                        <a href="/buy/addtoclaim/<%= product._id %>/<%= city %>/<%= tehsil %>" class="productLink">
+                          <button class= "claimToCartButton js-claim-to-cart"> 
+                            Add to Claim Cart
+                          </button>
+                        </a> 
+                      </div> -->
+                    </div>
+                  </a>
+                </div>
+              <% } else { %>
+                <div class="noProduct">
+                </div>
+              <% } %>
             </div>
           </div>
 
@@ -436,7 +595,7 @@
         <div class="aboutThisPage">
           <div class="aboutThisPageLanguage">
             <div class="languageImage">
-              <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+              🌐
             </div>
             <div class="languageText">
               English
@@ -445,7 +604,7 @@
     
           <div class="aboutCountry">
             <div class="aboutCountryImage">
-              <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+              <img src="/imagesAndVideos/images/1f1ee-1f1f3.png" alt="">
             </div>
             <div class="aboutCountryText">
               India
@@ -495,7 +654,219 @@
         function toggleSidebar() {
           document.getElementById('sidebar').classList.toggle('active');
         }
+
+        // for get directions
+        const productLat = <%= product.lat %>;
+        const productLng = <%= product.lng %>;
+        document.getElementById('getDirectionsBtn').addEventListener('click', () => {
+          if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+              const userLat = position.coords.latitude;
+              const userLng = position.coords.longitude;
+              const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${productLat},${productLng}&travelmode=driving`;
+
+              window.open(mapsUrl, '_blank');
+            }, (error) => {
+              alert('Location access denied or unavailable.');
+              console.error(error);
+            });
+          } else {
+            alert('Geolocation is not supported by this browser.');
+          }
+        });
+
+
+        // voice search starts
+(() => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return;
+
+  // 🎤 Get both mic buttons and the search input
+  const micBtnMain = document.getElementById('micBtnMain');
+  const micBtnSide = document.getElementById('micBtnSide');
+  const inputBox = document.querySelector('input[name="q"]');
+
+  // Create recognition instance
+  const recog = new SpeechRecognition();
+  recog.interimResults = false;
+  recog.maxAlternatives = 1;
+
+  // 🔤 Map languages for speech recognition
+  const langMap = {
+    en: 'en-US',
+    hi: 'hi-IN',
+    bn: 'bn-IN',
+    ur: 'ur-PK',
+    ta: 'ta-IN',
+    te: 'te-IN',
+    pa: 'pa-IN'
+  };
+
+  // Function to get the currently selected language
+  function getCurrentLang() {
+    const mainSel = document.getElementById('languageSelectMain');
+    const sideSel = document.getElementById('languageSelectSidebar');
+    const selected =
+      (mainSel && mainSel.value) ||
+      (sideSel && sideSel.value) ||
+      'en'; // fallback
+    return langMap[selected] || 'en-US';
+  }
+
+  // Function to start recognition
+  function startRecognition(activeBtn) {
+    recog.lang = getCurrentLang();
+    const tooltip = activeBtn.querySelector('.tooltip');
+    if (tooltip) tooltip.textContent = 'Listening...';
+    recog.activeBtn = activeBtn;
+    recog.start();
+  }
+
+  // 🖱️ Click listeners for both mic buttons
+  if (micBtnMain) micBtnMain.addEventListener('click', () => startRecognition(micBtnMain));
+  if (micBtnSide) micBtnSide.addEventListener('click', () => startRecognition(micBtnSide));
+
+  // 🎧 When recognition gives a result
+  recog.addEventListener('result', e => {
+    const transcript = e.results[0][0].transcript.trim();
+    inputBox.value = transcript;
+    inputBox.form?.requestSubmit(); // submit the search form automatically
+  });
+
+  // 🎤 Reset tooltip after recognition ends
+  recog.addEventListener('end', () => {
+    [micBtnMain, micBtnSide].forEach(btn => {
+      if (!btn) return;
+      const tooltip = btn.querySelector('.tooltip');
+      if (tooltip) tooltip.textContent = 'Search with your voice';
+    });
+  });
+})();
+// voice search ends
+
       </script>
+
+
+  <select id="languageSelect language-select">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="ur">اردو</option>
+    <option value="ta">தமிழ்</option>
+    <option value="te">తెలుగు</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="ml">മലയാളം</option>
+    <option value="mr">मराठी</option>
+    <option value="it">Italiano</option>
+  </select>
+
+
+  <script>
+  (function() {
+const SELECT_ID = 'languageSelect';
+const STORAGE_KEY = 'preferredLanguage';
+const defaultSourceLang = 'en';
+
+function setCookie(name, value, days, path = '/') {
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=${path}`;
+}
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+// Extract target language from googtrans cookie ("/en/hi" → "hi")
+function currentLangFromCookie() {
+  const c = getCookie('googtrans');
+  if (!c) return defaultSourceLang;
+  const parts = c.split('/');
+  return parts[2] || defaultSourceLang;
+}
+
+function trySetComboLang(lang) {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    if (combo.value !== lang) {
+      combo.value = lang;
+      combo.dispatchEvent(new Event('change'));
+      console.log('Translate combo switched →', lang);
+    } else {
+      console.log('Language already active →', lang);
+    }
+    return true;
+  }
+  return false;
+}
+
+function fallbackSetLang(lang) {
+  try {
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    window.location.reload();
+  } catch (e) {
+    console.error('fallbackSetLang error', e);
+  }
+}
+
+function setLanguage(lang) {
+  localStorage.setItem(STORAGE_KEY, lang);
+
+  // prevent loop if already same language
+  const current = currentLangFromCookie();
+  if (current === lang) {
+    console.log('Skip re-translate (already', lang, ')');
+    return;
+  }
+
+  let attempts = 0;
+  const maxAttempts = 25;
+  const interval = setInterval(() => {
+    attempts++;
+    const done = trySetComboLang(lang);
+    if (done) {
+      clearInterval(interval);
+      return;
+    }
+    if (attempts >= maxAttempts) {
+      clearInterval(interval);
+      console.warn('Combo not found, fallback to cookie');
+      fallbackSetLang(lang);
+    }
+  }, 100);
+}
+
+function initSelector() {
+  const sel = document.getElementById(SELECT_ID);
+  if (!sel) return;
+
+  // restore saved
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    sel.value = saved;
+    const current = currentLangFromCookie();
+    if (current !== saved) {
+      setLanguage(saved);
+    }
+  }
+
+  sel.addEventListener('change', function() {
+    const lang = this.value;
+    setLanguage(lang);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSelector);
+} else {
+  initSelector();
+}
+})()
+
+  </script>
 
 </body>
 </html>

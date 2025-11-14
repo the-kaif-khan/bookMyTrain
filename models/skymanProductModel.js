@@ -27,7 +27,10 @@ const skymanProductSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  productFolderName: String,
+  productFolderName: {
+    type: Number,
+    unique: true
+  },
   contactNumber: Number,
   tehsil: String,
   badnaamSpec: String,

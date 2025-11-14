@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const { log } = require('console');
 const isLoggedIn = require('../middlewares/isLoggedIn');
+const isLoggedInForCart = require('../middlewares/isLoggedInForCart.js');
 const userModel = require('../models/userModel');
 const landbookersModel = require('../models/landbookersModel');
 const sellingFormModel = require('../models/sellingFormModel');
@@ -25,6 +26,7 @@ const isQueryHouseStaffLoggedIn = require('../middlewares/isQueryHouseStaffLogge
 const path = require('path');
 const fs = require('fs');
 const archiver = require('archiver');
+const counterForSkymanProductModel = require('../models/counterForSkymanProductModel.js');
 
 function sendFile(res, filePath, downloadName) {
   const absolutePath = path.join(__dirname, '../public', filePath);
@@ -50,6 +52,20 @@ function sendZipFromPaths(res, filesArray, zipName) {
   });
 
   archive.finalize();
+}
+const setSkymanProductModelCounter = async (req, res, next) => {
+  try {
+    const counter = await counterForSkymanProductModel.findOneAndUpdate(
+      {name: 'productNumber'},
+      {$inc: {seq: 1}},
+      {new: true, upsert: true}
+    )
+    req.productNumber = counter.seq;
+    next();
+  } catch (error) {
+    console.error('Error generating counter', error);
+    res.status(500).send('Error generating product number')
+  }
 }
 // const sharp = require('sharp');
 
@@ -431,6 +447,13 @@ router.get('/queryhouseContacts', isAdminOrLandbookerLoggedIn, async (req, res) 
   res.render('queryhousesContacts', {franchises})
 })
 
+router.get('/skyman-current-location', isAdminOrLandbookerLoggedIn, async (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash('error');
+
+  res.render('skyman-location-page', {success, error})
+})
+
 router.get('/create-skyman-products/:formId', async (req, res) => {
   const skymanFormId = req.params.formId;
   const skymanProduct = await sellingFormModel.findOne({_id: skymanFormId})
@@ -444,7 +467,7 @@ router.get('/create-skyman-products/:formId', async (req, res) => {
   res.render('landbooker-create-skyman-products', {success, error, skymanProduct})
 })
 
-router.post('/skyman/created-product', uploadDisk.fields([
+router.post('/skyman/created-product', setSkymanProductModelCounter, uploadDisk.fields([
   { name: 'realImage', maxCount: 1 },
   { name: 'mainRoadImages', maxCount: 10 },
   { name: 'image360', maxCount: 1 },
@@ -452,13 +475,13 @@ router.post('/skyman/created-product', uploadDisk.fields([
   { name: 'videoFile', maxCount: 1 }
 ]), isAdminOrLandbookerLoggedIn, async (req, res) => {
   try {
-    const {tehsil, landbookerUsername, productFolderName, badnaamSpec, lat, lng, sellerPrice, LB, spec, sellerId, sellingFormId, contactNumber, khatauniSpecDetails} = req.body;
+    const {tehsil, landbookerUsername, badnaamSpec, lat, lng, sellerPrice, LB, spec, sellerId, sellingFormId, contactNumber, khatauniSpecDetails} = req.body;
     const sellerIdFromForm = sellerId.trim();
     const sellingFormIdFromForm = sellingFormId.trim();
     const realTehsil = tehsil.toLowerCase().replace(' ', '');
     const specArray = spec.split('\n').map(item => item.trim()).filter(item => item);
 
-    const folderName = req.body.productFolderName;
+    const folderName = req.productNumber;
 
     const realImage = req.files['realImage']?.[0];
     const image360 = req.files['image360']?.[0];
@@ -488,7 +511,7 @@ router.post('/skyman/created-product', uploadDisk.fields([
         path: `/uploads/skyman/${folderName}/${videoFile.filename}`,
         originalName: videoFile.originalname
       },
-      tehsil: realTehsil, badnaamSpec, lat, lng, sellerPrice, LB, productFolderName, spec: specArray, sellerId: sellerIdFromForm, sellingFormId: sellingFormIdFromForm,  contactNumber, khatauniSpecDetails
+      tehsil: realTehsil, badnaamSpec, lat, lng, sellerPrice, LB, productFolderName: folderName, spec: specArray, sellerId: sellerIdFromForm, sellingFormId: sellingFormIdFromForm,  contactNumber, khatauniSpecDetails
     });
     await sellingFormModel.findByIdAndUpdate(
       sellingFormIdFromForm,
@@ -527,7 +550,8 @@ router.get('/delete-skyman-product/:id', isAdminOrLandbookerLoggedIn, async (req
     );
   }
 
-    const folderName = skymanProduct.productFolderName;
+    const numberFolderName = skymanProduct.productFolderName;
+    const folderName = String(numberFolderName);
     const productPath = path.join(__dirname, '..', 'public', 'uploads', 'skyman', folderName);
 
     // ✅ Remove folder and files
@@ -680,6 +704,80 @@ router.get('/user/profile', isLoggedIn, async (req, res) => {
   }
 })
 
+router.get('/user/changeSellingPrice/:productId', async (req, res) => {
+  const user = req.user;
+  const productId = req.params.productId;
+  res.cookie('landbook', '')
+  req.flash('error', `User is logged out! Log in here to be able to change your product's selling price`)
+  const product = await productModel.findOne({_id: productId});
+  const success = req.flash('success');
+  const error = req.flash('error');
+
+  res.render('user-change-selling-price', {product, success, error})
+})
+
+router.post('/changing-selling-price/userlogin/:productId', async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    let {username, password} = req.body;
+    let user = await userModel.findOne({username})
+    if(!user) {
+      req.flash('error', 'Username or password is incorrect')
+      return res.status(406).redirect(`/us/user/changeSellingPrice/${productId}`)
+    } else{
+      if(user.banned) {
+        req.flash('error', `Sorry ${user.name}, You are banned from Landbook: ${user.banReason}. Contact Landbook down below for query. `)
+        return res.status(400).redirect(`/us/user/changeSellingPrice/${productId}`)
+      }
+      bcrypt.compare(password, user.password, (err, result) => {
+        if(err) return res.status(406).send('something went wrong')
+          if(result === true) {
+  
+            let token = jwt.sign({email: user.email, id: user._id}, process.env.SESSION_SECRET);
+            res.cookie('landbook', token);
+  
+            res.redirect(`/us/change-selling-price/${productId}`)
+          } else{
+            req.flash('error', 'Username or password is incorrect')
+            res.redirect(`/us/user/changeSellingPrice/${productId}`)
+          }
+      })
+    }
+  } catch (error) {
+    req.flash('error', `${error.message}`)
+    console.error('something went wrong')
+    return res.status(404).redirect('/home/login') 
+  }
+
+})
+
+router.get('/change-selling-price/:productId', isLoggedIn, async (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash('error');
+  const product = await productModel.findOne({_id: req.params.productId});
+
+  res.render('user-changing-selling-price', {success, error, product})
+})
+
+router.post('/selling-user/changed-selling-price/:productId', isLoggedIn, async (req, res) => {
+  try {
+    const {sellerPrice, landbookPrice, brokerPrice} = req.body;
+    const product = await productModel.findOne({_id: req.params.productId});
+    
+    product.sellerPrice = sellerPrice;
+    product.landbookPrice = landbookPrice;
+    product.brokerPrice = brokerPrice;
+    await product.save();
+
+    req.flash('success', 'Selling price changed successfully!');
+    res.redirect('/us/user/profile');
+  } catch (error) {
+    console.error(error);
+    req.flash('error', 'Something went wrong');
+    return res.status(500).redirect('/home/login');
+  }
+})
+
 router.get('/user/notification', isLoggedIn, async(req, res) => {
   const user = req.user;
   const theUser = await userModel.findOne({_id: user._id}).populate('notifications');
@@ -821,7 +919,8 @@ router.get('/landbooker-user-bayana-forms', isAdminOrLandbookerLoggedIn, async (
     .populate('user')
     .populate('queryhouse')
     .populate('buyingFormId')
-    .populate('buyingCartTimerId');
+    .populate('buyingCartTimerId')
+    .populate('productSeller');
   const success = req.flash('success');
   const error = req.flash('error');
 
@@ -1116,8 +1215,18 @@ router.get('/newMapProductCreation/:productId', isAdminOrLandbookerLoggedIn, asy
   const product = await productModel.findOne({_id: req.params.productId})
   const success = req.flash('success');
   const error = req.flash('error');
+  const products = await productModel.find();
+    // for map marker id creation notification
+  let mapProductCreationLength = 0;
+  if(products.length > 0) {
+    products.forEach((product) => {
+      if(product.mapMarkerId.length <= 0) {
+        mapProductCreationLength += 1;
+      }
+    })
+  }
 
-  res.render('admin-new-map-products-panel', {error, success, product})
+  res.render('admin-new-map-products-panel', {error, success, product, mapProductCreationLength})
 })
 
 router.get('/new-map', isAdminOrLandbookerLoggedIn, (req, res) => {
@@ -1128,7 +1237,7 @@ router.post('/add-new-marker', isAdminOrLandbookerLoggedIn, async (req, res) => 
   try {
     const {clusterName, lat, lng, popupText, productId} = req.body;
 
-    const theProduct = await productModel.findOne({_id: productid});
+    const theProduct = await productModel.findOne({_id: productId});
     if(theProduct.mapMarkerId.length > 0) {
       req.flash('error', 'map marker already created for this product!')
       const previousPage = req.get('Referrer') || '/us/landbook';

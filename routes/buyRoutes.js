@@ -9,6 +9,7 @@ const userNotificationModel = require('../models/userNotificationModel');
 const buyingFormModel = require('../models/buyingFormModel');
 const buyingCartTimerModel = require('../models/buyingCartTimerModel');
 const cityTehsilModel = require('../models/cityTehsilModel');
+const cityProductModel = require('../models/cityProductModel')
 const queryhouseModel = require('../models/queryhouseModel')
 const isLoggedInForCart = require('../middlewares/isLoggedInForCart');
 const upload = require('../config/multer-config');
@@ -94,6 +95,7 @@ router.get('/claimcart/products/filter/:theCity/:theTehsil',isLoggedInForCart, i
     buyingForm = await buyingFormModel.findOne({_id: buyingFormId})
   }
   const cityTehsilList = await cityTehsilModel.find();
+  const cityProducts = await cityProductModel.find();
 
   res.render('claim-page', {
     claimProducts,
@@ -103,9 +105,33 @@ router.get('/claimcart/products/filter/:theCity/:theTehsil',isLoggedInForCart, i
     error,
     success,
     selectedFilters: { city, tehsil },
-    cityTehsilList
+    cityTehsilList: cityProducts
   });
 });
+
+router.get('/claimcart/products/:city/:tehsil', isLoggedInForCart, async (req, res) => {
+  const {city, tehsil} = req.params;
+  // log(req.user)
+  const error = req.flash('error');
+  const success = req.flash('success');
+
+  const products = await userModel.findOne({_id: req.user._id}).populate('claimCart');
+  const claimProducts = products.claimCart;
+  const showingClaimProducts = [];
+  claimProducts.forEach((claimProduct) => {
+    if(claimProduct.tehsil === tehsil) {
+      showingClaimProducts.push(claimProduct);
+    }
+  })
+  let buyingForm = null;
+  if (claimProducts.length > 0 && claimProducts[0].buyingForm) {
+    const buyingFormId = claimProducts?.[0]?.buyingForm;
+    buyingForm = await buyingFormModel.findOne({_id: buyingFormId})
+  }
+  const cityProducts = await cityProductModel.find();
+
+  res.render('claim-pre-page', {claimProducts: showingClaimProducts, buyingForm, selectedFilters: {}, cityTehsilList: cityProducts, error, success, theCity: city, theTehsil: tehsil});
+})
 
 // not in use
 router.get('/claimcart/:city/:tehsil', isLoggedInForCart, isLoggedIn, async (req, res) => {
@@ -300,9 +326,9 @@ router.post('/addtobuyingcart', isLoggedIn, async (req, res) => {
     const user = req.user;
     const {name, contactNumber, tehsil, address, buyingProductId} = req.body;
 
-    let buyingProduct = await productModel.findOne({_id: buyingProductId});
+    let buyingProduct = await productModel.findOne({_id: buyingProductId}).populate('bayana');
 
-    if(buyingProduct.buyingPeople.length > 0 || buyingProduct.buyingForm.length > 0) {
+    if(buyingProduct.buyingPeople.length > 0 || buyingProduct.buyingForm.length > 0 || buyingProduct.bayana.bayana) {
       req.flash('error', 'Someone is buying this zameen already. IF they not be able to buy this zameen... you will be notified if you claimed this product...Landbook');
       const previousPage = req.get('Referrer') || '/home/login';
       return res.redirect(previousPage);
@@ -353,7 +379,7 @@ router.get('/buyingcart/products/filter/:theCity/:theTehsil',isLoggedInForCart, 
   });
 
   const showingBuyingProducts = await user.buyingCart;
-  const cityTehsilList = await cityTehsilModel.find();
+  const cityProducts = await cityProductModel.find();
 
   res.render('buying-now-cart-page', {
     showingBuyingProducts,
@@ -362,9 +388,33 @@ router.get('/buyingcart/products/filter/:theCity/:theTehsil',isLoggedInForCart, 
     error,
     success,
     selectedFilters: { city, tehsil },
-    cityTehsilList
+    cityTehsilList: cityProducts
   });
 });
+
+router.get('/buyingcart/products/:city/:tehsil', isLoggedInForCart, async (req, res) => {
+  const {city, tehsil} = req.params;
+  // log(req.user)
+  const error = req.flash('error');
+  const success = req.flash('success');
+
+  const products = await userModel.findOne({_id: req.user._id}).populate('buyingCart');
+  const buyingProducts = products.buyingCart;
+  const showingBuyingProducts = [];
+  buyingProducts.forEach((buyingProduct) => {
+    if(buyingProduct.tehsil === tehsil) {
+      showingBuyingProducts.push(buyingProduct);
+    }
+  })
+  let buyingForm = null;
+  if (buyingProducts.length > 0 && buyingProducts[0].buyingForm) {
+    const buyingFormId = buyingProducts?.[0]?.buyingForm;
+    buyingForm = await buyingFormModel.findOne({_id: buyingFormId})
+  }
+  const cityProducts = await cityProductModel.find();
+
+  res.render('buying-now-cart-pre-page', {showingBuyingProducts, buyingForm, selectedFilters: {}, cityTehsilList: cityProducts, error, success, theCity: city, theTehsil: tehsil});
+})
 
 // not in use...
 router.get('/buyingcart/:city/:tehsil', isLoggedInForCart, isLoggedIn, async (req, res) => {
@@ -412,15 +462,17 @@ router.get('/viewproduct/:productId/:city/:tehsil', isLoggedInForCart, isLoggedI
   const productId = req.params.productId;
 
   let product = await productModel.findOne({_id: productId})
-  product.visits.push(1);
+  product.visits = (product.visits || 0) + 1;
   await product.save();
+
+  const topProduct = await productModel.findOne().sort({visits: -1}).limit(1);
 
   const recommendations = await productModel.find({
     _id: {$ne: product._id},
     recommendation: product.recommendation
   }).limit(4);
 
-  res.render('individual-product-page-when-click-page', {product, recommendations, success, error, city, tehsil});
+  res.render('individual-product-page-when-click-page', {product, recommendations, topProduct, success, error, city, tehsil});
 })
 
 module.exports = router;

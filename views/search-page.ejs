@@ -12,12 +12,26 @@
       <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-search-sidebar.css">
       <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/proper-and-random-practice-sidebar.css">
 
+          <!-- google translate hidden element (head) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,bn,ur,ta,te,pa,gu,ml,mr,it',
+      autoDisplay: false,
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 <body>
     <!-- header container -->
       <nav class="main-navbar">
         <div class="leftHeader">
-          <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/banner2.png" alt="">
           </a> 
         </div>
         <button class="hamburger1" onclick="toggleSidebar()">
@@ -34,7 +48,7 @@
                 </div>
               </button>
             </form>
-            <button class="voiceButton" id="micBtn">
+            <button class="voiceButton" id="micBtnMain">
               <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
               <div class="tooltip">
                 Search with your voice
@@ -42,7 +56,7 @@
             </button>
           </div>
           <div class="rightHeader">
-            <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+            <a href="/buy/claimcart/products/<%= city %>/<%= tehsil %>">
               <div class="cartIcon">
                 <button class="cartButton"> 
                   <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
@@ -81,7 +95,7 @@
           <button class="close-btn" onclick="toggleSidebar()">
             &times;
           </button>
-          <a href="/buy/claimcart/products/filter/<%= city %>/<%= tehsil %>">
+          <a href="/buy/claimcart/products/<%= city %>/<%= tehsil %>">
             <div class="cartIcon">
               <button class="cartButton"> 
                 <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
@@ -119,7 +133,7 @@
               </div>
             </button>
           </form>
-          <button class="voiceButton" id="micBtn">
+          <button class="voiceButton" id="micBtnSide">
             <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
             <div class="sideTooltip">
               Search with your voice
@@ -225,7 +239,7 @@
     <div class="aboutThisPage">
       <div class="aboutThisPageLanguage">
         <div class="languageImage">
-          <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
+          🌐
         </div>
         <div class="languageText">
           English
@@ -234,7 +248,7 @@
 
       <div class="aboutCountry">
         <div class="aboutCountryImage">
-          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          <img src="/imagesAndVideos/images/1f1ee-1f1f3.png" alt="">
         </div>
         <div class="aboutCountryText">
           India
@@ -264,8 +278,200 @@
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
     }
+
+// voice search starts
+(() => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return;
+
+  // 🎤 Get both mic buttons and the search input
+  const micBtnMain = document.getElementById('micBtnMain');
+  const micBtnSide = document.getElementById('micBtnSide');
+  const inputBox = document.querySelector('input[name="q"]');
+
+  // Create recognition instance
+  const recog = new SpeechRecognition();
+  recog.interimResults = false;
+  recog.maxAlternatives = 1;
+
+  // 🔤 Map languages for speech recognition
+  const langMap = {
+    en: 'en-US',
+    hi: 'hi-IN',
+    bn: 'bn-IN',
+    ur: 'ur-PK',
+    ta: 'ta-IN',
+    te: 'te-IN',
+    pa: 'pa-IN'
+  };
+
+  // Function to get the currently selected language
+  function getCurrentLang() {
+    const mainSel = document.getElementById('languageSelectMain');
+    const sideSel = document.getElementById('languageSelectSidebar');
+    const selected =
+      (mainSel && mainSel.value) ||
+      (sideSel && sideSel.value) ||
+      'en'; // fallback
+    return langMap[selected] || 'en-US';
+  }
+
+  // Function to start recognition
+  function startRecognition(activeBtn) {
+    recog.lang = getCurrentLang();
+    const tooltip = activeBtn.querySelector('.tooltip');
+    if (tooltip) tooltip.textContent = 'Listening...';
+    recog.activeBtn = activeBtn;
+    recog.start();
+  }
+
+  // 🖱️ Click listeners for both mic buttons
+  if (micBtnMain) micBtnMain.addEventListener('click', () => startRecognition(micBtnMain));
+  if (micBtnSide) micBtnSide.addEventListener('click', () => startRecognition(micBtnSide));
+
+  // 🎧 When recognition gives a result
+  recog.addEventListener('result', e => {
+    const transcript = e.results[0][0].transcript.trim();
+    inputBox.value = transcript;
+    inputBox.form?.requestSubmit(); // submit the search form automatically
+  });
+
+  // 🎤 Reset tooltip after recognition ends
+  recog.addEventListener('end', () => {
+    [micBtnMain, micBtnSide].forEach(btn => {
+      if (!btn) return;
+      const tooltip = btn.querySelector('.tooltip');
+      if (tooltip) tooltip.textContent = 'Search with your voice';
+    });
+  });
+})();
+// voice search ends
+
   </script>
   <!-- <script type="module" src="./js/sell-page.js"></script> -->
+
+
+  <select id="languageSelect language-select">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="ur">اردو</option>
+    <option value="ta">தமிழ்</option>
+    <option value="te">తెలుగు</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="ml">മലയാളം</option>
+    <option value="mr">मराठी</option>
+    <option value="it">Italiano</option>
+  </select>
+
+
+  <script>
+  (function() {
+const SELECT_ID = 'languageSelect';
+const STORAGE_KEY = 'preferredLanguage';
+const defaultSourceLang = 'en';
+
+function setCookie(name, value, days, path = '/') {
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=${path}`;
+}
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+// Extract target language from googtrans cookie ("/en/hi" → "hi")
+function currentLangFromCookie() {
+  const c = getCookie('googtrans');
+  if (!c) return defaultSourceLang;
+  const parts = c.split('/');
+  return parts[2] || defaultSourceLang;
+}
+
+function trySetComboLang(lang) {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    if (combo.value !== lang) {
+      combo.value = lang;
+      combo.dispatchEvent(new Event('change'));
+      console.log('Translate combo switched →', lang);
+    } else {
+      console.log('Language already active →', lang);
+    }
+    return true;
+  }
+  return false;
+}
+
+function fallbackSetLang(lang) {
+  try {
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    window.location.reload();
+  } catch (e) {
+    console.error('fallbackSetLang error', e);
+  }
+}
+
+function setLanguage(lang) {
+  localStorage.setItem(STORAGE_KEY, lang);
+
+  // prevent loop if already same language
+  const current = currentLangFromCookie();
+  if (current === lang) {
+    console.log('Skip re-translate (already', lang, ')');
+    return;
+  }
+
+  let attempts = 0;
+  const maxAttempts = 25;
+  const interval = setInterval(() => {
+    attempts++;
+    const done = trySetComboLang(lang);
+    if (done) {
+      clearInterval(interval);
+      return;
+    }
+    if (attempts >= maxAttempts) {
+      clearInterval(interval);
+      console.warn('Combo not found, fallback to cookie');
+      fallbackSetLang(lang);
+    }
+  }, 100);
+}
+
+function initSelector() {
+  const sel = document.getElementById(SELECT_ID);
+  if (!sel) return;
+
+  // restore saved
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    sel.value = saved;
+    const current = currentLangFromCookie();
+    if (current !== saved) {
+      setLanguage(saved);
+    }
+  }
+
+  sel.addEventListener('change', function() {
+    const lang = this.value;
+    setLanguage(lang);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSelector);
+} else {
+  initSelector();
+}
+})()
+
+  </script>
+
 
 </body>
 </html>

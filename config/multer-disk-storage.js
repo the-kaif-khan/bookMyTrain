@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const folderName = req.body.productFolderName;
+    const folderName = req.productNumber;
     const uploadPath = `public/uploads/skyman/${folderName}`;
     fs.mkdirSync(uploadPath, { recursive: true });
     cb(null, uploadPath);

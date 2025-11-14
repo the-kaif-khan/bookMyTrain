@@ -1,3 +1,55 @@
+
+.sideAdvertisingContainer{
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(270deg, #a6ff00, #3333ff, rgb(0, 101, 95), oklab(79.12% -0.21229 0.16099 / 0.884)),url(../../imagesAndVideos/Logos/LOGO/Landbook\ logo.jpg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  animation: bgMove 2s infinite alternate ease-in-out;
+  padding: 0 !important;
+  margin-top: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+}
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+.scrolling-text:hover,
+.scrolling-text:hover .scrolling-text {
+  animation-play-state: paused;
+}
+.scrolling-text{
+  position: absolute;
+  white-space: nowrap;
+  font-size: 1.8rem;
+  transform: translateX(0);
+  font-weight: 500;
+  animation: scrollText 640s linear infinite;
+  background: linear-gradient(90deg, rgb(255, 255, 255), #ffffff, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes scrollText{
+  0% {
+    transform: translateX(1%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.brand{
+  color: rgb(0, 81, 255);
+  font-weight: 700;
+}
+
 .sidebarContainer{
   background-color: rgb(255, 255, 255);
   position: fixed;

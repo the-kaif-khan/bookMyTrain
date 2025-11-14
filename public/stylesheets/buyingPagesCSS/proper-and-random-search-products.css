@@ -144,10 +144,19 @@
   row-gap: 40px;
   margin-top: 30px;
 }
-@media(max-height: 1368px) {
+/* @media(max-height: 1368px) {
   .container{
     margin-bottom: 32vh;
   }
+} */
+.productDetails{
+  background-color: rgb(245, 245, 245);
+  color: rgb(0, 101, 95);
+  padding: 10px;
+  font-size: 13px;
+  border-top: 2px solid rgb(238, 238, 238);
+  border-left: 2px solid rgb(238, 238, 238);
+  border-right: 2px solid rgb(238, 238, 238);
 }
 .productLink{
   text-decoration: none;

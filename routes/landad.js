@@ -16,6 +16,8 @@ const landbookerMoneyModel = require('../models/landbookerMoney');
 const queryhouseMoneyModel = require('../models/queryhouseMoney');
 const queryhouseStaffModel = require('../models/queryhouseStaffModel');
 const queryhouseOwnerModel = require('../models/queryhouseOwnerModel');
+const advertisingProductModel = require('../models/advertisingProductModel');
+const cityProductModel = require('../models/cityProductModel.js');
 const isAdminLoggedIn = require('../middlewares/isAdminLoggedIn')
 const isAdminOrLandbookerLoggedIn = require('../middlewares/isAdminOrLandbookerLoggedIn');
 const bcrypt = require("bcrypt")
@@ -34,6 +36,64 @@ const path = require('path');
 const sharp = require('sharp');
 const queryhouseModel = require('../models/queryhouseModel');
 const userBayanaFormModel = require('../models/userBayanaFormModel');
+const uploadDiskForAd = require('../config/multer-disk-storage-advertising-product.js');
+const counterForAdsModel = require('../models/counterForAd.js');
+const counterForProductsModel = require('../models/counterForProductModel.js');
+
+const setAdProductCounter = async (req, res, next) => {
+  try {
+    const counter = await counterForAdsModel.findOneAndUpdate(
+      {name: 'productNumber'},
+      {$inc: {seq: 1}},
+      {new: true, upsert: true}
+    )
+    req.productNumber = counter.seq;
+    next();
+  } catch (error) {
+    console.error('Error generating counter', error);
+    res.status(500).send('Error generating product number')
+  }
+}
+const setProductModelCounter = async (req, res, next) => {
+  try {
+    const counter = await counterForProductsModel.findOneAndUpdate(
+      {name: 'productNumber'},
+      {$inc: {seq: 1}},
+      {new: true, upsert: true}
+    )
+    req.productNumber = counter.seq;
+    next();
+  } catch (error) {
+    console.error('Error generating counter', error);
+    res.status(500).send('Error generating product number')
+  }
+}
+
+function sendFile(res, filePath, downloadName) {
+  const absolutePath = path.join(__dirname, '../public', filePath);
+  if (!fs.existsSync(absolutePath)) {
+    return res.status(404).send('File not found');
+  }
+  res.download(absolutePath, downloadName);
+}
+function sendZipFromPaths(res, filesArray, zipName) {
+  const archive = archiver('zip', { zlib: { level: 9 } });
+  res.set({
+    'Content-Type': 'application/zip',
+    'Content-Disposition': `attachment; filename="${zipName}"`
+  });
+  archive.pipe(res);
+  filesArray.forEach(file => {
+    const fullPath = path.join(__dirname, '../public', file.path);
+    if (fs.existsSync(fullPath)) {
+      archive.file(fullPath, { name: file.originalName });
+    } else {
+      console.log('[MISSING FILE]', fullPath);
+    }
+  });
+
+  archive.finalize();
+}
 
 
 router.get('/admin', (req, res) => {
@@ -303,7 +363,7 @@ router.get('/admin-panel', isAdminLoggedIn, async (req, res) => {
   res.render('admin-panel', {success, error, sellingForms, buyingForms, mapProductCreationLength})
 })
 
-router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
+router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, setProductModelCounter, upload.fields([
   { name: 'productImages', maxCount: 7},
   { name: 'badnaamImage', maxCount: 1 },
   { name: 'ratingImage', maxCount: 1},
@@ -312,8 +372,24 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
 ]), async (req, res) => {
   
   try {
-    let { title, zameenNumber, city, ratingCount, tehsil, sellerPrice, landbookPrice, brokerPrice, LB, spec, why, sellerId, sellingFormId, keys, recommendation, sellerContact, skymanProductId, lat, lng} = req.body;
+    let { youtubeLink, title, city, ratingCount, tehsil, sellerPrice, landbookPrice, brokerPrice, LB, spec, why, sellerId, sellingFormId, keys, recommendation, sellerContact, skymanProductId, lat, lng} = req.body;
+    const productNumber = req.productNumber;
+    const realCity = city.toLowerCase().replace(' ', '');
+    const realTehsil = tehsil.toLowerCase().replace(' ', '');
 
+    const cityProduct = await cityProductModel.findOne({city: realCity});
+    if(!cityProduct) {
+      const previousPage = req.get('Referrer') || 'landad/login';
+      req.flash('error', `Landbook is not available in ${realCity}`);
+      return res.status(404).redirect(previousPage)
+    }
+    const tehsilExists = cityProduct.tehsils.some(t => t.toLowerCase().replace(/\s+/g, '') === realTehsil);
+    if(!tehsilExists) {
+      const previousPage = req.get('Referrer') || 'landad/login';
+      req.flash('error', `Tehsil ${realTehsil} not found under ${realCity}. Try again later.`);
+      return res.status(404).redirect(previousPage)
+    }
+    // real product generation starts
     let compressed360ImageBuffer = null;
     if(req.files['product360Image'] && req.files['product360Image'][0]) {
       compressed360ImageBuffer = await sharp(req.files['product360Image'][0].buffer)
@@ -332,8 +408,6 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
     let user = await userModel.findOne({_id: sellerIdFromForm}).populate("sellingForm");
     const userId = user._id;
     const sellingFormIdFromForm = sellingFormId.trim();
-    const realTehsil = tehsil.toLowerCase().replace(' ', '');
-    const realCity = city.toLowerCase().replace(' ', '');
     let specArray = spec.split('\n').map(item => item.trim()).filter(item => item);
     let whyArray = why.split('\n').map(item => item.trim()).filter(item => item);
 
@@ -347,9 +421,10 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
       compressedKhatauniFile,
       ratingImage,
       product360Image: compressed360ImageBuffer,
+      youtubeLink,
       ratingCount,
       title,
-      zameenNumber,
+      zameenNumber: productNumber,
       city: realCity,
       tehsil: realTehsil,
       sellerPrice,
@@ -368,6 +443,11 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
 
     newProduct.seller.push(sellerIdFromForm);
     await newProduct.save();
+    // push the product in city product model
+    await cityProductModel.findByIdAndUpdate(
+      cityProduct._id,
+      { $push: {products: newProduct._id} }
+    )
     await userModel.findByIdAndUpdate(
       userId,
       { $push: { sellingProduct: newProduct._id } }
@@ -384,8 +464,7 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
 
     req.flash('success', 'Product created successfully')
     return res.status(404).redirect('/us/skyman-products-page')
-    // const previousPage = req.get('Referrer') || '/us/landbook';
-    // return res.status(404).redirect(previousPage);
+    // real product generation ends here
   } catch (err) {
     log(err)
     log(err.message);
@@ -393,6 +472,20 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, upload.fields([
     return res.status(404).redirect(previousPage);
   }
 });
+
+router.get('/log-out/all', isAdminLoggedIn, async (req, res) => {
+  res.clearCookie('landbook');
+  res.clearCookie('landbookers');
+  res.clearCookie('landbookQueryhouseStaffs');
+  res.clearCookie('landbookQueryhouseOwner');
+  if(req.session) {
+    req.session.destroy(() => {
+      log('Session destroyed.')
+    });
+  }
+  const previousPage = req.get('Referrer') || '/landad/login';
+  return res.redirect(previousPage);
+})
 
 router.get('/find-users', isAdminLoggedIn, async (req, res) => {
   const error = req.flash('error');
@@ -452,7 +545,8 @@ router.get('/delete-product/:productId', isAdminLoggedIn, async (req, res) => {
       if(skymanProductId) {
       const skymanProduct = await skymanProductModel.findOne({_id: skymanProductId});
 
-      const folderName = skymanProduct.productFolderName;
+      const numberFolderName = skymanProduct.productFolderName;
+      const folderName = String(numberFolderName);
       const productPath = path.join(__dirname, '..', 'public', 'uploads', 'skyman', folderName);
       // ✅ Remove folder and files
       if (fs.existsSync(productPath)) {
@@ -492,6 +586,166 @@ router.get('/seed-city-tehsils', isAdminLoggedIn, async (req, res) => {
   const previousPage = req.get('Referrer') || '/landad/login';
   return res.redirect(previousPage);
 })
+
+router.get('/add-city-product', isAdminLoggedIn, (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash('error');
+
+  res.render('admin-add-city-product-page', {success, error});
+})
+
+router.post('/added/city-product', isAdminLoggedIn, async (req, res) => {
+  try {
+    let {city, tehsil} = req.body;
+    if(city) {
+      city = city.toLowerCase().replace(/\s+/g, '');
+    }
+    if(tehsil && Array.isArray(tehsil)) {
+      tehsil = tehsil.map(t => t.toLowerCase().replace(/\s+/g, ''));
+    } else if (typeof tehsil === 'string') {
+      tehsil = [tehsil.toLowerCase().replace(/\s+/g, '')];
+    }
+
+    const cityProducts = await cityProductModel.find();
+    if(cityProducts.length > 0) {
+      cityProducts.forEach(async (cityProduct) => {
+        if(cityProduct.city !== city) {
+
+          let newCityProduct = cityProductModel.create({
+            city,
+            tehsils: tehsil
+          })
+          req.flash('success', 'City and tehsils added successfully');
+
+          const previousPage = req.get('Referrer') || '/landad/login'
+          res.redirect(previousPage);
+        } else {
+          req.flash('error', `${city} already made!`);
+          const previousPage = req.get('Referrer') || '/landad/login'
+          return res.redirect(previousPage);
+        }
+      })
+    } else {
+      const newCityProduct = cityProductModel.create({
+        city,
+        tehsils: tehsil
+      })
+      req.flash('success', 'City and tehsils added successfully');
+
+      const previousPage = req.get('Referrer') || '/landad/login'
+      res.redirect(previousPage);
+    }
+
+  } catch (error) {
+    console.error(error);
+    const previousPage = req.get('Referrer') || '/landad/login'
+    res.redirect(previousPage)
+  }
+})
+
+router.get('/add/advertisingproduct', isAdminLoggedIn, (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash('error');
+
+  res.render('admin-add-advertising-product', { success, error })
+})
+
+router.post('/added/advertising-product', setAdProductCounter, uploadDiskForAd.fields([
+  { name: 'productAllImages', maxCount: 10 },
+  { name: 'productVideoFile', maxCount: 1 },
+  { name: 'contractPic', maxCount: 1 }
+]), isAdminLoggedIn, async (req, res) => {
+
+try {
+  const {productTitle, productFullDetails, adOwnerName, adOwnerContact, adOwnerEmail} = req.body;
+  const productNumber = req.productNumber;
+
+  const contractPic = req.files['contractPic']?.[0];
+  const productVideoFile = req.files['productVideoFile']?.[0];
+  const productAllImages = req.files['productAllImages'] || [];
+
+  const newAdvertisingProduct = await advertisingProductModel.create({
+    contractPic: {
+      path: `/advertising-product/${productNumber}/${contractPic.filename}`,
+      originalName: contractPic.originalname
+    },
+    productAllImages: productAllImages.map(file => ({
+      path: `/advertising-product/${productNumber}/${file.filename}`,
+      originalName: file.originalname
+    })),
+    productVideoFile: {
+      path: `/advertising-product/${productNumber}/${productVideoFile.filename}`,
+      originalName: productVideoFile.originalname
+    }, productTitle, productFullDetails, adOwnerName, adOwnerContact, adOwnerEmail, productNumber: productNumber
+  });
+
+  req.flash('success', 'Advertising product successfully created!');
+  res.redirect('/landad/admin-panel2');
+
+} catch (error) {
+  console.error(error);
+  req.flash('error', error.message);
+  res.redirect('/landad/login');
+}
+})
+
+router.get('/view/advertising-products', isAdminLoggedIn, async (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash("error");
+  const advertisingProducts = await advertisingProductModel.find();
+
+  res.render('admin-view-advertising-product', {success, error, advertisingProducts})
+})
+
+
+// downloading of advertising product details starts
+router.get('/download/advertising-product/contract/:id', async (req, res) => {
+  const product = await advertisingProductModel.findById(req.params.id);
+  sendFile(res, product.contractPic.path, `${product.productNumber}-advertising-contract-pic.jpg`);
+});
+
+router.get('/download/advertising-product/all-product-images/:id', async (req, res) => {
+  try {
+    const product = await advertisingProductModel.findById(req.params.id);
+    sendZipFromPaths(res, product.productAllImages, `${product.productNumber}-advertising-product-all-images.zip`);
+  } catch (error) {
+    console.error(error)
+    const previousPage = req.get('Referrer') || '/landad/login'
+    return res.status(500).redirect(previousPage);
+  }
+})
+
+router.get('/download/advertising-product/advertising-video/:id', async (req, res) => {
+  const product = await advertisingProductModel.findById(req.params.id);
+  sendFile(res, product.productVideoFile.path, `${product.productNumber}-video.mp4`);
+})
+
+router.get('/delete-advertising-product/:id', async (req, res) => {
+  try {
+    const advertisingProductId = req.params.id
+    const product = await advertisingProductModel.findById(advertisingProductId);
+
+    const folderName = String(product.productNumber);
+    const productPath = path.join(__dirname, '..', 'public', 'advertising-product', folderName);
+
+    // ✅ Remove folder and files
+    if (fs.existsSync(productPath)) {
+      fs.rmSync(productPath, { recursive: true, force: true });
+    }
+    // ✅ Remove DB record
+    await advertisingProductModel.findByIdAndDelete(advertisingProductId);
+
+    req.flash('success', 'Advertising product deleted successfully!')
+    const previousPage = req.get('Referrer') || '/landad/login';
+    return res.redirect(previousPage);
+  } catch (error) {
+    console.error(error)
+    const previousPage = req.get('Referrer') || '/home/login';
+    return res.status(500).redirect(previousPage);
+  }
+})
+// downloading of advertising product details ends
+
 
 router.post('/add-map-label', isAdminLoggedIn, async (req, res) => {
   const {lat, lng, labelText} = req.body;

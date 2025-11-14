@@ -18,6 +18,7 @@
   column-gap: 25px;
   row-gap: 40px;
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 #userSellingFormNumber{
   color: rgb(0, 46, 244);
@@ -100,5 +101,58 @@
   .mainSellingProductsContainer{
     grid-template-columns: 1fr;
   }
+}
+.changeSellingPrice{
+  margin-top: 12px;
+  display: inline-block;
+  margin-right: 14px;
+}
+.changeSellingPriceLink{
+  color: rgb(0, 81, 255);
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+}
+.changeSellingPriceLink:hover{
+  text-decoration: underline;
+}
+.noteForSellingNotAvail{
+  color: red;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  word-spacing: 3px;
+  margin-top: 8px;
+  margin-left: -4px;
+  padding: 4px;
+  border-left: 1px solid rgb(196, 196, 196);
+  border-right: 1px solid rgb(196, 196, 196);
+  border-bottom: 1px solid rgb(196, 196, 196);
+  display: block;
+}
+.noteForSelling{
+  color: red;
+  font-size: 12px;
+  line-height: 22px;
+  word-spacing: 3px;
+  margin-top: 8px;
+  margin-left: -4px;
+  padding: 4px;
+  border-left: 1px solid rgb(196, 196, 196);
+  border-right: 1px solid rgb(196, 196, 196);
+  border-bottom: 1px solid rgb(196, 196, 196);
+  display: block;
+}
+.available{
+  color: green;
+  font-size: 13px;
+  margin-top: 6px;
+  display: inline-block;
+}
+.notAvailable{
+  color: red;
+  font-size: 13px;
+  margin-top: 6px;
+  display: inline-block;
 }
 

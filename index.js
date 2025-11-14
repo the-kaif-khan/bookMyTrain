@@ -16,8 +16,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const yesToFlash = require('./config/flash');
+const formatHelper = require('./utils/formatHelper');
 
-
+app.locals.formatName = formatHelper.formatName;
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json())
@@ -41,6 +42,12 @@ app.use('/buy', buyRouter)
 app.use('/sell', sellRouter)
 app.use('/us', usRouter)
 app.use('/landbook-query-house', queryHouseRouter)
+
+app.get('/', (req, res) => {
+  let error = req.flash('error')
+  let success = req.flash('success')
+  res.render('loginPage', {error, success});
+})
 
 
 // port

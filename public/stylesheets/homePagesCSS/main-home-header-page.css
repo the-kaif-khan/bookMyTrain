@@ -1,3 +1,28 @@
+
+body.translate-active .main-navbar{
+  top: 100px;
+  transition: margin-top 0.3s ease;
+}
+.language-select{
+  color: rgb(0, 81, 255);
+  /* background-color: rgb(238, 238, 238); */
+  padding-top: 19px;
+  padding-bottom: 19px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  outline: none;
+  border-color: rgb(236, 236, 236);
+}
+.language-select:hover{
+  background-color: rgb(245, 245, 245);
+}
+.language-select:focus{
+  border-color: #4a90e2;
+}
+
+
 /* the all header Contents */
 #micBtn{
   border: none;
@@ -241,9 +266,17 @@ form{
   height: 52px;
   /* min-width: 0; */
   font-size: 14px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.searchInput:focus{
+  border-color: #4a90e2;
 }
 .searchBar::placeholder{
-  font-family: sans-serif;
+  font-family: system-ui;
   font-family: system-ui;
   font-size: 15px;
 }
@@ -338,7 +371,7 @@ form{
   transition: opacity 0.15s;
 }
 .voiceButton:hover{
-  background-color: rgb(112, 40, 40);
+  background-color: rgb(248, 248, 248);
 }
 .voiceButton img{
   width: 34px;

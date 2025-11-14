@@ -45,6 +45,24 @@
   color: rgb(0, 81, 255);
   transition: all 0.3s;
 }
+.hamburgerNotification{
+  position: absolute;
+  color: white;
+  background-color: red;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 15px;
+  top: 20px;
+  right: 14px;
+}
+@media(min-width: 768px) {
+  .hamburgerNotification{
+    display: none;
+  }
+}
 .close-btn{
   font-size: 24px;
   border: none;
@@ -88,6 +106,11 @@
   margin-bottom: 20px;
   margin-right: 2px;
   margin-left: 2px;
+}
+.sideAdvertisingContainer{
+  background-color: green;
+  margin-top: 30px;
+  min-height: 300px;
 }
 /* hamburger */
 /* hamburger ends */

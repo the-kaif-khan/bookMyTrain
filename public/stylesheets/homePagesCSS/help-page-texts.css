@@ -17,6 +17,7 @@ body{
   line-height: 28px;
   word-spacing: 6px;
   margin-bottom: 30px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 .firstContent{
   font-size: 17px;
@@ -121,4 +122,5 @@ body{
   border-top: 1px solid rgb(171, 252, 255);
   border-left: 1px solid rgb(171, 252, 255);
   border-right: 1px solid rgb(171, 252, 255);
+  text-align: center;
 }

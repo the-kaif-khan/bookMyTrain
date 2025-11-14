@@ -1,6 +1,6 @@
 body{
-  font-family: arial;
-  padding-top: 92px;
+  font-family: system-ui;
+  padding-top: 142px;
 }
 
 .header{
@@ -47,11 +47,16 @@ body{
 .navigationsBox{
   background-color: rgb(255, 255, 255);
   display: grid;
-  grid-template-columns: 80px 140px 80px;
+  grid-template-columns: 110px 56px 80px;
   height: 52px;
   width: 100%;
   margin-bottom: 20px;
   border-bottom: 1px solid lightgrey;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 100px;
 }
 .navLinks{
   background-color: rgb(255, 255, 255);

@@ -9,6 +9,7 @@ const newMapProductModel = require('../models/newMapProductModel');
 const mapLabelModel = require('../models/mapLabelModel');
 const buyingCartTimerModel = require('../models/buyingCartTimerModel');
 const cityTehsilModel = require('../models/cityTehsilModel');
+const cityProductModel = require('../models/cityProductModel');
 const bcrypt = require("bcrypt")
 const { log } = require('console');
 const jwt = require('jsonwebtoken');
@@ -28,6 +29,7 @@ const sharp = require('sharp');
 const isLoggedInForCart = require('../middlewares/isLoggedInForCart');
 const isLoggedIn = require('../middlewares/isLoggedIn');
 const userBayanaFormModel = require('../models/userBayanaFormModel');
+const { formatName } = require('../utils/formatHelper');
 
 // if(process.env.NODE_ENV === 'development') {
 //   console.log('in development');
@@ -113,6 +115,25 @@ router.get('/product/image/:productId/:index', async (req, res) => {
   res.send(product.productImages[req.params.index]);
 })
 
+router.get('/sellpage/products/:theCity/:theTehsil', isLoggedInForCart, async (req, res) => {
+try {
+    const success = req.flash('success');
+    const error = req.flash('error');
+    const theCity = req.params.theCity;
+    const theTehsil = req.params.theTehsil
+    const products = await productModel.find({
+      city: theCity,
+      tehsil: theTehsil
+    });
+    const cityProducts = await cityProductModel.find();
+    
+    res.render('sell-page', {success, error, selectedFilters: {}, products, cityTehsilList: cityProducts, theCity, theTehsil})
+} catch (error) {
+  console.error(error);
+  res.status(500).send('Server error');
+}
+})
+
 router.get('/sellpage/products/filter/:theCity/:theTehsil', isLoggedInForCart, async (req, res) => {
   const { rating, maxPrice, city, tehsil } = req.query;
   const theCity = req.params.theCity;
@@ -127,7 +148,7 @@ router.get('/sellpage/products/filter/:theCity/:theTehsil', isLoggedInForCart, a
   if (tehsil) filter.tehsil = tehsil;
 
   const products = await productModel.find(filter);
-  const cityTehsilList = await cityTehsilModel.find();
+  const cityProducts = await cityProductModel.find();
 
   res.render('sell-main-page', {
     products,
@@ -136,7 +157,7 @@ router.get('/sellpage/products/filter/:theCity/:theTehsil', isLoggedInForCart, a
     error,
     success,
     selectedFilters: { rating, maxPrice, city, tehsil },
-    cityTehsilList
+    cityTehsilList: cityProducts
   });
 });
 
@@ -426,21 +447,94 @@ router.post('/userlogin', async (req, res) => {
 })
 
 router.get('/landbook', isLoggedInForCart, async (req, res) => {
-  const error = req.flash('error');
-  const success = req.flash('success');
+  try {
+    const error = req.flash('error');
+    const success = req.flash('success');
 
-  const products = await productModel.find();
-  const bigProducts = [];
-  products.forEach((product) => {
-    if(product.landbookPrice >= 50) {
-      bigProducts.push(product);
-    }
-  })
-  res.render('mainHomePage', {bigProducts, error, success});
+    const products = await productModel.find();
+    const bigProducts = [];
+    products.forEach((product) => {
+      if(product.landbookPrice >= 50) {
+        bigProducts.push(product);
+      }
+    })
+    const cityProducts = await cityProductModel.find().populate('products');
+    const topCityProducts = await cityProductModel
+    .find()
+    .sort({visits: -1})
+    .limit(3)
+    .populate('products');
+    const topCityProductsWithPrice = topCityProducts.map(cityProduct => {
+      if(cityProduct.products && cityProduct.products.length > 0) {
+        const validProducts = cityProduct.products.filter(p => p && typeof p.landbookPrice === 'number');
+        if(validProducts.length > 0) {
+          const lowestProduct = validProducts.reduce((min, p) => {
+            return p.landbookPrice < min.landbookPrice ? p : min;
+          });
+          return {
+            ...cityProduct.toObject(),
+            startingPrice: lowestProduct.landbookPrice
+          };
+        } else {
+          return {
+            ...cityProduct.toObject(),
+            startingPrice: null
+          };
+        }
+      } else {
+        return {
+          ...cityProduct.toObject(),
+          startingPrice: null
+        }
+      }
+    });
+
+    // for all city products...
+    const allCityProducts = await cityProductModel.find().populate('products').sort({visits: -1});
+    const allCityProductsWithPrice = allCityProducts.map(cityProduct => {
+      if(cityProduct.products && cityProduct.products.length > 0) {
+        const validProducts = cityProduct.products.filter(p => p && typeof p.landbookPrice === 'number');
+        if(validProducts.length > 0) {
+          const lowestProduct = validProducts.reduce((min, p) => {
+            return p.landbookPrice < min.landbookPrice ? p : min;
+          });
+          return {
+            ...cityProduct.toObject(),
+            startingPrice: lowestProduct.landbookPrice
+          };
+        } else {
+          return {
+            ...cityProduct.toObject(),
+            startingPrice: null
+          };
+        }
+      } else {
+        return {
+          ...cityProduct.toObject(),
+          startingPrice: null
+        }
+      }
+    })
+
+    
+    res.render('mainHomePage', {bigProducts, allCityProducts: allCityProductsWithPrice, topCityProducts: topCityProductsWithPrice, error, success});
+  } catch (error) {
+    console.error(error);
+    req.flash('error', 'Something went wrong');
+    return res.status(500).redirect('home/login');
+  }
 })
 
-router.get('/:city/:tehsil', isLoggedInForCart, (req, res) => {
+router.get('/:city/:tehsil', isLoggedInForCart, async (req, res) => {
   const {city, tehsil} = req.params;
+  let product = await cityProductModel.findOne({city: city})
+  if(!product) {
+    req.flash('error', 'Landbook is not available is any city or tehsil yet.')
+    return res.status(404).redirect('/home/login')
+  } else {
+    product.visits = (product.visits || 0) + 1;
+    await product.save();
+  }
 
   res.render('homePage', {city, tehsil});
 })

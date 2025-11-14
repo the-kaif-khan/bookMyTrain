@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>user change selling price page</title>
+
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/user-change-selling-price-Body.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/user-change-selling-price-header.css">
+  <link rel="stylesheet" href="/stylesheets/buyingCartPagesCSS/buying-now-cart-footer.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartProducts.css">
+  <link rel="stylesheet" href="/stylesheets/claimCartPagesCSS/claimCartSidebar.css">
+  <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/user-change-selling-price.css">
+
+        <!-- google translate hidden element (head) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,bn,ur,ta,te,pa,gu,ml,mr,it',
+      autoDisplay: false,
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</head>
+<body>
+  <!-- header -->
+  <div class="cartHeading">
+    <div class="cartHeadingLogo">
+      <a href="/home/landbook">
+        <img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt="">
+      </a> 
+    </div>
+    <div class="cartHeadingText">
+        Checkout 
+      <span class="cartNumber js-cartNumber">
+        (<%= product.length %>)
+      </span> 
+      <% if(product.length > 1) { %>
+        Items
+      <% } else if(product.length <= 1) { %>
+        Item
+      <% } %>
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/home/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/us/user/profile" class="links">
+      <div class="navLinks">
+        Profile page
+      </div>
+    </a>
+
+  </div>
+
+  <!-- main body heading -->
+  <p class="para">Login here in order to change your product's selling price 
+    <span class="buyingSummaryText">
+      Buying summary is in last of the page.
+    </span>
+  </p>
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="container">
+
+    <!-- cart products in this div -->
+    <div class="loginBox">
+      <div class="title">
+        Login
+      </div>
+      <form action="/us/changing-selling-price/userlogin/<%= product._id %>" method="post" onsubmit="return validatePassword()">
+        <input type="text" placeholder="Enter username" class="username" name="username" required>
+        <input id="password" minlength="5" type="password" placeholder="Enter your password" class="password" name="password" required>
+        <a href="/us/user/forgotPass" class="forgotPass">
+          forgot password?
+        </a>
+        <input type="submit" value="Login" class="login">
+      </form>
+
+      <% if(product) { %>
+        <div id="<%= product._id %>">
+          <div class="products">
+            <div class="leftContainer">
+              <div class="leftContainerHeading">
+                <b>If bought now:</b> Expected date when zameen 
+                will be bought: 24-02-2023
+              </div>
+              <div class="productImage">
+                <a href="/buy/viewproduct/<%= product._id %>/">
+                  <img src="data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="">
+                </a>
+              </div>
+              <div class="productPriceAndLB">
+                <div class= "productPrice">
+                  Price: <%= product.landbookPrice %> Lakhs
+                </div>
+                <div class= "productLB">
+                  L*B: <%= product.LB %>
+                </div>
+              </div>
+              <div class="productSpec">
+                <ol type="a">
+                  <% product.spec.forEach((list) => { %>
+                    <li><%= list %></li>
+                  <% }); %>
+                </ol>
+              </div>
+              <!-- <div class="buyNow">
+                <a href="/us/change-selling-price/<%= product._id %>" class="buyNowLink">
+                <button class="buyNowButton js-buy-now">
+                  Buy Now Within 48 Hours.
+                </button>
+                </a>
+              </div> -->
+            </div>
+            <div class="rightContainer">
+              <div class="rightContainerHeading">
+                After claiming by you:
+              </div>
+              <div class="newClaimed">
+                People claimed: <b> +<%= product.claimedPeople.length %></b>
+              </div>
+              <div class="newViews">
+                People viewed: <b> +<%= product.visits %></b>
+              </div>
+            </div> 
+          </div> 
+        </div>
+      <% } else { %>
+        product not found
+      <% } %>
+    </div>
+    <!-- cart products in this upper div -->
+
+    <!-- buying summary -->
+
+    <% 
+    let sellerPrice = 0;
+    <!-- let landbookPrice = 0; -->
+    if(product) {
+      sellerPrice += product.sellerPrice;
+    }
+    const likhwayiFemale = sellerPrice * 0.07;
+    const likhwayiMale = sellerPrice * 0.08;
+    const brokerCost = sellerPrice * 0.038;
+    const landbookCost = sellerPrice * 0.023;
+    const customerSaved = brokerCost - landbookCost;
+    const finalMale = sellerPrice + likhwayiMale + landbookCost;
+    const finalFemale = sellerPrice + likhwayiFemale + landbookCost;
+    %>
+
+
+    <!-- buying summary -->
+    <% if(product) { %>
+      <div class="buyingSummary js-buying-summary">
+
+        <div class="buyingSummaryHeading">
+          Your selling product
+        </div>
+        <div class="numberOfZameens">
+          Zameen (<span class="js-cartItemNumber">1</span>)
+        </div>
+        <div class="buyingSummaryContentsContainer">
+          <div class="buyingSummaryContents">
+            <div class="landbookTitle">
+              Landbook Price
+            </div>
+            <div class="titles">
+              Seller Price:
+            </div>
+            <div class="numbers">
+              <b><%= sellerPrice.toFixed(2) %> Lakhs.</b>
+            </div>
+            <div class="titles">
+              Likhwayi [female(6%) / male(7%) + 1% regn.charges]
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiFemale.toFixed(2) %> Lakhs </b> (female)
+            </div>
+            <div class="titles">
+              Likhwayi (Male)
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiMale.toFixed(2) %> Lakhs</b>
+            </div>
+            <div class="titles">
+              <span class="logo">Landbook</span> <a href="" class="convenienceLinks">
+                convenience
+              </a> fee (0.8%)
+            </div>
+            <div class="landbookConvenience">
+              <b><%= landbookCost.toFixed(2) %> Lakhs</b>
+            </div>
+          </div>
+
+
+          <div class="buyingSummaryContents">
+            <div class="brokerTitle">
+              Broker Price
+            </div>
+            <div class="titles">
+              Price:
+            </div>
+            <div class="numbers">
+              <b><%= sellerPrice.toFixed(2) %> Lakhs.</b>
+            </div>
+            <div class="titles">
+              Likhwayi [female(6%) / male(7%) + 1% regn.charges]
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiFemale.toFixed(2) %> Lakhs</b>(female)
+            </div>
+            <div class="titles">
+              Likhwayi (Male)
+            </div>
+            <div class="numbers">
+              <b><%= likhwayiMale.toFixed(2) %> Lakhs</b>
+            </div>
+            <div class="titles">
+              Broker convenience fee (1.5 + 2.3)%
+            </div>
+            <div class="brokerConvenience">
+              <b><%= brokerCost.toFixed(2) %> Lakhs</b> <a href="" class="sourceLinks">source</a>
+            </div>
+          </div>
+
+          <div class="lastTitles">
+            User will save: {(broker)-(landbook)} convenience fee: 
+          </div>
+          <div class="numbers">
+            <b><%= customerSaved.toFixed(2) %> lakhs.</b>
+          </div>
+          <div class="landbookPriceTitle">
+            Total Price (Female):
+          </div>
+          <div class="landbookPrice">
+            <b><%= finalFemale.toFixed(2) %> lakhs.</b>
+          </div>
+          <div class="landbookPriceTitle">
+            Total Price (Male):
+          </div>
+          <div class="landbookPrice">
+            <b><%= finalMale.toFixed(2) %>lakhs.</b>
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+
+  <!-- footer container -->
+  <footer>
+
+    <div class="aboutThisPage">
+      <div class="pageLanguage">
+        <div class="languageImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+        </div>
+        <div class="languageText">
+          English
+        </div>  
+      </div>
+
+      <div class="aboutCountry">
+        <div class="aboutCountryImage">
+          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+        </div>
+        <div class="aboutCountryText">
+          India
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutCompany">
+      <div class="companyConditions aboutCompanyTexts">
+        Conditions of Use
+      </div>
+      <div class="companyPrivacyPolicy aboutCompanyTexts">
+        Privacy Notice
+      </div>
+      <div class="aboutAdvertising aboutCompanyTexts">
+        Interest-Based Ads
+      </div>
+    </div>
+
+    <div class="companyCopywrite">
+      .c. 1996-2024, Landbook.com, Inc. and its affiliates
+    </div>
+
+  </footer>
+
+
+  <script src="/javascripts/claimTimer.js"></script>
+
+
+  <select id="languageSelect language-select">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="ur">اردو</option>
+    <option value="ta">தமிழ்</option>
+    <option value="te">తెలుగు</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="ml">മലയാളം</option>
+    <option value="mr">मराठी</option>
+    <option value="it">Italiano</option>
+  </select>
+
+
+  <script>
+  (function() {
+const SELECT_ID = 'languageSelect';
+const STORAGE_KEY = 'preferredLanguage';
+const defaultSourceLang = 'en';
+
+function setCookie(name, value, days, path = '/') {
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=${path}`;
+}
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+// Extract target language from googtrans cookie ("/en/hi" → "hi")
+function currentLangFromCookie() {
+  const c = getCookie('googtrans');
+  if (!c) return defaultSourceLang;
+  const parts = c.split('/');
+  return parts[2] || defaultSourceLang;
+}
+
+function trySetComboLang(lang) {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    if (combo.value !== lang) {
+      combo.value = lang;
+      combo.dispatchEvent(new Event('change'));
+      console.log('Translate combo switched →', lang);
+    } else {
+      console.log('Language already active →', lang);
+    }
+    return true;
+  }
+  return false;
+}
+
+function fallbackSetLang(lang) {
+  try {
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    window.location.reload();
+  } catch (e) {
+    console.error('fallbackSetLang error', e);
+  }
+}
+
+function setLanguage(lang) {
+  localStorage.setItem(STORAGE_KEY, lang);
+
+  // prevent loop if already same language
+  const current = currentLangFromCookie();
+  if (current === lang) {
+    console.log('Skip re-translate (already', lang, ')');
+    return;
+  }
+
+  let attempts = 0;
+  const maxAttempts = 25;
+  const interval = setInterval(() => {
+    attempts++;
+    const done = trySetComboLang(lang);
+    if (done) {
+      clearInterval(interval);
+      return;
+    }
+    if (attempts >= maxAttempts) {
+      clearInterval(interval);
+      console.warn('Combo not found, fallback to cookie');
+      fallbackSetLang(lang);
+    }
+  }, 100);
+}
+
+function initSelector() {
+  const sel = document.getElementById(SELECT_ID);
+  if (!sel) return;
+
+  // restore saved
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    sel.value = saved;
+    const current = currentLangFromCookie();
+    if (current !== saved) {
+      setLanguage(saved);
+    }
+  }
+
+  sel.addEventListener('change', function() {
+    const lang = this.value;
+    setLanguage(lang);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSelector);
+} else {
+  initSelector();
+}
+})()
+
+  </script>
+
+</body>
+</html>

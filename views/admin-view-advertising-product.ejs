@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin view advertising products page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/find-users-header.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerLogo">
+      <a href="/landad/admin-panel"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+    </div>
+    <div class="headerText">
+      Advertising products page
+    </div>
+  </div>
+
+  <!-- navlinks -->
+  <div class="navigationsBox">
+    <a href="/landad/login" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel2" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>
+    </a>
+
+    <form action="/landad/search/query-houses" method="GET">
+      <input type="text" name="q" placeholder="Search landbook query houses..."  class="searchInput" required>
+      <button class="searchButton" type="submit">
+        <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
+        <div class="tooltip">
+          Search
+        </div>
+      </button>
+    </form>
+  </div>
+
+  <% if(success.length > 0) { %>
+  <div class="flash flash-success">
+    <%= success %>
+  </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+
+  <div class="blogContents">
+    <% if(advertisingProducts.length > 0) { %>
+      <% advertisingProducts.reverse().forEach((advertisingProduct) => { %>
+        <div class="blogs">
+          <div class="contentsAboutProfile">
+            <div class="aboutProfileImage profileImage">
+              <!-- <img src="" alt=""> -->
+            </div>
+            <div class="aboutProfileUsername">
+              Owner email: <%= advertisingProduct.adOwnerEmail %>
+            </div>
+          </div>
+          <div class="blog">
+            Owner name: <%= advertisingProduct.adOwnerName %>
+          </div>
+          <div class="likeCount">
+            Owner contact: <%= advertisingProduct.adOwnerContact %>.
+          </div>
+          <div class="likeCount">
+            Product title: <%= advertisingProduct.productTitle %>
+          </div>
+          <!-- <div class="contactNumber">
+            Owner contact number: <%= advertisingProduct.ownerContact %> <br>
+            Owner address: <%= advertisingProduct.ownerAddress %>
+          </div>
+          <div class="slug">
+            slug: <%= advertisingProduct.slug %>
+          </div> -->
+          <div class="address">
+            Advertising product upload date: <%= advertisingProduct.uploadDate.toLocaleString() %> <br>
+            <!-- Query house address: <%= advertisingProduct.queryhouseAddress %> <br>
+            Query house renting: <%= advertisingProduct.rent %> -->
+          </div>
+          <div class="address">
+            <a href="/landad/download/advertising-product/contract/<%= advertisingProduct._id %>" class="downloadLink">
+              Download contract image
+            </a><br>
+            <a href="/landad/download/advertising-product/all-product-images/<%= advertisingProduct._id %>" class="downloadLink">
+              Download advertising product all images
+            </a><br>
+            <a href="/landad/download/advertising-product/advertising-video/<%= advertisingProduct._id %>" class="downloadLink">
+              Download advertising video
+            </a><br>
+            <!-- <a href="/landbook-query-house/edited-queryhouse/<%= advertisingProduct._id %>" class="link">
+              Edit queryhouse rent
+            </a><br> -->
+          </div>
+          <div class="footersOfBlogs">
+            <!-- <div class="likePost">
+              <a href="" class="likePost">
+                6
+              </a>
+            </div> -->
+            <div class="editBlog" onclick="return confirmDelete()">
+              <a href="/landad/delete-advertising-product/<%= advertisingProduct._id %>" class="editBlog">Delete Advertising Product</a>
+            </div>
+
+            <div>
+              <!-- <a href="/landad/admin/addProductToBuyingCart/<%= advertisingProduct._id %>">
+                <button class="addToBuyingCart">
+                  Add product to buying cart
+                </button>
+              </a> -->
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="noPosts">No advertising product now.</div>
+    <% } %>
+
+  </div>
+ 
+
+  <script>
+  function confirmDelete() {
+    return confirm('Are you sure you want to delete this user? This action cannot be undone!')
+  }
+  </script>
+
+
+
+</body>
+</html>

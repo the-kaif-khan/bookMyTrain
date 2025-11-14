@@ -124,7 +124,7 @@
   margin-bottom: 7px;
   margin-left: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 @media(max-width: 500px) {
   .productPriceAndLB{
@@ -283,7 +283,7 @@
   justify-content: center;
   border: 1px solid black;
   padding: 10px;
-  background-color: rgba(194, 0, 0, 0.877);
+  background-color: green;
   color: white;
   margin-right: 20px;
   margin-left: 20px;

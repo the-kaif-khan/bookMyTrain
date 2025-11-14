@@ -672,6 +672,7 @@ router.get('/user-bayana-forms/:slug', isQueryhouseStaffLoggedIn, async (req, re
     .populate('user')
     .populate('productId')
     .populate('buyingCartTimerId')
+    .populate('productSeller');
   const queryhouseUserBayanaForms = [];
   userBayanaForms.forEach((userBayanaForm) => {
     if(userBayanaForm.tehsil === franchise.queryhouseTehsil) {

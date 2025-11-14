@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>skyman location page</title>
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/skyman-location-page.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Skyman create products panel
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/us/landbook" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <!-- <a href="/us/skyman-panel" class="links">
+      <div class="navLinks">
+        Skyman form page
+      </div>
+    </a>
+
+    <a href="/home/compress/landbooker/skyman" class="links">
+      <div class="navLinks">
+        Khatauni images compressing page
+      </div>
+    </a> -->
+  </div>
+
+  <h2>Get Your Current Location</h2>
+
+  <button id="getLocationBtn">Get Location</button>
+
+  <div class="location-box">
+    <div id="latitude" class="coord">Latitude: --</div>
+    <button class="copy-btn" onclick="copyToClipboard('latitude')">Copy</button>
+  </div>
+
+  <div class="location-box">
+    <div id="longitude" class="coord">Longitude: --</div>
+    <button class="copy-btn" onclick="copyToClipboard('longitude')">Copy</button>
+  </div>
+
+  <script>
+    const getLocationBtn = document.getElementById('getLocationBtn');
+    const latitudeDiv = document.getElementById('latitude');
+    const longitudeDiv = document.getElementById('longitude');
+
+    // 📍 Ask for permission and fetch current location
+    getLocationBtn.addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            latitudeDiv.textContent = `Latitude: ${lat}`;
+            longitudeDiv.textContent = `Longitude: ${lon}`;
+          },
+          (error) => {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                alert("Permission denied. Please allow location access.");
+                break;
+              case error.POSITION_UNAVAILABLE:
+                alert("Location unavailable.");
+                break;
+              case error.TIMEOUT:
+                alert("Request timed out.");
+                break;
+              default:
+                alert("An unknown error occurred.");
+            }
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    });
+
+    // 📋 Copy coordinates to clipboard
+    function copyToClipboard(id) {
+      const text = document.getElementById(id).textContent.split(': ')[1];
+      navigator.clipboard.writeText(text)
+        .then(() => alert(`${id.charAt(0).toUpperCase() + id.slice(1)} copied!`))
+        .catch(() => alert("Failed to copy"));
+    }
+  </script>
+</body>
+</html>

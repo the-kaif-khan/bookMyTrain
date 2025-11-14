@@ -177,7 +177,7 @@ body{
 .navigationsBox{
   background-color: rgb(255, 255, 255);
   display: grid;
-  grid-template-columns: 70px 138px 145px;
+  grid-template-columns: 60px 120px 134px;
   height: 52px;
   width: 100%;
   margin-bottom: 0px;

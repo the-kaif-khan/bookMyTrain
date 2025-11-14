@@ -20,44 +20,100 @@
   </div>
 
   <!-- navigations -->
-  <div class="navigationsBox">
-    <a href="/us/landbook" class="links">
-      <div class="navLinks">
-        Home
-      </div>       
-    </a>
+  <nav class="main-navbar">
+    <button class="hamburger" onclick="toggleSidebar()">
+      &#9776
+    </button>
+    <div class="hamburgerNotification">
+      <%= skymanProducts.length + mapProductCreationLength %>
+    </div>
+  </nav>
 
-    <a href="/us/skyman-products-page" class="links">
-      <div class="navLinks skymanProducts">
-        Skyman products page
-      </div>
-      <div class="skymanProductsNotification">
-        <%= skymanProducts.length %>
-      </div>
-    </a>
+  <div id="sidebar" class="sidebar">
+    <div class="sidebarTops">
+      <button class="close-btn" onclick="toggleSidebar()">
+        &times;
+      </button>
+    </div>
+    <div class="navigationsBox">
+      <a href="/us/landbook" class="links">
+        <div class="navLinks">
+          Home
+        </div>       
+      </a>
 
-    <a href="/home/compress/landbooker/skyman" class="links">
-      <div class="navLinks">
-        Khatauni images compressing page
+      <a href="/us/skyman-products-page" class="links">
+        <div class="navLinks skymanProducts">
+          Skyman products page
+        </div>
+        <div class="skymanProductsNotification">
+          <%= skymanProducts.length %>
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox4">
+      <a href="/home/compress/landbooker/skyman" class="links">
+        <div class="navLinks">
+          Khatauni images compressing page
+        </div>
+      </a>
+      <a href="/us/admin-calculator" class="links">
+        <div class="navLinks">
+          Calculator
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox5">
+      <a href="/us/adminProducts" class="links">
+        <div class="navLinks createMapElements">
+          Create new map elements
+        </div>       
+      </a>
+      <div class="createMapElementsNotification">
+        <%= mapProductCreationLength %>
       </div>
-    </a>
-
-    <a href="/us/admin-calculator" class="links">
-      <div class="navLinks">
-        Calculator
+      <a href="/home/aboutus" class="links">
+        <div class="navLinks sellingForms">
+          About us
+        </div>
+      </a>
+    </div>
+    <!-- <div class="navigationsBox2">
+      <a href="/us/landbookers-buying-cart-timers" class="links">
+        <div class="navLinks buyingCartTimer">
+          Buying cart timers
+        </div>       
+      </a>
+      <div class="buyingCartTimerNotification">
+        
       </div>
-    </a>
+      <a href="/us/landbooker-user-bayana-forms" class="links">
+        <div class="navLinks userBayanaForms">
+          Users bayana forms
+        </div>
+      </a>
+      <div class="userBayanaFormsNotification">
+        
+      </div>
+    </div>
+    <div class="navigationsBox3">
+      <a href="/us/admin-calculator" class="links">
+        <div class="navLinks">
+          Landbook price calculator
+        </div>
+      </a>
+    </div> -->
   </div>
 
   <!-- sidebar container -->
-  <div class="sidebarContainer">
+  <!-- <div class="sidebarContainer">
     <a href="/us/buyingforms" class="sidebarLinks">
       <div class="buyingForms sidebarContents">
         <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
         Buying forms
       </div>
       <div class="buyingFormsNotification">
-        <%= buyingForms.length %>
+        
       </div>
     </a>
     <a href="/us/Sellingforms" class="sidebarLinks">
@@ -66,7 +122,7 @@
         SellingForms
       </div>
       <div class="sellingFormsNotification">
-        <%= contacterSellingForms.length %>
+        
       </div>
     </a>  
     <a href="/us/newMapProductcreation" class="sidebarLinks">
@@ -93,7 +149,7 @@
       </div>
     </a>
 
-  </div>
+  </div> -->
 
   <% if(success.length > 0) { %>
     <div class="flash flash-success">
@@ -118,8 +174,6 @@
 
         <input type="text" name="title" class="inputs" placeholder="Enter title of zameen" required>
 
-        <input type="number" name="zameenNumber" class="inputs" placeholder="Enter number of zameen" required>
-
         <input type="text" name="city" class="inputs" placeholder="Enter city of zameen" required>
 
         <input type="text" name="tehsil" class="inputs" placeholder="Enter tehsil of zameen" value="<%= skymanProduct.tehsil %>" readonly required><hr>
@@ -141,12 +195,19 @@
         <label for="khatauniFile" class="labels">Compressed Khatauni File (.zip or .pdf):</label>
         <input type="file" name="compressedKhatauniFile" id="khatauniFile" class="file inputs" accept=".zip,.pdf" required>
 
+        <label for="youtubeLink" class="labels">Enter youtube video link of product</label>
+        <div class="input-with-button">
+          <input type="url" id="youtubeLink" name="youtubeLink" placeholder="https://www.youtube.com/watch?v=xyz123" autocomplete="off" class="inputs" required>
+          <button type="button" id="pasteButton" title="Paste from clipboard">📋</button>
+          <p id="linkMessage" class="link-message"></p>
+        </div>
+
         <!-- prices starts-->
-        <input type="number" name="sellerPrice" class="inputs" placeholder="Enter original price" value="<%= skymanProduct.sellerPrice %>" readonly step="any" required>
+        <input type="number" id="sellerPrice" name="sellerPrice" class="inputs" placeholder="Enter original price" value="<%= skymanProduct.sellerPrice.toFixed(2) %>" readonly step="any" required>
 
-        <input type="number" name="landbookPrice" class="inputs" placeholder="Enter landbook price" step="any" required>
+        <input type="number" id="landbookPrice" name="landbookPrice" class="inputs" placeholder="Enter landbook price" step="any" required readonly>
 
-        <input type="number" name="brokerPrice" class="inputs" placeholder="Enter broker price" step="any" required>
+        <input type="number" id="brokerPrice" name="brokerPrice" class="inputs" placeholder="Enter broker price" step="any" required readonly>
         <!-- prices ends -->
 
         <input type="text" name="LB" class="inputs" value="<%= skymanProduct.LB %>" placeholder="Enter LB" readonly required>
@@ -187,6 +248,66 @@
     </div>
 
   </div>
+
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+    // for input type youtube url link
+    document.getElementById("pasteButton").addEventListener("click", async () => {
+      const input = document.getElementById("youtubeLink");
+      const message = document.getElementById("linkMessage");
+
+      try {
+        const text = await navigator.clipboard.readText();
+
+        if (!text) {
+          message.textContent = "⚠️ Clipboard is empty — copy a YouTube link first!";
+          message.style.color = "orange";
+          return;
+        }
+
+        input.value = text.trim();
+
+        // ✅ YouTube URL validation (works for normal & short links)
+        const youtubePattern =/^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|shorts\/)?([a-zA-Z0-9_-]{11})(?:[?&].*)?$/;
+
+        if (youtubePattern.test(text.trim())) {
+          message.textContent = "✅ Valid YouTube link detected!";
+          message.style.color = "green";
+          input.style.borderColor = "#28a745";
+        } else {
+          message.textContent = "❌ Not a valid YouTube link. Please check the URL.";
+          message.style.color = "red";
+          input.style.borderColor = "#dc3545";
+        }
+
+      } catch (err) {
+        message.textContent = "❌ Clipboard access denied. Paste manually (Ctrl+V).";
+        message.style.color = "red";
+        console.error(err);
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const sellerPrice = document.getElementById('sellerPrice');
+      const landbookPrice = document.getElementById('landbookPrice');
+      const brokerPrice = document.getElementById('brokerPrice');
+
+      const sPrice = parseFloat(sellerPrice.value);
+
+      const likhFemale = sPrice * 0.07;
+      const ourCost = sPrice * 0.023;
+      const brokerCost = sPrice * 0.038;
+      const brokerFinalFemale = sPrice + likhFemale + brokerCost;
+      const finalFemale = sPrice + likhFemale + ourCost;
+
+      landbookPrice.value = finalFemale.toFixed(2);
+      brokerPrice.value = brokerFinalFemale.toFixed(2);
+    })
+
+  </script>
 
 </body>
 </html>

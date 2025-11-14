@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landbooker Skyman create products panel</title>
+  <title>Landbooker create skyman products page</title>
 
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/skyman-create-products-panel.css">
 
@@ -27,9 +27,9 @@
       </div>       
     </a>
 
-    <a href="/us/skyman-panel" class="links">
+    <a href="/us/skyman-current-location" class="links">
       <div class="navLinks">
-        Skyman form page
+        Get latitude and longitudes
       </div>
     </a>
 
@@ -64,8 +64,8 @@
 
         <input type="text" name="tehsil" class="inputs" placeholder="Enter tehsil of zameen" value="<%= skymanProduct.city %>" readonly required> <hr>
 
-        <label for="productFolderName">Product Folder Name (e.g., product-1):</label>
-        <input type="text" name="productFolderName" id="folderName" class="inputs" required>
+        <!-- <label for="productFolderName">Product Folder Name (e.g., product-1):</label>
+        <input type="text" name="productFolderName" id="folderName" class="inputs" required> -->
         <label for="skymanName">Skyman Name (optional):</label>
         <input type="text" name="skymanName" class="inputs" id="skymanName">
     
@@ -97,8 +97,8 @@
 
         <input type="text" name="LB" class="inputs" placeholder="Enter LB" required>
 
-        <label for="spec">Specifications (one per line): </label>
-        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen, line by line" style="width: 100%;margin-bottom: 12px;"></textarea>
+        <label for="spec">Specifications: 5 (one per line): </label>
+        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen, line by line(5)" style="width: 100%;margin-bottom: 12px;"></textarea>
 
         <input type="text" name="khatauniSpecDetails" class="inputs" value="<%= skymanProduct.khatauniSpecDetails %>" readonly required>
 

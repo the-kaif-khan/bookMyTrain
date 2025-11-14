@@ -19,39 +19,76 @@
     </div>
   </div>
 
-  <!-- sidebar container -->
-  <div class="sidebarContainer">
-    <a href="/us/buyingforms" class="sidebarLinks">
-      <div class="advertisingSidebar sidebarContents">
-        <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
-        Buying forms
-      </div>
-    </a>
-    <a href="/us/Sellingforms" class="sidebarLinks">
-      <div class="cartIconSidebar sidebarContents">
-        <img src="/imagesAndVideos/Logos/Cart Icon.svg" alt="">
-        SellingForms
-      </div>
-    </a>  
-    <a href="/us/mapCoordinates" class="sidebarLinks">
-      <div class="helpIcon sidebarContents">
-        <img src="/imagesAndVideos/Logos/Help icon.svg" alt="">
-          Get map coordination
-      </div>
-    </a>
-    <a href="/us/createProductsPanel" class="sidebarLinks">
-      <div class="supportUsIcon sidebarContents">
-        <img src="/imagesAndVideos/Logos/User feedback icon.svg" alt="">
+
+  <!-- navigations -->
+  <nav class="main-navbar">
+    <button class="hamburger" onclick="toggleSidebar()">
+      &#9776
+    </button>
+    <div class="hamburgerNotification">
+      <%= mapProductCreationLength %>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebarTops">
+      <button class="close-btn" onclick="toggleSidebar()">
+        &times;
+      </button>
+    </div>
+    <div class="navigationsBox">
+      <a href="/us/landbook" class="links">
+        <div class="navLinks">
           Home
+        </div>       
+      </a>
+      <a href="/us/createProductsPanel" class="links">
+        <div class="navLinks skymanProducts">
+          Previous page
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox4">
+      <a href="/us/buyingforms" class="links">
+        <div class="navLinks buyingForms">
+          Buying forms
+        </div>       
+      </a>
+      <a href="/us/Sellingforms" class="links">
+        <div class="navLinks sellingForms">
+          Selling forms
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox5">
+      <a href="/us/adminProducts" class="links">
+        <div class="navLinks createMapElements">
+          Create new map elements
+        </div>       
+      </a>
+      <div class="createMapElementsNotification">
+        <%= mapProductCreationLength %>
       </div>
-    </a>
-    <a href="/home/aboutus" class="sidebarLinks">
-      <div class="aboutUsIcon sidebarContents">
-        <img src="/imagesAndVideos/Logos/About us icon.svg" alt="">
-        About Us
-      </div>
-    </a>
+      <a href="/us/mapCoordinates" class="links">
+        <div class="navLinks sellingForms">
+          Get map coordinates
+        </div>
+      </a>
+    </div>
+    <div class="navigationsBox2">
+      <a href="/us/skyman-current-location" class="links">
+        <div class="navLinks">
+          Get Latitude and Longitude
+        </div>
+      </a>
+      <a href="/us/aboutus" class="links">
+        <div class="navLinks">
+          About us
+        </div>
+      </a>
+    </div>
   </div>
+
 
   <% if(success.length > 0) { %>
     <div class="flash flash-success">
@@ -104,6 +141,9 @@
   <script>
   function confirm() {
     return confirm('Is the latitude of the product is correct, if not, you can cancel this and change it to real coordinates!')
+  }
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
   }
   </script>
 

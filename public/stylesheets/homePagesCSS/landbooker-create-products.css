@@ -636,6 +636,52 @@ textarea{
   margin-bottom: 14px;
   margin-top: 10px;
 }
+
+/* for input of youtube link starts */
+.input-with-button{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  margin-bottom: 14px;
+  margin-top: 10px;
+}
+.input-with-button input{
+  width: 100%;
+  font-size: 15px;
+  border: 1.8px solid #ccc;
+  /* border-radius: 8px; */
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.input-with-button input:focus{
+  border-color: #0078ff;
+}
+.input-with-button button{
+  position: absolute;
+  right: 8px;
+  background: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+.input-with-button button:hover{
+  background: #005ecb;
+}
+/* validate message */
+.link-message{
+  font-size: 14px;
+  margin-top: 5px;
+  color: #555;
+  transition: color 0.3s ease;
+}
+/* for input of youtube link ends */
+
 .labels{
   color: rgb(0, 81, 255);
   font-size: 15px;

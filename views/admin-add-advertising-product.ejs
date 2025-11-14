@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin add advertising product page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/admin-create-advertising-products-panel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Create advertising products panel
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/landad/login" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel2" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>
+    </a>
+
+    <!-- <a href="/home/compress/landbooker/skyman" class="links">
+      <div class="navLinks">
+        Khatauni images compressing page
+      </div>
+    </a> -->
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create new skyman product
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create advertising product
+      </div>
+      <form action="/landad/added/advertising-product" method="post" enctype="multipart/form-data">
+
+        <div class="advertiserDetails">
+          <div class="detailsTitle">
+            Advertiser Details
+          </div>
+          <label for="adOwnerName" class="labels">Product Owner name:</label>
+          <input type="text" name="adOwnerName" class="inputs" placeholder="Enter owner name of advertising product" required> <hr>
+          <label for="adOwnerContact" class="labels">Product Owner contact:</label>
+          <input type="number" name="adOwnerContact" class="inputs" placeholder="Enter owner Contact number of advertising product" minlength="10" required> <hr>
+          <label for="adOwnerEmail" class="labels">Product Owner email:</label>
+          <input type="email" name="adOwnerEmail" class="inputs" placeholder="Enter owner email of advertising product" required> <hr>
+          <label for="contractPic" class="labels">Contract image:</label>
+          <input type="file" name="contractPic" id="contractPic" class="inputs"  accept="image/*" required>
+        </div>
+
+        <div class="adProductDetails">
+          <div class="detailsTitle">
+            Advertising product details
+          </div>
+          <label for="productTitle" class="labels">Product title:</label>
+          <input type="text" name="productTitle" class="inputs" placeholder="Enter title text of advertising product" required> <hr>
+
+          <label for="productFullDetails" class="labels">Product full details:</label>
+          <input type="text" placeholder="Enter full details of advertising product" name="productFullDetails" id="folderName" class="inputs" required>
+      
+          <label for="productAllImages" class="labels">Product all images:</label>
+          <input type="file" name="productAllImages" id="mainRoadImages" class="inputs" multiple accept="image/*" required>
+      
+          <label for="productVideoFile" class="labels">Product YouTube Video File (max 100MB):</label>
+          <input type="file" name="productVideoFile" id="videoFile" class="inputs" accept="video/*" required>
+        </div>
+
+        <input type="submit" value="Create product" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="/us/adminProducts" class="readProducts">
+        View all advertising products.
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>

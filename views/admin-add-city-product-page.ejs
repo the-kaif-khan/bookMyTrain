@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin add city product page</title>
+
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/admin-create-advertising-products-panel.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="title">
+      Landbook
+    </div>
+    <div class="aboutPage">
+      Create city products panel
+    </div>
+  </div>
+
+  <!-- navigations -->
+  <div class="navigationsBox">
+    <a href="/landad/login" class="links">
+      <div class="navLinks">
+        Home
+      </div>       
+    </a>
+
+    <a href="/landad/admin-panel2" class="links">
+      <div class="navLinks">
+        Previous page
+      </div>
+    </a>
+
+    <!-- <a href="/home/compress/landbooker/skyman" class="links">
+      <div class="navLinks">
+        Khatauni images compressing page
+      </div>
+    </a> -->
+  </div>
+
+
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="container">
+    <div class="pageTitle">
+      Create city product
+    </div>
+    <div class="productDetails">
+      <div class="productDetailTitle">
+        Create city product
+      </div>
+      <form action="/landad/added/city-product" method="post">
+
+        <div class="advertiserDetails">
+          <div class="detailsTitle">
+            Enter city details
+          </div>
+          <label for="city" class="labels">Enter city name:</label>
+          <input type="text" name="city" class="inputs" placeholder="Enter city name" required> <hr>
+
+          <div id="tehsil-container">
+            <label for="tehsil" class="labels">Enter tehsil name:</label>
+            <input type="text" name="tehsil[]" class="inputs" placeholder="Enter tehsil name"> <hr>
+          </div>
+          <button type="button" id="add-tehsil" class="inputs add-more-btn">
+            + Add more tehsils
+          </button>
+
+        </div>
+
+        <input type="submit" value="Create product" class="inputs submit-button">
+      </form>
+    </div>
+
+    <div class="">
+      <a href="/us/adminCityProducts" class="readProducts">
+        View all advertising products.
+      </a>
+    </div>
+
+  </div>
+
+
+  <script>
+    document.getElementById('add-tehsil').addEventListener('click', () => {
+      const container = document.getElementById('tehsil-container');
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.name = 'tehsil[]'
+      newInput.className = 'inputs';
+      newInput.placeholder = 'Enter tehsil name';
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.textContent = 'Remove';
+      removeBtn.className = 'remove-btn';
+      removeBtn.style.marginLeft = '10px';
+      removeBtn.addEventListener('click', () => {
+        container.removeChild(newDiv);
+      });
+
+      const newDiv = document.createElement('div');
+      newDiv.appendChild(newInput);
+      newDiv.appendChild(removeBtn);
+      newDiv.style.marginTop = '5px';
+      container.appendChild(newDiv);
+    })
+  </script>
+
+</body>
+</html>

@@ -7,12 +7,27 @@
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/help-page.css">
   <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/how-top-search-footer-page.css">
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/help-page-texts.css">
+
+      <!-- google translate hidden element (head) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,bn,ur,ta,te,pa,gu,ml,mr,it',
+      autoDisplay: false,
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 <body>
   
   <div class="header">
     <div class="headerLogo">
-      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/Wow3.png" alt=""></a>
+      <a href="/home/landbook"><img src="/imagesAndVideos/Logos/LOGO/banner2.png" alt=""></a>
     </div>
     <div class="headerText">
       Landbook Help Page
@@ -27,18 +42,17 @@
       </div>       
     </a>
     <input type="text" id="searchBox"  placeholder="Search help..." oninput="searchHelp()"/>
-    <!-- <div class="navLinks">
-      <a href="" class="links">Help</a>
-    </div> -->
   </div>
 
   <!-- main containers -->
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('most')">
-      What is <span class="logo">Landbook</span> ?
-    </div>
-    <div id="most" class="post-section">
-      <div class = "post-card help-content">
+
+  <div class="accordian">
+
+    <div class="item">
+      <div class="title">
+        What is <span class="logo">Landbook</span>?
+      </div>
+      <div class="content">
         <div class="titles">
           What is <span class="logoInText">Landbook</span>, what it means, what do we do
         </div>
@@ -60,14 +74,12 @@
         </div>
       </div>
     </div>
-  </div> 
 
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('least')">
-      How can <span class="logo">Landbook</span> be useful ?
-    </div>
-    <div id="least" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        How can <span class="logo">Landbook</span> be useful ?
+      </div>
+      <div class="content">
         <div class="titles">
           The usefulness of <span class="logoInText">Landbook</span>
         </div>
@@ -85,17 +97,18 @@
         </div>
       </div>
     </div>
-  </div> 
 
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('b')">
-      What does <span class="highlights">Claim cart</span> means ?
-    </div>
-    <div id="b" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        What does <span class="highlights">Claim cart</span> means ?
+      </div>
+      <div class="content">
+        <div class="titles">
+          What does <span class="logoInText">Claim cart</span> means ?
+        </div>
         <div class="contents">
           <div class="titles">
-            What does <span class="logoInText">Claim cart</span> means ?
+            What does <span class="logoInText">Claim cart</span> means ? How can it be deal saver?
           </div>
           <div class="firstContent">
             Look, there was a problem in previous buying of lands system in which when anyone wants to buy a land and got a land which they loved but the price gets out of their budget and the money they had to arrange was more but in terms of sense, it was good price though so, at that moment they either have to wait and get the money collected from anywhere...but if they not be able to give money in near days, any other customer comes in and many times the other buyer just buy the land and the previous customer who loved to buy the land first, gets to know about it only when he call broker for to buy the land, they do not gets informed that the land they once loved and wanted to buy in, is in buying process by someone or the buyer gave the bayana immediately. They just get to know that the land is bought only when they call the broker. So, we made a solution for those users which is called <span class="highlights">Claim cart</span>.
@@ -105,36 +118,29 @@
         </div>
       </div>
     </div>
-  </div> 
 
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('c')">
-      What does <span class="highlights">buying cart</span> means ?
-    </div>
-    <div id="c" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        What does <span class="highlights">buying cart</span> means ?
+      </div>
+      <div class="content">
         <div class="titles">
           What does <span class="logoInText">Buying cart</span> means ?
         </div>
         <div class="contents">
-        <div class="firstContent">
-          If you wanna buy a land fast and you got a land with your budget fit land then adding that particular land is your <span class="highlights2">Buying cart</span> is the perfect choice you should make.
-        </div>
+          <div class="firstContent">
+            If you wanna buy a land fast and you got a land with your budget fit land then adding that particular land is your <span class="highlights2">Buying cart</span> is the perfect choice you should make.
+          </div>
           <span class="highlights">Add to buying cart</span> offers you buying a land as quickly as possible but there is a <span class="highlights">not so big and not so small clause</span>in it which is 5 hours <span class="highlights">Claimed people</span> time which is when you select the land and in that product, you click the add to buying cart you have to give 5 hours to the <span class="highlights">Claimed people</span>. Its important because we can say that the claimed people saw it first but was unable to buy cause of their budget and they started collecting money for to buy the land in the light of that they will buy the land but if we do not give a  chance to claimed people, it will be not good and that is the purpose of <span class="highlights">Claim carting too</span>. It gives you a chance to buy the land you wanted to buy but wasn't able to buy it. But there a big clause in claim carting too which is, the claim customers have time of 5 hours only from when you or our buying user fill any of product's buying form...which is enough for ones who can buy the land and too short period for those who can't buy the land now too so the 5 hours is a balnced time for doer buyers and non doer buyers. So, then after the 5 hours time for claimed people end, <span class="highlights">the product will be added to buyer's buying cart but for temporary</span>. Because maybe the buyer is not a <span class="highlights">Doer buyer</span> and maybe he will not be able to buy the land so, after 5 hours of claimed people the product will be added to buyer user's buying cart temporary and a new timer for buyer buying cart bayana timer will be started for buyer only. But this timer is for giving the bayana for buyer user only, no priority and everything. In this given time the Buyer in which the buying product is that product will only be able to give bayana and the timer is 72 hours (3 days) which is enough for one to give bayana and buy the product later anytime. Giving bayana is same as always which user have to go to his profile or buying cart and if 5 hours timer ends then the product will automatically add to user's buying cart and the link to get to <span class="highlights">Contact to give bayana</span> will be visible. And when you contact us... you will be given instructions and methods to give bayana and everything by <span class="highlights2">Landbook query house</span> till buying the land and a <span class="highlights">Reminder</span>, the process of All bayana giving to Buying the land will be fully offline under <span class="highlights2">Landbook guidance</span> and if you want, then under your Lawyer too.
         </div>
-
       </div>
     </div>
-  </div> 
 
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('d')">
-      In how much time the <span class="highlights">buying product</span> will be added to my buying cart after filling buying form...
-    </div>
-    <div id="d" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        In how much time the <span class="highlights">buying product</span> will be added to my buying cart after filling buying form...
+      </div>
+      <div class="content">
         <div class="titles">
           In how much time will the <span class="logoInText">Buying product</span> will be added to my <span class="logoInText">Buying cart</span> after filling buying form
         </div>
@@ -146,14 +152,12 @@
         </div>
       </div>
     </div>
-  </div> 
 
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('o')">
-      Why <span class="highlights"> <span class="logo">Landbook</span> Buying form filling</span> is necessary ?
-    </div>
-    <div id="o" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        Why <span class="highlights"> <span class="logo">Landbook</span> Buying form filling</span> is necessary ?
+      </div>
+      <div class="content">
         <div class="titles">
           Why <span class="logoInText"> <span class="logo">Landbook</span> Buying form filling</span> is necessary ?
         </div>
@@ -165,15 +169,12 @@
         </div>
       </div>
     </div>
-  </div> 
 
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('e')">
-      What does <span class="highlights">Add to claim cart</span> means ?
-    </div>
-    <div id="e" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        What does <span class="highlights">Add to claim cart</span> means ?
+      </div>
+      <div class="content">
         <div class="titles">
           What does <span class="logoInText">Add to Claim cart</span> means ?
         </div>
@@ -185,15 +186,12 @@
         </div>
       </div>
     </div>
-  </div> 
 
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('f')">
-      How <span class="logo">Landbook</span> provide details about product ?
-    </div>
-    <div id="f" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        How <span class="logo">Landbook</span> provide details about product ?
+      </div>
+      <div class="content">
         <div class="titles">
           How <span class="logo">Landbook</span> provide <span class="logoInText">details about product</span>
         </div>
@@ -202,14 +200,12 @@
         </div>
       </div>
     </div>
-  </div> 
 
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('g')">
-      How can i trust the <span class="logo">Landbook</span> bayana specification that it is correct ?
-    </div>
-    <div id="g" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        How can i trust the <span class="logo">Landbook</span> bayana specification that it is correct ?
+      </div>
+      <div class="content">
         <div class="titles">
           How can i trust the <span class="logoInText">Bayana specification details</span> that it is correct ?
         </div>
@@ -221,14 +217,12 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('h')">
-      Can we trust <span class="logo">Landbook</span> ?
-    </div>
-    <div id="h" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        Can we trust <span class="logo">Landbook</span> ?
+      </div>
+      <div class="content">
         <div class="titles">
           Can i trust on <span class="logoInText">Landbook</span> ?
         </div>
@@ -245,17 +239,14 @@
         </div>
       </div>
     </div>
-  </div> 
 
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('i')">
-      How we get the right product by <span class="logo">Landbook</span> ?
-    </div>
-    <div id="i" class="post-section">
-      <div class = "post-card help-content">
+    <div class="item">
+      <div class="title">
+        How we get the right product by <span class="logo">Landbook</span> ?
+      </div>
+      <div class="content">
         <div class="titles">
-          How we get the right product through <span class="logo">Landbook</span>
+          How we get the right product through <span class="logo">Landbook</span>?
         </div>
         <div class="contents">
           <div class="firstContent">
@@ -271,79 +262,8 @@
         </div>
       </div>
     </div>
-  </div> 
 
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('j')">
-      How can be buy zameens through <span class="logo">Landbook</span> fast ?
-    </div>
-    <div id="j" class="post-section">
-      <div class = "post-card help-content">
-        this is toggled
-      </div>
-    </div>
-  </div> 
-
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('k')">
-      In what ways <span class="logo">Landbook</span> solve problems ?
-    </div>
-    <div id="k" class="post-section">
-      <div class = "post-card help-content">
-        this is toggled
-      </div>
-    </div>
-  </div> 
-
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('p')">
-      What is <span class="highlights">Landbook Message</span> in <span class="logo">Landbook</span> ?
-    </div>
-    <div id="p" class="post-section">
-      <div class = "post-card help-content">
-        this is toggled
-      </div>
-    </div>
-  </div> 
-
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('l')">
-      How to contact <span class="logo">Landbook</span> <span class="highlight">Query house</span>
-    </div>
-    <div id="l" class="post-section">
-      <div class = "post-card help-content">
-        this is toggled
-      </div>
-    </div>
-  </div> 
-
-
-  <div class="containers help-item">
-    <div class="toggle-button help-title" onclick="toggleView('m')">
-      What does <span class="logo">Landbook</span> stands ?
-    </div>
-    <div id="m" class="post-section">
-      <div class = "post-card help-content">
-        this is toggled
-      </div>
-    </div>
-  </div> 
-
-
-  <div class="containers">
-    <div class="toggle-button help-title" onclick="toggleView('n')">
-      What does <span class="logo">Landbook</span> do ?
-    </div>
-    <div id="n" class="post-section">
-      <div class = "post-card help-content">
-        this is toggled
-      </div>
-    </div>
-  </div> 
+  </div>
 
 
   <footer>
@@ -351,7 +271,7 @@
     <div class="aboutThisPage">
       <div class="pageLanguage">
         <div class="languageImage">
-          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          🌐
         </div>
         <div class="languageText">
           English
@@ -360,7 +280,7 @@
 
       <div class="aboutCountry">
         <div class="aboutCountryImage">
-          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          <img src="/imagesAndVideos/images/1f1ee-1f1f3.png" alt="">
         </div>
         <div class="aboutCountryText">
           India
@@ -388,32 +308,36 @@
 
 
 
+  <script>
+    const items = document.querySelectorAll('.item');
+    items.forEach(item => {
+      item.querySelector('.title').addEventListener('click', () => {
+        items.forEach(i => {
+          if (i !== item) {
+            i.classList.remove('active');
+            i.querySelector('.content').style.maxHeight = null;
+          }
+        });
+        item.classList.toggle('active');
+        const content = item.querySelector('.content');
+        if(item.classList.contains('active')) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    });
+  </script>
 
 
   <script>
-    let openSection = null;
-    function toggleView(id) {
-      const section = document.getElementById(id);
-
-      if(openSection && openSection !== section) {
-        openSection.classList.remove('open');
-      }
-
-      if(section.classList.contains('open')) {
-        section.classList.remove('open');
-        openSection = null;
-      } else {
-        section.classList.add('open');
-        openSection = section;
-      }
-    }
 
     function searchHelp() {
       const input = document.getElementById('searchBox').value.toLowerCase();
-      const helpItems = document.querySelectorAll('.help-item');
+      const helpItems = document.querySelectorAll('.item');
 
       helpItems.forEach(item => {
-        const title = item.querySelector('.help-title').textContent.toLowerCase();
+        const title = item.querySelector('.title').textContent.toLowerCase();
         if(title.includes(input)) {
           item.style.display = 'block';
         } else {
@@ -426,6 +350,128 @@
       const helpItems = document.querySelectorAll('.container');
       helpItems.forEach(item => item.style.display = 'none');
     }
+  </script>
+
+
+  <select id="languageSelect language-select" hidden>
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="ur">اردو</option>
+    <option value="ta">தமிழ்</option>
+    <option value="te">తెలుగు</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="ml">മലയാളം</option>
+    <option value="mr">मराठी</option>
+    <option value="it">Italiano</option>
+  </select>
+
+
+  <script>
+  (function() {
+const SELECT_ID = 'languageSelect';
+const STORAGE_KEY = 'preferredLanguage';
+const defaultSourceLang = 'en';
+
+function setCookie(name, value, days, path = '/') {
+  const d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = `${name}=${value};expires=${d.toUTCString()};path=${path}`;
+}
+
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+// Extract target language from googtrans cookie ("/en/hi" → "hi")
+function currentLangFromCookie() {
+  const c = getCookie('googtrans');
+  if (!c) return defaultSourceLang;
+  const parts = c.split('/');
+  return parts[2] || defaultSourceLang;
+}
+
+function trySetComboLang(lang) {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) {
+    if (combo.value !== lang) {
+      combo.value = lang;
+      combo.dispatchEvent(new Event('change'));
+      console.log('Translate combo switched →', lang);
+    } else {
+      console.log('Language already active →', lang);
+    }
+    return true;
+  }
+  return false;
+}
+
+function fallbackSetLang(lang) {
+  try {
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+    window.location.reload();
+  } catch (e) {
+    console.error('fallbackSetLang error', e);
+  }
+}
+
+function setLanguage(lang) {
+  localStorage.setItem(STORAGE_KEY, lang);
+
+  // prevent loop if already same language
+  const current = currentLangFromCookie();
+  if (current === lang) {
+    console.log('Skip re-translate (already', lang, ')');
+    return;
+  }
+
+  let attempts = 0;
+  const maxAttempts = 25;
+  const interval = setInterval(() => {
+    attempts++;
+    const done = trySetComboLang(lang);
+    if (done) {
+      clearInterval(interval);
+      return;
+    }
+    if (attempts >= maxAttempts) {
+      clearInterval(interval);
+      console.warn('Combo not found, fallback to cookie');
+      fallbackSetLang(lang);
+    }
+  }, 100);
+}
+
+function initSelector() {
+  const sel = document.getElementById(SELECT_ID);
+  if (!sel) return;
+
+  // restore saved
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    sel.value = saved;
+    const current = currentLangFromCookie();
+    if (current !== saved) {
+      setLanguage(saved);
+    }
+  }
+
+  sel.addEventListener('change', function() {
+    const lang = this.value;
+    setLanguage(lang);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSelector);
+} else {
+  initSelector();
+}
+})()
+
   </script>
 
 </body>

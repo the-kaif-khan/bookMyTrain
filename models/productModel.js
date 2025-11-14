@@ -18,7 +18,10 @@ let productSchema = mongoose.Schema({
   ratingImage: Buffer,
   ratingCount: Number,
   title: String,
-  zameenNumber: Number,
+  zameenNumber: {
+    type: Number,
+    unique: true
+  },
   city: String,
   tehsil: String,
   area: Number,
@@ -37,12 +40,10 @@ let productSchema = mongoose.Schema({
       default: []
     }
   ],
-  visits: [
-    {
+  visits: {
       type: Number,
       default: 0
-    }
-  ],
+    },
   claimedPeople: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -94,6 +95,10 @@ let productSchema = mongoose.Schema({
       ref: 'userBayanaForm'
     }
   ],
+  youtubeLink: {
+    type: String,
+    required: false
+  },
   keys: String,
   recommendation: String
 });

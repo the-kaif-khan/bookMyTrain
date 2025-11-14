@@ -7,6 +7,35 @@
   
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/forgottingPassPage.css">
 
+        <!-- google translate hidden element (head) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,bn,ur,ta,te,pa,gu,ml,mr,it',
+      autoDisplay: false,
+    }, 'google_translate_element');
+      // for movement of main-navbar to some bottom...
+  function checkGoogleTranslateBanner() {
+    const banner = document.querySelector('.goog-te-banner-frame');
+    const body = document.body;
+    if(banner && banner.style.display !== 'none') {
+      body.classList.add('translate-active');
+    } else {
+      body.classList.remove('translate-active');
+    }
+  }
+  const observer = new MutationObserver(checkGoogleTranslateBanner);
+  observer.observe(document.body, { childList: true, subtree: true });
+  setInterval(checkGoogleTranslateBanner, 1000);
+  }
+
+  
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 <body>
 
@@ -91,6 +120,135 @@
       }
     });
   </script>
+
+
+  <select id="languageSelect language-select">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="ur">اردو</option>
+    <option value="ta">தமிழ்</option>
+    <option value="te">తెలుగు</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="ml">മലയാളം</option>
+    <option value="mr">मराठी</option>
+    <option value="it">Italiano</option>
+  </select>
+<script>
+    // for language translation
+    // for new language translation
+(function() {
+  const SELECT_IDS = ['languageSelectMain', 'languageSelectSide']; // IDs of both dropdowns
+  const STORAGE_KEY = 'preferredLanguage';
+  const defaultSourceLang = 'en';
+
+  function setCookie(name, value, days, path = '/') {
+    const d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=${path}`;
+  }
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function currentLangFromCookie() {
+    const c = getCookie('googtrans');
+    if (!c) return defaultSourceLang;
+    const parts = c.split('/');
+    return parts[2] || defaultSourceLang;
+  }
+
+  function trySetComboLang(lang) {
+    const combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+      if (combo.value !== lang) {
+        combo.value = lang;
+        combo.dispatchEvent(new Event('change'));
+        console.log('Translate combo switched →', lang);
+      } else {
+        console.log('Language already active →', lang);
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function fallbackSetLang(lang) {
+    try {
+      setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+      setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+      window.location.reload();
+    } catch (e) {
+      console.error('fallbackSetLang error', e);
+    }
+  }
+
+  function setLanguage(lang) {
+    localStorage.setItem(STORAGE_KEY, lang);
+    const current = currentLangFromCookie();
+    if (current === lang) {
+      console.log('Skip re-translate (already', lang, ')');
+      return;
+    }
+
+    let attempts = 0;
+    const maxAttempts = 25;
+    const interval = setInterval(() => {
+      attempts++;
+      const done = trySetComboLang(lang);
+      if (done) {
+        clearInterval(interval);
+        return;
+      }
+      if (attempts >= maxAttempts) {
+        clearInterval(interval);
+        console.warn('Combo not found, fallback to cookie');
+        fallbackSetLang(lang);
+      }
+    }, 100);
+  }
+
+  function initSelectors() {
+    // get both selects
+    const selects = SELECT_IDS.map(id => document.getElementById(id)).filter(Boolean);
+    if (!selects.length) return;
+
+    // restore saved
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      selects.forEach(sel => sel.value = saved);
+      const current = currentLangFromCookie();
+      if (current !== saved) {
+        setLanguage(saved);
+      }
+    }
+
+    // listen for changes on each select
+    selects.forEach(sel => {
+      sel.addEventListener('change', function() {
+        const lang = this.value;
+
+        // sync both dropdowns instantly
+        selects.forEach(s => {
+          if (s.value !== lang) s.value = lang;
+        });
+
+        // apply and save language
+        setLanguage(lang);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSelectors);
+  } else {
+    initSelectors();
+  }
+})();
+</script>
 
 
 </body>

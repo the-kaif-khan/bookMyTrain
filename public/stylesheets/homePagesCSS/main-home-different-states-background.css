@@ -44,8 +44,9 @@
 }
 
 /* state1 */
-.state1{
-  background-image: url(../../../yeah/agra2.jpeg);
+.state1,
+.state2{
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,7 +58,7 @@
 }
 /* state2 */
 .state2{
-  background-image: url(../../../images/messi.jpg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -69,7 +70,7 @@
 }
 /* state3 */
 .state3{
-  background-image: url(../../../yeah/ambedkar-nagar.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,7 +82,7 @@
 }
 /* state4 */
 .state4{
-  background-image: url(../../../yeah/ayodhya.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -93,7 +94,7 @@
 }
 /* state5 */
 .state5{
-  background-image: url(../../../yeah/amethi.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -105,7 +106,7 @@
 }
 /* state6 */
 .state6{
-  background-image: url(../../../yeah/amroha.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -117,7 +118,7 @@
 }
 /* state7 */
 .state7{
-  background-image: url(../../../yeah/auraiya.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -129,7 +130,7 @@
 }
 /* state8 */
 .state8{
-  background-image: url(../../../yeah/azamgarh.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -141,7 +142,7 @@
 }
 /* state9 */
 .state9{
-  background-image: url(../../../yeah/badaun.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -153,7 +154,7 @@
 }
 /* state10 */
 .state10{
-  background-image: url(../../../yeah/baghpat.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -165,7 +166,7 @@
 }
 /* state11 */
 .state11{
-  background-image: url(../../../yeah/bahraich.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -177,7 +178,7 @@
 }
 /* state12 */
 .state12{
-  background-image: url(../../../yeah/ballia.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -189,7 +190,7 @@
 }
 /* state13 */
 .state13{
-  background-image: url(../../../yeah/balrampur.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -201,7 +202,7 @@
 }
 /* state14 */
 .state14{
-  background-image: url(../../../yeah/banda.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -213,7 +214,7 @@
 }
 /* state15 */
 .state15{
-  background-image: url(../../../yeah/agra1.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -225,7 +226,7 @@
 }
 /* state16 */
 .state16{
-  background-image: url(../../../yeah/Bareilly.jpg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -237,7 +238,7 @@
 }
 /* state17 */
 .state17{
-  background-image: url(../../../yeah/basti.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -249,7 +250,7 @@
 }
 /* state18 */
 .state18{
-  background-image: url(../../../yeah/bhadohi.jpg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -261,7 +262,7 @@
 }
 /* state20 */
 .state20{
-  background-image: url(../../../yeah/bulandshahr.jpg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -273,7 +274,7 @@
 }
 /* state21 */
 .state21{
-  background-image: url(../../../yeah/chandauli.jpeg);
+  background: linear-gradient(135deg, #0d51b6, rgb(46, 175, 7));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -282,6 +283,9 @@
 }
 .state21:hover{
   border: 2px solid rgb(0, 148, 197);
+}
+.allStates{
+  margin-bottom: 70px;
 }
 
 

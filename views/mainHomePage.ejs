@@ -12,21 +12,50 @@
 
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-different-states-background.css">
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-carousel-product.css">
+
+
+<!-- google translate hidden element (head) -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,bn,ur,ta,te,pa,gu,ml,mr,it',
+      autoDisplay: false,
+    }, 'google_translate_element');
+      // for movement of main-navbar to some bottom...
+  function checkGoogleTranslateBanner() {
+    const banner = document.querySelector('.goog-te-banner-frame');
+    const body = document.body;
+    if(banner && banner.style.display !== 'none') {
+      body.classList.add('translate-active');
+    } else {
+      body.classList.remove('translate-active');
+    }
+  }
+  const observer = new MutationObserver(checkGoogleTranslateBanner);
+  observer.observe(document.body, { childList: true, subtree: true });
+  setInterval(checkGoogleTranslateBanner, 1000);
+  }
+
   
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </head>
 <body>
-
   <!-- header container -->
     <nav class="main-navbar">
       <div class="leftHeader">
-        <a href="/home/login"><img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt=""></a> 
+        <a href="/home/login"><img src="/imagesAndVideos/Logos/LOGO/banner2.png" alt=""></a> 
       </div>
       <button class="hamburger" onclick="toggleSidebar()">
         &#9776
       </button>
       <div class="hamburgerNotification">
         <% if (currentUser) { %>
-          <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length%>
+          <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length + currentUser.buyingCartTimerId.length %>
         <% } else { %>
           0
         <% } %>
@@ -42,26 +71,27 @@
               </div>
             </button>
           </form>
-          <button class="voiceButton" id="micBtn">
-            <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
-            <div class="tooltip">
-              Search with your voice
-            </div>
-          </button>
-          <div id="languageToggle">
-            <div class="language-dropdown">
-              <button onclick="toggleLanguageDropdown()" class="languageBtn">🌐 Language</button>
-              <div id="dropdownContent" class="dropdown-content">
-                <a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
-                <a onclick="changeLanguage('bn')">🇮🇳 Bengali</a>
-                <a onclick="changeLanguage('ta')">🇮🇳 Tamil</a>
-                <a onclick="changeLanguage('te')">🇮🇳 Telugu</a>
-                <a onclick="changeLanguage('en')">🇺🇸 English</a>
-              </div>
-            </div>
+        <button class="voiceButton" id="micBtnMain">
+          <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
+          <div class="tooltip">
+            Search with your voice
           </div>
-        </div>
-        <div class="rightHeader">
+        </button>
+        <select id="languageSelectMain" class="language-select">
+          <option value="en">🌐 English</option>
+          <option value="hi">🌐 हिन्दी</option>
+          <option value="bn">🌐 বাংলা</option>
+          <option value="ur">🌐 اردو</option>
+          <option value="ta">🌐 தமிழ்</option>
+          <option value="te">🌐 తెలుగు</option>
+          <option value="pa">🌐 ਪੰਜਾਬੀ</option>
+          <option value="gu">🌐 ગુજરાતી</option>
+          <option value="ml">🌐 മലയാളം</option>
+          <option value="mr">🌐 मराठी</option>
+          <option value="it">🌐 Italiano</option>
+        </select>
+      </div>
+      <div class="rightHeader">
 
          <!-- <div class="profileIcon">
             <a href="/us/user/notification">
@@ -95,7 +125,7 @@
             </a>
             <div class="profileNotification">
               <% if (currentUser) { %>
-                <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length%>
+                <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length + currentUser.buyingCartTimerId.length %>
               <% } else { %>
                 0
               <% } %>
@@ -141,17 +171,17 @@
             </button> 
           </a>
           <div class="profileNotification">
-            <% if (currentUser) { %>
-              <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length%>
-            <% } else { %>
-              0
-            <% } %>
+        <% if (currentUser) { %>
+          <%= currentUser.buyingMessageFromLandbook.filter(m => !m.read).length + currentUser.sellingMessageFromLandbook.filter(m => !m.read).length + currentUser.claimedMessageFromLandbook.filter(m => !m.read).length + currentUser.buyingCartTimerId.length %>
+        <% } else { %>
+          0
+        <% } %>
           </div>
         </div>
       </div>
       <div class="sideMiddleHeader">
         <form action="/home/search/basti/bastisadar" method="GET">
-          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+          <input type="text"  placeholder="Search Landbook" class="searchInput" required>
           <button class="searchButton" type="submit">
             <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
             <div class="sideTooltip">
@@ -159,24 +189,25 @@
             </div>
           </button>
         </form>
-        <button class="voiceButton" id="micBtn">
+        <button class="voiceButton" id="micBtnSide">
           <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
           <div class="sideTooltip">
             Search with your voice
           </div>
         </button>
-        <div id="languageToggle">
-          <div class="language-dropdown">
-            <button onclick="toggleLanguageDropdown()" class="languageBtn">🌐 Language</button>
-            <div id="dropdownContent" class="dropdown-content">
-              <a onclick="changeLanguage('hi')">🇮🇳 Hindi</a>
-              <a onclick="changeLanguage('bn')">🇮🇳 Bengali</a>
-              <a onclick="changeLanguage('ta')">🇮🇳 Tamil</a>
-              <a onclick="changeLanguage('te')">🇮🇳 Telugu</a>
-              <a onclick="changeLanguage('en')">🇺🇸 English</a>
-            </div>
-          </div>
-        </div>
+        <select id="languageSelectSide" class="language-select">
+          <option value="en">🌐 English</option>
+          <option value="hi">🌐 हिन्दी</option>
+          <option value="bn">🌐 বাংলা</option>
+          <option value="ur">🌐 اردو</option>
+          <option value="ta">🌐 தமிழ்</option>
+          <option value="te">🌐 తెలుగు</option>
+          <option value="pa">🌐 ਪੰਜਾਬੀ</option>
+          <option value="gu">🌐 ગુજરાતી</option>
+          <option value="ml">🌐 മലയാളം</option>
+          <option value="mr">🌐 मराठी</option>
+          <option value="it">🌐 Italiano</option>
+        </select>
       </div>
       
     </div>
@@ -192,8 +223,6 @@
       <%= success %>
     </div>
   <% } %>
-
-  <div id="google_translate_element" style="position: fixed; top: 0; left: 0; z-index: 9999;"></div>
 
   <!-- body containers -->
   <div class="container">
@@ -228,7 +257,7 @@
                       </div>
                       <div class="productsStats">
                         <div class="productsVisit">
-                          Times Visited: <%= bigProduct.visits.length %> &#183
+                          Times Visited: <%= bigProduct.visits %> &#183
                         </div>
                         <div class="productsRating">
                           <img src= "data:image/jpeg;base64, <%= bigProduct.ratingImage.toString('base64') %>">
@@ -263,59 +292,44 @@
     </div>
 
     <div class="aboutPage">
-      You are on landbook.com. If you want to buy or sell your zameen(s) then landbook make it easy where you can buy and sell the zameen in easiest ways in the world with your phone.
+      Hello, <% if (currentUser) { %><%= currentUser.name.toUpperCase() %><% } else { %> <% } %> You are on landbook.com. If you want to buy or sell your zameen(s) then landbook make it easy where you can buy and sell the zameen in easiest ways in the world with your phone.
     </div>
 
     <div class="top3Columns">
 
-      <div class="tops dropdown-container" onclick="toggleDropdown()">
-        <div class="placeAndPrice">
-          <div class="textsTopFour">
-            Basti
+      <% if(topCityProducts.length > 0) { %>
+        <% topCityProducts.forEach((cityProduct, index) => { %>
+          <div class="tops<%= index + 1 %> dropdown-container" onclick="toggleDropdown()">
+            <div class="placeAndPrice">
+              <div class="textsTopFour">
+                <%= formatName(cityProduct.city) %>
+              </div>
+              <% if(cityProduct.startingPrice) { %>
+                <div class="startingPrices"> 
+                  Starting Price: <%= cityProduct.startingPrice %> Lakhs
+                </div>
+              <% } else { %>
+                <div class="startingPrices"> 
+                  Coming soon @Landbook.
+                </div>
+              <% } %>
+            </div>
+            <div class="dropdown hidden">
+              <% cityProduct.tehsils.forEach((tehsil) => { %>
+                <a onclick="saveLastClick('Basti Sadar')" href="/home/<%= cityProduct.city %>/<%= tehsil %>" class="links specialLink"><%= formatName(tehsil) %></a>
+              <% }) %>
+            </div>
           </div>
-          <div class="startingPrices"> 
-            Starting Price. 28 Lakhs
-          </div>
-        </div>
-        <div class="dropdown hidden">
-          <a onclick="saveLastClick('Basti Sadar')" href="/home/basti/bastisadar" class="links specialLink">Basti Sadar</a>
-          <a onclick="saveLastClick('Harraiya')" href="/home/basti/harraiya" class="links specialLink">Harraiya</a>
-          <a onclick="saveLastClick('Rudhauli')" href="/home/basti/rudhauli" class="links specialLink">Rudhauli</a>
-          <a onclick="saveLastClick('Bhanpur')" href="/home/basti/bhanpur" class="links specialLink">Bhanpur</a>
-        </div>
-      </div>
-
-      <div class="tops dropdown-container" onclick="toggleDropdown()">
-        <div class="placeAndPrice">
-          <div class="textsTopFour">
-            Lucknow
-          </div>
-          <div class="startingPrices"> 
-            Starting Price. 42 Lakhs
-          </div>
-        </div>
-        <div class="dropdown hidden">
-          <a onclick="saveLastClick('Gomti nagar')" href="/home/lucknow/gomtinagar" class="links specialLink">Gomti nagar</a>
-          <a onclick="saveLastClick('Hazratganj')" href="/home/lucknow/hazratganj" class="links specialLink">Hazratganj</a>
-          <a onclick="saveLastClick('Aliganj')" href="/home/lucknow/aliganj" class="links specialLink">Aliganj</a>
-        </div>
-      </div>
-
-      <div class="tops dropdown-container" onclick="toggleDropdown()">
-        <div class="placeAndPrice">
-          <div class="textsTopFour">
-            Kanpur coming soon @ Landbook
-          </div>
-          <div class="startingPrices"> 
-            Starting Price. 35 Lakhs
+        <% }) %>
+      <% } else { %>
+        <div class="tops2 dropdown-container" onclick="toggleDropdown()" title="city not available">
+          <div class="placeAndPrice">
+            <div class="textsTopFour">
+              No city available right now.
+            </div>
           </div>
         </div>
-        <div class="dropdown hidden">
-          <a onclick="saveLastClick('Kalyanpur')" href="/home/kanpur/kalyanpur" class="links specialLink">Kalyanpur</a>
-          <a onclick="saveLastClick('Kidwainagar')" href="/home/kanpur/kidwainagar" class="links specialLink">Kidwainagar</a>
-          <a onclick="saveLastClick('govindnagar')" href="/home/kanpur/govindnagar" class="links specialLink">govindnagar</a>
-        </div>
-      </div>
+      <% } %>
 
       <!-- </a> -->
 
@@ -335,7 +349,71 @@
 
     <div class="kindOfAdvertising">
       <div class="advertisement">
-        advertising
+        <div class="scrolling-text">
+          🎬 Landbook — The Easiest Way to Buy and Sell Land From Home...
+            Welcome to Landbook — the easiest, fastest, and most transparent way to buy and sell land right from your home.
+
+            Let’s start with how simple it is to sell your land on Landbook.
+            ---
+
+            🏠 Selling Land on Landbook
+
+              All you have to do is:
+              1. Go to the main homepage. Image
+
+              2. Select your city and tehsil. Image
+
+              3. Head to the Selling Form page. Image
+
+              4. Fill in some basic details — your price, seller info, and upload khatauni images of your land.
+
+              5. Submit the form… and that’s it!
+
+              Once submitted, Landbook will verify your khatauni and, within next 10 hours, send a Landbook Cameraman to your location.
+              The cameraman will capture detailed images and important nearby landmarks to make your property listing stand out. Video of cameraman clicking pictures. After verification, your land goes live on Landbook — ready for buyers all across the country to see! A site with landbook logo with land image with some texts about it  on that website ---
+
+            🌍 Buying Land on Landbook
+              Buying is just as easy — and smarter than ever before.
+              You can search for land in five powerful ways:
+              1. 🗺️ Through Google Maps, where you can find properties directly on the map near you.
+
+              2. 🔍 Using the Search Bar, type names like “Awaas Vikas” — and instantly see all lands near that location.
+              3. 🔍 Using the Voice search, ask names like “Awaas Vikas” — and instantly see all lands near that location.
+
+              4. 🏡 By exploring the Sell Main Page, browsing cities and tehsils manually.
+
+              5. 🎯 And through Filters, where you can search by max price, rating, city, and tehsil. ---
+
+            💰 Buying Options
+              Now, when you find your perfect land, Landbook gives you two smart buying options:
+              1️⃣ Claim Cart
+                If you’ve found a land that’s perfect but you’re not ready yet, just Add it to your Claim Cart.
+                That means you’re interested — and if someone else tries to buy that same land, Landbook will notify you.
+                Also, You’ll get 6 to 7 hours to give your bayana (token money) and secure that land.
+                To do this, you’ll fill a simple Bayana Form on the Landbook website, then visit the land's tehsil’s Landbook Queryhouse to pay manually.
+                ⚠️ No online payments are made through Landbook — everything is handled safely and directly to avoid any fraud.
+                If you complete your bayana within your time, the land is yours!
+                Otherwise, it moves to the next interested buyer. Users can know more about what claim cart really is in help page of Landbook. ---
+              2️⃣ Buy Within 72 Hours
+                If you’re serious and ready to buy fast — this is your option.
+                Click on Buy Within 72 Hours, fill out the buying form, and Landbook will first give any claimed users their 6 to 7 hours to act.
+                If no one claims it, your 65-hour fast pace buying window begins!
+                Within this period, you just need to visit your Landbook Queryhouse, give your bayana manually, and the land is reserved in your name.
+                From there, Landbook takes care of everything — from lawyer arrangements to khatauni work to final registration.
+                The Landbook price already includes all costs from seller price to land registration, 2.3% landbook convenience cost — no hidden fees, no extra payments.
+                You pay directly to Landbook Queryhouse, and Landbook ensures your seller gets their payment and your land is officially transferred to your name.
+                Just like how a broker works — but safer, faster, and smarter.---
+            🌟 In Short
+            Landbook brings the entire land market online —
+            from listing to verification,
+            from buying to signing,
+            without the stress, confusion, or risk of fraud.
+
+            Sell your land from home.
+            Buy your dream property from anywhere.
+            All verified, all transparent — only on Landbook.
+            “Landbook — Buy and sell your land, fast and secure.” 🌍🏡
+        </div>
       </div>
       <div class="pickContainer">
         <div class="pickWhereYouLeftTitle">
@@ -357,14 +435,53 @@
       </div>
       <div class="searchStates-Button">
         <button class="searchStatesButton">
-          <img src="../Logos/Search Icon.svg" alt="">
+          <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
         </button>
       </div>
     </div> -->
 
+    <div class="horizontalLine"></div>
+
+    <input type="text" id="searchBox" placeholder="Search city or tehsil" class="searchInputForStates"/>
 
     <!-- rest of states is in this container through js-->
-    <div class="allStates"></div> 
+    <div class="allStates">
+      <% if(allCityProducts.length > 0) { %>
+        <% allCityProducts.forEach((cityProduct, index) => { %>
+          <div class="city-box">
+            <div class="state<%= index + 1 %> dropdown-container" onclick="toggleDropdown()">
+              <div class="placeAndPrice">
+                <div class="cityName textsTopFour">
+                  <%= formatName(cityProduct.city) %>
+                </div>
+                <% if(cityProduct.startingPrice) { %>
+                  <div class="startingPrices"> 
+                    Starting Price: <%= cityProduct.startingPrice %> Lakhs
+                  </div>
+                <% } else { %>
+                  <div class="startingPrices"> 
+                    Coming soon @Landbook.
+                  </div>
+                <% } %>
+              </div>
+              <div class="dropdown hidden">
+                <% cityProduct.tehsils.forEach((tehsil) => { %>
+                  <a onclick="saveLastClick('Basti Sadar')" href="/home/<%= cityProduct.city %>/<%= tehsil %>" class="links specialLink tehsilLink"><%= formatName(tehsil) %></a>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="state2 dropdown-container" onclick="toggleDropdown()" title="city not available">
+          <div class="placeAndPrice">
+            <div class="textsTopFour">
+              No city available right now.
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div> 
 
     
     <!-- container div end -->
@@ -377,19 +494,19 @@
     <div class="aboutThisPage">
       <div class="aboutThisPageLanguage">
         <div class="languageImage">
-          <img src="/imagesAndVideos/Logos/LOGO/Wow3.webp" alt="">
+          🌐
         </div>
         <div class="languageText">
-          English
+           English
         </div>  
       </div>
 
       <div class="aboutCountry">
         <div class="aboutCountryImage">
-          <img src="/imagesAndVideos/Logos/LOGO/Wow4.webp" alt="">
+          <img src="/imagesAndVideos/images/1f1ee-1f1f3.png" alt="">
         </div>
         <div class="aboutCountryText">
-          India
+           India
         </div>
       </div>
     </div>
@@ -412,36 +529,15 @@
 
   </footer>
 
-  
-  <div id="google_translate_element" style="display: none;"></div>
   <script>
-    // After some time, hide the dropdown
-    window.addEventListener("load", function () {
-      setTimeout(() => {
-        const el = document.getElementById("google_translate_element");
-        if (el) el.style.display = "none";
-      }, 5000); // wait 5 seconds to let Google inject the dropdown
-    });
-  
-    function toggleLanguage() {
-      const langSelect = document.querySelector('.goog-te-combo');
-      const langLabel = document.getElementById('langLabel');
-  
-      if (!langSelect) {
-        alert('Still loading language tools... try again shortly.');
-        return;
-      }
-  
-      const currentLang = langSelect.value || 'en';
-      const newLang = currentLang === 'en' ? 'hi' : 'en';
-  
-      langSelect.value = newLang;
-      langSelect.dispatchEvent(new Event('change'));
-      langLabel.textContent = newLang === 'en' ? 'EN' : 'हिंदी';
-    }
-  </script>
 
-  <script>
+    // for advertising text moving..
+    // window.addEventListener('load', () => {
+    //   const scrollText = document.querySelector('.scrolling-text');
+    //   setTimeout(() => {
+    //     scrollText.style.animation = 'scrollText 640s linear infinite';
+    //   }, 3000)
+    // });
 
     // for corousel working on arrows on PCs
     let carousel = document.getElementById('carousel');
@@ -480,23 +576,23 @@
     // });
 
     // carousel working on swiping eg. by touch
-    let startX = 0;
-    carousel.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
+    // let startX = 0;
+    // carousel.addEventListener('touchstart', (e) => {
+    //   startX = e.touches[0].clientX;
+    // });
 
-    carousel.addEventListener('touchend', (e) => {
-      let endX = e.changedTouches[0].clientX;
-      let diff = startX - endX;
+    // carousel.addEventListener('touchend', (e) => {
+    //   let endX = e.changedTouches[0].clientX;
+    //   let diff = startX - endX;
 
-      if(diff > 50 && currentIndex < carousel.children.length -1) {
-        currentIndex++;
-        updateCarousel();
-      } else if (diff < -50 && currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      }
-    });
+    //   if(diff > 50 && currentIndex < carousel.children.length -1) {
+    //     currentIndex++;
+    //     updateCarousel();
+    //   } else if (diff < -50 && currentIndex > 0) {
+    //     currentIndex--;
+    //     updateCarousel();
+    //   }
+    // });
 
     
     // for cities dropdown starts here
@@ -528,36 +624,75 @@
       });
     });
 
-    // for searching through voice starts
-    (() => {
-      // feature detection
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if(!SpeechRecognition) return;
+// voice search starts
+(() => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return;
 
-      const micBtn = document.getElementById('micBtn');
-      const inputBox = document.querySelector('input[name="q"]');
-      const recog = new SpeechRecognition();
+  // 🎤 Get both mic buttons and the search input
+  const micBtnMain = document.getElementById('micBtnMain');
+  const micBtnSide = document.getElementById('micBtnSide');
+  const inputBox = document.querySelector('input[name="q"]');
 
-      recog.lang = 'en-US';
-      recog.interimResults = false;
-      recog.maxAlternatives = 1;
+  // Create recognition instance
+  const recog = new SpeechRecognition();
+  recog.interimResults = false;
+  recog.maxAlternatives = 1;
 
-      micBtn.addEventListener('click', () => {
-        recog.start();
-        // micBtn.textContent = 'listening';
-      });
-      recog.addEventListener('result', e => {
-        const transcipt = e.results[0][0].transcipt.trim();
-        inputBox.value = transcipts;
-        // micBtn.textContent = 'Voice';
+  // 🔤 Map languages for speech recognition
+  const langMap = {
+    en: 'en-US',
+    hi: 'hi-IN',
+    bn: 'bn-IN',
+    ur: 'ur-PK',
+    ta: 'ta-IN',
+    te: 'te-IN',
+    pa: 'pa-IN'
+  };
 
-        inputBox.form.requestSubmit();
-      });
+  // Function to get the currently selected language
+  function getCurrentLang() {
+    const mainSel = document.getElementById('languageSelectMain');
+    const sideSel = document.getElementById('languageSelectSidebar');
+    const selected =
+      (mainSel && mainSel.value) ||
+      (sideSel && sideSel.value) ||
+      'en'; // fallback
+    return langMap[selected] || 'en-US';
+  }
 
-      recog.addEventListener('end', () => {
-        // micBtn.textContent = 'Voice';
-      });
-    })();
+  // Function to start recognition
+  function startRecognition(activeBtn) {
+    recog.lang = getCurrentLang();
+    const tooltip = activeBtn.querySelector('.tooltip');
+    if (tooltip) tooltip.textContent = 'Listening...';
+    recog.activeBtn = activeBtn;
+    recog.start();
+  }
+
+  // 🖱️ Click listeners for both mic buttons
+  if (micBtnMain) micBtnMain.addEventListener('click', () => startRecognition(micBtnMain));
+  if (micBtnSide) micBtnSide.addEventListener('click', () => startRecognition(micBtnSide));
+
+  // 🎧 When recognition gives a result
+  recog.addEventListener('result', e => {
+    const transcript = e.results[0][0].transcript.trim();
+    inputBox.value = transcript;
+    inputBox.form?.requestSubmit(); // submit the search form automatically
+  });
+
+  // 🎤 Reset tooltip after recognition ends
+  recog.addEventListener('end', () => {
+    [micBtnMain, micBtnSide].forEach(btn => {
+      if (!btn) return;
+      const tooltip = btn.querySelector('.tooltip');
+      if (tooltip) tooltip.textContent = 'Search with your voice';
+    });
+  });
+})();
+// voice search ends
+
+
 
     // for pick where you left...
     // to make pick where you left working...
@@ -574,93 +709,145 @@
       localStorage.setItem('lastVisitedLinkText', linkText);
     }
 
-  </script>
+    // for searching cities...
+    const searchBox = document.getElementById('searchBox');
+    const cityBoxes = document.querySelectorAll('.city-box');
 
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- Script to Load Google Translate -->
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          includedLanguages: 'en,hi,bn,ta,te,ml,gu,kn,pa,mr,ur,or,as,ne,sd,ks,doi,sa,bo,mai,sat',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-      }
-    
-      // 👇 Flag to track readiness
-      let googleTranslateReady = false;
-    
-      // 👇 Wait until Translate dropdown is injected
-      function checkTranslateReady() {
-        const select = document.querySelector('.goog-te-combo');
-        if (select) {
-          googleTranslateReady = true;
+    searchBox.addEventListener('input', () => {
+      const value = searchBox.value.trim().toLowerCase();
+      cityBoxes.forEach(box => {
+        const cityNameElement = box.querySelector('.cityName');
+        const tehsilLinks = Array.from(box.querySelectorAll('.tehsilLink'));
+        const cityName = cityNameElement ? cityNameElement.textContent.toLowerCase() : '';
+        const tehsilNames = tehsilLinks.map(link => link.textContent.toLowerCase());
+        const matchCity = cityName.includes(value);
+        const matchTehsil = tehsilNames.some(name => name.includes(value));
+        if(matchCity || matchTehsil) {
+          box.style.display = 'block';
         } else {
-          setTimeout(checkTranslateReady, 200); // keep checking
+          box.style.display = 'none';
         }
-      }
-    
-      // 👇 Run this after the Google script loads
-      window.addEventListener("load", () => {
-        checkTranslateReady();
       });
-    
-      function changeLanguage(langCode) {
-        if (!googleTranslateReady) {
-          alert("Google Translate not ready. Please wait...");
-          return;
-        }
-        const select = document.querySelector(".goog-te-combo");
-        if (select) {
-          select.value = langCode;
-          select.dispatchEvent(new Event("change"));
-        }
-      }
+    });
 
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
     }
 
-    // function toggleLanguageDropdown() {
-    //   const dropdown = document.getElementById("dropdownContent");
-    //   dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    // }
-    // function changeLanguage(langCode) {
-    //   const select = document.querySelector(".goog-te-combo");
-    //   if (!select) return setTimeout(() => changeLanguage(langCode), 500); // retry
-    //   select.value = langCode;
-    //   select.dispatchEvent(new Event("change"));
-    // }
+    // for language translation
+    // for new language translation
+(function() {
+  const SELECT_IDS = ['languageSelectMain', 'languageSelectSide']; // IDs of both dropdowns
+  const STORAGE_KEY = 'preferredLanguage';
+  const defaultSourceLang = 'en';
 
-    // function toggleLanguageDropdown() {
-    //   document.getElementById('dropdownContent').classList.toggle('show');
-    // }
-    // window.onclick = function (e) {
-    //   if(!e.target.closest('#languageToggle')) {
-    //     const dropdown = document.getElementById('dropdownContent');
-    //     if(dropdown && dropdown.classList.contains('show')) {
-    //       dropdown.classList.remove('show');
-    //     }
-    //   }
-    // }
+  function setCookie(name, value, days, path = '/') {
+    const d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=${path}`;
+  }
 
-        // for language translation starts
-    function toggleLanguageDropdown() {
-      const dropdown = document.getElementById("dropdownContent");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function currentLangFromCookie() {
+    const c = getCookie('googtrans');
+    if (!c) return defaultSourceLang;
+    const parts = c.split('/');
+    return parts[2] || defaultSourceLang;
+  }
+
+  function trySetComboLang(lang) {
+    const combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+      if (combo.value !== lang) {
+        combo.value = lang;
+        combo.dispatchEvent(new Event('change'));
+        console.log('Translate combo switched →', lang);
+      } else {
+        console.log('Language already active →', lang);
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function fallbackSetLang(lang) {
+    try {
+      setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+      setCookie('googtrans', `/${defaultSourceLang}/${lang}`, 365, '/');
+      window.location.reload();
+    } catch (e) {
+      console.error('fallbackSetLang error', e);
+    }
+  }
+
+  function setLanguage(lang) {
+    localStorage.setItem(STORAGE_KEY, lang);
+    const current = currentLangFromCookie();
+    if (current === lang) {
+      console.log('Skip re-translate (already', lang, ')');
+      return;
     }
 
-    function changeLanguage(lang) {
-      const select = document.querySelector(".goog-te-combo");
-      if (!select) return alert("Google Translate not yet ready");
+    let attempts = 0;
+    const maxAttempts = 25;
+    const interval = setInterval(() => {
+      attempts++;
+      const done = trySetComboLang(lang);
+      if (done) {
+        clearInterval(interval);
+        return;
+      }
+      if (attempts >= maxAttempts) {
+        clearInterval(interval);
+        console.warn('Combo not found, fallback to cookie');
+        fallbackSetLang(lang);
+      }
+    }, 100);
+  }
 
-      select.value = lang;
-      select.dispatchEvent(new Event("change"));
+  function initSelectors() {
+    // get both selects
+    const selects = SELECT_IDS.map(id => document.getElementById(id)).filter(Boolean);
+    if (!selects.length) return;
 
-      toggleLanguageDropdown();
+    // restore saved
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      selects.forEach(sel => sel.value = saved);
+      const current = currentLangFromCookie();
+      if (current !== saved) {
+        setLanguage(saved);
+      }
     }
-    </script>
+
+    // listen for changes on each select
+    selects.forEach(sel => {
+      sel.addEventListener('change', function() {
+        const lang = this.value;
+
+        // sync both dropdowns instantly
+        selects.forEach(s => {
+          if (s.value !== lang) s.value = lang;
+        });
+
+        // apply and save language
+        setLanguage(lang);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSelectors);
+  } else {
+    initSelectors();
+  }
+})();
+
+  </script>
   
 </body>
 

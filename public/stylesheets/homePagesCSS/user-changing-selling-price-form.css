@@ -1,0 +1,33 @@
+.mobileNumber{
+  color: rgb(0, 101, 95);
+  font-size: 15px;
+}
+.note{
+  color: red;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  line-height: 22px;
+  word-spacing: 3px;
+}
+.labels{
+  color: rgb(0, 101, 95);
+  margin-top: 12px;
+  margin-left: 10px;
+  padding-left: 6px;
+  font-size: 14px;
+}
+select{
+  margin-left: 10px;
+}
+
+.khatauni{
+  background-color: green;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 40%;
+  cursor: pointer;
+}

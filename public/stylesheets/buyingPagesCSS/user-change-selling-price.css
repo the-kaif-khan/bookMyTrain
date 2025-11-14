@@ -1,0 +1,364 @@
+body{
+  padding: 0;
+  margin-top: 270px;
+  padding-bottom: 50px;
+  font-family: system-ui;
+}
+.gold{
+  color: rgb(231, 170, 0);
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/* login styling start */
+.match-text{
+  margin-top: 5px;
+}
+.match-text.good{
+  color: green;
+}
+.match-text.bad{
+  color: red;
+}
+/* login styling ends */
+
+/* header */
+.header{
+  background-color: rgb(0, 102, 255);
+  height: 122px;
+}
+.headerTitle{
+  color: white;
+  font-size: 26px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+}
+.pageHeading{
+  background-color: rgb(0, 102, 255);
+  color: white;
+  font-size: 19px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+@media(max-width: 500px) {
+  .headerTitle{
+    font-size: 20px;
+  }
+  .pageHeading{
+    font-size: 15px;
+  }
+}
+.logo{
+  color: rgb(1, 163, 1);
+}
+/* page about container */
+.aboutContainer{
+  padding-top: 35px;
+  padding-bottom: 25px;
+  font-size: 14px;
+}
+.about1{
+  font-family: arial;
+  border-top: 2px solid rgba(0, 47, 255, 0.473);
+  background-color: rgb(240, 240, 240);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 20px;
+  text-align: center;
+}
+@media(max-width: 500px) {
+  .aboutContainer{
+    font-size: 13px;
+  }
+}
+.skipLink{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.skipLink a{
+  font-size: 18px;
+  color: rgb(187, 21, 15);
+  text-decoration: none;
+  display: inline-block;
+}
+.skipLink a:hover{
+  text-decoration: underline;
+}
+.about2{
+  font-family: arial;
+  border-top: 2px solid rgba(0, 47, 255, 0.473);
+  background-color: rgb(236, 236, 236);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 20px;
+  text-align: center;
+}
+.skip{
+  color: rgb(187, 21, 15);
+}
+.flash{
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.flash-success{
+  background-color: #d4edda;
+  color: #155724;
+}
+.flash-error{
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.logout{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  /* display: inline-block; */
+  /* margin-right: 20px;
+  margin-left: 30px; */
+  font-size: 13px;
+  font-family: system-ui;
+}
+.skymanPanel{
+  color: white;
+  text-shadow: black;
+  background-color: rgb(1, 101, 92);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin-right: 10px;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+.skymanPanel:hover{
+  border-radius: 8px;
+  transition: all 0.3s;
+  opacity: 0.9;
+}
+.skymanPanel:active{
+  opacity: 0.7;
+}
+.skymanNotification{
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 20px;
+  position: absolute;
+  top: 146px;
+  right: 194px;
+}
+.notificationLink{
+  color: white;
+  /* background-color: rgb(0, 127, 231); */
+  background-color: rgb(0, 81, 255);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin-right: 10px;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+.notificationLink:hover{
+  border-radius: 8px;
+  transition: all 0.3s;
+  opacity: 0.9;
+}
+.notificationLink:active{
+  opacity: 0.7;
+}
+.notificationTooltip{
+  background-color: red;
+  color: white;
+  font-size: 14px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 20px;
+  position: absolute;
+  top: 146px;
+  right: 84px;
+}
+@media(max-width: 500px) {
+  .logout{
+    font-size: 11.5px;
+  }
+  .skymanNotification{
+    font-size: 12.5px;
+    right: 180px;
+  }
+  .notificationTooltip{
+    font-size: 12.5px;
+    right: 76px;
+  }
+}
+.logoutLink{
+  color: white;
+  /* background-color: rgb(0, 127, 231); */
+  background-color: rgb(231, 22, 22);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-decoration: none;
+  transition: all 0.4s;
+}
+.logoutLink:hover{
+  border-radius: 8px;
+  opacity: 0.9;
+  transition: all 0.4s;
+}
+/* .logout:active{
+  opacity: 0.7;
+} */
+/* container */
+.title{
+  color: black;
+  font-size: 30px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+.container{
+  background-color: rgb(247, 247, 247);
+  min-height: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 10px;
+}
+@media(max-width: 750px) {
+  .container{
+    flex-direction: column;
+  }
+  .loginBox{
+    margin-bottom: 20px;
+  }
+}
+
+.signUpBox{
+  background-color: rgb(238, 238, 238);
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(218, 218, 218);
+}
+form{
+  margin-top: 30px;
+  margin-left: 10px;
+}
+.name,
+.username,
+.number,
+.email,
+.password{
+  width: 80%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+.password{
+  position: relative;
+}
+.toggle-password{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 15px;
+  color: #555;
+}
+.signUp{
+  max-width: 100px;
+  display: block;
+  width: 80%;
+  height: 40px;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(3, 121, 255);
+  border: none;
+}
+.signUp:hover{
+  opacity: 0.9;
+  transition: all 0.15s;
+}
+.signUp:active{
+  opacity: 0.7;
+}
+.forgotPass{
+  margin-bottom: 18px;
+  font-family: system-ui;
+  font-size: 14px;
+  color: rgb(0, 144, 255);
+  display: block;
+}
+.forgotPass:hover{
+  text-decoration: none;
+}
+.login{
+  max-width: 100px;
+  display: block;
+  width: 80%;
+  height: 40px;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 224, 0);
+  border: none;
+}
+.login:hover{
+  opacity: 0.9;
+  transition: all 0.15s;
+}
+.login:active{
+  opacity: 0.7;
+}
+.loginBox{
+  background-color: rgb(238, 238, 238);
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(218, 218, 218);
+}
+.footer{
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  background-color: rgb(247, 247, 247);
+  padding: 16px;
+  font-family: system-ui;
+  font-size: 14px;
+}
+.footerLinks{
+  padding: 10px;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid rgb(218, 218, 218);
+  margin-left: 10px;
+  color: black;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.footerLinks:hover{
+  color: white;
+  transition: all 0.2s;
+  background-color: rgb(0, 102, 255);
+}

@@ -59,18 +59,19 @@
   margin-top: 30px;
   margin-bottom: 50px;
   font-family: system-ui;
-  font-size: 13.5px;
-  background-color: rgb(238, 238, 238);
+  font-size: 13px;
+  background-color: rgb(248, 248, 248);
+  color: rgb(0, 81, 255);
   padding-left: 4px;
   padding-top: 10px;
   padding-right: 4px;
   padding-bottom: 10px;
-  border-left: 1px solid rgb(39, 102, 165);
-  border-right: 1px solid rgb(39, 102, 165);
+  /* border-left: 1px solid rgb(39, 102, 165);
+  border-right: 1px solid rgb(39, 102, 165); */
   justify-content: center;
   align-items: center;
-  word-spacing: 6px;
-  line-height: 24px;
+  word-spacing: 4px;
+  line-height: 22px;
   box-shadow: 0px 4px 6px rgba(0, 61, 153, 0.1);
 }
 @media(max-width: 370px) {
@@ -82,7 +83,7 @@
   color: white;
 }
 #last-visited-text{
-  color: rgb(46, 144, 255);
+  color: rgb(255, 255, 255);
   text-align: center;
   margin-top: 4px;
 }
@@ -107,28 +108,70 @@
   height: 100%;
   margin-top: 20px;
 }
-@media(max-width: 400px) {
+@media(max-width: 550px) {
   .top3Columns{
     grid-template-columns: 1fr;
     height: 100%;
     row-gap: 10px;
     margin-top: 20px;
   }
+  /* .tops1,
+  .tops2,
+  .tops3{
+    background-position: top;
+  } */
 }
-.tops{
-  background-image: url(../../imagesAndVideos/images/yeah.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.tops1{
+  background: linear-gradient(-45deg, rgb(0, 101, 95), #c26a05, rgb(0, 101, 95), #0cac2f, rgb(0, 81, 255));
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
   border: 2px solid transparent;
   height: 340px;
+}
+.tops2{
+  background: linear-gradient(-45deg, rgb(0, 81, 255), #c26a05, rgb(0, 101, 95), #0cac2f);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease infinite;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  border: 2px solid transparent;
+  height: 340px;
+}
+.tops3{
+  background: linear-gradient(-45deg, rgb(0, 81, 255), #c26a05, rgb(0, 81, 255), #0cac2f);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  border: 2px solid transparent;
+  height: 340px;
+}
+/* for animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .placeAndPrice{
   display: flex;
   flex-direction: column;
   height: 80%;
   width: 100%;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   font-style: italic;
   margin-left: 4px;
@@ -180,7 +223,9 @@
 @media(max-width: 600px) {
   .kindOfAdvertising{
     grid-template-columns: 1fr;
-    height: 500px;
+  }
+  .advertisement{
+    height: 260px;
   }
   .pickWhereYouLeft{
     width: 350px;
@@ -197,10 +242,11 @@
   margin-top: -2px;
   text-align: center;
 
-  background-image: url(/imagesAndVideos/images/yeah.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* background-image: url(/imagesAndVideos/images/yeah.jpg); */
+  /* background: linear-gradient(-45deg, rgb(0, 81, 255), #c26a05, rgb(0, 101, 95), #0c71ac);
+  background-size: 400% 400%;
+  animation: gradientShift 4s ease infinite; */
+  background: linear-gradient(135deg, #690691, rgb(0, 101, 95));
   border: 2px solid transparent;
   height: 300px;
 }
@@ -223,19 +269,65 @@
   text-align: center;
   justify-content: flex-end;
   height: 80%;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   font-style: italic;
   margin-left: 4px;
   margin-right: 4px;
 }
-
 .advertisement{
-  background-color: rgb(44, 139, 139);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(270deg, #a6ff00, #3333ff, rgb(0, 101, 95), oklab(79.12% -0.21229 0.16099 / 0.884)),url(../../imagesAndVideos/Logos/LOGO/Landbook\ logo.jpg);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  animation: bgMove 2s infinite alternate ease-in-out;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+}
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+.scrolling-text:hover,
+.scrolling-text:hover .scrolling-text {
+  animation-play-state: paused;
+}
+.scrolling-text{
+  position: absolute;
+  white-space: nowrap;
+  font-size: 2.0rem;
+  transform: translateX(0);
+  font-weight: 500;
+  animation: scrollText 640s linear infinite;
+  background: linear-gradient(90deg, rgb(255, 255, 255), #ffffff, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes scrollText{
+  0% {
+    transform: translateX(1%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.brand{
+  color: rgb(0, 81, 255);
+  font-weight: 700;
 }
 
 /* search bar for searching states */
-.searchContainerInPage{
+/* .searchContainerInPage{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -267,19 +359,41 @@
   border: 1px solid lightgrey;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+} */
+.searchInputForStates{
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.cityCard{
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.horizontalLine{
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #377ec0, #20cf10);
+  border-radius: 20px;
+  margin-top: 50px;
 }
 
 
 /* rest of states */
 
 .allStates{
-  background-color: lightblue;
+  background-color: rgb(247, 247, 247);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 10px;
   row-gap: 40px;
   height: 100%;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 @media(max-width: 690px) {
   .allStates{
