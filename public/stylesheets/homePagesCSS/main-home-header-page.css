@@ -24,6 +24,30 @@ body.translate-active .main-navbar{
 
 
 /* the all header Contents */
+#voiceOverlay{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  font-size: 17px;
+  z-index: 9999;
+  display: none;
+  animation: fadeIn 0.2s ease-out;
+  text-align: center;
+  max-width: 80%;
+}
+#voiceText{
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.4;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9) translate(-50%, -50%);} to {opacity: 1; transform: scale(1) translate(-50%, -50%);}
+}
 #micBtn{
   border: none;
   background: #fff;
