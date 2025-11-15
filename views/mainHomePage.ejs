@@ -62,8 +62,8 @@
       </div>
       <div class="headerContent">
         <div class="middleHeader">
-          <form action="/home/search/basti/bastisadar" method="GET">
-            <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+          <form action="/home/search/basti/bastisadar" method="GET" id="searchForm">
+            <input type="text" name="q" placeholder="Search Landbook" class="searchInput" id="searchBar" required>
             <button class="searchButton" type="submit">
               <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
               <div class="tooltip">
@@ -184,8 +184,8 @@
         </div>
       </div>
       <div class="sideMiddleHeader">
-        <form action="/home/search/basti/bastisadar" method="GET">
-          <input type="text"  placeholder="Search Landbook" class="searchInput" required>
+        <form action="/home/search/basti/bastisadar" method="GET" id="searchForm">
+          <input type="text" name="q"  placeholder="Search Landbook" class="searchInput" id="searchBar" required>
           <button class="searchButton" type="submit">
             <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
             <div class="sideTooltip">
@@ -637,7 +637,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const overlay = document.getElementById("voiceOverlay");
   const voiceText = document.getElementById("voiceText");
-  const searchInput = document.getElementById("searchInput");
+  const searchInput = document.getElementById("searchBar");
   const searchForm = document.getElementById("searchForm");
 
   let recognition;
