@@ -372,7 +372,7 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, setProductModelCounter
 ]), async (req, res) => {
   
   try {
-    let { youtubeLink, title, city, ratingCount, tehsil, sellerPrice, landbookPrice, brokerPrice, LB, spec, why, sellerId, sellingFormId, keys, recommendation, sellerContact, skymanProductId, lat, lng} = req.body;
+    let { youtubeLink, title, city, ratingCount, tehsil, sellerPrice, landbookPrice, brokerPrice, LB, spec, why, sellerId, sellingFormId, keys, recommendation, sellerContact, skymanProductId, lat, lng, landAddress} = req.body;
     const productNumber = req.productNumber;
     const realCity = city.toLowerCase().replace(' ', '');
     const realTehsil = tehsil.toLowerCase().replace(' ', '');
@@ -427,6 +427,7 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, setProductModelCounter
       zameenNumber: productNumber,
       city: realCity,
       tehsil: realTehsil,
+      landAddress,
       sellerPrice,
       landbookPrice,
       brokerPrice,

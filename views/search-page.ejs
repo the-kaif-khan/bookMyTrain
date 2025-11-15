@@ -53,6 +53,10 @@
               <div class="tooltip">
                 Search with your voice
               </div>
+              <div id="voiceOverlay">
+                <div id="voiceText">
+                </div>
+              </div>
             </button>
           </div>
           <div class="rightHeader">
@@ -138,6 +142,10 @@
             <div class="sideTooltip">
               Search with your voice
             </div>
+            <div id="voiceOverlay">
+              <div id="voiceText">
+              </div>
+            </div>
           </button>
         </div>
 
@@ -185,6 +193,9 @@
                 <div id = "<%= product._id %>">
                   <div class="productsImage">
                     <img src= "data:image/jpeg;base64, <%= product.productImages[0].toString('base64') %>" alt="product image">
+                    <div class="productTooltip">
+                      #<%= product.zameenNumber %>
+                    </div>
                   </div>
                   <div class="productsPriceAndLB">
                     <div class= "productsPrice">
@@ -197,6 +208,9 @@
                     <div class= "productsLB">
                       L * B: <%= product.LB %>
                     </div>
+                  </div>
+                  <div class="productAddress">
+                    Address: <%= product.landAddress %>
                   </div>
                   <div class="productsSpec">
                     <ul>
@@ -280,71 +294,70 @@
     }
 
 // voice search starts
-(() => {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const micButtons = [
+    document.getElementById("micBtnMain"),
+    document.getElementById("micBtnSide")
+  ];
 
-  // 🎤 Get both mic buttons and the search input
-  const micBtnMain = document.getElementById('micBtnMain');
-  const micBtnSide = document.getElementById('micBtnSide');
-  const inputBox = document.querySelector('input[name="q"]');
+  const overlay = document.getElementById("voiceOverlay");
+  const voiceText = document.getElementById("voiceText");
+  const searchInput = document.getElementById("searchBar");
+  const searchForm = document.getElementById("searchForm");
 
-  // Create recognition instance
-  const recog = new SpeechRecognition();
-  recog.interimResults = false;
-  recog.maxAlternatives = 1;
+  let recognition;
 
-  // 🔤 Map languages for speech recognition
-  const langMap = {
-    en: 'en-US',
-    hi: 'hi-IN',
-    bn: 'bn-IN',
-    ur: 'ur-PK',
-    ta: 'ta-IN',
-    te: 'te-IN',
-    pa: 'pa-IN'
-  };
-
-  // Function to get the currently selected language
-  function getCurrentLang() {
-    const mainSel = document.getElementById('languageSelectMain');
-    const sideSel = document.getElementById('languageSelectSidebar');
-    const selected =
-      (mainSel && mainSel.value) ||
-      (sideSel && sideSel.value) ||
-      'en'; // fallback
-    return langMap[selected] || 'en-US';
+  if ("webkitSpeechRecognition" in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = "en-IN"; // You can change to "hi-IN" for Hindi
   }
 
-  // Function to start recognition
-  function startRecognition(activeBtn) {
-    recog.lang = getCurrentLang();
-    const tooltip = activeBtn.querySelector('.tooltip');
-    if (tooltip) tooltip.textContent = 'Listening...';
-    recog.activeBtn = activeBtn;
-    recog.start();
+  function startVoiceSearch() {
+    if (!recognition) return alert("Your browser does not support voice search.");
+
+    voiceText.innerHTML = "Listening...";
+    overlay.style.display = "block";
+
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      let finalText = "";
+      let interimText = "";
+
+      for (let i = 0; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          finalText += event.results[i][0].transcript;
+        } else {
+          interimText += event.results[i][0].transcript;
+        }
+      }
+
+      // Show live text in bubble
+      voiceText.innerHTML = interimText || finalText;
+    };
+
+    recognition.onend = () => {
+      // Use whatever text was last spoken
+      const spokenText = voiceText.innerHTML.trim();
+
+      overlay.style.display = "none"; // Hide bubble
+
+      if (spokenText.length > 0) {
+        searchInput.value = spokenText; // put text in input
+        searchForm.submit(); // auto-search
+      }
+    };
   }
 
-  // 🖱️ Click listeners for both mic buttons
-  if (micBtnMain) micBtnMain.addEventListener('click', () => startRecognition(micBtnMain));
-  if (micBtnSide) micBtnSide.addEventListener('click', () => startRecognition(micBtnSide));
-
-  // 🎧 When recognition gives a result
-  recog.addEventListener('result', e => {
-    const transcript = e.results[0][0].transcript.trim();
-    inputBox.value = transcript;
-    inputBox.form?.requestSubmit(); // submit the search form automatically
+  // Attach to BOTH mic buttons
+  micButtons.forEach(btn => {
+    if (btn) {
+      btn.addEventListener("click", startVoiceSearch);
+    }
   });
-
-  // 🎤 Reset tooltip after recognition ends
-  recog.addEventListener('end', () => {
-    [micBtnMain, micBtnSide].forEach(btn => {
-      if (!btn) return;
-      const tooltip = btn.querySelector('.tooltip');
-      if (tooltip) tooltip.textContent = 'Search with your voice';
-    });
-  });
-})();
+});
 // voice search ends
 
   </script>

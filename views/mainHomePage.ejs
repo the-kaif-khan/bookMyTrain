@@ -247,6 +247,9 @@
                     <div id = "<%= bigProduct._id %>">
                       <div class="productsImage">
                         <img src= "data:image/jpeg;base64, <%= bigProduct.productImages[0].toString('base64') %>" alt="product image">
+                        <div class="productTooltip">
+                          #<%= bigProduct.zameenNumber %>
+                        </div>
                       </div>
                       <div class="productsPriceAndLB">
                         <div class= "productsPrice">

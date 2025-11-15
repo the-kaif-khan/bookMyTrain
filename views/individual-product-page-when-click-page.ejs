@@ -49,8 +49,8 @@
     </div>
     <div class="headerContent">
       <div class="middleHeader">
-        <form action="/home/search/<%= city %>/<%= tehsil %>" method="GET">
-          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+        <form action="/home/search/<%= city %>/<%= tehsil %>" method="GET" id="searchForm">
+          <input type="text" name="q" placeholder="Search Landbook" class="searchInput" id="searchBar" required>
           <button class="searchButton" type="submit">
             <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
             <div class="tooltip">
@@ -59,9 +59,13 @@
           </button>
           <button class="voiceButton" id="micBtnMain">
             <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
-              <div class="tooltip">
-                Search with your voice
+            <div class="tooltip">
+              Search with your voice
+            </div>
+            <div id="voiceOverlay">
+              <div id="voiceText">
               </div>
+            </div>
           </button>
         </form>
       </div>
@@ -139,8 +143,8 @@
       </div>
     </div>
     <div class="sideMiddleHeader">
-      <form action="/home/search/basti/bastisadar" method="GET">
-        <input type="text" name="q" placeholder="Search Landbook" class="searchInput" required>
+      <form action="/home/search/basti/bastisadar" method="GET" id="searchForm">
+        <input type="text" name="q" placeholder="Search Landbook" class="searchInput" id="searchBar" required>
         <button class="searchButton" type="submit">
           <img src="/imagesAndVideos/Logos/Search Icon.svg" alt="">
           <div class="sideTooltip">
@@ -150,8 +154,12 @@
       </form>
       <button class="voiceButton" id="micBtnSide">
         <img src="/imagesAndVideos/Logos/voiceIcon1 (1).png" alt="">
-        <div class="sideTooltip">
+        <div class="tooltip">
           Search with your voice
+        </div>
+        <div id="voiceOverlay">
+          <div id="voiceText">
+          </div>
         </div>
       </button>
     </div>
@@ -421,6 +429,10 @@
                 <button id="getDirectionsBtn" class="getDirectionsBtn">Get directions to the land</button>
               <% } %>
 
+              <div class="productAddress">
+                <b>Address:</b> <%= product.landAddress %>
+              </div>
+
               <div class="whyDetails">
                 <div class="whyDetailsHead">
                   Why should you buy...
@@ -471,7 +483,71 @@
               <% } %>
               
               <div class="advertisingDabba">
-                advertising
+                <div class="scrolling-text">
+                  🎬 Landbook — The Easiest Way to Buy and Sell Land From Home...
+                    Welcome to Landbook — the easiest, fastest, and most transparent way to buy and sell land right from your home.
+
+                    Let’s start with how simple it is to sell your land on Landbook.
+                    ---
+
+                    🏠 Selling Land on Landbook
+
+                      All you have to do is:
+                      1. Go to the main homepage. Image
+
+                      2. Select your city and tehsil. Image
+
+                      3. Head to the Selling Form page. Image
+
+                      4. Fill in some basic details — your price, seller info, and upload khatauni images of your land.
+
+                      5. Submit the form… and that’s it!
+
+                      Once submitted, Landbook will verify your khatauni and, within next 10 hours, send a Landbook Cameraman to your location.
+                      The cameraman will capture detailed images and important nearby landmarks to make your property listing stand out. Video of cameraman clicking pictures. After verification, your land goes live on Landbook — ready for buyers all across the country to see! A site with landbook logo with land image with some texts about it  on that website ---
+
+                    🌍 Buying Land on Landbook
+                      Buying is just as easy — and smarter than ever before.
+                      You can search for land in five powerful ways:
+                      1. 🗺️ Through Google Maps, where you can find properties directly on the map near you.
+
+                      2. 🔍 Using the Search Bar, type names like “Awaas Vikas” — and instantly see all lands near that location.
+                      3. 🔍 Using the Voice search, ask names like “Awaas Vikas” — and instantly see all lands near that location.
+
+                      4. 🏡 By exploring the Sell Main Page, browsing cities and tehsils manually.
+
+                      5. 🎯 And through Filters, where you can search by max price, rating, city, and tehsil. ---
+
+                    💰 Buying Options
+                      Now, when you find your perfect land, Landbook gives you two smart buying options:
+                      1️⃣ Claim Cart
+                        If you’ve found a land that’s perfect but you’re not ready yet, just Add it to your Claim Cart.
+                        That means you’re interested — and if someone else tries to buy that same land, Landbook will notify you.
+                        Also, You’ll get 6 to 7 hours to give your bayana (token money) and secure that land.
+                        To do this, you’ll fill a simple Bayana Form on the Landbook website, then visit the land's tehsil’s Landbook Queryhouse to pay manually.
+                        ⚠️ No online payments are made through Landbook — everything is handled safely and directly to avoid any fraud.
+                        If you complete your bayana within your time, the land is yours!
+                        Otherwise, it moves to the next interested buyer. Users can know more about what claim cart really is in help page of Landbook. ---
+                      2️⃣ Buy Within 72 Hours
+                        If you’re serious and ready to buy fast — this is your option.
+                        Click on Buy Within 72 Hours, fill out the buying form, and Landbook will first give any claimed users their 6 to 7 hours to act.
+                        If no one claims it, your 65-hour fast pace buying window begins!
+                        Within this period, you just need to visit your Landbook Queryhouse, give your bayana manually, and the land is reserved in your name.
+                        From there, Landbook takes care of everything — from lawyer arrangements to khatauni work to final registration.
+                        The Landbook price already includes all costs from seller price to land registration, 2.3% landbook convenience cost — no hidden fees, no extra payments.
+                        You pay directly to Landbook Queryhouse, and Landbook ensures your seller gets their payment and your land is officially transferred to your name.
+                        Just like how a broker works — but safer, faster, and smarter.---
+                    🌟 In Short
+                    Landbook brings the entire land market online —
+                    from listing to verification,
+                    from buying to signing,
+                    without the stress, confusion, or risk of fraud.
+
+                    Sell your land from home.
+                    Buy your dream property from anywhere.
+                    All verified, all transparent — only on Landbook.
+                    “Landbook — Buy and sell your land, fast and secure.” 🌍🏡
+                </div>
               </div>
             </div>
   
@@ -676,72 +752,71 @@
         });
 
 
-        // voice search starts
-(() => {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) return;
+// voice search starts
+document.addEventListener("DOMContentLoaded", () => {
+  const micButtons = [
+    document.getElementById("micBtnMain"),
+    document.getElementById("micBtnSide")
+  ];
 
-  // 🎤 Get both mic buttons and the search input
-  const micBtnMain = document.getElementById('micBtnMain');
-  const micBtnSide = document.getElementById('micBtnSide');
-  const inputBox = document.querySelector('input[name="q"]');
+  const overlay = document.getElementById("voiceOverlay");
+  const voiceText = document.getElementById("voiceText");
+  const searchInput = document.getElementById("searchBar");
+  const searchForm = document.getElementById("searchForm");
 
-  // Create recognition instance
-  const recog = new SpeechRecognition();
-  recog.interimResults = false;
-  recog.maxAlternatives = 1;
+  let recognition;
 
-  // 🔤 Map languages for speech recognition
-  const langMap = {
-    en: 'en-US',
-    hi: 'hi-IN',
-    bn: 'bn-IN',
-    ur: 'ur-PK',
-    ta: 'ta-IN',
-    te: 'te-IN',
-    pa: 'pa-IN'
-  };
-
-  // Function to get the currently selected language
-  function getCurrentLang() {
-    const mainSel = document.getElementById('languageSelectMain');
-    const sideSel = document.getElementById('languageSelectSidebar');
-    const selected =
-      (mainSel && mainSel.value) ||
-      (sideSel && sideSel.value) ||
-      'en'; // fallback
-    return langMap[selected] || 'en-US';
+  if ("webkitSpeechRecognition" in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = "en-IN"; // You can change to "hi-IN" for Hindi
   }
 
-  // Function to start recognition
-  function startRecognition(activeBtn) {
-    recog.lang = getCurrentLang();
-    const tooltip = activeBtn.querySelector('.tooltip');
-    if (tooltip) tooltip.textContent = 'Listening...';
-    recog.activeBtn = activeBtn;
-    recog.start();
+  function startVoiceSearch() {
+    if (!recognition) return alert("Your browser does not support voice search.");
+
+    voiceText.innerHTML = "Listening...";
+    overlay.style.display = "block";
+
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      let finalText = "";
+      let interimText = "";
+
+      for (let i = 0; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          finalText += event.results[i][0].transcript;
+        } else {
+          interimText += event.results[i][0].transcript;
+        }
+      }
+
+      // Show live text in bubble
+      voiceText.innerHTML = interimText || finalText;
+    };
+
+    recognition.onend = () => {
+      // Use whatever text was last spoken
+      const spokenText = voiceText.innerHTML.trim();
+
+      overlay.style.display = "none"; // Hide bubble
+
+      if (spokenText.length > 0) {
+        searchInput.value = spokenText; // put text in input
+        searchForm.submit(); // auto-search
+      }
+    };
   }
 
-  // 🖱️ Click listeners for both mic buttons
-  if (micBtnMain) micBtnMain.addEventListener('click', () => startRecognition(micBtnMain));
-  if (micBtnSide) micBtnSide.addEventListener('click', () => startRecognition(micBtnSide));
-
-  // 🎧 When recognition gives a result
-  recog.addEventListener('result', e => {
-    const transcript = e.results[0][0].transcript.trim();
-    inputBox.value = transcript;
-    inputBox.form?.requestSubmit(); // submit the search form automatically
+  // Attach to BOTH mic buttons
+  micButtons.forEach(btn => {
+    if (btn) {
+      btn.addEventListener("click", startVoiceSearch);
+    }
   });
-
-  // 🎤 Reset tooltip after recognition ends
-  recog.addEventListener('end', () => {
-    [micBtnMain, micBtnSide].forEach(btn => {
-      if (!btn) return;
-      const tooltip = btn.querySelector('.tooltip');
-      if (tooltip) tooltip.textContent = 'Search with your voice';
-    });
-  });
-})();
+});
 // voice search ends
 
       </script>

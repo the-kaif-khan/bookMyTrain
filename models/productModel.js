@@ -24,6 +24,7 @@ let productSchema = mongoose.Schema({
   },
   city: String,
   tehsil: String,
+  landAddress: String,
   area: Number,
   sellerPrice: Number,
   landbookPrice: Number,

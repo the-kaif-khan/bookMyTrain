@@ -475,7 +475,7 @@ router.post('/skyman/created-product', setSkymanProductModelCounter, uploadDisk.
   { name: 'videoFile', maxCount: 1 }
 ]), isAdminOrLandbookerLoggedIn, async (req, res) => {
   try {
-    const {tehsil, landbookerUsername, badnaamSpec, lat, lng, sellerPrice, LB, spec, sellerId, sellingFormId, contactNumber, khatauniSpecDetails} = req.body;
+    const {tehsil, landbookerUsername, badnaamSpec, lat, lng, sellerPrice, LB, spec, sellerId, sellingFormId, contactNumber, khatauniSpecDetails, landAddress} = req.body;
     const sellerIdFromForm = sellerId.trim();
     const sellingFormIdFromForm = sellingFormId.trim();
     const realTehsil = tehsil.toLowerCase().replace(' ', '');
@@ -511,7 +511,7 @@ router.post('/skyman/created-product', setSkymanProductModelCounter, uploadDisk.
         path: `/uploads/skyman/${folderName}/${videoFile.filename}`,
         originalName: videoFile.originalname
       },
-      tehsil: realTehsil, badnaamSpec, lat, lng, sellerPrice, LB, productFolderName: folderName, spec: specArray, sellerId: sellerIdFromForm, sellingFormId: sellingFormIdFromForm,  contactNumber, khatauniSpecDetails
+      tehsil: realTehsil, badnaamSpec, lat, lng, sellerPrice, LB, productFolderName: folderName, spec: specArray, sellerId: sellerIdFromForm, landAddress, sellingFormId: sellingFormIdFromForm,  contactNumber, khatauniSpecDetails
     });
     await sellingFormModel.findByIdAndUpdate(
       sellingFormIdFromForm,

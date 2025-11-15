@@ -9,6 +9,24 @@
   color: white;
   font-size: 20px;
 }
+.productsImage{
+  position: relative;
+}
+.productTooltip{
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  top: -10px;
+  left: -10px;
+  z-index: 10;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 20px;
+  /* background-color: rgb(18, 45, 94); */
+  background-color: rgb(0, 81, 255);
+}
 /* for carousel working */
 .carousel-wrapper{
   display: flex;

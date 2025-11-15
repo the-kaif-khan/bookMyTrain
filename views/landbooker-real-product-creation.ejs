@@ -213,6 +213,8 @@
         <input type="text" name="LB" class="inputs" value="<%= skymanProduct.LB %>" placeholder="Enter LB" readonly required>
 
         <!-- <input type="number" name="area" class="inputs" placeholder="Enter area in sqft." required> -->
+        <label for="" class="labels">Address of land: </label>
+        <input type="text" name="landAddress" class="inputs" placeholder="Enter Address of zameen" value="<%= skymanProduct.landAddress %>" required>
 
         <label class="labels" for="spec">Specifications (one per line): </label>
         <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen" style="width: 100%;margin-bottom: 12px;"><%- skymanProduct.spec.join('\n') %></textarea>

@@ -31,6 +31,7 @@ const skymanProductSchema = new mongoose.Schema({
     type: Number,
     unique: true
   },
+  landAddress: String,
   contactNumber: Number,
   tehsil: String,
   badnaamSpec: String,

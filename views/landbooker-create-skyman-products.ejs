@@ -66,38 +66,45 @@
 
         <!-- <label for="productFolderName">Product Folder Name (e.g., product-1):</label>
         <input type="text" name="productFolderName" id="folderName" class="inputs" required> -->
-        <label for="skymanName">Skyman Name (optional):</label>
+        <label for="skymanName" class="labels">Skyman Name (optional):</label>
         <input type="text" name="skymanName" class="inputs" id="skymanName">
     
-        <label for="realImage">Real Product Image:</label>
+        <label for="realImage" class="labels">Real Product Image:</label>
         <input type="file" name="realImage" id="realImage" accept="image/*" class="inputs" required>
     
-        <label for="mainRoadImages">Upto Main Road Images:</label>
+        <label for="mainRoadImages" class="labels">Upto Main Road Images:</label>
         <input type="file" name="mainRoadImages" id="mainRoadImages" class="inputs" multiple accept="image/*" required>
     
-        <label for="image360">360° Image (HD):</label>
+        <label for="image360" class="labels">360° Image (HD):</label>
         <input type="file" name="image360" id="image360" class="inputs" accept="image/*" required>
     
-        <label for="khatauniFile">Compressed Khatauni File (.zip or .pdf):</label>
+        <label for="khatauniFile" class="labels">Compressed Khatauni File (.zip or .pdf):</label>
         <input type="file" name="khatauniFile" id="khatauniFile" class="inputs" accept=".zip,.pdf" required>
     
-        <label for="videoFile">Product YouTube Video File (max 100MB):</label>
+        <label for="videoFile" class="labels">Product YouTube Video File (max 100MB):</label>
         <input type="file" name="videoFile" id="videoFile" class="inputs" accept="video/*" required>
 
-
+        <label for="" class="labels">Badnaam Specifications</label>
         <input type="text" name="badnaamSpec" class="inputs" placeholder="Enter badnaam specification of product" step="any" required>
 
+        <label for="" class="labels">Address: </label>
+        <input type="text" name="landAddress" class="inputs" placeholder="Enter address of product" step="any" required>
+
+        <label for="" class="labels">Seller contact</label>
         <input type="number" name="contactNumber" class="inputs" value="<%= skymanProduct.contactNumber %>" step="any" readonly required>
 
+        <label for="" class="labels">Enter Latitude of land:</label>
         <input type="number" name="lat" class="inputs" placeholder="Enter latitude of product" step="any" required>
 
+        <label for="" class="labels">Enter Longitude of land:</label>
         <input type="number" name="lng" class="inputs" placeholder="Enter longitude of product" step="any" required>
 
-        <input type="number" name="sellerPrice" class="inputs" placeholder="Enter seller price" step="any" value="<%= skymanProduct.sellerPrice %>" readonly required>
+        <input type="number" name="sellerPrice" class="inputs" placeholder="Enter seller price" step="any" value="<%= skymanProduct.sellerPrice %>" readonly>
 
+        <label for="" class="labels">Enter area of land (L*B): </label>
         <input type="text" name="LB" class="inputs" placeholder="Enter LB" required>
 
-        <label for="spec">Specifications: 5 (one per line): </label>
+        <label for="spec" class="labels">Specifications: 5 (one per line): </label>
         <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen, line by line(5)" style="width: 100%;margin-bottom: 12px;"></textarea>
 
         <input type="text" name="khatauniSpecDetails" class="inputs" value="<%= skymanProduct.khatauniSpecDetails %>" readonly required>
