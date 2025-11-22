@@ -39,6 +39,7 @@ const userBayanaFormModel = require('../models/userBayanaFormModel');
 const uploadDiskForAd = require('../config/multer-disk-storage-advertising-product.js');
 const counterForAdsModel = require('../models/counterForAd.js');
 const counterForProductsModel = require('../models/counterForProductModel.js');
+const { default: mongoose } = require('mongoose');
 
 const setAdProductCounter = async (req, res, next) => {
   try {
@@ -376,6 +377,7 @@ router.post('/admin/c&p.cp', isAdminOrLandbookerLoggedIn, setProductModelCounter
     const productNumber = req.productNumber;
     const realCity = city.toLowerCase().replace(' ', '');
     const realTehsil = tehsil.toLowerCase().replace(' ', '');
+    // const realRatingCount = ratingCount.toString();
 
     const cityProduct = await cityProductModel.findOne({city: realCity});
     if(!cityProduct) {

@@ -618,6 +618,10 @@ body{
   font-family: system-ui;
   margin-bottom: 10px;
 }
+.fixed-textarea{
+  resize: none;
+  overflow: auto;
+}
 .file{
   display: inline-block;
   margin-bottom: 0;

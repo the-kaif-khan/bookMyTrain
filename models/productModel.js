@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Decimal128 } = mongoose.Types;
 
 let productSchema = mongoose.Schema({
   productImages: [Buffer],
@@ -16,7 +17,13 @@ let productSchema = mongoose.Schema({
     required: false
   },
   ratingImage: Buffer,
-  ratingCount: Number,
+  ratingCount: {
+    type: mongoose.Schema.Types.Decimal128,
+    required: true,
+    min: 1.0,
+    max: 5.0,
+    set: v => mongoose.Types.Decimal128.fromString(v.toString())
+  },
   title: String,
   zameenNumber: {
     type: Number,

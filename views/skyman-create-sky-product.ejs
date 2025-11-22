@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"/><title>Create Skyman Product</title></head>
+<body>
+<h1>Create Skyman Product (Container 2)</h1>
+<form id="createForm" enctype="multipart/form-data">
+  <input name="title" placeholder="Title"><br>
+  <input name="skymanName" placeholder="Skyman name"><br>
+  <label>Upload credentials ZIP: <input type="file" name="skymanZip" id="skymanZip" accept=".zip" /></label><br>
+  <button type="submit">Create</button>
+</form>
+<div id="createStatus"></div>
+<script>
+document.getElementById('createForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const fd = new FormData(form);
+
+  // If localStorage has lastSkymanZipUrl, we can fetch the zip and append it automatically
+  if (!form.skymanZip.files.length && localStorage.getItem('lastSkymanZipUrl')) {
+    const url = localStorage.getItem('lastSkymanZipUrl');
+    const res = await fetch(url);
+    const blob = await res.blob();
+    fd.append('skymanZip', blob, 'skymanProductCredentials.zip');
+  }
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/skyman/create', true);
+  xhr.upload.onprogress = ev => {
+    if (ev.lengthComputable) {
+      const pct = Math.round((ev.loaded/ev.total) * 100);
+      document.getElementById('createStatus').innerText = `Uploading ZIP: ${pct}%`;
+    }
+  };
+  xhr.onload = () => {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      document.getElementById('createStatus').innerText = 'Product created: ' + xhr.responseText;
+      localStorage.removeItem('lastSkymanZipUrl');
+    } else document.getElementById('createStatus').innerText = 'Create failed: ' + xhr.responseText;
+  };
+  xhr.onerror = () => document.getElementById('createStatus').innerText = 'Network error';
+  xhr.send(fd);
+});
+</script>
+</body>
+</html>

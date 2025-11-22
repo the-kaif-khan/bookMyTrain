@@ -67,7 +67,7 @@
       <form action="/us/landbookerlogin" method="post">
         <input type="text" placeholder="Enter username" class="username" name="username" required>
         <input type="password" placeholder="Enter your password" class="password" name="password" required>
-        <a href="" class="forgotPass">
+        <a href="/us/landbooker/forgotPass" class="forgotPass">
           forgot password?
         </a>
         <input type="submit" value="Login" class="login">
@@ -84,13 +84,27 @@
         <input type="number" placeholder="Your correct contact number" class="number" name="contactNumber" required>
         <input type="email" placeholder="abc@gmail.com" class="email" name="email" required>
         <input type="text" placeholder="Enter your address" class="email" name="address" required>
-        <input type="password" placeholder="Create password" class="password" name="password" required>
+        <input type="password" placeholder="Create password" class="password" name="password" onsubmit="return validatePassword()" required>
         <input type="number" class="password" name="ownerContactForOtp" value="9140362143" hidden>
+        <div id="message"></div> <br>
+        <span id="errorMsg" style="color: red; display: block;"></span>
         <input type="submit" value="Sign Up" class="signUp">
       </form>
     </div>
     
   </div>
+
+  <script>
+    function validatePassword() {
+      const input = document.getElementById('password');
+      const errorMsg = document.getElementById('errorMsg');
+      if(input.value.length > 5) {
+        errorMsg.textContent = 'Password must be at least 5 characters long.';
+        return false;
+      }
+      return true;
+    }
+  </script>
 
 </body>
 </html>

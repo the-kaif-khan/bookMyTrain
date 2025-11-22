@@ -217,10 +217,10 @@
         <input type="text" name="landAddress" class="inputs" placeholder="Enter Address of zameen" value="<%= skymanProduct.landAddress %>" required>
 
         <label class="labels" for="spec">Specifications (one per line): </label>
-        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen" style="width: 100%;margin-bottom: 12px;"><%- skymanProduct.spec.join('\n') %></textarea>
+        <textarea class="fixed-textarea" name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen" style="width: 100%;margin-bottom: 12px;"><%- skymanProduct.spec.join('\n') %></textarea>
 
         <label class="labels" for="why">Why to buy (one per line): </label>
-        <textarea name="why" rows="5" cols="30" placeholder="Enter why details of this zameen" style="width: 100%;margin-bottom: 12px;"></textarea>
+        <textarea class="fixed-textarea" name="why" rows="5" cols="30" placeholder="Enter why details of this zameen" style="width: 100%;margin-bottom: 12px;"></textarea>
 
         <input type="text" name="sellerId" class="inputs" value="<%= skymanProduct.sellerId %>" readonly required>
 

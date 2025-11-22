@@ -30,6 +30,7 @@
   right: 0;
   left: 0;
   border-bottom: 1px solid lightgrey;
+  z-index: 10;
 }
 .cartHeading img{
   width: 100px;
@@ -67,6 +68,7 @@
   border-top: 1px solid lightgrey;
   font-size: 13px;
   text-align: center;
+  z-index: 10;
 }
 .navLinks{
   background-color: rgb(255, 255, 255);

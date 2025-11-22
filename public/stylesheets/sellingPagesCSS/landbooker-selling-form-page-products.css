@@ -279,6 +279,18 @@ form{
 .download-link:hover{
   text-decoration: underline;
 }
+.download-link2{
+  color: green;
+  margin-top: 16px;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+.download-link2:hover{
+  text-decoration: underline;
+}
+
 .create{
   color: rgb(0, 71, 165);
   font-size: 14px;

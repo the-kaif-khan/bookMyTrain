@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Skyman — Compressor</title>
+  <style>
+    .progress { width:100%; background:#eee; height:18px; border-radius:6px; overflow:hidden; margin:8px 0 }
+    .bar { height:100%; width:0%; background:linear-gradient(90deg,#06f,#0cf); transition: width 0.2s }
+  </style>
+</head>
+<body>
+  <h1>Skyman — Compressor Container</h1>
+
+  <form id="compressForm">
+    <label>Real Image: <input type="file" name="realImage" /></label><br>
+    <label>Main Road Images: <input type="file" name="mainRoadImages" multiple /></label><br>
+    <label>360 Image: <input type="file" name="image360" /></label><br>
+    <label>Khatauni (zip/pdf): <input type="file" name="khatauniFile" /></label><br>
+    <label>Video: <input type="file" name="videoFile" /></label><br><br>
+
+    <button type="submit">Compress & Prepare ZIP</button>
+  </form>
+
+  <div id="status"></div>
+  <div class="progress" id="progressWrap" style="display:none"><div class="bar" id="progressBar"></div></div>
+
+  <div id="result"></div>
+
+
+  <h1>Create Skyman Product (Container 2)</h1>
+<form id="createForm" enctype="multipart/form-data">
+  <input name="title" placeholder="Title"><br>
+  <input name="skymanName" placeholder="Skyman name"><br>
+  <label>Upload credentials ZIP: <input type="file" name="skymanZip" id="skymanZip" accept=".zip" /></label><br>
+  <button type="submit">Create</button>
+</form>
+<div id="createStatus"></div>
+<script>
+document.getElementById('createForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const fd = new FormData(form);
+
+  // If localStorage has lastSkymanZipUrl, we can fetch the zip and append it automatically
+  if (!form.skymanZip.files.length && localStorage.getItem('lastSkymanZipUrl')) {
+    const url = localStorage.getItem('lastSkymanZipUrl');
+    const res = await fetch(url);
+    const blob = await res.blob();
+    fd.append('skymanZip', blob, 'skymanProductCredentials.zip');
+  }
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/us/skyman/create', true);
+  xhr.upload.onprogress = ev => {
+    if (ev.lengthComputable) {
+      const pct = Math.round((ev.loaded/ev.total) * 100);
+      document.getElementById('createStatus').innerText = `Uploading ZIP: ${pct}%`;
+    }
+  };
+  xhr.onload = () => {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      document.getElementById('createStatus').innerText = 'Product created: ' + xhr.responseText;
+      localStorage.removeItem('lastSkymanZipUrl');
+    } else document.getElementById('createStatus').innerText = 'Create failed: ' + xhr.responseText;
+  };
+  xhr.onerror = () => document.getElementById('createStatus').innerText = 'Network error';
+  xhr.send(fd);
+});
+</script>
+
+<script>
+const compressForm = document.getElementById('compressForm');
+const status = document.getElementById('status');
+const progressWrap = document.getElementById('progressWrap');
+const progressBar = document.getElementById('progressBar');
+const result = document.getElementById('result');
+
+compressForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  result.innerHTML = ''; status.innerText = 'Uploading files to server...';
+
+  const fd = new FormData(compressForm);
+
+  // Upload files with XHR to get upload progress
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/us/skyman/compress', true);
+
+  xhr.upload.onprogress = (ev) => {
+    if (ev.lengthComputable) {
+      const pct = Math.round((ev.loaded/ev.total) * 40); // weight upload as 40% of total progress
+      progressWrap.style.display = 'block';
+      progressBar.style.width = pct + '%';
+      status.innerText = `Uploading files... ${pct}%`;
+    }
+  };
+
+  xhr.onload = () => {
+    if (xhr.status >=200 && xhr.status < 300) {
+      const body = JSON.parse(xhr.responseText);
+      const jobId = body.jobId;
+      status.innerText = 'Files uploaded. Waiting for server compression...';
+      // open SSE to receive processing progress
+      connectSSE(jobId);
+    } else {
+      status.innerText = 'Upload failed: ' + xhr.responseText;
+    }
+  };
+
+  xhr.onerror = () => status.innerText = 'Upload error';
+  xhr.send(fd);
+});
+
+// SSE connect for progress
+function connectSSE(jobId) {
+  const es = new EventSource(`/us/skyman/progress/${jobId}`);
+  es.onmessage = (ev) => {
+    const data = JSON.parse(ev.data);
+    // data: { percent, msg }
+    const base = 40; // upload portion already accounted for
+    const percent = base + Math.round((data.percent || 0) * 0.6);
+    progressBar.style.width = percent + '%';
+    status.innerText = data.msg + ' (' + (data.percent || 0) + '%)';
+  };
+  es.addEventListener('done', (ev) => {
+    const payload = JSON.parse(ev.data);
+    status.innerText = 'Done. ZIP ready';
+    progressBar.style.width = '100%';
+    // show download link
+    result.innerHTML = `<p><a href="${payload.zipUrl}" target="_blank">Download skymanProductCredentials.zip</a></p>
+      <p>Now go to Create Product and upload that ZIP (or click below to auto-fill upload)</p>
+      <button id="autoCreate">Proceed to Create Product (auto-fill ZIP)</button>`;
+    es.close();
+
+    document.getElementById('autoCreate').addEventListener('click', () => {
+      // optionally auto-fill second container or store url for create
+      localStorage.setItem('lastSkymanZipUrl', payload.zipUrl);
+      alert('ZIP URL saved to localStorage. Now go to Create Product page to upload it.');
+    });
+  });
+  es.addEventListener('error', (ev) => {
+    console.error('SSE error', ev);
+    status.innerText = 'Processing error';
+    es.close();
+  });
+}
+</script>
+
+</body>
+</html>

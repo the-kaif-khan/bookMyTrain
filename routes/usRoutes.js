@@ -213,6 +213,75 @@ router.post('/landbookerlogin', async (req, res) => {
 
 })
 
+// forgot password for landbooker
+router.get('/landbooker/forgotPass', async (req, res) => {
+  const success = req.flash('success');
+  const error = req.flash('error');
+  
+  res.render('forgot-landbooker-pass-page', {success, error})
+})
+
+router.post('/landbooker/forgottingPass', async (req, res) => {
+  try {
+    let {username, contactNumber, email} = req.body;
+    const landbooker = await landbookersModel.findOne({username, contactNumber, email});
+    if(!landbooker) {
+      req.flash('error', `Your given information does not match any landbooker's account. Please try again.`)
+      return res.status(406).redirect('/us/landbooker/forgotPass')
+    } else {
+      if(landbooker.banned) {
+        req.flash('error', `Sorry ${landbooker.name}, You are banned from Landbook: ${landbooker.banReason}. Contact Landbook down below for query. `)
+        return res.status(400).redirect('/us/landbook')
+      }
+      res.redirect(`/us/landbooker/forgottingPass/${landbooker._id}`)
+    }
+
+  } catch (error) {
+    req.flash('error', `${error.message}`)
+    console.error('something went wrong')
+    return res.status(404).redirect('/us/landbook')
+  }
+})
+
+router.get('/landbooker/forgottingPass/:landbooker', async (req, res) => {
+  const landbooker = await landbookersModel.findOne({_id: req.params.landbooker});
+  const success = req.flash('success');
+  const error = req.flash('error');
+
+  res.render('forgotting-landbooker-pass-page', {landbooker, success, error})
+})
+
+router.post('/landbooker/forgottedPassword', async (req, res) => {
+  try {
+    const {username, password, confirmPassword} = req.body;
+    if(password !== confirmPassword) {
+      req.flash('error', 'Passwords do not match, try again!')
+      const previousPage = req.get('Referrer') || '/us/landbook';
+      return res.status(400).redirect(previousPage);
+    }
+    const landbooker = await landbookersModel.findOne({username: username});
+    if(!landbooker) {
+      req.flash('error', 'Your username is incorrect!')
+      const previousPage = req.get('Referrer') || '/us/landbook';
+      return res.status(400).redirect(previousPage);
+    }
+    bcrypt.genSalt(10, async (err, salt) => {
+      bcrypt.hash(password, salt, async (err, newHash) => {
+        if(err) return res.status(406).send(err.message)
+          landbooker.password = newHash
+          await landbooker.save();
+      });
+      req.flash('success', 'Password successfully changed. Now you can login to continue to Landbook')
+      res.redirect('/us/landbook');
+    })
+
+  } catch (error) {
+    console.error(err);
+    req.flash('error', 'Error doing Forgot password!')
+    res.status(500).redirect('home/login');
+  }
+})
+
 router.get('/createProductsPanel', async (req, res) => {
   const sellingForms = await sellingFormModel.find();
   const contacterSellingForms = [];

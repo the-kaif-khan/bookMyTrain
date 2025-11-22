@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landbooker create skyman products page</title>
+  <title>Landbooker create skyman2 product page</title>
 
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/skyman-create-products-panel.css">
 
@@ -60,7 +60,7 @@
       <div class="productDetailTitle">
         Create skyman product
       </div>
-      <form action="/us/skyman/created-product" method="post" enctype="multipart/form-data">
+      <form id="skymanForm">
 
         <input type="text" name="tehsil" class="inputs" placeholder="Enter tehsil of zameen" value="<%= skymanProduct.city %>" readonly required> <hr>
 
@@ -105,7 +105,7 @@
         <input type="text" name="LB" class="inputs" placeholder="Enter LB" required>
 
         <label for="spec" class="labels">Specifications: 5 (one per line): </label>
-        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen, line by line(5)" style="width: 100%;margin-bottom: 12px;" class="fixed-textarea"></textarea>
+        <textarea name="spec" rows="5" cols="30" placeholder="Enter spec of this zameen, line by line(5)" style="width: 100%;margin-bottom: 12px;"></textarea>
 
         <input type="text" name="khatauniSpecDetails" class="inputs" value="<%= skymanProduct.khatauniSpecDetails %>" readonly required>
 
@@ -115,6 +115,10 @@
 
         <input type="submit" value="Create product" class="inputs submit-button">
       </form>
+      <div id="progressWrapper" style="display: none;">
+        <div id="progressText">Uploading</div>
+        <progress id="uploadProgress" value="0" max="100"></progress>
+      </div>
     </div>
 
     <div class="">
@@ -124,6 +128,52 @@
     </div>
 
   </div>
+
+  <script>
+    document.getElementById('videoFile').onchange = () => {
+      const file = this.files[0];
+      if(file && file.size > 99 * 1024 * 1024) {
+        alert('Please upload a video less than 99 mb')
+      }
+    }
+
+document.getElementById('skymanForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const form = e.target;
+  const fd = new FormData(form);
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/us/skyman/created-product', true);
+
+  const progressWrapper = document.getElementById('progressWrapper');
+  const progress = document.getElementById('uploadProgress');
+  const progressText = document.getElementById('progressText');
+
+  xhr.upload.addEventListener('progress', function (ev) {
+    if (ev.lengthComputable) {
+      const percent = Math.round((ev.loaded / ev.total) * 100);
+      progressWrapper.style.display = 'block';
+      progress.value = percent;
+      progressText.textContent = `Uploading: ${percent}%`;
+    }
+  });
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      progressWrapper.style.display = 'none';
+      if (xhr.status >= 200 && xhr.status < 300) {
+        alert('Created: ' + xhr.responseText);
+        form.reset();
+      } else {
+        alert('Upload failed: ' + xhr.responseText);
+      }
+    }
+  };
+
+  xhr.send(fd);
+});
+
+  </script>
 
 </body>
 </html>

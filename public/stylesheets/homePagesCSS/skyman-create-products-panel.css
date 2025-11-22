@@ -248,6 +248,10 @@ body{
   font-family: arial;
   margin-bottom: 10px;
 }
+.fixed-textarea{
+  resize: none;
+  overflow: auto;
+}
 p{
   font-size: 15px;
   margin: 0;

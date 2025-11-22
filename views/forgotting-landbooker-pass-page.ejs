@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forgotting landbooker pass page</title>
+  
+  <link rel="stylesheet" href="/stylesheets/homePagesCSS/forgottingPassPage.css">
+
+</head>
+<body>
+
+  <div class="header">
+    <div class="headerTitle">
+      Welcome to <span>landbook.com</span>
+    </div>
+  </div>
+  <div class="pageHeading">
+    Landbooker's forgotting password page
+  </div>
+
+
+  <div class="aboutContainer">
+    <div class="about1">
+      You have successfully given correct information about your <span class="logo">Landbook</span> account. Now you can enter your new password for your account which is linked to email: <span class="skip"><%= landbooker.email %></span>.
+    </div>
+    <div class="skipLink">
+      <div class="link">
+        <a href="/us/landbook">Back to login page</a> 
+      </div>
+    </div>
+  </div>
+
+  <% if(error.length > 0) { %>
+    <div class="flash flash-error">
+      <%= error %>
+    </div>
+  <% } %>
+  <% if(success.length > 0) { %>
+    <div class="flash flash-success">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <div class="loginBox">
+    <div class="title">
+      Enter correct details in order to Forgot password
+    </div>
+    <form action="/us/landbooker/forgottedPassword" method="post" onsubmit="return validatePassword()">
+      <input type="userName" placeholder="Enter your username" class="username" name="username" required>
+      <input type="password" minlength="5" placeholder="Create password" class="password" name="password" required>
+      <input type="password" minlength="5" placeholder="Re-enter Password" class="password" name="confirmPassword" required>
+      <input type="submit" value="Change password" class="login">
+    </form>
+  </div>
+
+  <div class="footer">
+    <div class="footers">
+      <a href="/home/aboutus" class="footerLinks">
+        Contact us
+      </a>
+    </div>
+    <div class="footers">
+      <a href="/home/aboutus" class="footerLinks">
+        About us
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function validatePassword() {
+      const input = document.getElementById('password');
+      const errorMsg = document.getElementById('errorMsg');
+      if(input.value.length > 5) {
+        errorMsg.textContent = 'Password must be at least 5 characters long.';
+        return false;
+      }
+      return true;
+    }
+
+    document.querySelector('form').addEventListener('submit', (e) => {
+      const password = document.querySelector('input[name="password"]').value;
+      const confirmPassword = document.querySelector('input[name="confirmPassword"]').value;
+
+      if(password !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match!');
+      }
+    });
+  </script>
+
+
+</body>
+</html>
