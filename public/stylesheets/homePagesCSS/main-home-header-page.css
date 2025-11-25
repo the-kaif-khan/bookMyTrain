@@ -1,8 +1,4 @@
 
-body.translate-active .main-navbar{
-  top: 100px;
-  transition: margin-top 0.3s ease;
-}
 .language-select{
   color: rgb(0, 81, 255);
   /* background-color: rgb(238, 238, 238); */

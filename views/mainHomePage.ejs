@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-different-states-background.css">
   <link rel="stylesheet" href="/stylesheets/homePagesCSS/main-home-carousel-product.css">
 
+  <link rel="icon" type="image/png" href="/banner2.png">
+
 
 <!-- google translate hidden element (head) -->
 <div id="google_translate_element" style="display:none;"></div>
@@ -852,6 +854,19 @@ document.addEventListener("DOMContentLoaded", () => {
     initSelectors();
   }
 })();
+
+  const observer = new MutationObserver(() => {
+    const banner = document.querySelector('.goog-te-banner-frame');
+    if(banner) {
+      document.documentElement.classList.add('goog-banner-active');
+    } else {
+      document.documentElement.classList.remove('goog-banner-active');
+    }
+  });
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
 
   </script>
   
