@@ -31,10 +31,10 @@ app.use(session({
 }));
 app.use(flash());
 
-app.use((req, res, next) => {
-  log('middleware chal raha hai');
-  next();
-})
+// app.use((req, res, next) => {
+//   log('middleware chal raha hai');
+//   next();
+// })
 
 app.use('/landad', landadRouter)
 app.use('/home', homeRouter)

@@ -13,6 +13,7 @@
 
   <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-recommended-products.css">
   <link rel="stylesheet" href="/stylesheets/buyingPagesCSS/individual-page-advertising-products-css.css">
+  <link rel="icon" type="image/png" href="/Landbook.link.png">
 
           <!-- google translate hidden element (head) -->
 <div id="google_translate_element" style="display:none;"></div>
@@ -35,7 +36,7 @@
   <!-- hamburger starts -->
   <nav class="main-navbar">
     <div class="leftHeader">
-      <a href="/home/<%= city %>/<%= tehsil %>"><img src="/imagesAndVideos/Logos/LOGO/banner2.png" alt=""></a>
+      <a href="/home/<%= city %>/<%= tehsil %>"><img src="/Landbook.link.png" alt=""></a>
     </div>
     <button class="hamburger" onclick="toggleSidebar()">
       &#9776
@@ -822,7 +823,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </script>
 
 
-  <select id="languageSelect language-select">
+  <select id="languageSelect language-select" hidden>
     <option value="en">English</option>
     <option value="hi">हिन्दी</option>
     <option value="bn">বাংলা</option>

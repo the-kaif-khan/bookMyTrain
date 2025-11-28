@@ -372,7 +372,7 @@ body{
   width: 100%;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(270deg, #a6ff00, #3333ff, rgb(0, 101, 95), oklab(79.12% -0.21229 0.16099 / 0.884)),url(../../imagesAndVideos/Logos/LOGO/Landbook\ logo.jpg);
+  background: linear-gradient(270deg, #a6ff00, #3333ff, rgb(0, 101, 95), oklab(79.12% -0.21229 0.16099 / 0.884)),url(../../Landbook.link.png);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -384,6 +384,11 @@ body{
   justify-content: start;
   align-items: center;
   text-align: center;
+}
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
 /* youtube video link css */
