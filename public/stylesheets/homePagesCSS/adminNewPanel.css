@@ -457,6 +457,21 @@ body{
   flex-wrap: nowrap;
   font-size: 14px;
 }
+.navigationsBox10{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 130px 80px 80px;
+  height: 52px;
+  width: 108%;
+  margin-bottom: 0px;
+  position: relative;
+  top: 0px;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid lightgrey;
+  flex-wrap: nowrap;
+  font-size: 14px;
+}
 .userBayanaForms,
 .due,
 .buyingCartTimer,

@@ -203,11 +203,11 @@
         </div>
 
         <!-- prices starts-->
-        <input type="number" id="sellerPrice" name="sellerPrice" class="inputs" placeholder="Enter original price" value="<%= skymanProduct.sellerPrice.toFixed(2) %>" readonly step="any" required>
+        <input type="number" id="sellerPrice" name="sellerPrice" class="inputs" placeholder="Enter original price" value="<%= skymanProduct?.sellerPrice?.toFixed(2) || '' %>" step="any" readonly required>
 
-        <input type="number" id="landbookPrice" name="landbookPrice" class="inputs" placeholder="Enter landbook price" step="any" required readonly>
+        <input type="number" id="landbookPrice" name="landbookPrice" class="inputs" placeholder="Enter landbook price" step="any" required>
 
-        <input type="number" id="brokerPrice" name="brokerPrice" class="inputs" placeholder="Enter broker price" step="any" required readonly>
+        <input type="number" id="brokerPrice" name="brokerPrice" class="inputs" placeholder="Enter broker price" step="any" required>
         <!-- prices ends -->
 
         <input type="text" name="LB" class="inputs" value="<%= skymanProduct.LB %>" placeholder="Enter LB" readonly required>
@@ -292,12 +292,16 @@
       }
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       const sellerPrice = document.getElementById('sellerPrice');
       const landbookPrice = document.getElementById('landbookPrice');
       const brokerPrice = document.getElementById('brokerPrice');
+      if(!sellerPrice || !landbookPrice || !brokerPrice) {
+        return;
+      }
 
       const sPrice = parseFloat(sellerPrice.value);
+      if(isNaN(sPrice)) return;
 
       const likhFemale = sPrice * 0.07;
       const ourCost = sPrice * 0.023;
@@ -307,7 +311,7 @@
 
       landbookPrice.value = finalFemale.toFixed(2);
       brokerPrice.value = brokerFinalFemale.toFixed(2);
-    })
+    });
 
   </script>
 
